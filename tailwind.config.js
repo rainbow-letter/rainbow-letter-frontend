@@ -45,9 +45,9 @@ module.exports = {
         },
       },
       textColor: {
-        default: '#212121',
+        default: '#424242',
         gray: {
-          1: '#585667',
+          1: '#616161',
           2: '#BDBDBD',
         },
       },
