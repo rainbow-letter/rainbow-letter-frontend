@@ -1,21 +1,21 @@
-const titles = {
+export const titles = {
   header: '마이페이지',
   body: '내 정보',
   footer: '자주 묻는 질문',
 };
 
-const headerContents = {
+export const headerContents = {
   logOut: '로그아웃',
 };
 
-const userDetails = {
+export const userInfoContents = {
   email: '이메일',
   phone: '휴대폰 번호',
   noPhone: '등록된 번호 없음',
   edit: '수정하기',
 };
 
-const FAQs = [
+export const FAQs = [
   {
     id: 1,
     title: '무지개편지는 어떤 서비스인가요?',
@@ -40,5 +40,3 @@ const FAQs = [
     content: '아래 이메일로 문의 주시면 도와드릴게요. swcteam41@gmail.com',
   },
 ];
-
-export default { titles, headerContents, userDetails, FAQs };
