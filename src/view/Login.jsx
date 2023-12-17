@@ -3,10 +3,9 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import Header from '../components/Login/Header';
+import LoginForm from '../components/Login/LoginForm';
 import LOGIN_MESSAGE from '../components/Login/constants';
 
-const INPUT_STYLE =
-  'w-full rounded-[15px] py-[21.5px] pl-[21.25px] bg-gray-2 text-gray-2 text-solo-small mb-2.5';
 const BUTTON_STYLE =
   'w-full rounded-full flex justify-center items-center py-[22px]';
 
@@ -19,40 +18,20 @@ export default function Login() {
   return (
     <main className="text-center mt-36">
       <Header message={message} BUTTON_STYLE={BUTTON_STYLE} />
-      <div>
-        <h3 className="text-solo-small text-gray-1">{message.describe}</h3>
-        <form className="my-5">
-          <input
-            type="text"
-            placeholder="이메일을 입력해주세요"
-            className={`${INPUT_STYLE} mb`}
-          />
-          <input
-            type="password"
-            placeholder="비밀번호를 입력해주세요"
-            className={INPUT_STYLE}
-          />
-          <button
-            type="submit"
-            className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white mt-0.5`}
-          >
-            {message.button.default}
-          </button>
-        </form>
-        {/* 추후 다른 페이지 주소 작성 */}
+      <LoginForm message={message} BUTTON_STYLE={BUTTON_STYLE} />
+      {/* 추후 다른 페이지 주소 작성 */}
+      <Link to="/">
+        <span className="text-caption text-gray-2 text-solo-medium">
+          비밀번호를 잊었어요
+        </span>
+      </Link>
+      <section className="flex justify-center mt-[60px] gap-2.5">
+        <h3>{message.question}</h3>
+        {/* 추후 회원가입 페이지 주소 작성 */}
         <Link to="/">
-          <span className="text-caption text-gray-2 text-solo-medium">
-            비밀번호를 잊었어요
-          </span>
+          <span className="underline text-orange-400">무료 회원가입하기</span>
         </Link>
-        <section className="flex justify-center mt-[60px] gap-2.5">
-          <h3>{message.question}</h3>
-          {/* 추후 회원가입 페이지 주소 작성 */}
-          <Link to="/">
-            <span className="underline text-orange-400">무료 회원가입하기</span>
-          </Link>
-        </section>
-      </div>
+      </section>
     </main>
   );
 }
