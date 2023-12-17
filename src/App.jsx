@@ -1,7 +1,8 @@
 import React from 'react';
+import Router from './Router';
 
 function App() {
-  return <div className="App">Rainbow Letter!</div>;
+  return <Router />;
 }
 
 export default App;
