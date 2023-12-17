@@ -8,6 +8,8 @@ const LOGIN_MESSAGE = [
       google: '구글로 간편 로그인하기',
       default: '로그인하기',
     },
+    forget: '비밀번호를 잊었어요',
+    join: '무료 회원가입하기',
   },
   {
     pathname: '/sign-up',
