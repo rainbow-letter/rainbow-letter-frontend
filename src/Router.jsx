@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import React from 'react';
-// import Home from './view/Home';
+import Home from './view/Home';
 import Login from './view/Login';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
@@ -15,7 +15,7 @@ function Router() {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<MyPage />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
             {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
