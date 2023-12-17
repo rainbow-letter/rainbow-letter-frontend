@@ -7,7 +7,7 @@ module.exports = {
       fontSize: {
         'heading-1': ['1.875rem', { lineHeight: '130%', fontWeight: '600' }],
         'heading-1-pc': ['3rem', { lineHeight: '130%', fontWeight: '600' }],
-        'heading-2': ['130%', { lineHeight: '130%', fontWeight: '500' }],
+        'heading-2': ['1.625rem', { lineHeight: '130%', fontWeight: '500' }],
         'heading-2-pc': ['2.25rem', { lineHeight: '130%', fontWeight: '500' }],
         'heading-3': ['1.25rem', { lineHeight: '130%', fontWeight: '500' }],
         'heading-3-pc': ['1.5rem', { lineHeight: '130%', fontWeight: '500' }],
