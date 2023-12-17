@@ -2,8 +2,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import Header from '../components/Login/Header';
 import LOGIN_MESSAGE from '../components/Login/constants';
-import googleIcon from '../assets/Google Icon.svg';
 
 const INPUT_STYLE =
   'w-full rounded-[15px] py-[21.5px] pl-[21.25px] bg-gray-2 text-gray-2 text-solo-small mb-2.5';
@@ -18,17 +18,7 @@ export default function Login() {
 
   return (
     <main className="text-center mt-36">
-      <section>
-        <h2 className="text-heading-2">{message.title}</h2>
-        <button
-          type="button"
-          className={`${BUTTON_STYLE} border text-solo-medium text-gray-1 mt-5 gap-2`}
-        >
-          <img src={googleIcon} alt="google icon" />
-          {message.button.google}
-        </button>
-        <div className="border-t my-6 w-[57px] mx-auto" />
-      </section>
+      <Header message={message} BUTTON_STYLE={BUTTON_STYLE} />
       <div>
         <h3 className="text-solo-small text-gray-1">{message.describe}</h3>
         <form className="my-5">
