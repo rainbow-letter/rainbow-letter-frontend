@@ -1,29 +1,58 @@
-import { React } from 'react';
+/* eslint-disable*/
+import { React, useState, useCallback } from 'react';
 
-const INPUT_STYLE =
-  'w-full rounded-[15px] py-[21.5px] pl-[21.25px] bg-gray-2 text-gray-2 text-solo-small mb-2.5';
+import UserInput from './UserInput';
+import { trylogin } from '../../api/user';
 
 export default function LoginForm({
   message: { describe, button },
   BUTTON_STYLE,
 }) {
+  const [profile, setProfile] = useState({
+    email: '',
+    password: '',
+  });
+  const [errorData, setErrorData] = useState(null);
+
+  const onClickLoginButton = useCallback(
+    async (e) => {
+      try {
+        e.preventDefault();
+        const data = await trylogin(profile);
+
+        console.log(data);
+        setErrorData(null);
+      } catch (error) {
+        setErrorData(error.response.data);
+        console.log(errorData);
+      }
+    },
+    [profile, errorData]
+  );
+
   return (
     <section>
       <h3 className="text-solo-small text-gray-1">{describe}</h3>
       <form className="my-5">
-        <input
+        <UserInput
           type="text"
+          value={profile.email}
+          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
           placeholder="이메일을 입력해주세요"
-          className={`${INPUT_STYLE} mb`}
+          isNotValid={errorData}
         />
-        <input
+        <UserInput
           type="password"
+          value={profile.password}
+          onChange={(e) => setProfile({ ...profile, password: e.target.value })}
           placeholder="비밀번호를 입력해주세요"
-          className={INPUT_STYLE}
+          isNotValid={errorData}
+          errorMessage={errorData && '이메일 및 비밀번호를 확인 해주세요.'}
         />
         <button
           type="submit"
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white mt-0.5`}
+          onClick={(e) => onClickLoginButton(e)}
+          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white`}
         >
           {button.default}
         </button>

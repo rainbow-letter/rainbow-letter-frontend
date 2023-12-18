@@ -12,6 +12,7 @@ const BUTTON_STYLE =
 
 export default function Join() {
   const location = useLocation();
+
   const message = LOGIN_MESSAGE.find(
     (item) => item.pathname === location.pathname
   );
