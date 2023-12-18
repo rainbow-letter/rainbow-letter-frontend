@@ -9,7 +9,10 @@ const LOGIN_MESSAGE = [
       default: '로그인하기',
     },
     forget: '비밀번호를 잊었어요',
-    join: '무료 회원가입하기',
+    link: {
+      address: '/sign-up',
+      value: '무료 회원가입하기',
+    },
   },
   {
     pathname: '/sign-up',
@@ -18,7 +21,11 @@ const LOGIN_MESSAGE = [
     question: '이미 계정이 있나요?',
     button: {
       google: '구글로 간편 가입하기',
-      default: '로그인하기',
+      default: '가입하기',
+    },
+    link: {
+      address: '/login',
+      value: '로그인하기',
     },
   },
 ];
