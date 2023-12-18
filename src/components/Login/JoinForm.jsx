@@ -1,28 +1,28 @@
+/* eslint-disable*/
 import { React, useCallback } from 'react';
+
+import { trySignUp } from '../../api/login';
 
 const INPUT_STYLE =
   'w-full rounded-[15px] py-[21.5px] pl-[21.25px] bg-gray-2 text-gray-2 text-solo-small mb-2.5';
+const data = {
+  email: 'handwoong@gmail.com',
+  password: 'password1',
+};
 
 export default function JoinForm({
   message: { describe, button },
   BUTTON_STYLE,
 }) {
-  const data = {
-    email: 'handwoong@gmail.com',
-    password: 'password1',
-  };
-
   const onClickLoginButton = useCallback(async (e) => {
-    e.preventDefault();
-    const response = await fetch('http://52.79.240.249:8081/api/members', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const jsonData = await response.json();
-    console.log(jsonData);
+    try {
+      e.preventDefault();
+      const { response } = await trySignUp(data);
+      console.log(response);
+    } catch (error) {
+      const errorData = error.response.data;
+      console.log(errorData);
+    }
   }, []);
 
   return (
