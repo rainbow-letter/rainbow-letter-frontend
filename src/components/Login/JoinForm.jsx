@@ -1,20 +1,20 @@
 /* eslint-disable*/
 import { React, useCallback } from 'react';
 
-import { trySignUp } from '../../api/login';
+import { trySignUp } from '../../api/user';
 
 const INPUT_STYLE =
   'w-full rounded-[15px] py-[21.5px] pl-[21.25px] bg-gray-2 text-gray-2 text-solo-small mb-2.5';
 const data = {
-  email: 'handwoong@gmail.com',
-  password: 'password1',
+  email: 'user@email.com',
+  password: 'user1234',
 };
 
 export default function JoinForm({
   message: { describe, button },
   BUTTON_STYLE,
 }) {
-  const onClickLoginButton = useCallback(async (e) => {
+  const onClickSignUpButton = useCallback(async (e) => {
     try {
       e.preventDefault();
       const { response } = await trySignUp(data);
@@ -41,7 +41,7 @@ export default function JoinForm({
         />
         <button
           type="submit"
-          onClick={(e) => onClickLoginButton(e)}
+          onClick={(e) => onClickSignUpButton(e)}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white mt-0.5`}
         >
           {button.default}

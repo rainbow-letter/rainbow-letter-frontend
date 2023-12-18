@@ -9,11 +9,7 @@ export const trySignUp = async (data) => {
 };
 
 export const trylogin = async (data) => {
-  try {
-    const response = await apiRequest.post(`${RESOURSE}`, data);
+  const response = await apiRequest.post(`${RESOURSE}/login`, data);
 
-    return response;
-  } catch (error) {
-    throw new Error('로그인 실패');
-  }
+  return response;
 };
