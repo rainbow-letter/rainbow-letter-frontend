@@ -6,7 +6,13 @@ import chevronLeft from '../../assets/chevronLeft.svg';
 
 function Navbar() {
   const location = useLocation();
-  const { title, actionName, action } = navConfig[location.pathname];
+  const config = navConfig[location.pathname];
+
+  if (!config) {
+    return null;
+  }
+
+  const { title, actionName, action } = config;
 
   return (
     <section className="h-[70px] pt-6 pb-5 flex justify-between border-b border-b-gray-1">
