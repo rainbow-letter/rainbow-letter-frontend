@@ -1,5 +1,6 @@
-/* eslint-disable*/
+/* eslint-disable */
 import { React, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import UserInput from './UserInput';
 import { trySignUp } from '../../api/user';
@@ -8,6 +9,7 @@ export default function JoinForm({
   message: { describe, button },
   BUTTON_STYLE,
 }) {
+  const navigate = useNavigate();
   const [profile, setProfile] = useState({
     email: '',
     password: '',
@@ -18,17 +20,16 @@ export default function JoinForm({
     async (e) => {
       try {
         e.preventDefault();
-        const data = await trySignUp(profile);
-        console.log(data);
+        await trySignUp(profile);
 
         setErrorData(null);
+        navigate('/login');
       } catch (error) {
         setErrorData(error.response.data);
       }
     },
     [profile, errorData]
   );
-  console.log(errorData);
 
   return (
     <section>
