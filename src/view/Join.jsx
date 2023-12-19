@@ -5,10 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Login/Header';
 import JoinForm from '../components/Login/JoinForm';
 import LinkAvailable from '../components/Login/LinkAvailable';
-import LOGIN_MESSAGE from '../components/Login/constants';
-
-const BUTTON_STYLE =
-  'w-full rounded-[15px] flex justify-center items-center py-[17px]';
+import { LOGIN_MESSAGE, BUTTON_STYLE } from '../components/Login/constants';
 
 export default function Join() {
   const location = useLocation();
