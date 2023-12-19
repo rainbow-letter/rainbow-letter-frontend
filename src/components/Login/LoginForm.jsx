@@ -1,13 +1,18 @@
 /* eslint-disable*/
 import { React, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import UserInput from './UserInput';
 import { trylogin } from '../../api/user';
+import { getToken } from '../../store/user';
 
 export default function LoginForm({
   message: { describe, button },
   BUTTON_STYLE,
 }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState({
     email: '',
     password: '',
@@ -18,13 +23,13 @@ export default function LoginForm({
     async (e) => {
       try {
         e.preventDefault();
-        const data = await trylogin(profile);
+        const { token } = await trylogin(profile);
 
-        console.log(data);
         setErrorData(null);
+        dispatch(getToken(token));
+        navigate('/');
       } catch (error) {
         setErrorData(error.response.data);
-        console.log(errorData);
       }
     },
     [profile, errorData]
