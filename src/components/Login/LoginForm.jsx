@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import { React, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -29,6 +28,7 @@ export default function LoginForm({
         dispatch(getToken(token));
         navigate('/');
       } catch (error) {
+        console.log(error);
         setErrorData(error.response.data);
       }
     },
