@@ -30,4 +30,7 @@ const LOGIN_MESSAGE = [
   },
 ];
 
-export default LOGIN_MESSAGE;
+const BUTTON_STYLE =
+  'w-full rounded-[15px] flex justify-center items-center py-[17px]';
+
+export { LOGIN_MESSAGE, BUTTON_STYLE };

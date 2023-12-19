@@ -1,3 +1,4 @@
+/* eslint-disable */
 import apiRequest from '.';
 
 const RESOURSE = '/api/members';
@@ -10,6 +11,12 @@ export const trySignUp = async (data) => {
 
 export const trylogin = async (data) => {
   const response = await apiRequest.post(`${RESOURSE}/login`, data);
+
+  return response;
+};
+
+export const findEmail = async (email) => {
+  const response = await apiRequest.post(`${RESOURSE}/password/find`, email);
 
   return response;
 };

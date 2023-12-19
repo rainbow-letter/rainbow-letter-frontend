@@ -1,9 +1,11 @@
+/* eslint-disable */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import React from 'react';
 import Home from './view/Home';
 import Login from './view/Login';
 import Join from './view/Join';
+import FindPassword from './view/FindPassword';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
 // import MyPage from './components/MyPage';
@@ -19,6 +21,7 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<Join />} />
+          <Route path="/find-password" element={<FindPassword />} />
           <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
             {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
             {/* <Route path="/my-page" element={<MyPage />} /> */}
