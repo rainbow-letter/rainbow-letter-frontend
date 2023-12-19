@@ -1,6 +1,6 @@
 /* eslint-disable*/
 const initialState = {
-  user: {},
+  token: {},
 };
 
 const SET_USER = 'SET_USER';
@@ -14,12 +14,12 @@ export default function user(state = initialState, action) {
     case SET_USER:
       return {
         ...state,
-        user: action.data,
+        token: action.data,
       };
     case REMOVE_USER:
       return {
         ...state,
-        user: null,
+        token: null,
       };
     default:
       return state;

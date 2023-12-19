@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div>
       <p>Welcome Home!</p>
-      {user.user ? (
+      {user.token ? (
         <button type="button" onClick={() => dispatch(removeToken())}>
           로그아웃
         </button>
