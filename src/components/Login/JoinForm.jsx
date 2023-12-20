@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { React, useState, useCallback } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import UserInput from './UserInput';
@@ -15,6 +15,7 @@ export default function JoinForm({
     password: '',
   });
   const [errorData, setErrorData] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const onClickSignUpButton = useCallback(
     async (e) => {
@@ -26,10 +27,15 @@ export default function JoinForm({
         navigate('/login');
       } catch (error) {
         setErrorData(error.response.data);
+        setIsDisabled(true);
       }
     },
     [profile, errorData]
   );
+
+  useEffect(() => {
+    setIsDisabled(false);
+  }, [profile]);
 
   return (
     <section className="mt-[44px]">
@@ -66,7 +72,10 @@ export default function JoinForm({
         <button
           type="submit"
           onClick={(e) => onClickSignUpButton(e)}
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5`}
+          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
+            // TODO: 버튼 비활성화 색상 피드백 이후 수정
+            isDisabled && 'bg-gray-1'
+          }`}
         >
           {button.default}
         </button>
