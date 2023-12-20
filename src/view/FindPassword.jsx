@@ -7,15 +7,13 @@ import { findEmail } from '../api/user';
 import { BUTTON_STYLE } from '../components/Login/constants';
 
 export default function FindPassword() {
-  const [email, setEmail] = useState('');
+  const [auth, setAuth] = useState({ email: '' });
 
   const onClickFindEmailButton = async () => {
     try {
-      const data = await findEmail(email);
-
-      console.log(data);
+      await findEmail(auth);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -28,8 +26,8 @@ export default function FindPassword() {
       <UserInput
         type="text"
         placeholder="이메일을 입력해주세요"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={auth.email}
+        onChange={(e) => setAuth({ ...auth, email: e.target.value })}
       />
       <button
         type="submit"

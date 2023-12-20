@@ -21,7 +21,7 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<Join />} />
-          <Route path="/find-password" element={<FindPassword />} />
+          <Route path="/find/password" element={<FindPassword />} />
           <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
             {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
             {/* <Route path="/my-page" element={<MyPage />} /> */}
