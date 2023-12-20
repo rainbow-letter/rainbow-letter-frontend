@@ -31,6 +31,11 @@ const LOGIN_MESSAGE = [
   },
 ];
 
+const ERROR_MESSAGE = Object.freeze({
+  NOT_MATCH: '비밀번호를 다시 확인해주세요.',
+  NOT_VALID_FORM: '영어, 숫자 포함 8자리 이상 입력해주세요.',
+});
+
 const BUTTON_STYLE = 'w-full rounded-[15px] flex justify-center items-center';
 
-export { LOGIN_MESSAGE, BUTTON_STYLE };
+export { LOGIN_MESSAGE, BUTTON_STYLE, ERROR_MESSAGE };
