@@ -3,6 +3,7 @@ import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import UserInput from './UserInput';
+import SubmitButton from './SubmitButton';
 import { trySignUp } from '../../api/user';
 
 export default function JoinForm({
@@ -69,16 +70,14 @@ export default function JoinForm({
           }
           errorMessage={errorData && errorData.message}
         />
-        <button
-          type="submit"
-          onClick={(e) => onClickSignUpButton(e)}
+        <SubmitButton
+          onclick={(e) => onClickSignUpButton(e)}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
             // TODO: 버튼 비활성화 색상 피드백 이후 수정
             isDisabled && 'bg-gray-1'
           }`}
-        >
-          {button.default}
-        </button>
+          value={button.default}
+        />
       </form>
     </section>
   );

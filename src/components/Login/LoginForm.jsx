@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import UserInput from './UserInput';
+import SubmitButton from './SubmitButton';
 import { trylogin } from '../../api/user';
 import { getToken } from '../../store/user';
 
@@ -64,16 +65,14 @@ export default function LoginForm({
           isNotValid={errorData}
           errorMessage={errorData && '이메일 및 비밀번호를 확인 해주세요.'}
         />
-        <button
-          type="submit"
-          onClick={(e) => onClickLoginButton(e)}
+        <SubmitButton
+          onclick={(e) => onClickLoginButton(e)}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
             // TODO: 버튼 비활성화 색상 피드백 이후 수정
             isDisabled && 'bg-gray-1'
           }`}
-        >
-          {button.default}
-        </button>
+          value={button.default}
+        />
       </form>
     </section>
   );

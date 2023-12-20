@@ -4,6 +4,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import UserInput from '../components/Login/UserInput';
+import SubmitButton from '../components/Login/SubmitButton';
 import { validatePasswordMatch, validatePassword } from '../utils/validators';
 import { getToken } from '../store/user';
 import { updatePassword } from '../api/user';
@@ -85,13 +86,11 @@ export default function Password() {
           isNotValid={errorData && errorData.type === 'NOT_MATCH'}
           errorMessage={errorData && errorData.message}
         />
-        <button
-          type="submit"
-          onClick={() => onClickUpdatePasswordButton()}
+        <SubmitButton
+          onclick={() => onClickUpdatePasswordButton()}
+          value="변경하기"
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px]`}
-        >
-          변경하기
-        </button>
+        />
       </section>
     </main>
   );
