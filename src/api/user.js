@@ -15,8 +15,12 @@ export const trylogin = async (data) => {
   return response;
 };
 
-export const findEmail = async (email) => {
+export const authEmail = async (email) => {
   const response = await apiRequest.post(`${RESOURSE}/password/find`, email);
 
   return response;
+};
+
+export const updatePassword = async (data) => {
+  const response = await apiRequest.put(`${RESOURSE}/password`, data);
 };

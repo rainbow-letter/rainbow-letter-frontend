@@ -2,16 +2,17 @@
 import { React, useState } from 'react';
 
 import UserInput from '../components/Login/UserInput';
-import { findEmail } from '../api/user';
+import { authEmail } from '../api/user';
 
 import { BUTTON_STYLE } from '../components/Login/constants';
 
-export default function FindPassword() {
+export default function Email() {
   const [auth, setAuth] = useState({ email: '' });
 
   const onClickFindEmailButton = async () => {
     try {
-      await findEmail(auth);
+      await authEmail(auth);
+      alert('이메일 확인!');
     } catch (error) {
       console.error(error);
     }
