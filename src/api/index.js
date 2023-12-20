@@ -2,7 +2,7 @@
 import axios from 'axios';
 import store from '../index';
 
-const baseURL = 'http://52.79.240.249:8081';
+const baseURL = 'http://rainbowletter.handwoong.com';
 
 const baseInstance = axios.create({
   baseURL,
@@ -29,6 +29,7 @@ baseInstance.interceptors.response.use(({ data }) => data);
 
 const apiRequest = {
   post: (url, request) => baseInstance.post(url, request),
+  put: (url, request) => baseInstance.put(url, request),
 };
 
 export default apiRequest;

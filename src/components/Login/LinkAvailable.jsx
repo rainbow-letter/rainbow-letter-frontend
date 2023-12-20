@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function LinkAvailable({ message: { question, forget, link } }) {
   return (
     <section className="mt-5">
-      <Link to="/find/password">
+      <Link to="/auth/email">
         <span className="text-caption text-gray-2 text-solo-medium">
           {forget}
         </span>
