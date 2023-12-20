@@ -2,7 +2,7 @@
 import React from 'react';
 
 const INPUT_STYLE =
-  'w-full rounded-[15px] py-[21.5px] pl-[21.25px] bg-gray-2 text-solo-small mb-2.5';
+  'w-full rounded-[15px] py-[23px] pl-[19px] bg-gray-2 text-solo-small mb-2.5';
 
 export default function UserInput({ isNotValid, errorMessage, ...props }) {
   return (
@@ -16,7 +16,7 @@ export default function UserInput({ isNotValid, errorMessage, ...props }) {
         }
       />
       {isNotValid && errorMessage && (
-        <p className="text-solo-small text-left mb-3.5 text-alarm-red">
+        <p className="text-solo-small text-left text-alarm-red mb-[13px]">
           {errorMessage}
         </p>
       )}

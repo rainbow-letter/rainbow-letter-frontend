@@ -1,6 +1,6 @@
 import React from 'react';
 
-import googleIcon from '../../assets/Google Icon.svg';
+import googleIcon from '../../assets/google_icon.png';
 
 export default function Header({ message: { title, button }, BUTTON_STYLE }) {
   return (
@@ -9,12 +9,11 @@ export default function Header({ message: { title, button }, BUTTON_STYLE }) {
       <a
         href="http://rainbowletter.handwoong.com/api/oauth2/authorization/google"
         type="button"
-        className={`${BUTTON_STYLE} border text-solo-medium text-gray-1 mt-5 gap-2`}
+        className={`${BUTTON_STYLE} border text-solo-medium mt-[35px] gap-3 py-7`}
       >
         <img src={googleIcon} alt="google icon" />
         {button.google}
       </a>
-      <div className="border-t my-6 w-[57px] mx-auto" />
     </section>
   );
 }

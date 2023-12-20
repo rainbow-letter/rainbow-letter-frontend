@@ -37,9 +37,13 @@ export default function LoginForm({
   );
 
   return (
-    <section>
-      <h3 className="text-solo-small text-gray-1">{describe}</h3>
-      <form className="my-5">
+    <section className="mt-[44px]">
+      <header className="flex justify-between items-center">
+        <div className="border-t w-[84px]" />
+        <h3 className="text-solo-small">{describe}</h3>
+        <div className="border-t w-[84px]" />
+      </header>
+      <form className="mt-[26px]">
         <UserInput
           type="text"
           value={profile.email}
@@ -58,7 +62,7 @@ export default function LoginForm({
         <button
           type="submit"
           onClick={(e) => onClickLoginButton(e)}
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white`}
+          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5`}
         >
           {button.default}
         </button>
