@@ -15,7 +15,7 @@ export default function Join() {
   );
 
   return (
-    <main className="text-center mt-36">
+    <main className="h-screen flex flex-col justify-center text-center">
       <Header message={message} BUTTON_STYLE={BUTTON_STYLE} />
       <JoinForm message={message} BUTTON_STYLE={BUTTON_STYLE} />
       <LinkAvailable message={message} />

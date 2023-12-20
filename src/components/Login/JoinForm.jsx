@@ -1,8 +1,9 @@
 /* eslint-disable */
-import { React, useState, useCallback } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import UserInput from './UserInput';
+import SubmitButton from './SubmitButton';
 import { trySignUp } from '../../api/user';
 
 export default function JoinForm({
@@ -15,6 +16,7 @@ export default function JoinForm({
     password: '',
   });
   const [errorData, setErrorData] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const onClickSignUpButton = useCallback(
     async (e) => {
@@ -25,16 +27,26 @@ export default function JoinForm({
         setErrorData(null);
         navigate('/login');
       } catch (error) {
+        console.log(error);
         setErrorData(error.response.data);
+        setIsDisabled(true);
       }
     },
     [profile, errorData]
   );
 
+  useEffect(() => {
+    setIsDisabled(false);
+  }, [profile]);
+
   return (
-    <section>
-      <h3 className="text-solo-small text-gray-1">{describe}</h3>
-      <form className="my-5">
+    <section className="mt-[44px]">
+      <header className="flex justify-between items-center">
+        <div className="border-t w-[84px]" />
+        <h3 className="text-solo-small">{describe}</h3>
+        <div className="border-t w-[84px]" />
+      </header>
+      <form className="mt-[26px]">
         <UserInput
           type="text"
           value={profile.email}
@@ -59,13 +71,14 @@ export default function JoinForm({
           }
           errorMessage={errorData && errorData.message}
         />
-        <button
-          type="submit"
-          onClick={(e) => onClickSignUpButton(e)}
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white`}
-        >
-          {button.default}
-        </button>
+        <SubmitButton
+          onclick={(e) => onClickSignUpButton(e)}
+          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
+            // TODO: 버튼 비활성화 색상 피드백 이후 수정
+            isDisabled && 'bg-gray-1 text-[#898989]'
+          }`}
+          value={button.default}
+        />
       </form>
     </section>
   );
