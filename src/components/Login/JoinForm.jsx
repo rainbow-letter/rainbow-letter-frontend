@@ -27,6 +27,7 @@ export default function JoinForm({
         setErrorData(null);
         navigate('/login');
       } catch (error) {
+        console.log(error);
         setErrorData(error.response.data);
         setIsDisabled(true);
       }
@@ -74,7 +75,7 @@ export default function JoinForm({
           onclick={(e) => onClickSignUpButton(e)}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
             // TODO: 버튼 비활성화 색상 피드백 이후 수정
-            isDisabled && 'bg-gray-1'
+            isDisabled && 'bg-gray-1 text-[#898989]'
           }`}
           value={button.default}
         />

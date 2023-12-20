@@ -63,15 +63,14 @@ export default function LoginForm({
           onChange={(e) => setProfile({ ...profile, password: e.target.value })}
           placeholder="비밀번호를 입력해주세요"
           isNotValid={errorData}
-          errorMessage={errorData && '이메일 및 비밀번호를 확인 해주세요.'}
+          errorMessage={errorData && errorData.message}
         />
         <SubmitButton
           onclick={(e) => onClickLoginButton(e)}
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
-            // TODO: 버튼 비활성화 색상 피드백 이후 수정
-            isDisabled && 'bg-gray-1'
-          }`}
           value={button.default}
+          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
+            isDisabled && 'bg-gray-1 text-[#898989]'
+          }`}
         />
       </form>
     </section>

@@ -8,13 +8,14 @@ import { BUTTON_STYLE } from '../components/Login/constants';
 
 export default function Email() {
   const [auth, setAuth] = useState({ email: '' });
+  const [errorData, setErrorData] = useState(null);
 
   const onClickFindEmailButton = async () => {
     try {
       await authEmail(auth);
-      alert('이메일 확인!');
+      alert('이메일을 확인하세요!');
     } catch (error) {
-      console.error(error);
+      setErrorData(error.response.data);
     }
   };
 
@@ -29,6 +30,8 @@ export default function Email() {
         placeholder="이메일을 입력해주세요"
         value={auth.email}
         onChange={(e) => setAuth({ ...auth, email: e.target.value })}
+        isNotValid={errorData && errorData}
+        errorMessage={errorData && errorData.message}
       />
       <button
         type="submit"
