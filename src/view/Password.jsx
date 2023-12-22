@@ -52,7 +52,7 @@ export default function Password() {
   const isCheckProperPassword = () => {
     const { password, newPassword } = userInfo;
     if (!validatePassword(password)) {
-      throw new Error('NOT_VALID_FORM');
+      throw new Error('NOT_VALID_PASSWORD');
     }
     if (!validatePasswordMatch(password, newPassword)) {
       throw new Error('NOT_MATCH');

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import UserInput from './UserInput';
 import SubmitButton from './SubmitButton';
 import { trySignUp } from '../../api/user';
+import { validateEmail, validatePassword } from '../../utils/validators';
+import { ERROR_MESSAGE } from './constants';
 
 export default function JoinForm({
   message: { describe, button },
@@ -22,13 +24,22 @@ export default function JoinForm({
     async (e) => {
       try {
         e.preventDefault();
+        isCheckProperForm();
         await trySignUp(profile);
 
         setErrorData(null);
         navigate('/login');
       } catch (error) {
-        console.log(error);
-        setErrorData(error.response.data);
+        if (error.response) {
+          setErrorData(error.response && error.response.data);
+        }
+        if (!error.response) {
+          setErrorData({
+            code: error.message,
+            message: ERROR_MESSAGE[error.message],
+          });
+        }
+      } finally {
         setIsDisabled(true);
       }
     },
@@ -38,6 +49,16 @@ export default function JoinForm({
   useEffect(() => {
     setIsDisabled(false);
   }, [profile]);
+
+  const isCheckProperForm = () => {
+    const { email, password } = profile;
+    if (!validateEmail(email)) {
+      throw new Error('NOT_VALID_EMAIL');
+    }
+    if (!validatePassword(password)) {
+      throw new Error('NOT_VALID_PASSWORD');
+    }
+  };
 
   return (
     <section className="mt-[44px]">
@@ -54,8 +75,7 @@ export default function JoinForm({
           placeholder="이메일을 입력해주세요"
           isNotValid={
             (errorData && errorData.code === 'EXISTS_EMAIL') ||
-            (errorData &&
-              errorData.message === '유효하지 않은 이메일 형식입니다.')
+            (errorData && errorData.code === 'NOT_VALID_EMAIL')
           }
           errorMessage={errorData && errorData.message}
         />
@@ -64,17 +84,12 @@ export default function JoinForm({
           value={profile.password}
           onChange={(e) => setProfile({ ...profile, password: e.target.value })}
           placeholder="비밀번호를 입력해주세요"
-          isNotValid={
-            errorData &&
-            errorData.message ===
-              '비밀번호는 영문, 숫자를 조합하여 8자 이상으로 입력해주세요.'
-          }
+          isNotValid={errorData && errorData.code === 'NOT_VALID_PASSWORD'}
           errorMessage={errorData && errorData.message}
         />
         <SubmitButton
           onclick={(e) => onClickSignUpButton(e)}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
-            // TODO: 버튼 비활성화 색상 피드백 이후 수정
             isDisabled && 'bg-gray-1 text-[#898989]'
           }`}
           value={button.default}
