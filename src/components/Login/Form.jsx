@@ -1,40 +1,19 @@
 /* eslint-disable */
-import { React, useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { React, useEffect } from 'react';
 
 import UserInput from './UserInput';
 import SubmitButton from './SubmitButton';
-import { trySignUp } from '../../api/user';
 
-export default function JoinForm({
+export default function Form({
   message: { describe, button },
+  profile,
+  setProfile,
+  errorData,
+  isDisabled,
+  setIsDisabled,
+  onclick,
   BUTTON_STYLE,
 }) {
-  const navigate = useNavigate();
-  const [profile, setProfile] = useState({
-    email: '',
-    password: '',
-  });
-  const [errorData, setErrorData] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
-
-  const onClickSignUpButton = useCallback(
-    async (e) => {
-      try {
-        e.preventDefault();
-        await trySignUp(profile);
-
-        setErrorData(null);
-        navigate('/login');
-      } catch (error) {
-        console.log(error);
-        setErrorData(error.response.data);
-        setIsDisabled(true);
-      }
-    },
-    [profile, errorData]
-  );
-
   useEffect(() => {
     setIsDisabled(false);
   }, [profile]);
@@ -54,10 +33,17 @@ export default function JoinForm({
           placeholder="이메일을 입력해주세요"
           isNotValid={
             (errorData && errorData.code === 'EXISTS_EMAIL') ||
-            (errorData &&
-              errorData.message === '유효하지 않은 이메일 형식입니다.')
+            (errorData && errorData.code === 'NOT_VALID_EMAIL') ||
+            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID')
           }
-          errorMessage={errorData && errorData.message}
+          errorMessage={
+            (errorData &&
+              errorData.code === 'EXISTS_EMAIL' &&
+              errorData.message) ||
+            (errorData &&
+              errorData.code === 'NOT_VALID_EMAIL' &&
+              errorData.message)
+          }
         />
         <UserInput
           type="password"
@@ -65,16 +51,14 @@ export default function JoinForm({
           onChange={(e) => setProfile({ ...profile, password: e.target.value })}
           placeholder="비밀번호를 입력해주세요"
           isNotValid={
-            errorData &&
-            errorData.message ===
-              '비밀번호는 영문, 숫자를 조합하여 8자 이상으로 입력해주세요.'
+            (errorData && errorData.code === 'NOT_VALID_PASSWORD') ||
+            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID')
           }
           errorMessage={errorData && errorData.message}
         />
         <SubmitButton
-          onclick={(e) => onClickSignUpButton(e)}
+          onclick={(e) => onclick(e)}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
-            // TODO: 버튼 비활성화 색상 피드백 이후 수정
             isDisabled && 'bg-gray-1 text-[#898989]'
           }`}
           value={button.default}
