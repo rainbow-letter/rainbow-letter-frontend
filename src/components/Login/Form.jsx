@@ -1,43 +1,19 @@
 /* eslint-disable */
-import { React, useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { React, useEffect } from 'react';
 
 import UserInput from './UserInput';
 import SubmitButton from './SubmitButton';
-import { trylogin } from '../../api/user';
-import { getToken } from '../../store/user';
 
-export default function LoginForm({
+export default function Form({
   message: { describe, button },
+  profile,
+  setProfile,
+  errorData,
+  isDisabled,
+  setIsDisabled,
+  onclick,
   BUTTON_STYLE,
 }) {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [profile, setProfile] = useState({
-    email: '',
-    password: '',
-  });
-  const [errorData, setErrorData] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
-
-  const onClickLoginButton = useCallback(
-    async (e) => {
-      try {
-        e.preventDefault();
-        const { token } = await trylogin(profile);
-
-        setErrorData(null);
-        dispatch(getToken(token));
-        navigate('/');
-      } catch (error) {
-        setErrorData(error.response.data);
-        setIsDisabled(true);
-      }
-    },
-    [profile, errorData]
-  );
-
   useEffect(() => {
     setIsDisabled(false);
   }, [profile]);
@@ -55,22 +31,37 @@ export default function LoginForm({
           value={profile.email}
           onChange={(e) => setProfile({ ...profile, email: e.target.value })}
           placeholder="이메일을 입력해주세요"
-          isNotValid={errorData}
+          isNotValid={
+            (errorData && errorData.code === 'EXISTS_EMAIL') ||
+            (errorData && errorData.code === 'NOT_VALID_EMAIL') ||
+            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID')
+          }
+          errorMessage={
+            (errorData &&
+              errorData.code === 'EXISTS_EMAIL' &&
+              errorData.message) ||
+            (errorData &&
+              errorData.code === 'NOT_VALID_EMAIL' &&
+              errorData.message)
+          }
         />
         <UserInput
           type="password"
           value={profile.password}
           onChange={(e) => setProfile({ ...profile, password: e.target.value })}
           placeholder="비밀번호를 입력해주세요"
-          isNotValid={errorData}
+          isNotValid={
+            (errorData && errorData.code === 'NOT_VALID_PASSWORD') ||
+            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID')
+          }
           errorMessage={errorData && errorData.message}
         />
         <SubmitButton
-          onclick={(e) => onClickLoginButton(e)}
-          value={button.default}
+          onclick={(e) => onclick(e)}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
             isDisabled && 'bg-gray-1 text-[#898989]'
           }`}
+          value={button.default}
         />
       </form>
     </section>

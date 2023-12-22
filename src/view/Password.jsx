@@ -16,7 +16,7 @@ export default function Password() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [userInfo, setUserInfo] = useState({
-    password: null,
+    password: '',
     newPassword: '',
   });
   const [errorData, setErrorData] = useState({
@@ -31,11 +31,16 @@ export default function Password() {
   const onClickUpdatePasswordButton = useCallback(async () => {
     try {
       isCheckProperPassword();
-      await updatePassword(userInfo);
+
+      await updatePassword({
+        password: null,
+        newPassword: userInfo.newPassword,
+      });
       setErrorData(null);
       dispatch(removeToken());
       navigate('/');
     } catch (error) {
+      console.log(error);
       if (error.response && error.response.data.code === 'UN_AUTHORIZE') {
         alert('토큰 유효기간이 지났습니다.');
         dispatch(removeToken());
@@ -57,6 +62,7 @@ export default function Password() {
     if (!validatePasswordMatch(password, newPassword)) {
       throw new Error('NOT_MATCH');
     }
+    return;
   };
 
   return (
@@ -79,7 +85,7 @@ export default function Password() {
           onChange={(e) =>
             setUserInfo({ ...userInfo, password: e.target.value })
           }
-          isNotValid={errorData && errorData.type === 'NOT_VALID_FORM'}
+          isNotValid={errorData && errorData.type === 'NOT_VALID_PASSWORD'}
           errorMessage={errorData && errorData.message}
         />
         <label htmlFor="newPasswordChcek" className="block mb-4 mt-[53px]">
