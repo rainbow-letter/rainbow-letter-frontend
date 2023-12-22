@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import UserInput from '../components/Login/UserInput';
 import SubmitButton from '../components/Login/SubmitButton';
 import { validatePasswordMatch, validatePassword } from '../utils/validators';
-import { getToken } from '../store/user';
+import { getToken, removeToken } from '../store/user';
 import { updatePassword } from '../api/user';
 
 import { BUTTON_STYLE, ERROR_MESSAGE } from '../components/Login/constants';
@@ -33,15 +33,19 @@ export default function Password() {
       isCheckProperPassword();
       await updatePassword(userInfo);
       setErrorData(null);
+      dispatch(removeToken());
       navigate('/');
     } catch (error) {
+      if (error.response && error.response.data.code === 'UN_AUTHORIZE') {
+        alert('토큰 유효기간이 지났습니다.');
+        dispatch(removeToken());
+        navigate('/');
+      }
       setErrorData({
         ...errorData,
         type: error.message,
         message: ERROR_MESSAGE[error.message],
       });
-      // TODO: 인증 실패 예외처리 있으면 적용하기.
-      // if (!error.response) {}
     }
   }, [userInfo, errorData]);
 
