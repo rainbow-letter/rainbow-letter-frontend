@@ -31,20 +31,15 @@ export default function Password() {
   const onClickUpdatePasswordButton = useCallback(async () => {
     try {
       isCheckProperPassword();
-
       await updatePassword({
         password: null,
         newPassword: userInfo.newPassword,
       });
-      setErrorData(null);
-      dispatch(removeToken());
-      navigate('/');
+      onFinishUpdate(true);
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.data.code === 'UN_AUTHORIZE') {
         alert('토큰 유효기간이 지났습니다.');
-        dispatch(removeToken());
-        navigate('/');
+        onFinishUpdate(false);
       }
       setErrorData({
         ...errorData,
@@ -54,6 +49,14 @@ export default function Password() {
     }
   }, [userInfo, errorData]);
 
+  const onFinishUpdate = (isSuccess) => {
+    if (isSuccess) {
+      setErrorData(null);
+    }
+    dispatch(removeToken());
+    navigate('/');
+  };
+
   const isCheckProperPassword = () => {
     const { password, newPassword } = userInfo;
     if (!validatePassword(password)) {
@@ -62,7 +65,6 @@ export default function Password() {
     if (!validatePasswordMatch(password, newPassword)) {
       throw new Error('NOT_MATCH');
     }
-    return;
   };
 
   return (

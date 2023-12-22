@@ -34,7 +34,8 @@ export default function Form({
           isNotValid={
             (errorData && errorData.code === 'EXISTS_EMAIL') ||
             (errorData && errorData.code === 'NOT_VALID_EMAIL') ||
-            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID')
+            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID') ||
+            (errorData && errorData.code === 'CHECK_EMAIL_AND_PASSWORD')
           }
           errorMessage={
             (errorData &&
@@ -52,7 +53,8 @@ export default function Form({
           placeholder="비밀번호를 입력해주세요"
           isNotValid={
             (errorData && errorData.code === 'NOT_VALID_PASSWORD') ||
-            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID')
+            (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID') ||
+            (errorData && errorData.code === 'CHECK_EMAIL_AND_PASSWORD')
           }
           errorMessage={errorData && errorData.message}
         />
