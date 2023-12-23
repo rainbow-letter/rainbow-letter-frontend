@@ -137,7 +137,7 @@ function MyPage() {
             <img src={chevronRight} alt="chevronRight" />
           </div>
         </Link>
-        <Link to="/" className="flex justify-between items-center">
+        <Link to="/leave" className="flex justify-between items-center">
           <div className="p-[10px] text-solo-large">{USER_ACTIONS.LEAVE}</div>
           <div>
             <img src={chevronRight} alt="chevronRight" />

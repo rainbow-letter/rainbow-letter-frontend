@@ -5,6 +5,9 @@ const navConfig = {
   '/faqs': {
     title: '자주 묻는 질문',
   },
+  '/leave': {
+    title: '회원 탈퇴',
+  },
   '/write-letter': {
     title: '편지쓰기',
   },
