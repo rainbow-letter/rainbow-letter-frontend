@@ -1,5 +1,4 @@
 export const PAGE_TITLES = {
-  NAVBAR: '마이페이지',
   MY_INFO: '내 정보',
   FAQ: '자주 묻는 질문',
 };
@@ -8,18 +7,19 @@ export const USER_INFO_LABELS = {
   EMAIL: '이메일',
   PHONE: '휴대폰 번호',
   NO_PHONE: '등록된 번호 없음',
-  CHANGE_PASSWORD: '비밀번호 변경하기',
 };
 
 export const USER_INFO_MESSAGES = {
-  ENTER_DIGITS_ONLY: '-를 제외한 숫자만 넣어주세요',
-  INVALID_PHONE: '번호를 다시 확인해주세요',
+  ENTER_DIGITS_ONLY: '-를 제외한 숫자만 입력해주세요.',
+  INVALID_PHONE: '번호를 다시 확인해주세요.',
 };
 
 export const USER_ACTIONS = {
-  LOG_OUT: '로그아웃',
-  EDIT: '수정하기',
+  EDIT: '수정',
   FINISH: '확인',
+  CHANGE_PASSWORD: '비밀번호 변경하기',
+  LEAVE: '탈퇴하기',
+  LOG_OUT: '로그아웃',
 };
 
 export const FAQS = [
