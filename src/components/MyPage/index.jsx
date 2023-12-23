@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   PAGE_TITLES,
   USER_INFO_LABELS,
   USER_INFO_MESSAGES,
   USER_ACTIONS,
-  FAQS,
 } from './constants';
 import { validatePhoneNumber } from '../../utils/validators';
-import chevron from '../../assets/chevron.svg';
+import chevronRight from '../../assets/chevronRight.svg';
+import Divider from '../Divider';
 
 function MyPage() {
   const [userInfo, setUserInfo] = useState({
@@ -18,7 +19,6 @@ function MyPage() {
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [editedPhone, setEditedPhone] = useState('');
   const [isValidPhone, setIsValidPhone] = useState(true);
-  const [isFAQVisible, setIsFAQVisible] = useState(false);
   const phoneConstant = userInfo.phone || USER_INFO_LABELS.NO_PHONE;
 
   const fetchUserInfo = async () => {
@@ -56,108 +56,106 @@ function MyPage() {
     }
   };
 
-  const toggleFAQVisibility = () => {
-    setIsFAQVisible(!isFAQVisible);
-  };
-
   useEffect(() => {
     fetchUserInfo();
   }, []);
 
   return (
-    <div className="px-6 pt-10">
-      <section>
-        <div className="text-heading-3 mb-8">{PAGE_TITLES.MY_INFO}</div>
-        <div className="flex flex-col gap-6 mb-14">
-          <div>
-            <div className="text-solo-large">{USER_INFO_LABELS.EMAIL}</div>
-            <div className="px-6 py-5 text-solo-medium text-gray-1 border-b border-b-gray-1">
-              {userInfo.email}
-            </div>
+    <section className="py-3">
+      <div className="text-heading-3 p-[10px]">{PAGE_TITLES.MY_INFO}</div>
+      <div className="flex flex-col mb-14 gap-y-[22px]">
+        <div>
+          <div className="text-solo-large p-[10px]">
+            {USER_INFO_LABELS.EMAIL}
           </div>
-          <div>
-            <div className="text-solo-large">{USER_INFO_LABELS.PHONE}</div>
-            <div className="flex flex-col gap-[10px] px-6 py-5 border-b border-b-gray-1">
-              <div className="h-4 flex justify-between text-solo-medium text-gray-1">
-                {isEditingPhone ? (
-                  <input
-                    className="h-4 grow text-solo-medium placeholder:text-gray-2 outline-none"
-                    type="tel"
-                    pattern="\d*"
-                    maxLength="11"
-                    value={editedPhone}
-                    placeholder={USER_INFO_MESSAGES.ENTER_DIGITS_ONLY}
-                    onChange={handlePhoneChange}
-                  />
-                ) : (
-                  <div className="h-4 grow text-solo-medium">
-                    {phoneConstant}
-                  </div>
-                )}
-                <button
-                  className="text-solo-small text-orange-400 underline"
-                  type="button"
-                  onClick={isEditingPhone ? savePhone : toggleEditPhone}
-                >
-                  {isEditingPhone ? USER_ACTIONS.FINISH : USER_ACTIONS.EDIT}
-                </button>
-              </div>
-              <div>
-                {!isValidPhone && (
-                  <p className="text-alarm-red text-caption">
-                    {USER_INFO_MESSAGES.INVALID_PHONE}
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between pb-5 pr-6 border-b border-b-gray-1">
-            <div className="text-solo-large">
-              {USER_INFO_LABELS.CHANGE_PASSWORD}
-            </div>
-            <button
-              className="text-solo-small text-orange-400 underline"
-              type="button"
-              onClick={() => {
-                // TODO: 비밀번호 변경 페이지로 이동
-              }}
-            >
-              {USER_ACTIONS.EDIT}
-            </button>
+          <div className="p-[10px] text-solo-medium text-gray-1">
+            {userInfo.email}
           </div>
         </div>
-      </section>
-      <section className="bg-orange-50 rounded-[20px]">
-        <button
-          className="py-5 w-full h-full flex justify-between items-center px-5 text-solo-large text-gray-1"
-          type="button"
-          onClick={toggleFAQVisibility}
-        >
-          <div>{PAGE_TITLES.FAQ}</div>
+        <div>
+          <div className="p-[10px] text-solo-large">
+            {USER_INFO_LABELS.PHONE}
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className="flex justify-between gap-x-[10px] items-center text-solo-medium text-gray-1">
+              {isEditingPhone ? (
+                <input
+                  className={`grow bg-gray-2 p-4 rounded-2xl outline-none ${
+                    isValidPhone ? 'border-none' : 'border border-alarm-red'
+                  }`}
+                  type="tel"
+                  pattern="\d*"
+                  maxLength="11"
+                  value={editedPhone}
+                  placeholder={USER_INFO_MESSAGES.ENTER_DIGITS_ONLY}
+                  onChange={handlePhoneChange}
+                />
+              ) : (
+                <div className="grow p-[10px] text-solo-caption">
+                  {phoneConstant}
+                </div>
+              )}
+              <button
+                className={`px-[10px] py-[9px] text-xs font-semibold leading-3 rounded ${
+                  isValidPhone
+                    ? 'bg-orange-400 text-white'
+                    : 'bg-gray-1 text-gray-1'
+                }`}
+                type="button"
+                onClick={isEditingPhone ? savePhone : toggleEditPhone}
+              >
+                {isEditingPhone ? USER_ACTIONS.FINISH : USER_ACTIONS.EDIT}
+              </button>
+            </div>
+            <div>
+              {!isValidPhone && (
+                <p className="px-[10px] text-caption text-alarm-red">
+                  {USER_INFO_MESSAGES.INVALID_PHONE}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+        <Link to="/" className="flex justify-between items-center">
+          <div className="p-[10px] text-solo-large">
+            {USER_ACTIONS.CHANGE_PASSWORD}
+          </div>
           <div>
-            <img src={chevron} alt="chevron" />
+            <img src={chevronRight} alt="chevronRight" />
+          </div>
+        </Link>
+        <div className="p-[10px]">
+          <Divider />
+        </div>
+        <Link
+          to="/faqs"
+          className="flex justify-between items-center"
+          type="button"
+        >
+          <div className="p-[10px] text-solo-large">{PAGE_TITLES.FAQ}</div>
+          <div>
+            <img src={chevronRight} alt="chevronRight" />
+          </div>
+        </Link>
+        <Link to="/leave" className="flex justify-between items-center">
+          <div className="p-[10px] text-solo-large">{USER_ACTIONS.LEAVE}</div>
+          <div>
+            <img src={chevronRight} alt="chevronRight" />
+          </div>
+        </Link>
+        <button
+          className="flex justify-between items-center"
+          type="button"
+          onClick={() => {
+            // TODO: 로그아웃
+          }}
+        >
+          <div className="p-[10px] text-solo-large text-alarm-red">
+            {USER_ACTIONS.LOG_OUT}
           </div>
         </button>
-        {isFAQVisible && (
-          <div className="flex flex-col gap-6 px-5 py-11 border-t border-gary-1">
-            {FAQS.map((FAQ) => (
-              <div className="border-b border-gary-1" key={FAQ.ID}>
-                <div className="mb-6 text-heading-2 text-orange-400">
-                  {FAQ.ID < 10 ? `0${FAQ.ID}` : FAQ.ID}
-                </div>
-                <div className="mb-3 text-solo-large">{FAQ.QUESTION}</div>
-                <div
-                  className="pb-6 text-body-small text-gray-1"
-                  style={{ whiteSpace: 'pre-line' }}
-                >
-                  {FAQ.ANSWER}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
 

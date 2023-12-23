@@ -1,10 +1,12 @@
 const navConfig = {
   '/my-page': {
-    title: '마이 페이지',
-    actionName: '로그아웃',
-    action: () => {
-      // TODO: 로그아웃 기능 구현
-    },
+    title: '마이페이지',
+  },
+  '/faqs': {
+    title: '자주 묻는 질문',
+  },
+  '/leave': {
+    title: '회원 탈퇴',
   },
   '/write-letter': {
     title: '편지쓰기',

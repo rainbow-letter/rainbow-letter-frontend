@@ -10,7 +10,9 @@ import Password from './view/Password';
 import Auth from './components/Login/Auth';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
-// import MyPage from './components/MyPage';
+import MyPage from './components/MyPage';
+import FAQs from './components/MyPage/FAQs';
+import AccountDeactivation from './components/MyPage/AccountDeactivation';
 
 function Router() {
   // TODO: 로그인 확인 로직 작성
@@ -28,7 +30,9 @@ function Router() {
           <Route path="/oauth/success" element={<Auth />} />
           <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
             {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
-            {/* <Route path="/my-page" element={<MyPage />} /> */}
+            <Route path="/my-page" element={<MyPage />} />
+            <Route path="/faqs" element={<FAQs />} />
+            <Route path="/leave" element={<AccountDeactivation />} />
           </Route>
         </Routes>
       </Layout>

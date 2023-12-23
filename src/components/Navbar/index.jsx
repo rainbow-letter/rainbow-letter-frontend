@@ -1,31 +1,34 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import navConfig from './constants';
 import chevronLeft from '../../assets/chevronLeft.svg';
 
 function Navbar() {
   const location = useLocation();
-  const { title, actionName, action } = navConfig[location.pathname];
+  const config = navConfig[location.pathname];
+
+  if (!config) {
+    return null;
+  }
+
+  const navigate = useNavigate();
+  const { title } = config;
+
+  function handleBack() {
+    navigate(-1);
+  }
 
   return (
-    <section className="h-[70px] pt-6 pb-5 flex justify-between border-b border-b-gray-1">
-      <div className="flex gap-x-3">
-        <div>
+    <header className="py-[10px] flex justify-between items-center">
+      <section className="flex flex-1 justify-start">
+        <button type="button" onClick={handleBack}>
           <img src={chevronLeft} alt="left" />
-        </div>
-        <div className="text-gray-1 text-heading-3">{title}</div>
-      </div>
-      {actionName && (
-        <button
-          className="line-height-[100%] text-sm text-heading-black underline"
-          type="button"
-          onClick={action}
-        >
-          {actionName}
         </button>
-      )}
-    </section>
+      </section>
+      <section className="flex-3 text-center text-solo-large">{title}</section>
+      <section className="flex flex-1 justify-end" />
+    </header>
   );
 }
 
