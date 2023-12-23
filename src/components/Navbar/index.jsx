@@ -15,13 +15,13 @@ function Navbar() {
   const { title } = config;
 
   return (
-    <section className="py-[10px] flex justify-between items-center">
-      <div className="flex flex-1 justify-start">
+    <header className="py-[10px] flex justify-between items-center">
+      <section className="flex flex-1 justify-start">
         <img src={chevronLeft} alt="left" />
-      </div>
-      <div className="flex-3 text-center text-solo-large">{title}</div>
-      <div className="flex flex-1 justify-end" />
-    </section>
+      </section>
+      <section className="flex-3 text-center text-solo-large">{title}</section>
+      <section className="flex flex-1 justify-end" />
+    </header>
   );
 }
 
