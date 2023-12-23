@@ -22,6 +22,8 @@ export const USER_ACTIONS = {
   LOG_OUT: '로그아웃',
 };
 
+export const QUESTION_PREFIX = 'Q. ';
+
 export const FAQS = [
   {
     ID: 1,
