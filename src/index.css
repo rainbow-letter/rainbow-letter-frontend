@@ -6,4 +6,10 @@
   body {
     @apply text-default;
   }
+
+  input::placeholder,
+  input::-webkit-input-placeholder {
+    font-size: 12px;
+    color: #bdbdbd;
+  }
 }
