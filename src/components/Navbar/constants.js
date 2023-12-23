@@ -2,6 +2,9 @@ const navConfig = {
   '/my-page': {
     title: '마이페이지',
   },
+  '/faqs': {
+    title: '자주 묻는 질문',
+  },
   '/write-letter': {
     title: '편지쓰기',
   },

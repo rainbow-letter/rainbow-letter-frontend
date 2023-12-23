@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   PAGE_TITLES,
@@ -115,47 +116,33 @@ function MyPage() {
             </div>
           </div>
         </div>
-        <button
-          className="flex justify-between items-center"
-          type="button"
-          onClick={() => {
-            // TODO: 비밀번호 변경 페이지로 이동
-          }}
-        >
+        <Link to="/" className="flex justify-between items-center">
           <div className="p-[10px] text-solo-large">
             {USER_ACTIONS.CHANGE_PASSWORD}
           </div>
           <div>
             <img src={chevronRight} alt="chevronRight" />
           </div>
-        </button>
+        </Link>
         <div className="p-[10px]">
           <Divider />
         </div>
-        <button
+        <Link
+          to="/faqs"
           className="flex justify-between items-center"
           type="button"
-          onClick={() => {
-            // TODO: 자주 묻는 질문 페이지로 이동
-          }}
         >
           <div className="p-[10px] text-solo-large">{PAGE_TITLES.FAQ}</div>
           <div>
             <img src={chevronRight} alt="chevronRight" />
           </div>
-        </button>
-        <button
-          className="flex justify-between items-center"
-          type="button"
-          onClick={() => {
-            // TODO: 탈퇴하기 페이지로 이동
-          }}
-        >
+        </Link>
+        <Link to="/" className="flex justify-between items-center">
           <div className="p-[10px] text-solo-large">{USER_ACTIONS.LEAVE}</div>
           <div>
             <img src={chevronRight} alt="chevronRight" />
           </div>
-        </button>
+        </Link>
         <button
           className="flex justify-between items-center"
           type="button"

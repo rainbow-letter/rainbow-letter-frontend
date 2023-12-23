@@ -4,7 +4,7 @@ import { FAQS, QUESTION_PREFIX } from './constants';
 
 function FAQ({ FAQData }) {
   return (
-    <div>
+    <div className="py-3">
       <header className="p-[10px] text-solo-large">
         <span className=" text-orange-400">{QUESTION_PREFIX}</span>
         <span>{FAQData.question}</span>
