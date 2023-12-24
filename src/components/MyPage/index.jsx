@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { removeToken } from '../../store/user';
+// eslint-disable-next-line import/no-cycle
+import { getUserInfo, updatePhoneNumber } from '../../api/user';
 import {
   PAGE_TITLES,
   USER_INFO_LABELS,
@@ -20,14 +24,12 @@ function MyPage() {
   const [editedPhone, setEditedPhone] = useState('');
   const [isValidPhone, setIsValidPhone] = useState(true);
   const phoneConstant = userInfo.phone || USER_INFO_LABELS.NO_PHONE;
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const fetchUserInfo = async () => {
-    // try {
-    // TODO: 서버 요청 로직 구현 (GET)
-    //   setUserInfo(data);
-    // } catch (error) {
-    //   console.error('Error fetching user info:', error);
-    // }
+    const info = await getUserInfo();
+    return info;
   };
 
   const toggleEditPhone = () => {
@@ -48,7 +50,7 @@ function MyPage() {
     }
 
     try {
-      // TODO: 서버 요청 로직 구현 (POST)
+      updatePhoneNumber();
       setUserInfo({ ...userInfo, phone: editedPhone });
       setIsEditingPhone(false);
     } catch (error) {
@@ -56,8 +58,13 @@ function MyPage() {
     }
   };
 
+  const handleLogout = () => {
+    if (user.token) dispatch(removeToken());
+  };
+
   useEffect(() => {
-    fetchUserInfo();
+    const info = fetchUserInfo();
+    setUserInfo(info);
   }, []);
 
   return (
@@ -116,7 +123,10 @@ function MyPage() {
             </div>
           </div>
         </div>
-        <Link to="/" className="flex justify-between items-center">
+        <Link
+          to="/members/password/reset"
+          className="flex justify-between items-center"
+        >
           <div className="p-[10px] text-solo-large">
             {USER_ACTIONS.CHANGE_PASSWORD}
           </div>
@@ -146,9 +156,7 @@ function MyPage() {
         <button
           className="flex justify-between items-center"
           type="button"
-          onClick={() => {
-            // TODO: 로그아웃
-          }}
+          onClick={() => handleLogout}
         >
           <div className="p-[10px] text-solo-large text-alarm-red">
             {USER_ACTIONS.LOG_OUT}

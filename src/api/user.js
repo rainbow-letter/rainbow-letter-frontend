@@ -23,4 +23,18 @@ export const authEmail = async (email) => {
 
 export const updatePassword = async (data) => {
   const response = await apiRequest.put(`${RESOURSE}/password`, data);
+
+  return response;
+};
+
+export const updatePhoneNumber = async (data) => {
+  const response = await apiRequest.put(`${RESOURSE}/phoneNumber`, data);
+
+  return response;
+};
+
+export const getUserInfo = async () => {
+  const response = await apiRequest.get(`${RESOURSE}/info`);
+
+  return response;
 };
