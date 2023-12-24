@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { FAQS, QUESTION_PREFIX } from './constants';
+import { QUESTION_PREFIX } from './constants';
+// eslint-disable-next-line import/no-cycle
+import { getFaqs } from '../../api/faqs';
 
 function FAQ({ FAQData }) {
   return (
@@ -17,21 +19,27 @@ function FAQ({ FAQData }) {
 }
 
 function FAQs() {
-  const [FAQData, setFAQData] = useState(FAQS);
+  const [FAQData, setFAQData] = useState(null);
 
   useEffect(() => {
-    // TODO: 서버 요청 로직 구현 (GET)
-    setFAQData(FAQS);
+    const res = getFaqs();
+    setFAQData({
+      ...res,
+      id: Math.random(),
+      question: res.summary,
+      answer: res.detail,
+    });
   }, []);
 
   return (
     <section className="flex flex-col gap-y-3">
-      {FAQData.map((faq) => (
-        <FAQ
-          key={faq.ID}
-          FAQData={{ question: faq.QUESTION, answer: faq.ANSWER }}
-        />
-      ))}
+      {FAQData &&
+        FAQData.map((faq) => (
+          <FAQ
+            key={faq.id}
+            FAQData={{ question: faq.question, answer: faq.answer }}
+          />
+        ))}
     </section>
   );
 }

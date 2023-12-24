@@ -54,7 +54,7 @@ function MyPage() {
       setUserInfo({ ...userInfo, phone: editedPhone });
       setIsEditingPhone(false);
     } catch (error) {
-      // 서버 요청 실패 시
+      // TODO: 에러처리
     }
   };
 

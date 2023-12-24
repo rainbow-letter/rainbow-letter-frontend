@@ -28,6 +28,7 @@ baseInstance.interceptors.request.use((config) => {
 baseInstance.interceptors.response.use(({ data }) => data);
 
 const apiRequest = {
+  get: (url, request) => baseInstance.get(url, request),
   post: (url, request) => baseInstance.post(url, request),
   put: (url, request) => baseInstance.put(url, request),
 };
