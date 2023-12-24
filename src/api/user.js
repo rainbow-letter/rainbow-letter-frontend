@@ -38,3 +38,9 @@ export const getUserInfo = async () => {
 
   return response;
 };
+
+export const deactivateUser = async () => {
+  const response = await apiRequest.delete(`${RESOURSE}/leave`);
+
+  return response;
+};

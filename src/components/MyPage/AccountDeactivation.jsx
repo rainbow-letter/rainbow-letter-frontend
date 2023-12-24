@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import check from '../../assets/check.svg';
 import {
@@ -6,8 +7,17 @@ import {
   ACCOUNT_DEACTIVATION,
   ACCOUNT_DEACTIVATION_GUIDELINES,
 } from './constants';
+// eslint-disable-next-line import/no-cycle
+import { deactivateUser } from '../../api/user';
 
 function AccountDeactivation() {
+  const navigate = useNavigate();
+
+  const handleDeactivation = () => {
+    deactivateUser();
+    navigate('/');
+  };
+
   return (
     <div className="flex flex-col gap-[159px] py-5">
       <section className="p-7 bg-gray-2 rounded-2xl">
@@ -34,9 +44,7 @@ function AccountDeactivation() {
         <button
           className="w-full h-[70px] bg-orange-400 rounded-2xl"
           type="submit"
-          onClick={() => {
-            // TODO: 회원탈퇴 요청 및 페이지 이동
-          }}
+          onClick={() => handleDeactivation()}
         >
           <span className="text-white text-heading-3">
             {USER_ACTIONS.LEAVE}
