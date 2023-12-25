@@ -14,6 +14,7 @@ import ProtectedLayout from './components/Layout/ProtectedLayout';
 import MyPage from './components/MyPage';
 import FAQs from './components/MyPage/FAQs';
 import AccountDeactivation from './components/MyPage/AccountDeactivation';
+import MyPets from './components/MyPets';
 
 function Router() {
   const user = useSelector((state) => state.user);
@@ -34,6 +35,7 @@ function Router() {
             <Route path="/my-page" element={<MyPage />} />
             <Route path="/faqs" element={<FAQs />} />
             <Route path="/leave" element={<AccountDeactivation />} />
+            <Route path="/my-pets" element={<MyPets />} />
           </Route>
         </Routes>
       </Layout>

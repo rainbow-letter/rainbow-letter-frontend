@@ -8,14 +8,17 @@ const navConfig = {
   '/leave': {
     title: '회원 탈퇴',
   },
+  '/my-pets': {
+    title: '내 반려동물',
+  },
+  '/my-pets/register': {
+    title: '등록하기',
+  },
   '/write-letter': {
     title: '편지쓰기',
   },
   '/letter-box': {
     title: '편지함',
-  },
-  'my-pet': {
-    title: '내 반려동물',
   },
   '/my-page/register': {
     title: '등록하기',
