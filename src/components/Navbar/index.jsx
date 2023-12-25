@@ -2,11 +2,13 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import navConfig from './constants';
+import normalizePath from '../../utils/normalizers';
 import chevronLeft from '../../assets/chevronLeft.svg';
 
 function Navbar() {
   const location = useLocation();
-  const config = navConfig[location.pathname];
+  const normalizedPath = normalizePath(location.pathname);
+  const config = navConfig[normalizedPath];
 
   if (!config) {
     return null;
@@ -20,7 +22,7 @@ function Navbar() {
   }
 
   return (
-    <header className="py-[10px] flex justify-between items-center">
+    <header className="sticky top-0 pt-[38px] pb-[10px] flex justify-between items-center bg-white">
       <section className="flex flex-1 justify-start">
         <button type="button" onClick={handleBack}>
           <img src={chevronLeft} alt="left" />
