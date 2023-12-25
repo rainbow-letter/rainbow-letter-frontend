@@ -19,21 +19,26 @@ function FAQ({ FAQData }) {
 }
 
 function FAQs() {
-  const [FAQData, setFAQData] = useState(null);
+  const [FAQData, setFAQData] = useState([]);
 
   useEffect(() => {
-    const res = getFaqs();
-    setFAQData({
-      ...res,
-      id: Math.random(),
-      question: res.summary,
-      answer: res.detail,
-    });
+    const fetchAndSetFAQs = async () => {
+      const res = await getFaqs();
+      const transformedData = res.faqs.map((faq) => ({
+        id: faq.id,
+        question: faq.summary,
+        answer: faq.detail,
+      }));
+
+      setFAQData(transformedData);
+    };
+
+    fetchAndSetFAQs();
   }, []);
 
   return (
     <section className="flex flex-col gap-y-3">
-      {FAQData &&
+      {!!FAQData.length &&
         FAQData.map((faq) => (
           <FAQ
             key={faq.id}

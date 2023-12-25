@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { removeToken } from '../../store/user';
@@ -26,11 +26,7 @@ function MyPage() {
   const phoneConstant = userInfo.phone || USER_INFO_LABELS.NO_PHONE;
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  const fetchUserInfo = async () => {
-    const info = await getUserInfo();
-    return info;
-  };
+  const navigate = useNavigate();
 
   const toggleEditPhone = () => {
     setIsEditingPhone(!isEditingPhone);
@@ -50,21 +46,30 @@ function MyPage() {
     }
 
     try {
-      updatePhoneNumber();
+      await updatePhoneNumber();
       setUserInfo({ ...userInfo, phone: editedPhone });
       setIsEditingPhone(false);
     } catch (error) {
-      // TODO: 에러처리
+      alert(error.message);
     }
   };
 
   const handleLogout = () => {
     if (user.token) dispatch(removeToken());
+    navigate('/');
   };
 
   useEffect(() => {
-    const info = fetchUserInfo();
-    setUserInfo(info);
+    const fetchAndSetUserInfo = async () => {
+      try {
+        const info = await getUserInfo();
+        setUserInfo(info);
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    fetchAndSetUserInfo();
   }, []);
 
   return (
@@ -156,7 +161,7 @@ function MyPage() {
         <button
           className="flex justify-between items-center"
           type="button"
-          onClick={() => handleLogout}
+          onClick={() => handleLogout()}
         >
           <div className="p-[10px] text-solo-large text-alarm-red">
             {USER_ACTIONS.LOG_OUT}

@@ -11,9 +11,12 @@ export default function Home() {
     <div>
       <p>Welcome Home!</p>
       {user.token ? (
-        <button type="button" onClick={() => dispatch(removeToken())}>
-          로그아웃
-        </button>
+        <div className="flex flex-col">
+          <Link to="/my-page">마이페이지</Link>
+          <button type="button" onClick={() => dispatch(removeToken())}>
+            로그아웃
+          </button>
+        </div>
       ) : (
         <Link to="/login">로그인하러</Link>
       )}

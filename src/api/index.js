@@ -31,6 +31,7 @@ const apiRequest = {
   get: (url, request) => baseInstance.get(url, request),
   post: (url, request) => baseInstance.post(url, request),
   put: (url, request) => baseInstance.put(url, request),
+  delete: (url, request) => baseInstance.delete(url, request),
 };
 
 export default apiRequest;

@@ -13,9 +13,13 @@ import { deactivateUser } from '../../api/user';
 function AccountDeactivation() {
   const navigate = useNavigate();
 
-  const handleDeactivation = () => {
-    deactivateUser();
-    navigate('/');
+  const handleDeactivation = async () => {
+    try {
+      await deactivateUser();
+      navigate('/');
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
