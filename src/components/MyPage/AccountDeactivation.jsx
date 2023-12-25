@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import check from '../../assets/check.svg';
 import {
   USER_ACTIONS,
   ACCOUNT_DEACTIVATION,
@@ -9,13 +9,17 @@ import {
 } from './constants';
 // eslint-disable-next-line import/no-cycle
 import { deactivateUser } from '../../api/user';
+import { removeToken } from '../../store/user';
+import check from '../../assets/check.svg';
 
 function AccountDeactivation() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleDeactivation = async () => {
     try {
       await deactivateUser();
+      dispatch(removeToken());
       navigate('/');
     } catch (error) {
       alert(error.message);

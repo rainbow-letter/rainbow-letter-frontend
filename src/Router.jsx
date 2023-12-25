@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import React from 'react';
 import Home from './view/Home';
@@ -15,8 +16,8 @@ import FAQs from './components/MyPage/FAQs';
 import AccountDeactivation from './components/MyPage/AccountDeactivation';
 
 function Router() {
-  // TODO: 로그인 확인 로직 작성
-  const isLoggedIn = true;
+  const user = useSelector((state) => state.user);
+  const isLoggedIn = !!user.token;
 
   return (
     <BrowserRouter>
