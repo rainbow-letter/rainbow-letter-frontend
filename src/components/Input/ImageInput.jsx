@@ -7,7 +7,7 @@ function ImageInput({ className, onChange }) {
   const styles = className || '';
 
   return (
-    <div className="p-[10px]">
+    <>
       <label
         htmlFor="file-upload"
         className={`${styles} flex justify-center items-center w-[156px] h-[156px] bg-gray-2 text-white border border-[#616161] border-dashed rounded-2xl cursor-pointer`}
@@ -20,7 +20,7 @@ function ImageInput({ className, onChange }) {
         className="hidden"
         onChange={onChange}
       />
-    </div>
+    </>
   );
 }
 
