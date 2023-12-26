@@ -3,7 +3,6 @@ export const PET_TYPES = [
   { ID: 'CAT', NAME: '고양이' },
   { ID: 'HAMSTER', NAME: '햄스터' },
   { ID: 'PARROT', NAME: '앵무새' },
-  { ID: 'ETC', NAME: '기타' },
 ];
 
 export const ROLES_FOR_PETS = [
@@ -13,9 +12,8 @@ export const ROLES_FOR_PETS = [
   { ID: 'AUNT', NAME: '이모' },
   { ID: 'FATHER', NAME: '아빠' },
   { ID: 'BROTHER_FOR_WOMAN', NAME: '오빠' },
-  { ID: 'BROTHER_FOR_MAN', NAME: '오빠' },
+  { ID: 'BROTHER_FOR_MAN', NAME: '형' },
   { ID: 'UNCLE', NAME: '삼촌' },
-  { ID: 'ETC', NAME: '기타' },
 ];
 
 export const PET_PERSONALITIES = [

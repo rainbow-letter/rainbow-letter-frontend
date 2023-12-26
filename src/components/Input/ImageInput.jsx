@@ -3,8 +3,9 @@ import React from 'react';
 
 import thinPlus from '../../assets/thinPlus.svg';
 
-function ImageInput({ className, onChange }) {
+function ImageInput({ className, imageSrc, onChange }) {
   const styles = className || '';
+  const src = imageSrc || thinPlus;
 
   return (
     <>
@@ -12,7 +13,7 @@ function ImageInput({ className, onChange }) {
         htmlFor="file-upload"
         className={`${styles} flex justify-center items-center w-[156px] h-[156px] bg-gray-2 text-white border border-[#616161] border-dashed rounded-2xl cursor-pointer`}
       >
-        <img src={thinPlus} alt="thinPlus" />
+        <img className="rounded-2xl" src={src} alt="Uploaded" />
       </label>
       <input
         id="file-upload"

@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function Chip({ className, value, onClick }) {
-  const [isSelect, setIsSelect] = useState(false);
+function Chip({ className, isSelected, value, onClick }) {
   const styles = className || '';
 
   const handleClick = () => {
-    setIsSelect((prvState) => !prvState);
-    onClick();
+    if (typeof onClick === 'function') {
+      onClick();
+    }
   };
 
   return (
     <button
-      className={`${styles} flex justify-center items-center py-[13px] px-4 border rounded-full
-      ${isSelect ? 'bg-orange-50 border-orange-400' : 'border-gray-1'}`}
+      className={`${styles} flex justify-center items-center py-[12px] px-4 border rounded-full
+      ${isSelected ? 'bg-orange-50 border-orange-400' : 'border-gray-1'}`}
       type="button"
       onClick={handleClick}
     >
       <span
         className={`text-sm leading-[14px] ${
-          isSelect ? 'text-orange-400 font-bold' : 'text-gray-1'
+          isSelected ? 'text-orange-400 font-bold' : 'text-gray-1'
         }`}
       >
         {value}

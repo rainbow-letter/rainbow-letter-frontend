@@ -17,6 +17,34 @@ function validatePhoneNumber(phoneNumber) {
   return regex.test(phoneNumber);
 }
 
+export const validateDateInput = (value, type) => {
+  if (value === '') {
+    return true;
+  }
+
+  if (type === 'year') {
+    if (value.length === 1) {
+      return value.match(/^[12]$/);
+    }
+    if (value.length === 2) {
+      return value.match(/^19|20$/);
+    }
+    if (value.length > 2) {
+      return value.match(/^(19|20)\d{1,2}$/);
+    }
+  }
+
+  if (type === 'month') {
+    return value.match(/^(0?[1-9]|1[012])$/);
+  }
+
+  if (type === 'day') {
+    return value.match(/^(0?[1-9]|[12][0-9]|3[01])$/);
+  }
+
+  return false;
+};
+
 export {
   validateEmail,
   validatePassword,
