@@ -1,12 +1,16 @@
 import React from 'react';
 
-function Button({ className, value, onClick }) {
+function Button({ className, value, disabled, onClick }) {
   const styles = className || '';
+  const disabledStyles = disabled
+    ? 'bg-gray-1 text-gray-1'
+    : 'bg-orange-400 text-white';
 
   return (
     <button
-      className={`${styles} w-full h-[70px] bg-orange-400 text-heading-3 font-semibold text-white rounded-2xl`}
+      className={`${styles} ${disabledStyles} w-full h-[70px] text-heading-3 font-semibold rounded-2xl`}
       type="button"
+      disabled={disabled}
       onClick={onClick}
     >
       {value}
