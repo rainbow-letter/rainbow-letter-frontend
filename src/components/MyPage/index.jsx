@@ -4,7 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { removeToken } from '../../store/user';
 // eslint-disable-next-line import/no-cycle
-import { getUserInfo, updatePhoneNumber } from '../../api/user';
+import {
+  getUserInfo,
+  updatePhoneNumber,
+  deletePhoneNumber,
+} from '../../api/user';
 import {
   PAGE_TITLES,
   USER_INFO_LABELS,
@@ -38,19 +42,27 @@ function MyPage() {
     setIsValidPhone(validatePhoneNumber(target.value));
   };
 
+  const handlePhoneUpdate = async () => {
+    if (editedPhone === '') {
+      await deletePhoneNumber();
+    } else {
+      await updatePhoneNumber();
+    }
+  };
+
   const savePhone = async () => {
-    if (!isValidPhone) return;
-    if (editedPhone === userInfo.phone) {
+    if (!isValidPhone || editedPhone === userInfo.phone) {
       setIsEditingPhone(false);
       return;
     }
 
     try {
-      await updatePhoneNumber();
+      await handlePhoneUpdate();
       setUserInfo({ ...userInfo, phone: editedPhone });
-      setIsEditingPhone(false);
     } catch (error) {
       alert(error.message);
+    } finally {
+      setIsEditingPhone(false);
     }
   };
 

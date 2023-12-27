@@ -14,7 +14,7 @@ function validatePasswordMatch(password, confirmPassword) {
 
 function validatePhoneNumber(phoneNumber) {
   const regex = /^010[0-9]{8}$/;
-  return regex.test(phoneNumber);
+  return regex.test(phoneNumber) || phoneNumber === '';
 }
 
 export const validateDateInput = (value, type) => {

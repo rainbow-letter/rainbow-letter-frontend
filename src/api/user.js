@@ -33,6 +33,12 @@ export const updatePhoneNumber = async (data) => {
   return response;
 };
 
+export const deletePhoneNumber = async () => {
+  const response = await apiRequest.delete(`${RESOURSE}/phoneNumber`);
+
+  return response;
+};
+
 export const getUserInfo = async () => {
   const response = await apiRequest.get(`${RESOURSE}/info`);
 
