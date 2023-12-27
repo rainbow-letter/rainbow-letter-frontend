@@ -17,6 +17,7 @@ import FAQs from './components/MyPage/FAQs';
 import AccountDeactivation from './components/MyPage/AccountDeactivation';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
+import WriteLetter from './view/WriteLetter';
 
 function Router() {
   const user = useSelector((state) => state.user);
@@ -40,6 +41,7 @@ function Router() {
             <Route path="/my-page/leave" element={<AccountDeactivation />} />
             <Route path="/my-pets" element={<MyPets />} />
             <Route path="/my-pets/register" element={<PetRegistration />} />
+            <Route path="/letter/write" element={<WriteLetter />} />
           </Route>
         </Routes>
       </Layout>

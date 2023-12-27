@@ -23,6 +23,9 @@ const navConfig = {
   '/my-page/register': {
     title: '등록하기',
   },
+  '/letter/write': {
+    title: '편지 쓰기',
+  },
 };
 
 export default navConfig;
