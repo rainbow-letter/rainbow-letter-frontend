@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import thinPlus from '../../assets/ic_round-plus.svg';
 
-export default function ResisterButton() {
+export default function ResisterButtonSection() {
   return (
     <section className="mt-5">
       <Link

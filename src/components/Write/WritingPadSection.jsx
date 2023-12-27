@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { React, useRef } from 'react';
 
-export default function WritingPad({ IS_REGISTER_PET }) {
+export default function WritingPadSection({ IS_REGISTER_PET }) {
   const textarea = useRef();
 
   const handleResizeHeight = () => {
@@ -11,7 +11,7 @@ export default function WritingPad({ IS_REGISTER_PET }) {
 
   return (
     <section className="mt-4 bg-orange-50 py-8 px-9 rounded-[15px] text-body-letter font-OwnglyphMinhyeChae">
-      <h3>{!IS_REGISTER_PET && '나나에게'}</h3>
+      <h3>{IS_REGISTER_PET && '나나에게'}</h3>
       <textarea
         onChange={() => handleResizeHeight()}
         ref={textarea}
