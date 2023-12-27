@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { QUESTION_PREFIX } from './constants';
+import { QUESTION_PREFIX, FAQS } from './constants';
 // eslint-disable-next-line import/no-cycle
 import { getFaqs } from '../../api/faqs';
 
 function FAQ({ FAQData }) {
   return (
-    <div className="py-3">
+    <div className="pb-3">
       <header className="p-[10px] text-solo-large">
         <span className=" text-orange-400">{QUESTION_PREFIX}</span>
         <span>{FAQData.question}</span>
@@ -30,14 +30,17 @@ function FAQs() {
         answer: faq.detail,
       }));
 
-      setFAQData(transformedData);
+      // TODO: API 연결 후 수정
+      const data = transformedData.length > 0 ? transformedData : FAQS;
+
+      setFAQData(data);
     };
 
     fetchAndSetFAQs();
   }, []);
 
   return (
-    <section className="flex flex-col gap-y-3">
+    <section className="flex flex-col gap-y-3 mt-[22px]">
       {!!FAQData.length &&
         FAQData.map((faq) => (
           <FAQ

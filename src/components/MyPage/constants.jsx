@@ -28,27 +28,27 @@ export const QUESTION_PREFIX = 'Q. ';
 
 export const FAQS = [
   {
-    ID: 1,
-    QUESTION: '무지개편지는 어떤 서비스인가요?',
-    ANSWER:
+    id: 1,
+    question: '무지개편지는 어떤 서비스인가요?',
+    answer:
       '펫로스 증후군을 겪고 있는 분들을 편지 주고 받기를 통해 위로하는 서비스예요. 심리상담학에서는 ‘글쓰기는 치유의 과정’이라고 강조해요. 자기 감정을 마음껏 표현하며 충분한 추모의 시간을 보내시길 바래요.',
   },
   {
-    ID: 2,
-    QUESTION: '답장은 언제 오나요?',
-    ANSWER:
+    id: 2,
+    question: '답장은 언제 오나요?',
+    answer:
       '편지를 보내고 1~2일 이내 도착해요.\n서비스 내 편지함에서 확인해주세요.',
   },
   {
-    ID: 3,
-    QUESTION: '답장이 온 건 어떻게 알 수 있나요?',
-    ANSWER:
+    id: 3,
+    question: '답장이 온 건 어떻게 알 수 있나요?',
+    answer:
       '답장이 도착하면 가입하신 이메일 주소로 메일을 보내드려요. 핸드폰번호를 등록하면 문자도 보내드려요.',
   },
   {
-    ID: 4,
-    QUESTION: '탈퇴는 어떻게 하나요?',
-    ANSWER: '아래 이메일로 문의 주시면 도와드릴게요.\nswcteam41@gmail.com',
+    id: 4,
+    question: '탈퇴는 어떻게 하나요?',
+    answer: '아래 이메일로 문의 주시면 도와드릴게요.\nswcteam41@gmail.com',
   },
 ];
 
