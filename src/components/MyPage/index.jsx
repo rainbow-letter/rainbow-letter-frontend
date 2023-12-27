@@ -144,7 +144,7 @@ function MyPage() {
           </div>
         </div>
         <Link
-          to="/members/password/reset"
+          to="/my-page/password"
           className="flex justify-between items-center"
         >
           <div className="p-[10px] text-solo-large">

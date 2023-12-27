@@ -12,6 +12,7 @@ import Auth from './components/Login/Auth';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
 import MyPage from './components/MyPage';
+import PasswordChange from './components/PasswordChange';
 import FAQs from './components/MyPage/FAQs';
 import AccountDeactivation from './components/MyPage/AccountDeactivation';
 import MyPets from './components/MyPets';
@@ -35,6 +36,7 @@ function Router() {
             {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
             <Route path="/my-page" element={<MyPage />} />
             <Route path="/my-page/faqs" element={<FAQs />} />
+            <Route path="/my-page/password" element={<PasswordChange />} />
             <Route path="/my-page/leave" element={<AccountDeactivation />} />
             <Route path="/my-pets" element={<MyPets />} />
             <Route path="/my-pets/register" element={<PetRegistration />} />
