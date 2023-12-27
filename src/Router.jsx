@@ -15,7 +15,7 @@ import MyPage from './components/MyPage';
 import FAQs from './components/MyPage/FAQs';
 import AccountDeactivation from './components/MyPage/AccountDeactivation';
 import MyPets from './components/MyPets';
-import PetRegistrationForm from './components/PetRegistrationForm';
+import PetRegistration from './components/MyPets/PetRegistration';
 
 function Router() {
   const user = useSelector((state) => state.user);
@@ -37,7 +37,7 @@ function Router() {
             <Route path="/faqs" element={<FAQs />} />
             <Route path="/leave" element={<AccountDeactivation />} />
             <Route path="/my-pets" element={<MyPets />} />
-            <Route path="/my-pets/register" element={<PetRegistrationForm />} />
+            <Route path="/my-pets/register" element={<PetRegistration />} />
           </Route>
         </Routes>
       </Layout>

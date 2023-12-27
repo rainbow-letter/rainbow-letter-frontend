@@ -1,16 +1,11 @@
 import React from 'react';
 import NoPets from './NoPets';
-import PetRegistrationForm from '../PetRegistrationForm';
 
-const existPets = true;
+const existPets = false;
 
 function MyPets() {
   if (!existPets) return <NoPets />;
-  return (
-    <div className="w-full">
-      <PetRegistrationForm />
-    </div>
-  );
+  return <div className="w-full" />;
 }
 
 export default MyPets;

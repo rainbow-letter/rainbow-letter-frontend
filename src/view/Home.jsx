@@ -8,11 +8,12 @@ export default function Home() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="flex flex-col">
       <p>Welcome Home!</p>
       {user.token ? (
         <div className="flex flex-col">
           <Link to="/my-page">마이페이지</Link>
+          <Link to="/my-pets">내 반려동물</Link>
           <button type="button" onClick={() => dispatch(removeToken())}>
             로그아웃
           </button>
