@@ -2,7 +2,10 @@
 module.exports = {
   content: ['./src/**/*.{html,js,jsx}'],
   theme: {
-    fontFamily: { sans: ['Noto Sans KR', 'sans-serif'] },
+    fontFamily: {
+      sans: ['Noto Sans KR', 'sans-serif'],
+      OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
+    },
     extend: {
       fontSize: {
         'heading-1': ['1.875rem', { lineHeight: '130%', fontWeight: '600' }],
