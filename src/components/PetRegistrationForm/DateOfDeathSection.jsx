@@ -34,6 +34,7 @@ function DateOfDeathSection() {
         <div className="flex items-center">
           <Input
             className="h-11 w-[65px] py-[15px] px-[15px] text-caption text-center"
+            type="tel"
             placeholder="YYYY"
             value={date.year}
             onChange={handleDateValidation('year')}
@@ -41,6 +42,7 @@ function DateOfDeathSection() {
           <span className="p-[7px] text-caption">{DATE_OF_DEATH.YEAR}</span>
           <Input
             className="h-11 w-[55px] py-[15px] px-[15px] text-caption text-center"
+            type="tel"
             placeholder="MM"
             value={date.month}
             onChange={handleDateValidation('month')}
@@ -48,6 +50,7 @@ function DateOfDeathSection() {
           <span className="p-[7px] text-caption">{DATE_OF_DEATH.MONTH}</span>
           <Input
             className="h-11 w-[55px] py-[15px] px-[15px] text-caption text-center"
+            type="tel"
             placeholder="DD"
             value={date.day}
             onChange={handleDateValidation('day')}
