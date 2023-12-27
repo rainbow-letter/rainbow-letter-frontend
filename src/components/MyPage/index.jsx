@@ -46,7 +46,9 @@ function MyPage() {
     if (editedPhone === '') {
       await deletePhoneNumber();
     } else {
-      await updatePhoneNumber();
+      await updatePhoneNumber({
+        phoneNumber: editedPhone,
+      });
     }
   };
 
@@ -126,6 +128,7 @@ function MyPage() {
                     : 'bg-gray-1 text-gray-1'
                 }`}
                 type="button"
+                disabled={!isValidPhone}
                 onClick={isEditingPhone ? savePhone : toggleEditPhone}
               >
                 {isEditingPhone ? USER_ACTIONS.FINISH : USER_ACTIONS.EDIT}
