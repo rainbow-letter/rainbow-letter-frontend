@@ -6,6 +6,8 @@ import ImageUploadSection from '../components/Write/ImageUploadSection';
 import TopicSuggestion from '../components/Write/TopicSuggestion';
 import Button from '../components/Button';
 
+import Modal from '../components/Modal';
+
 const IS_REGISTER_PET = false;
 
 export default function WriteLetter() {

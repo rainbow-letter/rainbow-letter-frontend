@@ -18,9 +18,11 @@ import AccountDeactivation from './components/MyPage/AccountDeactivation';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import WriteLetter from './view/WriteLetter';
+import Modal from './components/Modal';
 
 function Router() {
   const user = useSelector((state) => state.user);
+  const { isOpen } = useSelector((state) => state.modal);
   const isLoggedIn = !!user.token;
 
   return (
@@ -45,6 +47,7 @@ function Router() {
           </Route>
         </Routes>
       </Layout>
+      {isOpen && <Modal />}
     </BrowserRouter>
   );
 }
