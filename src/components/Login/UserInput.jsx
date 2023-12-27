@@ -2,7 +2,9 @@
 import React from 'react';
 
 const INPUT_STYLE =
-  'w-full rounded-[15px] py-[23px] pl-[19px] bg-gray-2 text-solo-small mb-2.5';
+  'w-full rounded-[15px] py-[23px] pl-[19px] bg-gray-2 text-solo-small mb-2.5 outline-none';
+const ERROR_MESSAGE_STYLE =
+  'text-solo-small text-left text-alarm-red mb-[13px] px-[10px] h-[34px]'; // 높이를 고정
 
 export default function UserInput({ isNotValid, errorMessage, ...props }) {
   return (
@@ -15,11 +17,9 @@ export default function UserInput({ isNotValid, errorMessage, ...props }) {
             : `${INPUT_STYLE}`
         }
       />
-      {isNotValid && errorMessage && (
-        <p className="text-solo-small text-left text-alarm-red mb-[13px]">
-          {errorMessage}
-        </p>
-      )}
+      <p className={ERROR_MESSAGE_STYLE}>
+        {isNotValid && errorMessage ? errorMessage : ' '}
+      </p>
     </>
   );
 }
