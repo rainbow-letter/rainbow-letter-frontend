@@ -2,10 +2,10 @@ const navConfig = {
   '/my-page': {
     title: '마이페이지',
   },
-  '/faqs': {
+  '/my-page/faqs': {
     title: '자주 묻는 질문',
   },
-  '/leave': {
+  '/my-page/leave': {
     title: '회원 탈퇴',
   },
   '/my-pets': {

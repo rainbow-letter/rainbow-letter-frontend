@@ -17,10 +17,7 @@ function NoPets() {
             반려동물을 등록하러 가볼까요?
           </span>
         </div>
-        <Button
-          value="등록하기"
-          onClick={() => navigate('/my-pets/register')}
-        />
+        <Button value="등록하기" onClick={() => navigate('register')} />
       </section>
     </div>
   );

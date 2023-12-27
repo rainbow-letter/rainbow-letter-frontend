@@ -34,8 +34,8 @@ function Router() {
           <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
             {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
             <Route path="/my-page" element={<MyPage />} />
-            <Route path="/faqs" element={<FAQs />} />
-            <Route path="/leave" element={<AccountDeactivation />} />
+            <Route path="/my-page/faqs" element={<FAQs />} />
+            <Route path="/my-page/leave" element={<AccountDeactivation />} />
             <Route path="/my-pets" element={<MyPets />} />
             <Route path="/my-pets/register" element={<PetRegistration />} />
           </Route>
