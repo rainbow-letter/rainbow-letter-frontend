@@ -90,13 +90,13 @@ export default function Password() {
           isNotValid={errorData && errorData.type === 'NOT_VALID_PASSWORD'}
           errorMessage={errorData && errorData.message}
         />
-        <label htmlFor="newPasswordChcek" className="block mb-4 mt-[53px]">
+        <label htmlFor="newPasswordCheck" className="block mb-4 mt-[53px]">
           새 비밀번호 확인
         </label>
         <UserInput
           placeholder="비밀번호를 입력해주세요"
           type="password"
-          id="newPasswordChcek"
+          id="newPasswordCheck"
           value={userInfo.newPassword || ''}
           onChange={(e) =>
             setUserInfo({ ...userInfo, newPassword: e.target.value })
