@@ -2,7 +2,10 @@
 module.exports = {
   content: ['./src/**/*.{html,js,jsx}'],
   theme: {
-    fontFamily: { sans: ['Noto Sans KR', 'sans-serif'] },
+    fontFamily: {
+      sans: ['Noto Sans KR', 'sans-serif'],
+      OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
+    },
     extend: {
       fontSize: {
         'heading-1': ['1.875rem', { lineHeight: '130%', fontWeight: '600' }],
@@ -21,8 +24,8 @@ module.exports = {
         'body-large': ['1.125rem', { lineHeight: '166%', fontWeight: '500' }],
         'body-medium': ['1rem', { lineHeight: '166%' }],
         'body-medium-pc': ['1.25rem', { lineHeight: '166%' }],
-        'body-small': ['0.875rem', { lineHeight: '166%' }],
-        'body-small-pc': ['1rem', { lineHeight: '166%' }],
+        'body-small': ['1rem', { lineHeight: '166%' }],
+        'body-small-pc': ['0.875rem', { lineHeight: '166%' }],
         'body-letter': ['1.625rem', { lineHeight: '166%' }],
         'body-letter-pc': ['2.25rem', { lineHeight: '166%' }],
         caption: ['0.875rem', { lineHeight: '166%' }],
