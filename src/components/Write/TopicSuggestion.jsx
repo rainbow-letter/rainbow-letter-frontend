@@ -11,7 +11,7 @@ export default function TopicSuggestion() {
     <article className="mt-2.5">
       <button
         type="button"
-        onClick={() => dispatch(openModal())}
+        onClick={() => dispatch(openModal('TOPIC'))}
         className="flex items-center gap-1"
       >
         <img src={InfoImage} alt="infomation" />

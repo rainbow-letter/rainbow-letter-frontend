@@ -7,7 +7,7 @@ import { closeModal } from '../../store/modal';
 export default function ModalContainer({ children }) {
   const dispatch = useDispatch();
   return (
-    <article className="bg-white rounded-[15px] relative pt-[53px] px-[17px] top-1/3">
+    <article className="bg-white rounded-[15px] relative px-[17px] top-1/3 flex justify-center">
       <button
         type="button"
         onClick={() => dispatch(closeModal())}
