@@ -20,6 +20,30 @@ const MODAL_MESSAGE = [
       },
     ],
   },
+  {
+    type: 'REPLY',
+    title: '문자로 답장 알림을 받아보세요',
+    body: [
+      {
+        id: 1,
+        contents: '답장은 1~2일 후에 도착해요',
+      },
+      {
+        id: 2,
+        contents: '답장이 도착하며 문자를 보내드려요',
+      },
+    ],
+  },
+  {
+    type: 'COMPLETE',
+    title: '편지가 출발했어요',
+    body: [
+      {
+        id: 1,
+        contents: '답장은 1~2일 후에 도착해요',
+      },
+    ],
+  },
 ];
 
 export default MODAL_MESSAGE;
