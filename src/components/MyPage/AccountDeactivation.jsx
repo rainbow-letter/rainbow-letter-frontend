@@ -27,12 +27,12 @@ function AccountDeactivation() {
   };
 
   return (
-    <div className="flex flex-col gap-[159px] py-5">
+    <div className="flex flex-col gap-[159px] pb-5">
       <section className="p-7 bg-gray-2 rounded-2xl">
         <span className="text-solo-large">
           {ACCOUNT_DEACTIVATION.GUIDELINES_TITLE}
         </span>
-        <ul className="p-[10px] list-disc text-body-small text-gray-1 space-y-[6px]">
+        <ul className="p-2.5 list-disc text-body-small text-gray-1 space-y-[6px]">
           {ACCOUNT_DEACTIVATION_GUIDELINES.map((guideline) => (
             <li key={guideline.ID}>{guideline.CONTENT}</li>
           ))}

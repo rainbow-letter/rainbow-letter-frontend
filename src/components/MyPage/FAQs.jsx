@@ -6,12 +6,12 @@ import { getFaqs } from '../../api/faqs';
 
 function FAQ({ FAQData }) {
   return (
-    <div className="py-3">
-      <header className="p-[10px] text-solo-large">
+    <div className="pb-3">
+      <header className="p-2.5 text-solo-large">
         <span className=" text-orange-400">{QUESTION_PREFIX}</span>
         <span>{FAQData.question}</span>
       </header>
-      <main className="m-[10px] p-[18px] bg-gray-2 text-body-small text-gray-1 rounded-2xl">
+      <main className="m-2.5 p-[18px] bg-gray-2 text-body-small text-gray-1 rounded-2xl">
         {FAQData.answer}
       </main>
     </div>

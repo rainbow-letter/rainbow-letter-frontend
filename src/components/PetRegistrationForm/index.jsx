@@ -10,7 +10,7 @@ import PetImageSection from './PetImageSection';
 
 function PetRegistrationForm() {
   return (
-    <div className="mt-3">
+    <div className="flex flex-col gap-y-6 mt-3">
       <PetNameSection />
       <DateOfDeathSection />
       <PetTypeSection />
