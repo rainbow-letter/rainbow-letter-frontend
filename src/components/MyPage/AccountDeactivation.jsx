@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -11,8 +11,10 @@ import {
 import { deactivateUser } from '../../api/user';
 import { removeToken } from '../../store/user';
 import check from '../../assets/check.svg';
+import Button from '../Button';
 
 function AccountDeactivation() {
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,9 +41,21 @@ function AccountDeactivation() {
         </ul>
       </section>
       <section className="flex flex-col gap-[22px]">
-        <button type="button" className="flex gap-2">
-          <div className="w-6 h-6 bg-orange-400 rounded">
-            <img src={check} alt="check" />
+        <button
+          className="flex gap-2"
+          type="button"
+          onClick={() => {
+            setIsConfirmed(!isConfirmed);
+          }}
+        >
+          <div
+            className={`w-6 h-6 rounded ${
+              isConfirmed
+                ? 'bg-orange-400'
+                : 'bg-white border border-orange-400'
+            }`}
+          >
+            {isConfirmed && <img src={check} alt="check" />}
           </div>
           <div>
             <span className="font-semibold text-body-medium text-gray-1">
@@ -49,15 +63,11 @@ function AccountDeactivation() {
             </span>
           </div>
         </button>
-        <button
-          className="w-full h-[70px] bg-orange-400 rounded-2xl"
-          type="submit"
-          onClick={() => handleDeactivation()}
-        >
-          <span className="text-white text-heading-3">
-            {USER_ACTIONS.LEAVE}
-          </span>
-        </button>
+        <Button
+          disabled={!isConfirmed}
+          value={USER_ACTIONS.LEAVE}
+          onClick={handleDeactivation}
+        />
       </section>
     </div>
   );
