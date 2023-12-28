@@ -29,7 +29,7 @@ function AccountDeactivation() {
   };
 
   return (
-    <div className="flex flex-col gap-[159px] py-5">
+    <div className="flex flex-col gap-[159px] pb-5">
       <section className="p-7 bg-gray-2 rounded-2xl">
         <span className="text-solo-large">
           {ACCOUNT_DEACTIVATION.GUIDELINES_TITLE}

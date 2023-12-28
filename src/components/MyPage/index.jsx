@@ -87,9 +87,9 @@ function MyPage() {
   }, []);
 
   return (
-    <section className="py-3">
+    <section className="pb-3">
       <div className="text-heading-3 p-2.5">{PAGE_TITLES.MY_INFO}</div>
-      <div className="flex flex-col mb-14 gap-y-5">
+      <div className="flex flex-col mb-14 gap-y-[22px]">
         <div>
           <div className="text-solo-large p-2.5">{USER_INFO_LABELS.EMAIL}</div>
           <div className="p-2.5 text-solo-medium text-gray-1">
