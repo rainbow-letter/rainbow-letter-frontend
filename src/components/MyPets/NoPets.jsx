@@ -8,7 +8,7 @@ function NoPets() {
 
   return (
     <div className="h-[88vh] flex justify-center items-center">
-      <section className="w-full flex flex-col gap-y-10 text-center">
+      <section className="w-full flex flex-col gap-y-12 text-center">
         <div className="flex flex-col">
           <span className="p-2.5 text-heading-3">
             앗, 편지를 받을 아이가 없어요.
