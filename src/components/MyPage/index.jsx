@@ -62,7 +62,7 @@ function MyPage() {
       await handlePhoneUpdate();
       setUserInfo({ ...userInfo, phone: editedPhone });
     } catch (error) {
-      alert(error.message);
+      // TODO: handle error
     } finally {
       setIsEditingPhone(false);
     }
@@ -79,7 +79,7 @@ function MyPage() {
         const info = await getUserInfo();
         setUserInfo(info);
       } catch (error) {
-        alert(error.message);
+        // TODO: handle error
       }
     };
 

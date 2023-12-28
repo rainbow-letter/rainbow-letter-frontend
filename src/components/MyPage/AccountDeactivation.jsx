@@ -24,7 +24,7 @@ function AccountDeactivation() {
       dispatch(removeToken());
       navigate('/');
     } catch (error) {
-      alert(error.message);
+      // TODO: handle error
     }
   };
 
