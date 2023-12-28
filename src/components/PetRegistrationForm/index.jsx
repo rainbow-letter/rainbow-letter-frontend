@@ -17,7 +17,7 @@ function PetRegistrationForm() {
       <RoleForPetSection />
       <PetPersonalitiesSection />
       <PetImageSection />
-      <section>
+      <section className="pt-12">
         <Button
           value="등록하기"
           onClick={() => {

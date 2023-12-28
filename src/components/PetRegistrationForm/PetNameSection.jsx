@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { TITLES, INFO_MESSAGES } from './constants';
 import Input from '../Input';
 import PetRegistrationSection from './PetRegistrationSection';
+import InputAlert from '../InputAlert';
+import useInputWithAlert from '../../hooks/useInputWithAlert';
 
 function PetNameSection() {
-  const [name, setName] = useState('');
-
-  const handleInputChange = (event) => {
-    setName(event.target.value);
-  };
+  const {
+    inputValue: name,
+    isChanged: isNameChanged,
+    handleChange: handleInputChange,
+  } = useInputWithAlert();
 
   return (
     <PetRegistrationSection title={TITLES.PET_NAME}>
@@ -20,11 +22,10 @@ function PetNameSection() {
           value={name}
           onChange={handleInputChange}
         />
-        {!!name && (
-          <span className="p-2.5 text-alarm-red text-caption">
-            {INFO_MESSAGES.UNCHANGEABLE_NAME_NOTICE}
-          </span>
-        )}
+        <InputAlert
+          message={INFO_MESSAGES.UNCHANGEABLE_NAME_NOTICE}
+          isVisible={isNameChanged}
+        />
       </div>
     </PetRegistrationSection>
   );
