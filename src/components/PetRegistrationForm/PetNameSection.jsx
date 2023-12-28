@@ -21,7 +21,7 @@ function PetNameSection() {
           onChange={handleInputChange}
         />
         {!!name && (
-          <span className="p-[10px] text-alarm-red text-caption">
+          <span className="p-2.5 text-alarm-red text-caption">
             {INFO_MESSAGES.UNCHANGEABLE_NAME_NOTICE}
           </span>
         )}

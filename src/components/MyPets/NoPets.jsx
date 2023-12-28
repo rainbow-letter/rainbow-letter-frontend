@@ -10,10 +10,10 @@ function NoPets() {
     <div className="h-[88vh] flex justify-center items-center">
       <section className="w-full flex flex-col gap-y-10 text-center">
         <div className="flex flex-col">
-          <span className="p-[10px] text-heading-3">
+          <span className="p-2.5 text-heading-3">
             앗, 편지를 받을 아이가 없어요.
           </span>
-          <span className="p-[10px] text-solo-medium">
+          <span className="p-2.5 text-solo-medium">
             반려동물을 등록하러 가볼까요?
           </span>
         </div>
