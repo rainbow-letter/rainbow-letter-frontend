@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { TITLES } from './constants';
 import PetRegistrationSection from './PetRegistrationSection';
 import ImageInput from '../Input/ImageInput';
+import roundX from '../../assets/roundX.svg';
 
 function PetImageSection() {
   const [imageSrc, setImageSrc] = useState(null);
@@ -23,7 +24,11 @@ function PetImageSection() {
       title={TITLES.PROFILE_IMAGE}
       subTitle={TITLES.OPTION}
     >
-      <ImageInput imageSrc={imageSrc} onChange={handleImageChange} />
+      <ImageInput
+        imageSrc={imageSrc}
+        deleteIcon={roundX}
+        onChange={handleImageChange}
+      />
     </PetRegistrationSection>
   );
 }

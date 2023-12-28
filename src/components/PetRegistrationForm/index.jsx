@@ -10,14 +10,14 @@ import PetImageSection from './PetImageSection';
 
 function PetRegistrationForm() {
   return (
-    <div className="mt-3">
+    <div className="flex flex-col gap-y-6 mt-3">
       <PetNameSection />
       <DateOfDeathSection />
       <PetTypeSection />
       <RoleForPetSection />
       <PetPersonalitiesSection />
       <PetImageSection />
-      <section>
+      <section className="pt-12">
         <Button
           value="등록하기"
           onClick={() => {

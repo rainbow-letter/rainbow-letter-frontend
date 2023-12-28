@@ -22,7 +22,7 @@ function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 pt-[38px] pb-[10px] flex justify-between items-center bg-white">
+    <header className="sticky top-0 pt-[38px] pb-2.5 mb-3 flex justify-between items-center bg-white">
       <section className="flex flex-1 justify-start">
         <button type="button" onClick={handleBack}>
           <img src={chevronLeft} alt="left" />

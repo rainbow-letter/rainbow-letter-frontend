@@ -25,7 +25,7 @@ function PasswordChangeForm({ onClick }) {
         </p>
       </section>
       <section className="mt-[38px]">
-        <label htmlFor="newPassword" className="block p-[10px]">
+        <label htmlFor="newPassword" className="block p-2.5">
           새 비밀번호
         </label>
         <UserInput
@@ -41,7 +41,7 @@ function PasswordChangeForm({ onClick }) {
             '영어, 숫자 포함 8자리 이상 입력해주세요.'
           }
         />
-        <label htmlFor="newPasswordCheck" className="block p-[10px] mt-2">
+        <label htmlFor="newPasswordCheck" className="block p-2.5 mt-2">
           새 비밀번호 확인
         </label>
         <UserInput
@@ -63,7 +63,7 @@ function PasswordChangeForm({ onClick }) {
         <Button
           className="mt-5"
           disabled={!isValidPassword || !isMatching}
-          value="변경하기"
+          value="제출하기"
           onclick={() => onClick(newPassword)}
         />
       </section>

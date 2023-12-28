@@ -35,13 +35,3 @@ function PasswordChange() {
 }
 
 export default PasswordChange;
-
-// PUT /api/members/password HTTP/1.1
-// Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGVtYWlsLmNvbSIsInJvbGVzIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzA0MzA2NDE3fQ.fbVgJNRUeZphYQJlSRdbOGVzVJ9kwFhVpZxPxbpaoyU
-// Content-Type: application/json
-// Content-Length: 60
-
-// {
-//   "password" : "user1234",
-//   "newPassword" : "password1"
-// }
