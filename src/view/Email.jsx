@@ -21,11 +21,12 @@ export default function Email() {
 
   return (
     <main className="h-screen flex flex-col justify-center">
-      <h2 className="text-heading-2 text-center mb-[55px] leading-[180%]">
+      <h2 className="text-heading-2 text-center leading-[180%]">
         비밀번호를 찾을
         <br /> 이메일을 입력해주세요
       </h2>
       <UserInput
+        className="mt-2.5"
         type="text"
         placeholder="이메일을 입력해주세요"
         value={auth.email}
@@ -36,9 +37,9 @@ export default function Email() {
       <button
         type="submit"
         onClick={() => onClickFindEmailButton()}
-        className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-1`}
+        className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-12`}
       >
-        입력하기
+        제출하기
       </button>
     </main>
   );
