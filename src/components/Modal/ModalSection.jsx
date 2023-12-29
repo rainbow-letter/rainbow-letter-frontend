@@ -8,7 +8,7 @@ export default function ModalSection({ children }) {
     <section
       className={`${
         isOpen ? 'block' : 'hidden'
-      } fixed inset-y-0 bg-[#000000]/50 w-[390px] px-6 flex flex-col`}
+      } fixed inset-y-0 bg-[#000000]/50 w-[390px] px-6`}
     >
       {children}
     </section>
