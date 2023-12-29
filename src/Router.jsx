@@ -17,9 +17,12 @@ import FAQs from './components/MyPage/FAQs';
 import AccountDeactivation from './components/MyPage/AccountDeactivation';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
+import WriteLetter from './view/WriteLetter';
+import Modal from './components/Modal';
 
 function Router() {
   const user = useSelector((state) => state.user);
+  const { isOpen } = useSelector((state) => state.modal);
   const isLoggedIn = !!user.token;
 
   return (
@@ -40,9 +43,11 @@ function Router() {
             <Route path="/my-page/leave" element={<AccountDeactivation />} />
             <Route path="/my-pets" element={<MyPets />} />
             <Route path="/my-pets/register" element={<PetRegistration />} />
+            <Route path="/letter/write" element={<WriteLetter />} />
           </Route>
         </Routes>
       </Layout>
+      {isOpen && <Modal />}
     </BrowserRouter>
   );
 }
