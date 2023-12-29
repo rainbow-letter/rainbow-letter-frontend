@@ -48,6 +48,7 @@ export default function WriteLetter() {
     currentPet === petsList[0].name
       ? petsList[0]
       : petsList.find((pet) => pet.name === currentPet);
+
   return (
     <main>
       {IS_REGISTER_PET ? (

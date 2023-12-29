@@ -1,6 +1,8 @@
 /* eslint-disable */
-import { React, useState, useEffect, useRef } from 'react';
+import { React, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+
+import useDetectClose from '../../hooks/useDetectClose';
 
 import dropDownImg from '../../assets/ion_chevron-back.svg';
 import dropUpImg from '../../assets/ion_chevron-up.svg';
@@ -8,7 +10,7 @@ import plusImg from '../../assets/ic_round-plus-black.svg';
 
 export default function PetsListDropDown({ petsList, currentPet, onclick }) {
   const dropdown = useRef();
-  const [isDropDown, setIsDropDown] = useState(false);
+  const [isDropDown, setIsDropDown] = useDetectClose(dropdown, false);
 
   const imgSrc = isDropDown ? dropUpImg : dropDownImg;
 
