@@ -1,17 +1,32 @@
 /* eslint-disable */
-import React from 'react';
+import { React, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../Button';
 import Input from '../Input';
 import { closeModal } from '../../store/modal';
+import { validatePhoneNumber } from '../../utils/validators';
+import { updatePhoneNumber } from '../../api/user';
 
 import MODAL_MESSAGE from './constants';
 
 export default function ModalContents() {
+  const [value, setValue] = useState('');
   const dispatch = useDispatch();
   const { type } = useSelector((state) => state.modal);
   const { title, body } = MODAL_MESSAGE.find((item) => item.type === type);
+
+  const registerPhoneNumber = async () => {
+    try {
+      if (!validatePhoneNumber(value)) {
+        throw new Error('유효하지 않은 휴대폰 번호 형식입니다.');
+      }
+      await updatePhoneNumber(value);
+      dispatch(closeModal());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -51,9 +66,15 @@ export default function ModalContents() {
                 </ul>
                 <Input
                   placeholder={'예) 01012341234'}
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
                   className="py-5 w-full my-4"
                 />
-                <Button value={'등록하기'} className="mb-5" />
+                <Button
+                  value={'등록하기'}
+                  onClick={() => registerPhoneNumber()}
+                  className="mb-5"
+                />
                 <div className="w-full">
                   <button
                     type="button"
