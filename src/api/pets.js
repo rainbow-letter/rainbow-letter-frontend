@@ -8,3 +8,9 @@ export const getPetsList = async () => {
 
   return response;
 };
+
+export const registerPet = async (pet) => {
+  const response = await apiRequest.post('/api/pets', pet);
+
+  return response;
+};
