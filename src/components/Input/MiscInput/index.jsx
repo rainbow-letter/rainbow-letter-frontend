@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-function MiscInput({ value, onChange }) {
+function MiscInput({ value, onChange, ...props }) {
   return (
     <div className="flex items-center h-10 w-60 bg-orange-50 px-4 border border-orange-400 rounded-full">
       <div className="bg-transparent">
@@ -13,6 +14,7 @@ function MiscInput({ value, onChange }) {
         maxLength={10}
         value={value}
         onChange={onChange}
+        {...props}
       />
     </div>
   );

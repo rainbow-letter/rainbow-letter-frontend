@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { TITLES, DATE_OF_DEATH } from './constants';
 import { validateDateInput } from '../../utils/validators';
 import Input from '../Input';
 import Chip from '../Chips/Chip';
 import PetRegistrationSection from './PetRegistrationSection';
+import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function DateOfDeathSection() {
   const [date, setDate] = useState({ year: '', month: '', day: '' });
   const [isChipSelected, setIsChipSelected] = useState(false);
+  const { formData, setFormData } = usePetRegistration();
+
+  useEffect(() => {
+    if ((date.year && date.month && date.day) || isChipSelected) {
+      setFormData({ ...formData, deathAnniversary: date });
+    }
+  }, [date, isChipSelected]);
 
   const handleInputChange = (field) => (event) => {
     setIsChipSelected(false);

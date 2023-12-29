@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TITLES } from './constants';
 import { PET_PERSONALITIES } from '../Chips/constants';
 import PetRegistrationSection from './PetRegistrationSection';
 import Chips from '../Chips';
+import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetPersonalitiesSection() {
-  const [selectedPersonalities, setSelectedPersonalities] = useState([]);
+  const { formData, setFormData } = usePetRegistration();
 
   const handleChipSelect = (value) => {
-    const isAlreadySelected = selectedPersonalities.includes(value);
+    const currentPersonalities = formData.petPersonalities || [];
+    const isAlreadySelected = currentPersonalities.includes(value);
+
+    let updatedPersonalities;
     if (isAlreadySelected) {
-      setSelectedPersonalities(
-        selectedPersonalities.filter((chip) => chip !== value)
+      updatedPersonalities = currentPersonalities.filter(
+        (chip) => chip !== value
       );
-    } else if (selectedPersonalities.length < 3) {
-      setSelectedPersonalities([...selectedPersonalities, value]);
+    } else if (currentPersonalities.length < 3) {
+      updatedPersonalities = [...currentPersonalities, value];
+    }
+
+    if (updatedPersonalities) {
+      setFormData({ ...formData, petPersonalities: updatedPersonalities });
     }
   };
 
@@ -25,7 +33,7 @@ function PetPersonalitiesSection() {
     >
       <Chips
         attributes={PET_PERSONALITIES}
-        selectedChips={selectedPersonalities}
+        selectedChips={formData.petPersonalities || []}
         onChipSelect={handleChipSelect}
       />
     </PetRegistrationSection>
