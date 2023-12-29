@@ -21,7 +21,7 @@ const MODAL_MESSAGE = [
     ],
   },
   {
-    type: 'REPLY',
+    type: 'PHONE',
     title: '문자로 답장 알림을 받아보세요',
     body: [
       {

@@ -34,7 +34,7 @@ export default function ModalContents() {
                 </ul>
               </div>
             );
-          case 'REPLY':
+          case 'PHONE':
             return (
               <div className="w-full">
                 <header className="mt-[53px] text-center">
@@ -54,12 +54,12 @@ export default function ModalContents() {
                   className="py-5 w-full my-4"
                 />
                 <Button value={'등록하기'} className="mb-5" />
-                <div className="text-center">
+                <div className="w-full">
                   <button
                     type="button"
                     // TODO: 일정 기간 안보이도록 하게 구현.
                     onClick={() => dispatch(closeModal())}
-                    className="underline text-caption text-gray-1 mb-6"
+                    className="underline text-caption text-gray-1 mb-6 block mx-auto"
                   >
                     다시 보지 않기
                   </button>
