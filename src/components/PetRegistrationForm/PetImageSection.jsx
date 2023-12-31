@@ -7,7 +7,7 @@ import roundX from '../../assets/roundX.svg';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetImageSection() {
-  const { formData, setFormData } = usePetRegistration();
+  const { optionalData, setOptionalData } = usePetRegistration();
 
   const handleImageChange = ({ target }) => {
     const file = target.files[0];
@@ -15,7 +15,7 @@ function PetImageSection() {
     if (file && file.type.match('image.*')) {
       const reader = new FileReader();
       reader.onload = ({ target: { result } }) => {
-        setFormData({ ...formData, image: result });
+        setOptionalData({ ...optionalData, image: result });
       };
       reader.readAsDataURL(file);
     }
@@ -27,7 +27,7 @@ function PetImageSection() {
       subTitle={TITLES.OPTION}
     >
       <ImageInput
-        imageSrc={formData.image}
+        imageSrc={optionalData.image}
         deleteIcon={roundX}
         onChange={handleImageChange}
       />

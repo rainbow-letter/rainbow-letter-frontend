@@ -13,10 +13,10 @@ function PetNameSection() {
     isChanged: isNameChanged,
     handleChange: handleInputChange,
   } = useInputWithAlert();
-  const { formData, setFormData } = usePetRegistration();
+  const { mandatoryData, setMandatoryData } = usePetRegistration();
 
   const handleNameChange = ({ target }) => {
-    setFormData({ ...formData, name: target.value });
+    setMandatoryData({ ...mandatoryData, name: target.value });
   };
 
   return (

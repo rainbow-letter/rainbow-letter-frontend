@@ -1,28 +1,38 @@
 import React, { createContext, useState, useContext, useMemo } from 'react';
 
 const PetRegistrationContext = createContext({
-  formData: {},
-  setFormData: () => {},
+  mandatoryData: {},
+  optionalData: {},
+  setMandatoryData: () => {},
+  setOptionalData: () => {},
 });
 
 export const usePetRegistration = () => useContext(PetRegistrationContext);
 
-const initialFormData = {
+const initialMandatoryData = {
   name: '',
   species: '',
   owner: '',
-  personality: [],
   deathAnniversary: [],
+};
+
+const initialOptionalData = {
+  personality: [],
   image: null,
 };
 
 export function PetRegistrationProvider({ children }) {
-  const [formData, setFormData] = useState(initialFormData);
-  const [profileImage, setProfileImage] = useState(null);
+  const [mandatoryData, setMandatoryData] = useState(initialMandatoryData);
+  const [optionalData, setOptionalData] = useState(initialOptionalData);
 
   const petData = useMemo(
-    () => ({ formData, profileImage, setFormData, setProfileImage }),
-    [formData, setFormData]
+    () => ({
+      mandatoryData,
+      optionalData,
+      setMandatoryData,
+      setOptionalData,
+    }),
+    [mandatoryData, optionalData]
   );
 
   return (

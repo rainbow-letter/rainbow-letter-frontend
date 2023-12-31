@@ -11,13 +11,13 @@ import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 function PetTypeSection() {
   const [selectedType, setSelectedType] = useState(null);
   const [miscValue, setMiscValue] = useState('');
-  const { formData, setFormData } = usePetRegistration();
+  const { mandatoryData, setMandatoryData } = usePetRegistration();
 
   const handleChipSelect = (value) => {
     if (value !== '기타') {
       setSelectedType(value);
       setMiscValue('');
-      setFormData({ ...formData, species: value });
+      setMandatoryData({ ...mandatoryData, species: value });
     } else {
       setSelectedType(value);
     }
@@ -29,7 +29,7 @@ function PetTypeSection() {
 
   const handleMiscInputBlur = () => {
     if (selectedType === '기타' && miscValue) {
-      setFormData({ ...formData, species: miscValue });
+      setMandatoryData({ ...mandatoryData, species: miscValue });
     }
   };
 

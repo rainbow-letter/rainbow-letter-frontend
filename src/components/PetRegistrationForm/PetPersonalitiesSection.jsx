@@ -6,10 +6,10 @@ import Chips from '../Chips';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetPersonalitiesSection() {
-  const { formData, setFormData } = usePetRegistration();
+  const { optionalData, setOptionalData } = usePetRegistration();
 
   const handleChipSelect = (value) => {
-    const currentPersonalities = formData.petPersonalities || [];
+    const currentPersonalities = optionalData.petPersonalities || [];
     const isAlreadySelected = currentPersonalities.includes(value);
 
     let updatedPersonalities;
@@ -22,7 +22,10 @@ function PetPersonalitiesSection() {
     }
 
     if (updatedPersonalities) {
-      setFormData({ ...formData, petPersonalities: updatedPersonalities });
+      setOptionalData({
+        ...optionalData,
+        petPersonalities: updatedPersonalities,
+      });
     }
   };
 
@@ -33,7 +36,7 @@ function PetPersonalitiesSection() {
     >
       <Chips
         attributes={PET_PERSONALITIES}
-        selectedChips={formData.petPersonalities || []}
+        selectedChips={optionalData.petPersonalities || []}
         onChipSelect={handleChipSelect}
       />
     </PetRegistrationSection>

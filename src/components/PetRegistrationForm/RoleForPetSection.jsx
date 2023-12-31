@@ -11,7 +11,7 @@ import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 function RoleForPetSection() {
   const [selectedRole, setSelectedRole] = useState(null);
   const [miscValue, setMiscValue] = useState('');
-  const { formData, setFormData } = usePetRegistration();
+  const { mandatoryData, setMandatoryData } = usePetRegistration();
 
   const handleChipSelect = (value) => {
     setSelectedRole(value);
@@ -26,13 +26,13 @@ function RoleForPetSection() {
 
   const handleMiscInputBlur = () => {
     if (selectedRole === '기타') {
-      setFormData({ ...formData, owner: miscValue });
+      setMandatoryData({ ...mandatoryData, owner: miscValue });
     }
   };
 
   useEffect(() => {
     if (selectedRole && selectedRole !== '기타') {
-      setFormData({ ...formData, owner: selectedRole });
+      setMandatoryData({ ...mandatoryData, owner: selectedRole });
     }
   }, [selectedRole]);
 
