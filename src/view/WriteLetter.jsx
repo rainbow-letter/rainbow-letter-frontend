@@ -12,6 +12,8 @@ import Button from '../components/Button';
 import { getUserInfo } from '../api/user';
 import { openModal } from '../store/modal';
 
+import testDog from '../assets/testDog.png';
+
 const IS_REGISTER_PET = true;
 const petsList = [
   {
@@ -79,7 +81,7 @@ export default function WriteLetter() {
       ) : (
         <ResisterButtonSection />
       )}
-      <WritingPadSection selectedPet={selectedPet} />
+      <WritingPadSection selectedPet={selectedPet} image={testDog} />
       <TopicSuggestion />
       <ImageUploadSection />
       <Button
