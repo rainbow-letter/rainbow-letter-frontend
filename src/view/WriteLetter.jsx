@@ -13,6 +13,7 @@ import { getUserInfo } from '../api/user';
 import { openModal } from '../store/modal';
 
 import testDog from '../assets/testDog.png';
+import testCat from '../assets/testCat.png';
 
 const IS_REGISTER_PET = true;
 const petsList = [
@@ -81,7 +82,10 @@ export default function WriteLetter() {
       ) : (
         <ResisterButtonSection />
       )}
-      <WritingPadSection selectedPet={selectedPet} image={testDog} />
+      <WritingPadSection
+        selectedPet={selectedPet}
+        image={currentPet === '두부' ? testDog : testCat}
+      />
       <TopicSuggestion />
       <ImageUploadSection />
       <Button
