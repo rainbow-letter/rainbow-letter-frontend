@@ -18,6 +18,7 @@ export const DATE_OF_DEATH = {
 export const INFO_MESSAGES = {
   ENTER_NAME: '아이의 이름을 입력해주세요.',
   UNCHANGEABLE_NAME_NOTICE: '이름은 나중에 수정할 수 없어요.',
+  ENTER_WITHIN_10_CHARS: '10글자 이내로 입력해주세요.',
 };
 
 export const USER_ACTIONS = {
