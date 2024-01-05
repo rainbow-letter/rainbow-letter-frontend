@@ -8,7 +8,7 @@ export const PAGE_TITLES = {
 export const USER_INFO_LABELS = {
   EMAIL: '이메일',
   PHONE: '휴대폰 번호',
-  NO_PHONE: '등록된 번호 없음',
+  NO_PHONE: '답장 알림을 문자로 받고 싶다면 등록해보세요',
 };
 
 export const USER_INFO_MESSAGES = {
