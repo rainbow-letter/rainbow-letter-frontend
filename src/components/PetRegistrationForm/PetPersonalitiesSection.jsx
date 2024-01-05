@@ -9,7 +9,7 @@ function PetPersonalitiesSection() {
   const { optionalData, setOptionalData } = usePetRegistration();
 
   const handleChipSelect = (value) => {
-    const currentPersonalities = optionalData.petPersonalities || [];
+    const currentPersonalities = optionalData.personalities || [];
     const isAlreadySelected = currentPersonalities.includes(value);
 
     let updatedPersonalities;
@@ -24,7 +24,7 @@ function PetPersonalitiesSection() {
     if (updatedPersonalities) {
       setOptionalData({
         ...optionalData,
-        petPersonalities: updatedPersonalities,
+        personalities: updatedPersonalities,
       });
     }
   };
@@ -36,7 +36,7 @@ function PetPersonalitiesSection() {
     >
       <Chips
         attributes={PET_PERSONALITIES}
-        selectedChips={optionalData.petPersonalities || []}
+        selectedChips={optionalData.personalities || []}
         onChipSelect={handleChipSelect}
       />
     </PetRegistrationSection>

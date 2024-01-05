@@ -29,9 +29,9 @@ baseInstance.interceptors.response.use(({ data }) => data);
 
 const apiRequest = {
   get: (url, request) => baseInstance.get(url, request),
-  post: (url, request) => baseInstance.post(url, request),
-  put: (url, request) => baseInstance.put(url, request),
-  delete: (url, request) => baseInstance.delete(url, request),
+  post: (url, data, config) => baseInstance.post(url, data, { ...config }),
+  put: (url, data, config) => baseInstance.put(url, data, { ...config }),
+  delete: (url, config) => baseInstance.delete(url, config),
 };
 
 export default apiRequest;

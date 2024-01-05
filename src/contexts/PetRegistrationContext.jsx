@@ -14,11 +14,11 @@ const initialMandatoryData = {
   species: '',
   owner: '',
   deathAnniversary: [],
+  image: null,
 };
 
 const initialOptionalData = {
-  personality: [],
-  image: null,
+  personalities: [],
 };
 
 export function PetRegistrationProvider({ children }) {
