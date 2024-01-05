@@ -5,14 +5,17 @@ export const PET_TYPES = [
   { ID: 'PARROT', NAME: '앵무새' },
 ];
 
-export const ROLES_FOR_PETS = [
+export const ROLES_FOR_WOMEN = [
   { ID: 'MOM', NAME: '엄마' },
-  { ID: 'SISTER_FOR_WOMAN', NAME: '언니' },
-  { ID: 'SISTER_FOR_MAN', NAME: '누나' },
+  { ID: 'SISTER', NAME: '언니' },
   { ID: 'AUNT', NAME: '이모' },
+  { ID: 'BROTHER', NAME: '오빠' },
+];
+
+export const ROLES_FOR_MEN = [
   { ID: 'FATHER', NAME: '아빠' },
-  { ID: 'BROTHER_FOR_WOMAN', NAME: '오빠' },
-  { ID: 'BROTHER_FOR_MAN', NAME: '형' },
+  { ID: 'SISTER', NAME: '누나' },
+  { ID: 'BROTHER', NAME: '형' },
   { ID: 'UNCLE', NAME: '삼촌' },
 ];
 

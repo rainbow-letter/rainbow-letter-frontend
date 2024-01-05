@@ -5,6 +5,7 @@ import Input from '../Input';
 import PetRegistrationSection from './PetRegistrationSection';
 import InputAlert from '../InputAlert';
 import useInputWithAlert from '../../hooks/useInputWithAlert';
+import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetNameSection() {
   const {
@@ -12,6 +13,11 @@ function PetNameSection() {
     isChanged: isNameChanged,
     handleChange: handleInputChange,
   } = useInputWithAlert();
+  const { mandatoryData, setMandatoryData } = usePetRegistration();
+
+  const handleNameChange = ({ target }) => {
+    setMandatoryData({ ...mandatoryData, name: target.value });
+  };
 
   return (
     <PetRegistrationSection title={TITLES.PET_NAME}>
@@ -21,6 +27,7 @@ function PetNameSection() {
           placeholder={INFO_MESSAGES.ENTER_NAME}
           value={name}
           onChange={handleInputChange}
+          onBlur={handleNameChange}
         />
         <InputAlert
           message={INFO_MESSAGES.UNCHANGEABLE_NAME_NOTICE}

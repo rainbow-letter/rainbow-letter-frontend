@@ -4,30 +4,33 @@ import { TITLES } from './constants';
 import PetRegistrationSection from './PetRegistrationSection';
 import ImageInput from '../Input/ImageInput';
 import roundX from '../../assets/roundX.svg';
+import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetImageSection() {
-  const [imageSrc, setImageSrc] = useState(null);
+  const { mandatoryData, setMandatoryData } = usePetRegistration();
+  const [previewUrl, setPreviewUrl] = useState('');
 
   const handleImageChange = ({ target }) => {
     const file = target.files[0];
+
     if (file && file.type.match('image.*')) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImageSrc(e.target.result);
-      };
-      reader.readAsDataURL(file);
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewUrl(imageUrl);
+      setMandatoryData({ ...mandatoryData, image: file });
     }
   };
 
+  const handleImageDelete = () => {
+    setMandatoryData({ ...mandatoryData, image: '' });
+  };
+
   return (
-    <PetRegistrationSection
-      title={TITLES.PROFILE_IMAGE}
-      subTitle={TITLES.OPTION}
-    >
+    <PetRegistrationSection title={TITLES.PROFILE_IMAGE}>
       <ImageInput
-        imageSrc={imageSrc}
+        imageSrc={previewUrl}
         deleteIcon={roundX}
         onChange={handleImageChange}
+        onDelete={handleImageDelete}
       />
     </PetRegistrationSection>
   );
