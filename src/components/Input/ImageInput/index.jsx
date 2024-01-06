@@ -31,7 +31,9 @@ function ImageInput({ className, imageSrc, deleteIcon, onChange, onDelete }) {
           className="hidden"
           onChange={onChange}
         />
-        <ImageDeleteButton icon={deleteIcon} onDelete={onDelete} />
+        {imageSrc && (
+          <ImageDeleteButton icon={deleteIcon} onDelete={onDelete} />
+        )}
       </div>
       <style jsx>{`
         .relative:hover button {
