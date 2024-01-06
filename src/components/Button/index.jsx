@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Button({ className, value, disabled, onClick }) {
+function Button({ className, disabled, children, onClick }) {
   const styles = className || '';
   const disabledStyles = disabled
     ? 'bg-gray-1 text-gray-1'
@@ -13,7 +13,7 @@ function Button({ className, value, disabled, onClick }) {
       disabled={disabled}
       onClick={onClick}
     >
-      {value}
+      {children}
     </button>
   );
 }

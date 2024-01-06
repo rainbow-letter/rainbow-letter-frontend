@@ -3,9 +3,9 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { calculateDDay } from '../../utils/dateCalculations';
-// import { incrementLikes } from '../../api/favorite';
 import pen from '../../assets/pen.svg';
-import heart from '../../assets/heart.svg';
+import PetCardImage from './PetCardImage';
+import LikeButton from './LikeButton';
 
 const dummyPet = {
   id: 1,
@@ -38,22 +38,9 @@ function PetCard({ pet = dummyPet }) {
     navigate(`/letter/write`);
   };
 
-  const handleFavorite = () => {
-    // incrementLikes(pet.favorite.id);
-    console.log('clicked!');
-  };
-
   return (
     <article className="relative">
-      <figure className="absolute top-0 rounded-2xl">
-        <img
-          className="object-cover rounded-2xl"
-          src={pet.image.url}
-          alt={pet.name}
-          width={354}
-          height={354}
-        />
-      </figure>
+      <PetCardImage name={pet.name} image={pet.image} />
       <div className="absolute top-60 w-full bg-white p-4 rounded-2xl shadow-default">
         <header className="flex justify-between items-center mb-5 mt-2.5 ml-3">
           <div className="flex items-center grow gap-5">
@@ -83,16 +70,7 @@ function PetCard({ pet = dummyPet }) {
           >
             편지 쓰러 가기
           </button>
-          <button
-            className="flex w-full px-5 py-4 flex-1 items-center justify-between border text-orange-400 border-orange-400 rounded-2xl"
-            type="button"
-            onClick={handleFavorite}
-          >
-            <span className="grow">{pet.favorite.total}</span>
-            <div className="p-1.5 border border-orange-100 rounded-full">
-              <img className="active:scale-90" src={heart} alt="heart" />
-            </div>
-          </button>
+          <LikeButton favoriteData={pet.favorite} />
         </footer>
       </div>
     </article>
