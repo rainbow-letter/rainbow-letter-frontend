@@ -7,7 +7,6 @@ const baseURL = 'http://rainbowletter.handwoong.com';
 const baseInstance = axios.create({
   baseURL,
   headers: {
-    'Content-Type': 'application/json',
     Authorization: '',
   },
 });
