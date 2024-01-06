@@ -23,7 +23,9 @@ function PetRegistrationForm() {
   );
 
   const formatDeathAnniversary = ({ year, month, day }) => {
-    return `${year}-${month}-${day}`;
+    const formattedMonth = String(month).padStart(2, '0');
+    const formattedDay = String(day).padStart(2, '0');
+    return `${year}-${formattedMonth}-${formattedDay}`;
   };
 
   const uploadImage = async (image) => {
