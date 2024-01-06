@@ -14,6 +14,9 @@ const navConfig = {
   '/my-pets/register': {
     title: '등록하기',
   },
+  '/my-pets/edit': {
+    title: '수정하기',
+  },
   '/write-letter': {
     title: '편지쓰기',
   },
