@@ -111,7 +111,7 @@ export default function ModalContents() {
                 <Button
                   children={'편지함 가기'}
                   onClick={() => {
-                    dispatch(closeModal()), navigate('/letter');
+                    dispatch(closeModal()), navigate('/letter-box');
                   }}
                   className="mb-5"
                 />
