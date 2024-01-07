@@ -82,7 +82,6 @@ export default function ModalContents() {
                 <div className="w-full">
                   <button
                     type="button"
-                    // TODO: 일정 기간 안보이도록 하게 구현.
                     onClick={() => {
                       dispatch(doNotOpenAgain());
                       dispatch(openModal('COMPLETE'));
