@@ -16,6 +16,7 @@ import { getPets } from '../api/pets';
 import { sendLetter } from '../api/letter';
 import { generateFormData } from '../utils/formData';
 import { updateImageAndGetId } from '../api/images';
+import { getLetters } from '../api/letter';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -33,8 +34,12 @@ export default function WriteLetter() {
     (async () => {
       const { pets } = await getPets();
       setPetsList(pets || []);
+      const { letters } = await getLetters();
+      if (letters.length < 1) {
+        dispatch(openModal('TOPIC'));
+      }
       if (!location.state) {
-        setSelectedPet(pets[0]);
+        setSelectedPet(pets[0] || null);
       }
     })();
   }, []);
@@ -66,33 +71,30 @@ export default function WriteLetter() {
   };
 
   return (
-    selectedPet && (
-      <main>
-        {petsList ? (
-          <PetsListDropDown
-            petName={selectedPet.name}
-            petsList={petsList}
-            onclick={setSelectedPet}
-          />
-        ) : (
-          <ResisterButtonSection />
-        )}
-        <WritingPadSection
-          petName={selectedPet.name}
-          image={selectedPet.image.url}
-          onchange={setLetter}
-          letter={letter}
+    <main>
+      {petsList.length > 0 ? (
+        <PetsListDropDown
+          petName={selectedPet && selectedPet.name}
+          petsList={petsList}
+          onclick={setSelectedPet}
         />
-        <TopicSuggestion />
-        <ImageUploadSection setImageFile={setImageFile} />
-        <Button
-          children={'편지 보내기'}
-          // TODO: 편지 보내기 api 나오면 이어서
-          disabled={letter.content.length < 1}
-          onClick={() => onClickSendButton()}
-          className="mt-[58px]"
-        />
-      </main>
-    )
+      ) : (
+        <ResisterButtonSection />
+      )}
+      <WritingPadSection
+        petName={selectedPet && selectedPet.name}
+        image={selectedPet && selectedPet.image.url}
+        onchange={setLetter}
+        letter={letter}
+      />
+      <TopicSuggestion />
+      <ImageUploadSection setImageFile={setImageFile} />
+      <Button
+        children={'편지 보내기'}
+        disabled={letter.content.length < 1 || selectedPet === null}
+        onClick={() => onClickSendButton()}
+        className="mt-[58px]"
+      />
+    </main>
   );
 }

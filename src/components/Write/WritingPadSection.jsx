@@ -10,7 +10,7 @@ export default function WritingPadSection({
   letter,
 }) {
   const style = (image && 'pt-[243px]') || '';
-  const recipient = petName + '에게';
+  const recipient = petName && petName + '에게';
   const textarea = useRef();
 
   const handleResizeHeight = () => {
