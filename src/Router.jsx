@@ -18,6 +18,7 @@ import AccountDeactivation from './components/MyPage/AccountDeactivation';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import WriteLetter from './view/WriteLetter';
+import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
 
 function Router() {
@@ -44,6 +45,7 @@ function Router() {
             <Route path="/my-pets" element={<MyPets />} />
             <Route path="/my-pets/register" element={<PetRegistration />} />
             <Route path="/letter/write" element={<WriteLetter />} />
+            <Route path="/letter" element={<LetterBox />} />
           </Route>
         </Routes>
       </Layout>

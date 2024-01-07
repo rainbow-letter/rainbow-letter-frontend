@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { React, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { React, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ResisterButtonSection from '../components/Write/ResisterButtonSection';
 import PetsListDropDown from '../components/Write/PetsListDropDown';
@@ -11,57 +12,49 @@ import Button from '../components/Button';
 
 import { getUserInfo } from '../api/user';
 import { openModal } from '../store/modal';
-
-import testDog from '../assets/testDog.png';
-import testCat from '../assets/testCat.png';
-
-const IS_REGISTER_PET = true;
-const petsList = [
-  {
-    id: 1,
-    name: '두부',
-    species: '고양이',
-    owner: '형님',
-    personality: ['활발한'],
-    deathAnniversary: '2023-01-01',
-    image: null,
-    favorite: {
-      id: 1,
-      total: 0,
-      dayIncreaseCount: 0,
-      canIncrease: true,
-    },
-  },
-  {
-    id: 2,
-    name: '새롬',
-    species: '강아지',
-    owner: '오빠',
-    personality: ['조용한', '활발한'],
-    deathAnniversary: '2023-01-02',
-    image: null,
-    favorite: {
-      id: 1,
-      total: 0,
-      dayIncreaseCount: 0,
-      canIncrease: true,
-    },
-  },
-];
+import { getPets } from '../api/pets';
+import { sendLetter } from '../api/letter';
+import { generateFormData } from '../utils/formData';
+import { updateImageAndGetId } from '../api/images';
+import { getLetters } from '../api/letter';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
-  const [currentPet, setCurrentPet] = useState(petsList[0].name);
-  const selectedPet =
-    currentPet === petsList[0].name
-      ? petsList[0]
-      : petsList.find((pet) => pet.name === currentPet);
+  const location = useLocation();
+  const { canOpenAgain } = useSelector((state) => state.modal);
+  const [petsList, setPetsList] = useState([]);
+  const [selectedPet, setSelectedPet] = useState(location.state || null);
+  const [imageFile, setImageFile] = useState(null);
+  const [letter, setLetter] = useState({
+    summary: '',
+    content: '',
+    image: null,
+  });
+
+  useEffect(() => {
+    (async () => {
+      const { pets } = await getPets();
+      const { letters } = await getLetters();
+      setPetsList(pets || []);
+      if (letters.length < 1) {
+        dispatch(openModal('TOPIC'));
+      }
+      if (!location.state) {
+        setSelectedPet(pets[0] || null);
+      }
+    })();
+  }, []);
 
   const onClickSendButton = async () => {
     try {
-      const { phoneNumber } = await getUserInfo();
+      if (imageFile) {
+        const imageId = await uploadImage(imageFile);
+        setLetter({ ...letter, image: imageId });
+      }
+      await sendLetter(selectedPet.id, letter);
 
-      if (!phoneNumber) {
+      const { phoneNumber } = await getUserInfo();
+      if (!phoneNumber && canOpenAgain) {
         return dispatch(openModal('PHONE'));
       }
 
@@ -71,26 +64,35 @@ export default function WriteLetter() {
     }
   };
 
+  const uploadImage = async (image) => {
+    const formData = generateFormData(image);
+    const response = await updateImageAndGetId(formData);
+
+    return response.id;
+  };
+
   return (
     <main>
-      {IS_REGISTER_PET ? (
+      {petsList.length > 0 ? (
         <PetsListDropDown
+          petName={selectedPet && selectedPet.name}
           petsList={petsList}
-          currentPet={currentPet}
-          onclick={setCurrentPet}
+          onclick={setSelectedPet}
         />
       ) : (
         <ResisterButtonSection />
       )}
       <WritingPadSection
-        selectedPet={selectedPet}
-        image={currentPet === '두부' ? testDog : testCat}
+        petName={selectedPet && selectedPet.name}
+        image={selectedPet && selectedPet.image.url}
+        onchange={setLetter}
+        letter={letter}
       />
       <TopicSuggestion />
-      <ImageUploadSection />
+      <ImageUploadSection setImageFile={setImageFile} />
       <Button
-        value={'편지 보내기'}
-        // TODO: 편지 보내기 api 나오면 이어서
+        children={'편지 보내기'}
+        disabled={letter.content.length < 1 || selectedPet === null}
         onClick={() => onClickSendButton()}
         className="mt-[58px]"
       />

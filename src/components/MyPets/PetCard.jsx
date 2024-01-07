@@ -35,7 +35,7 @@ function PetCard({ pet = dummyPet }) {
   };
 
   const handleWriteLetter = () => {
-    navigate(`/letter/write`);
+    navigate(`/letter/write`, { state: pet });
   };
 
   return (

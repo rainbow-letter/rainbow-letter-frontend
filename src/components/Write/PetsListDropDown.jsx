@@ -8,7 +8,7 @@ import dropDownImg from '../../assets/ion_chevron-back.svg';
 import dropUpImg from '../../assets/ion_chevron-up.svg';
 import plusImg from '../../assets/ic_round-plus-black.svg';
 
-export default function PetsListDropDown({ petsList, currentPet, onclick }) {
+export default function PetsListDropDown({ petName, petsList, onclick }) {
   const dropdown = useRef();
   const [isDropDown, setIsDropDown] = useDetectClose(dropdown, false);
 
@@ -16,7 +16,7 @@ export default function PetsListDropDown({ petsList, currentPet, onclick }) {
 
   useEffect(() => {
     setIsDropDown(false);
-  }, [currentPet]);
+  }, [petName]);
 
   return (
     <section ref={dropdown} className="text-solo-medium">
@@ -25,7 +25,7 @@ export default function PetsListDropDown({ petsList, currentPet, onclick }) {
         onClick={() => setIsDropDown(!isDropDown)}
         className="w-full px-6 py-[18px] rounded-[15px] flex justify-between items-center border bg-orange-50 border-orange-400"
       >
-        <p>{currentPet}</p>
+        <p>{petName}</p>
         <img src={imgSrc} alt="dropdown" />
       </button>
       <div className="relative">
@@ -34,7 +34,7 @@ export default function PetsListDropDown({ petsList, currentPet, onclick }) {
             {petsList.map((pet) => (
               <li
                 key={pet.id}
-                onClick={() => onclick(pet.name)}
+                onClick={() => onclick(pet)}
                 className="pl-6 py-[15px] border-b border-[#EFEFEF] last:border-none cursor-pointer"
               >
                 {pet.name}
