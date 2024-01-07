@@ -3,9 +3,9 @@ import { React, useRef } from 'react';
 
 import CoverImage from '../CoverImage';
 
-export default function WritingPadSection({ selectedPet: { name }, image }) {
+export default function WritingPadSection({ petName, image }) {
   const style = (image && 'pt-[243px]') || '';
-  const recipient = name + '에게';
+  const recipient = petName + '에게';
   const textarea = useRef();
 
   const handleResizeHeight = () => {

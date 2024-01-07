@@ -1,5 +1,6 @@
 /* eslint-disable */
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import ResisterButtonSection from '../components/Write/ResisterButtonSection';
@@ -11,51 +12,20 @@ import Button from '../components/Button';
 
 import { getUserInfo } from '../api/user';
 import { openModal } from '../store/modal';
-
-import testDog from '../assets/testDog.png';
-import testCat from '../assets/testCat.png';
-
-const IS_REGISTER_PET = true;
-const petsList = [
-  {
-    id: 1,
-    name: '두부',
-    species: '고양이',
-    owner: '형님',
-    personality: ['활발한'],
-    deathAnniversary: '2023-01-01',
-    image: null,
-    favorite: {
-      id: 1,
-      total: 0,
-      dayIncreaseCount: 0,
-      canIncrease: true,
-    },
-  },
-  {
-    id: 2,
-    name: '새롬',
-    species: '강아지',
-    owner: '오빠',
-    personality: ['조용한', '활발한'],
-    deathAnniversary: '2023-01-02',
-    image: null,
-    favorite: {
-      id: 1,
-      total: 0,
-      dayIncreaseCount: 0,
-      canIncrease: true,
-    },
-  },
-];
+import { getPets } from '../api/pets';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
-  const [currentPet, setCurrentPet] = useState(petsList[0].name);
-  const selectedPet =
-    currentPet === petsList[0].name
-      ? petsList[0]
-      : petsList.find((pet) => pet.name === currentPet);
+  const location = useLocation();
+  const [petsList, setPetsList] = useState([]);
+  const [selectedPet, setSelectedPet] = useState(location.state || '');
+
+  useEffect(() => {
+    (async () => {
+      const { pets } = await getPets();
+      setPetsList(pets || []);
+    })();
+  }, []);
 
   const onClickSendButton = async () => {
     try {
@@ -73,23 +43,25 @@ export default function WriteLetter() {
 
   return (
     <main>
-      {IS_REGISTER_PET ? (
+      {petsList ? (
         <PetsListDropDown
+          petName={selectedPet.name}
           petsList={petsList}
-          currentPet={currentPet}
-          onclick={setCurrentPet}
+          onclick={setSelectedPet}
         />
       ) : (
         <ResisterButtonSection />
       )}
       <WritingPadSection
-        selectedPet={selectedPet}
-        image={currentPet === '두부' ? testDog : testCat}
+        petName={selectedPet.name}
+        image={selectedPet.image.url}
       />
       <TopicSuggestion />
       <ImageUploadSection />
       <Button
-        value={'편지 보내기'}
+        children={'편지 보내기'}
+        // TODO: 편지 보내기 api 나오면 이어서
+        disabled={false}
         // TODO: 편지 보내기 api 나오면 이어서
         onClick={() => onClickSendButton()}
         className="mt-[58px]"

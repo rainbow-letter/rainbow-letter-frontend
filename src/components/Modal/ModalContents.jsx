@@ -71,7 +71,7 @@ export default function ModalContents() {
                   className="py-5 w-full my-4"
                 />
                 <Button
-                  value={'등록하기'}
+                  children={'등록하기'}
                   onClick={() => registerPhoneNumber()}
                   className="mb-5"
                 />
@@ -103,7 +103,7 @@ export default function ModalContents() {
                     ))}
                 </ul>
                 <Button
-                  value={'편지함 가기'}
+                  children={'편지함 가기'}
                   // TODO: 편지함 페이지 생기면 구현
                   onClick={() => alert('편지함으로 이동')}
                   className="mb-5"
