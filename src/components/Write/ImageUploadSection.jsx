@@ -4,18 +4,22 @@ import { React, useState } from 'react';
 import ImageInput from '../Input/ImageInput';
 import roundX from '../../assets/roundX.svg';
 
-export default function ImageUploadSection() {
-  const [imageSrc, setImageSrc] = useState(null);
+export default function ImageUploadSection({ setImageFile }) {
+  const [previewUrl, setPreviewUrl] = useState('');
 
   const handleImageChange = ({ target }) => {
     const file = target.files[0];
+
     if (file && file.type.match('image.*')) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImageSrc(e.target.result);
-      };
-      reader.readAsDataURL(file);
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewUrl(imageUrl);
+      setImageFile(file);
     }
+  };
+
+  const handleImageDelete = () => {
+    setPreviewUrl('');
+    setImageFile('');
   };
 
   return (
@@ -27,9 +31,10 @@ export default function ImageUploadSection() {
         딱 1장만 보낼 수 있어요.
       </p>
       <ImageInput
-        imageSrc={imageSrc}
+        imageSrc={previewUrl}
         deleteIcon={roundX}
         onChange={handleImageChange}
+        onDelete={handleImageDelete}
       />
     </section>
   );

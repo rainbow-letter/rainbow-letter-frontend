@@ -13,22 +13,39 @@ import Button from '../components/Button';
 import { getUserInfo } from '../api/user';
 import { openModal } from '../store/modal';
 import { getPets } from '../api/pets';
+import { sendLetter } from '../api/letter';
+import { generateFormData } from '../utils/formData';
+import { updateImageAndGetId } from '../api/images';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
   const location = useLocation();
   const [petsList, setPetsList] = useState([]);
-  const [selectedPet, setSelectedPet] = useState(location.state || '');
+  const [selectedPet, setSelectedPet] = useState(location.state || null);
+  const [imageFile, setImageFile] = useState(null);
+  const [letter, setLetter] = useState({
+    summary: '',
+    content: '',
+    image: null,
+  });
 
   useEffect(() => {
     (async () => {
       const { pets } = await getPets();
       setPetsList(pets || []);
+      if (!location.state) {
+        setSelectedPet(pets[0]);
+      }
     })();
   }, []);
 
   const onClickSendButton = async () => {
     try {
+      if (imageFile) {
+        const imageId = await uploadImage(imageFile);
+        setLetter({ ...letter, image: imageId });
+      }
+      await sendLetter(selectedPet.id, letter);
       const { phoneNumber } = await getUserInfo();
 
       if (!phoneNumber) {
@@ -41,31 +58,41 @@ export default function WriteLetter() {
     }
   };
 
+  const uploadImage = async (image) => {
+    const formData = generateFormData(image);
+    const response = await updateImageAndGetId(formData);
+
+    return response.id;
+  };
+
   return (
-    <main>
-      {petsList ? (
-        <PetsListDropDown
+    selectedPet && (
+      <main>
+        {petsList ? (
+          <PetsListDropDown
+            petName={selectedPet.name}
+            petsList={petsList}
+            onclick={setSelectedPet}
+          />
+        ) : (
+          <ResisterButtonSection />
+        )}
+        <WritingPadSection
           petName={selectedPet.name}
-          petsList={petsList}
-          onclick={setSelectedPet}
+          image={selectedPet.image.url}
+          onchange={setLetter}
+          letter={letter}
         />
-      ) : (
-        <ResisterButtonSection />
-      )}
-      <WritingPadSection
-        petName={selectedPet.name}
-        image={selectedPet.image.url}
-      />
-      <TopicSuggestion />
-      <ImageUploadSection />
-      <Button
-        children={'편지 보내기'}
-        // TODO: 편지 보내기 api 나오면 이어서
-        disabled={false}
-        // TODO: 편지 보내기 api 나오면 이어서
-        onClick={() => onClickSendButton()}
-        className="mt-[58px]"
-      />
-    </main>
+        <TopicSuggestion />
+        <ImageUploadSection setImageFile={setImageFile} />
+        <Button
+          children={'편지 보내기'}
+          // TODO: 편지 보내기 api 나오면 이어서
+          disabled={letter.content.length < 1}
+          onClick={() => onClickSendButton()}
+          className="mt-[58px]"
+        />
+      </main>
+    )
   );
 }
