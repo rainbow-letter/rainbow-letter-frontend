@@ -30,7 +30,7 @@ export default function PetsListDropDown({ petsList, currentPet, onclick }) {
       </button>
       <div className="relative">
         {isDropDown && (
-          <ul className="absolute w-full mt-[6px] bg-white border border-orange-400 rounded-[15px]">
+          <ul className="absolute w-full mt-[6px] bg-white border border-orange-400 rounded-[15px] z-10">
             {petsList.map((pet) => (
               <li
                 key={pet.id}
