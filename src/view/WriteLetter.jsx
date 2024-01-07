@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ResisterButtonSection from '../components/Write/ResisterButtonSection';
 import PetsListDropDown from '../components/Write/PetsListDropDown';
@@ -21,6 +21,7 @@ import { getLetters } from '../api/letter';
 export default function WriteLetter() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const { canOpenAgain } = useSelector((state) => state.modal);
   const [petsList, setPetsList] = useState([]);
   const [selectedPet, setSelectedPet] = useState(location.state || null);
   const [imageFile, setImageFile] = useState(null);
@@ -33,8 +34,8 @@ export default function WriteLetter() {
   useEffect(() => {
     (async () => {
       const { pets } = await getPets();
-      setPetsList(pets || []);
       const { letters } = await getLetters();
+      setPetsList(pets || []);
       if (letters.length < 1) {
         dispatch(openModal('TOPIC'));
       }
@@ -51,9 +52,9 @@ export default function WriteLetter() {
         setLetter({ ...letter, image: imageId });
       }
       await sendLetter(selectedPet.id, letter);
-      const { phoneNumber } = await getUserInfo();
 
-      if (!phoneNumber) {
+      const { phoneNumber } = await getUserInfo();
+      if (!phoneNumber && canOpenAgain) {
         return dispatch(openModal('PHONE'));
       }
 

@@ -1,10 +1,11 @@
 /* eslint-disable */
 import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../Button';
 import Input from '../Input';
-import { closeModal } from '../../store/modal';
+import { closeModal, openModal, doNotOpenAgain } from '../../store/modal';
 import { validatePhoneNumber } from '../../utils/validators';
 import { updatePhoneNumber } from '../../api/user';
 
@@ -13,6 +14,7 @@ import MODAL_MESSAGE from './constants';
 export default function ModalContents() {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { type } = useSelector((state) => state.modal);
   const { title, body } = MODAL_MESSAGE.find((item) => item.type === type);
 
@@ -21,8 +23,10 @@ export default function ModalContents() {
       if (!validatePhoneNumber(value)) {
         throw new Error('유효하지 않은 휴대폰 번호 형식입니다.');
       }
-      await updatePhoneNumber(value);
-      dispatch(closeModal());
+      await updatePhoneNumber({
+        phoneNumber: value,
+      });
+      dispatch(openModal('COMPLETE'));
     } catch (error) {
       console.log(error);
     }
@@ -79,7 +83,10 @@ export default function ModalContents() {
                   <button
                     type="button"
                     // TODO: 일정 기간 안보이도록 하게 구현.
-                    onClick={() => dispatch(closeModal())}
+                    onClick={() => {
+                      dispatch(doNotOpenAgain());
+                      dispatch(openModal('COMPLETE'));
+                    }}
                     className="underline text-caption text-gray-1 mb-6 block mx-auto"
                   >
                     다시 보지 않기
@@ -104,8 +111,9 @@ export default function ModalContents() {
                 </ul>
                 <Button
                   children={'편지함 가기'}
-                  // TODO: 편지함 페이지 생기면 구현
-                  onClick={() => alert('편지함으로 이동')}
+                  onClick={() => {
+                    dispatch(closeModal()), navigate('/letter');
+                  }}
                   className="mb-5"
                 />
               </div>
