@@ -17,6 +17,7 @@ import FAQs from './components/MyPage/FAQs';
 import AccountDeactivation from './components/MyPage/AccountDeactivation';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
+import PetEdit from './components/MyPets/PetEdit';
 import WriteLetter from './view/WriteLetter';
 import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
@@ -44,6 +45,7 @@ function Router() {
             <Route path="/my-page/leave" element={<AccountDeactivation />} />
             <Route path="/my-pets" element={<MyPets />} />
             <Route path="/my-pets/register" element={<PetRegistration />} />
+            <Route path="/my-pets/edit" element={<PetEdit />} />
             <Route path="/letter/write" element={<WriteLetter />} />
             <Route path="/letter" element={<LetterBox />} />
           </Route>

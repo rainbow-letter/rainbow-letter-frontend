@@ -22,6 +22,7 @@ function PetImageSection() {
 
   const handleImageDelete = () => {
     setMandatoryData({ ...mandatoryData, image: '' });
+    setPreviewUrl('');
   };
 
   return (

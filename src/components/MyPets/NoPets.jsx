@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { INFO_MESSAGES } from './constants';
+import { INFO_MESSAGES, USER_ACTIONS } from './constants';
 import PetRegisterButton from './PetRegisterButton';
 
 function NoPets() {
@@ -15,7 +15,7 @@ function NoPets() {
             {INFO_MESSAGES.SUGGEST_PET_REGISTRATION}
           </span>
         </div>
-        <PetRegisterButton>등록하기</PetRegisterButton>
+        <PetRegisterButton>{USER_ACTIONS.REGISTER}</PetRegisterButton>
       </section>
     </div>
   );

@@ -63,9 +63,10 @@ function PasswordChangeForm({ onClick }) {
         <Button
           className="mt-5"
           disabled={!isValidPassword || !isMatching}
-          value="제출하기"
           onclick={() => onClick(newPassword)}
-        />
+        >
+          제출하기
+        </Button>
       </section>
     </main>
   );

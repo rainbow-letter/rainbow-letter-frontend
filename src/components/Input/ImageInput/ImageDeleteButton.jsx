@@ -11,7 +11,7 @@ function ImageDeleteButton({ icon, onDelete }) {
       className="hidden absolute -top-2.5 -right-2.5"
       onClick={handleDelete}
     >
-      <img src={icon} alt="roundX" />
+      <img src={icon} alt="delete" />
     </button>
   );
 }
