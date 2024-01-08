@@ -65,12 +65,10 @@ function PetRegistrationForm() {
       <RoleForPetSection />
       <PetPersonalitiesSection />
       <PetImageSection />
-      <section className="pt-12">
-        <Button
-          disabled={!isAllMandatoryDataFilled}
-          value="등록하기"
-          onClick={handleSubmit}
-        />
+      <section className="pt-6">
+        <Button disabled={!isAllMandatoryDataFilled} onClick={handleSubmit}>
+          <span>등록하기</span>
+        </Button>
       </section>
     </div>
   );
