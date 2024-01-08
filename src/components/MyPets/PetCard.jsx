@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { USER_ACTIONS, PREFIX } from './constants';
-import { calculateDDay } from '../../utils/dateCalculations';
+import { calculateDDay } from '../../utils/date';
 import pen from '../../assets/pen.svg';
 import PetCardImage from './PetCardImage';
 import LikeButton from './LikeButton';

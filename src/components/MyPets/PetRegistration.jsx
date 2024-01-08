@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 import PetRegistrationForm from '../PetRegistrationForm';
-import usePetForm from '../../hooks/usePetForm';
+import usePetRegistrationForm from '../../hooks/usePetRegistrationForm';
 
 function PetRegistration() {
   const { mandatoryData, optionalData } = usePetRegistration();
@@ -18,7 +18,7 @@ function PetRegistration() {
     // TODO: 에러 처리
   };
 
-  const { isAllMandatoryDataFilled, handleSubmit } = usePetForm(
+  const { isAllMandatoryDataFilled, handleSubmit } = usePetRegistrationForm(
     mandatoryData,
     onSuccess,
     onError

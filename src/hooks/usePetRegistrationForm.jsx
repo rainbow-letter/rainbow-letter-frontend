@@ -3,7 +3,7 @@ import { registerPet } from '../api/pets';
 import { updateImageAndGetId } from '../api/images';
 import { generateFormData } from '../utils/formData';
 
-const usePetForm = (initialData, onSuccess, onError) => {
+const usePetRegistration = (initialData, onSuccess, onError) => {
   const isAllMandatoryDataFilled = Object.values(initialData).every((value) =>
     Boolean(value)
   );
@@ -43,4 +43,4 @@ const usePetForm = (initialData, onSuccess, onError) => {
   return { isAllMandatoryDataFilled, handleSubmit };
 };
 
-export default usePetForm;
+export default usePetRegistration;
