@@ -14,3 +14,12 @@ export const calculateDDay = (deathAnniversary) => {
     ? `D-${Math.ceil(differenceInDays)}`
     : `D+${Math.abs(Math.ceil(differenceInDays))}`;
 };
+
+export const convertDateStringToObject = (dateString) => {
+  const parts = dateString.split('-');
+  return {
+    year: parts[0],
+    month: String(parseInt(parts[1], 10)),
+    day: String(parseInt(parts[2], 10)),
+  };
+};
