@@ -63,11 +63,9 @@ function AccountDeactivation() {
             </span>
           </div>
         </button>
-        <Button
-          disabled={!isConfirmed}
-          value={USER_ACTIONS.LEAVE}
-          onClick={handleDeactivation}
-        />
+        <Button disabled={!isConfirmed} onClick={handleDeactivation}>
+          {USER_ACTIONS.LEAVE}
+        </Button>
       </section>
     </div>
   );
