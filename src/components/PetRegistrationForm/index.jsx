@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Button from '../Button';
 import PetNameSection from './PetNameSection';
@@ -7,8 +7,36 @@ import PetTypeSection from './PetTypeSection';
 import RoleForPetSection from './RoleForPetSection';
 import PetPersonalitiesSection from './PetPersonalitiesSection';
 import PetImageSection from './PetImageSection';
+import {
+  usePetRegistration,
+  initialPetData,
+} from '../../contexts/PetRegistrationContext';
 
-function PetRegistrationForm({ isDisabled, handleSubmit }) {
+function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
+  const { setMandatoryData, setOptionalData } = usePetRegistration();
+
+  const setPetData = () => {
+    if (petData) {
+      setMandatoryData({
+        name: petData.name,
+        species: petData.species,
+        owner: petData.owner,
+        deathAnniversary: petData.deathAnniversary,
+        image: petData.image,
+      });
+      setOptionalData({
+        personalities: petData.personalities,
+      });
+    }
+  };
+
+  useEffect(() => {
+    setPetData();
+    return () => {
+      initialPetData(setMandatoryData, setOptionalData);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col gap-y-6">
       <PetNameSection />

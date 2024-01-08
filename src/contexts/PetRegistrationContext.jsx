@@ -21,6 +21,19 @@ const initialOptionalData = {
   personalities: [],
 };
 
+export const initialPetData = (setMandatoryData, setOptionalData) => {
+  setMandatoryData({
+    name: '',
+    species: '',
+    owner: '',
+    deathAnniversary: [],
+    image: null,
+  });
+  setOptionalData({
+    personalities: [],
+  });
+};
+
 export function PetRegistrationProvider({ children }) {
   const [mandatoryData, setMandatoryData] = useState(initialMandatoryData);
   const [optionalData, setOptionalData] = useState(initialOptionalData);
