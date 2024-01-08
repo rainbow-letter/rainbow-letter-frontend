@@ -17,9 +17,9 @@ function Navbar() {
   const navigate = useNavigate();
   const { title } = config;
 
-  function handleBack() {
+  const handleBack = () => {
     navigate(-1);
-  }
+  };
 
   return (
     <header className="sticky top-0 pt-[38px] pb-6 flex justify-between items-center bg-white z-40">
