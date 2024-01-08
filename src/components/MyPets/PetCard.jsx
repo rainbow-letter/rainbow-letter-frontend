@@ -1,7 +1,8 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
+
+import { USER_ACTIONS, PREFIX } from './constants';
 import { calculateDDay } from '../../utils/dateCalculations';
 import pen from '../../assets/pen.svg';
 import PetCardImage from './PetCardImage';
@@ -31,11 +32,11 @@ function PetCard({ pet = dummyPet }) {
   const navigate = useNavigate();
 
   const handleEditPet = () => {
-    navigate(`my-pets/${pet.id}/edit`);
+    navigate('edit', { state: pet });
   };
 
   const handleWriteLetter = () => {
-    navigate(`/letter/write`, { state: pet });
+    navigate('letter', { state: pet });
   };
 
   return (
@@ -57,10 +58,12 @@ function PetCard({ pet = dummyPet }) {
           <ul className="flex gap-x-1.5">
             {pet?.personalities.map((personality) => (
               // eslint-disable-next-line react/no-array-index-key
-              <li key={personality}>{`#${personality}`}</li>
+              <li
+                key={personality}
+              >{`${PREFIX.PET_PERSONALITY}${personality}`}</li>
             ))}
           </ul>
-          <div>{`아이에게 나는 사랑하는 ${pet.owner}`}</div>
+          <div>{`${PREFIX.OWNER}${pet.owner}`}</div>
         </section>
         <footer className="h-[62px] flex gap-x-3 text-body-large">
           <button
@@ -68,7 +71,7 @@ function PetCard({ pet = dummyPet }) {
             type="button"
             onClick={handleWriteLetter}
           >
-            편지 쓰러 가기
+            {USER_ACTIONS.GO_TO_LETTERS}
           </button>
           <LikeButton favoriteData={pet.favorite} />
         </footer>
