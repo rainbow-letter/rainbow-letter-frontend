@@ -2,6 +2,7 @@ import React from 'react';
 
 import NoLetters from './NoLetters';
 
+import { INFO_MESSAGES } from './constants';
 import arrowIcon from '../../assets/ion_chevron-back_1.svg';
 import ellipseIcon from '../../assets/Ellipse 439.svg';
 
@@ -19,9 +20,9 @@ export default function LetterListSection({ letters }) {
   const setStatus = (status) => {
     switch (status) {
       case 'REQUEST':
-        return '아직 답장을 쓰고있어요';
+        return `${INFO_MESSAGES.STILL_WRITING}`;
       case 'RESPONSE':
-        return '답장이 도착했어요!';
+        return `${INFO_MESSAGES.REPLY_ARRIVED}`;
       default:
         return null;
     }
@@ -58,13 +59,13 @@ export default function LetterListSection({ letters }) {
                 />
                 <h3 className="text-solo-large mb-[22px]">{letter.petName}</h3>
                 <div className="flex gap-[18px] mb-2.5 text-body-small">
-                  <span>보낸편지</span>
+                  <span>{INFO_MESSAGES.SENT_LETTER}</span>
                   <p className="text-gray-1 truncate w-[180px]">
                     {letter.summary}
                   </p>
                 </div>
                 <div className="flex gap-[18px] mb-[21px] text-solo-label-pc">
-                  <span>답장상태</span>
+                  <span>{INFO_MESSAGES.RESPONSE_STATUS}</span>
                   <p
                     className={`${
                       isCheckUnread(letter.readStatus) && `text-alarm-red`
