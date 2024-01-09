@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { USER_ACTIONS } from './constants';
 import thinPlus from '../../assets/ic_round-plus.svg';
 
 export default function ResisterButtonSection() {
@@ -11,7 +12,7 @@ export default function ResisterButtonSection() {
         className="py-5 gap-1.5 border border-orange-400 text-orange-400 border-dashed rounded-[15px] cursor-pointer flex items-center justify-center text-solo-medium"
       >
         <img src={thinPlus} alt="thin plus icon" />
-        <p>동물 등록하기</p>
+        <p>{USER_ACTIONS.RESISTER_PET}</p>
       </Link>
     </section>
   );

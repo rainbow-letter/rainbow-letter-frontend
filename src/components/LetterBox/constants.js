@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export const INFO_MESSAGES = Object.freeze({
   SENT_LETTER_ABSENT: '앗, 보낸 편지가 없어요',
   SUGGEST_LETTER_REGISTRATION: '아이에게 편지를 보내볼까요?',

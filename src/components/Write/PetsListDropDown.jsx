@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import useDetectClose from '../../hooks/useDetectClose';
 
+import { USER_ACTIONS } from './constants';
 import dropDownImg from '../../assets/ion_chevron-back.svg';
 import dropUpImg from '../../assets/ion_chevron-up.svg';
 import plusImg from '../../assets/ic_round-plus-black.svg';
@@ -45,7 +46,7 @@ export default function PetsListDropDown({ petName, petsList, onclick }) {
               className="pl-3 py-3 flex items-center"
             >
               <img src={plusImg} />
-              <p>추가하기</p>
+              <p>{USER_ACTIONS.ADD}</p>
             </Link>
           </ul>
         )}
