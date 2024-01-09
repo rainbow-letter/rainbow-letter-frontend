@@ -30,13 +30,13 @@ export default function LetterBox() {
     })();
   }, []);
 
-  if (petsList.length < 1) return <NoPets />;
-
   const petsNames = petsList && petsList.map((pet) => pet.name);
   const filteredLetter =
     selectedPet === DEFAULT
       ? letterList
       : letterList.filter((letter) => letter.petName === selectedPet);
+
+  if (petsList.length < 1) return <NoPets />;
 
   return (
     <main>

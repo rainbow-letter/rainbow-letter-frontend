@@ -1,5 +1,7 @@
 import React from 'react';
 
+import NoLetters from './NoLetters';
+
 import arrowIcon from '../../assets/ion_chevron-back_1.svg';
 import ellipseIcon from '../../assets/Ellipse 439.svg';
 
@@ -32,6 +34,8 @@ export default function LetterListSection({ letters }) {
 
     return false;
   };
+
+  if (letters.length < 1) return <NoLetters />;
 
   return (
     <section className="mt-6">
