@@ -29,6 +29,9 @@ const navConfig = {
   '/letter/write': {
     title: '편지 쓰기',
   },
+  letterId: {
+    title: '편지함',
+  },
 };
 
 export default navConfig;

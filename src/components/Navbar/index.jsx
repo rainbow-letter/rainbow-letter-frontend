@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 import navConfig from './constants';
 import normalizePath from '../../utils/normalizers';
@@ -8,7 +8,8 @@ import chevronLeft from '../../assets/chevronLeft.svg';
 function Navbar() {
   const location = useLocation();
   const normalizedPath = normalizePath(location.pathname);
-  const config = navConfig[normalizedPath];
+  const params = Object.keys(useParams())[0];
+  const config = navConfig[params] || navConfig[normalizedPath];
 
   if (!config) {
     return null;
