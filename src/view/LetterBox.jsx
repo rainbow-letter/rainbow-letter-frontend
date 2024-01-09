@@ -4,7 +4,7 @@ import { React, useState, useEffect } from 'react';
 import NoPets from '../components/MyPets/NoPets';
 import { getPets } from '../api/pets';
 import { getLetters } from '../api/letter';
-import PetNameSection from '../components/LetterBox/PetNameSection';
+import NameSection from '../components/LetterBox/NameSection';
 import LetterListSection from '../components/LetterBox/LetterListSection';
 
 const DEFAULT = '전체';
@@ -34,7 +34,7 @@ export default function LetterBox() {
 
   return (
     <main>
-      <PetNameSection
+      <NameSection
         petsNames={[DEFAULT, ...petsNames]}
         selectedPet={selectedPet}
         onClick={setSelectedPet}
