@@ -38,8 +38,6 @@ export default function LetterBox() {
       ? letterList
       : letterList.filter((letter) => letter.petName === selectedPet);
 
-  console.log(filteredLetter);
-
   return (
     <main>
       <NameSection
