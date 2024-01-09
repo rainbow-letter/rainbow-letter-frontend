@@ -47,11 +47,12 @@ export default function WriteLetter() {
 
   const onClickSendButton = async () => {
     try {
+      const newLetter = { ...letter };
       if (imageFile) {
         const imageId = await uploadImage(imageFile);
-        setLetter({ ...letter, image: imageId });
+        newLetter.image = imageId;
       }
-      await sendLetter(selectedPet.id, letter);
+      await sendLetter(selectedPet.id, newLetter);
 
       const { phoneNumber } = await getUserInfo();
       if (!phoneNumber && canOpenAgain) {
