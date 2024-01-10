@@ -13,8 +13,7 @@ export default function WritingPadSection({
   className,
 }) {
   const style = (image && 'pt-[243px]') || '';
-  const textareaStyle = className || '';
-  const recipient = petName && petName + '에게';
+  const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
   const textarea = useRef();
 
   const handleResizeHeight = () => {
@@ -26,9 +25,9 @@ export default function WritingPadSection({
     <section className={`relative mt-4 ${style}`}>
       <CoverImage image={image} />
       <section
-        className={`${textareaStyle} bg-orange-50 py-8 px-9 rounded-[15px] text-body-letter font-OwnglyphMinhyeChae relative`}
+        className={`${textareaStyle} py-8 px-9 rounded-[15px] text-body-letter font-OwnglyphMinhyeChae relative`}
       >
-        <h3>{recipient}</h3>
+        <h3>{petName}</h3>
         <textarea
           onChange={(e) => {
             handleResizeHeight();
@@ -42,7 +41,7 @@ export default function WritingPadSection({
           rows={9}
           defaultValue={reply}
           readOnly={reply}
-          className={`${textareaStyle} bg-orange-50 w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:32px_32px] leading-8 text-clip`}
+          className={`${textareaStyle} w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:32px_32px] leading-8 text-clip`}
         ></textarea>
         <p className="font-sans text-caption text-gray-1 text-right">{date}</p>
       </section>

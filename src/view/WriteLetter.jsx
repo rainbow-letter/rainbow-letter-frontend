@@ -84,7 +84,7 @@ export default function WriteLetter() {
         <ResisterButtonSection />
       )}
       <WritingPadSection
-        petName={selectedPet && selectedPet.name}
+        petName={selectedPet && selectedPet.name + '에게'}
         image={selectedPet && selectedPet.image.url}
         onchange={setLetter}
         letter={letter}
