@@ -7,6 +7,7 @@ import WritingPadSection from '../components/Write/WritingPadSection';
 import SentPhoto from '../components/LetterBox/SentPhoto';
 import Button from '../components/Button';
 import { getLetter } from '../api/letter';
+import { readReply } from '../api/reply';
 
 const reply = {
   id: 1,
@@ -27,6 +28,9 @@ export default function DetailLetter() {
     (async () => {
       const data = await getLetter(letterId);
       setLetterData(data);
+      if (data.reply.type === 'REPLY') {
+        await readReply(data.id);
+      }
     })();
   }, []);
 
