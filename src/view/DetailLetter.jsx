@@ -3,9 +3,11 @@ import { React, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import WritingPadSection from '../components/Write/WritingPadSection';
-import CoverImage from '../components/CoverImage';
+
+import SentPhoto from '../components/LetterBox/SentPhoto';
 import Button from '../components/Button';
 import { getLetter } from '../api/letter';
+import { readReply } from '../api/reply';
 
 const reply = {
   id: 1,
@@ -25,8 +27,10 @@ export default function DetailLetter() {
   useEffect(() => {
     (async () => {
       const data = await getLetter(letterId);
-      console.log(data);
       setLetterData(data);
+      if (data.reply.type === 'REPLY') {
+        await readReply(data.id);
+      }
     })();
   }, []);
 
@@ -49,28 +53,19 @@ export default function DetailLetter() {
           {reply.content && (
             <WritingPadSection
               image={letterData.pet.image.url}
-              petName={letterData.pet.name}
+              petName={letterData.pet.name + '로부터'}
               reply={reply.content}
               date={processDate(letterData.createdAt)}
             />
           )}
           <WritingPadSection
             image={!reply.content && letterData.pet.image.url}
-            petName={letterData.pet.name}
+            petName={letterData.pet.name + '에게'}
             reply={letterData.content}
             date={processDate(letterData.createdAt)}
-            // TODO: 나중에 다시 한번
-            className="bg-[#F8F8F8]"
+            className={'bg-gray-2'}
           />
-          {letterData.image.id && (
-            <section className="mt-16">
-              <h3 className="text-solo-large">아이에게 보낸 편지</h3>
-              <CoverImage
-                image={letterData.image.url}
-                className="relative mt-8"
-              />
-            </section>
-          )}
+          {letterData.image.id && <SentPhoto letterData={letterData} />}
           <Button onClick={onClickReplyButton} className="mt-12">
             답장쓰기
           </Button>
