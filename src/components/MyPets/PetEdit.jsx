@@ -1,13 +1,17 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
+import { usePetRegistration } from '../../contexts/PetRegistrationContext';
+import usePetForm from '../../hooks/usePetForm';
 import { getPet } from '../../api/pets';
 import PetRegistrationForm from '../PetRegistrationForm';
 
 function PetEdit() {
+  const navigate = useNavigate();
   const location = useLocation();
   const petId = location.state;
+  const { mandatoryData, optionalData } = usePetRegistration();
   const [pet, setPet] = useState(null);
 
   const fetchPet = async () => {
@@ -15,11 +19,31 @@ function PetEdit() {
     setPet(response);
   };
 
+  const onSuccess = () => {
+    navigate(-1);
+  };
+
+  const onError = () => {
+    // TODO: 에러 처리
+  };
+
+  const { isAllMandatoryDataFilled, handleSubmit } = usePetForm(
+    pet,
+    onSuccess,
+    onError
+  );
+
   useEffect(() => {
     fetchPet();
   }, []);
 
-  return <PetRegistrationForm petData={pet} />;
+  return (
+    <PetRegistrationForm
+      petData={pet}
+      isDisabled={isAllMandatoryDataFilled}
+      handleSubmit={() => handleSubmit(mandatoryData, optionalData)}
+    />
+  );
 }
 
 export default PetEdit;

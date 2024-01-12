@@ -1,12 +1,40 @@
 /* eslint-disable import/no-cycle */
-import { registerPet } from '../api/pets';
+import { useLocation } from 'react-router-dom';
+
+import { registerPet, updatePet } from '../api/pets';
 import { updateImageAndGetId } from '../api/images';
 import { generateFormData } from '../utils/formData';
 
 const usePetForm = (initialData, onSuccess, onError) => {
-  const isAllMandatoryDataFilled = Object.values(initialData).every((value) =>
-    Boolean(value)
-  );
+  const { pathname } = useLocation();
+  const isEdit = pathname.includes('edit');
+
+  const isDataComplete = (data) => {
+    if (!data) return null;
+    const isNameFilled = !!data.name;
+    const isSpeciesFilled = !!data.species;
+    const isOwnerFilled = !!data.owner;
+    const isDeathAnniversaryFilled =
+      data.deathAnniversary.year !== '' &&
+      data.deathAnniversary.month !== '' &&
+      data.deathAnniversary.day !== '';
+    const isImageUrlFilled = !!(data.image && data.image.url);
+    const isImageFileFilled = !!(
+      data.image &&
+      (data.image.file || data.image.id)
+    );
+
+    return (
+      isNameFilled &&
+      isSpeciesFilled &&
+      isOwnerFilled &&
+      isDeathAnniversaryFilled &&
+      isImageUrlFilled &&
+      isImageFileFilled
+    );
+  };
+
+  const isAllMandatoryDataFilled = isDataComplete(initialData);
 
   const formatDeathAnniversary = ({ year, month, day }) => {
     if (year === '' || month === '' || day === '') {
@@ -25,8 +53,15 @@ const usePetForm = (initialData, onSuccess, onError) => {
   };
 
   const handleSubmit = async (mandatoryData, optionalData) => {
+    const { image } = mandatoryData;
+    let imageId;
+
     try {
-      const imageId = await uploadImage(mandatoryData.image);
+      if (image.id) {
+        imageId = image.id;
+      } else if (image.file) {
+        imageId = await uploadImage(image.file);
+      }
       const formattedDeathAnniversary =
         mandatoryData.deathAnniversary &&
         formatDeathAnniversary(mandatoryData.deathAnniversary);
@@ -37,7 +72,11 @@ const usePetForm = (initialData, onSuccess, onError) => {
         deathAnniversary: formattedDeathAnniversary,
       };
 
-      await registerPet(dataToSubmit);
+      if (isEdit) {
+        await updatePet(dataToSubmit, initialData.id);
+      } else {
+        await registerPet(dataToSubmit);
+      }
       onSuccess?.();
     } catch (error) {
       onError?.(error);
