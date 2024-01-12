@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { TITLES } from './constants';
 import PetRegistrationSection from './PetRegistrationSection';
@@ -8,7 +8,7 @@ import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetImageSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();
-  const [previewUrl, setPreviewUrl] = useState('');
+  const [previewUrl, setPreviewUrl] = useState(mandatoryData.image.url);
 
   const handleImageChange = ({ target }) => {
     const file = target.files[0];
@@ -16,7 +16,14 @@ function PetImageSection() {
     if (file && file.type.match('image.*')) {
       const imageUrl = URL.createObjectURL(file);
       setPreviewUrl(imageUrl);
-      setMandatoryData({ ...mandatoryData, image: file });
+      setMandatoryData({
+        ...mandatoryData,
+        image: {
+          id: null,
+          url: imageUrl,
+          file,
+        },
+      });
     }
   };
 
@@ -24,6 +31,10 @@ function PetImageSection() {
     setMandatoryData({ ...mandatoryData, image: '' });
     setPreviewUrl('');
   };
+
+  useEffect(() => {
+    setPreviewUrl(mandatoryData.image.url);
+  }, [mandatoryData.image]);
 
   return (
     <PetRegistrationSection title={TITLES.PROFILE_IMAGE}>

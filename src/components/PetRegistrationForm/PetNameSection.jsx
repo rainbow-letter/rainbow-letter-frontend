@@ -7,7 +7,7 @@ import InputAlert from '../InputAlert';
 import useInputWithAlert from '../../hooks/useInputWithAlert';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
-function PetNameSection() {
+function PetNameSection({ isEdit }) {
   const {
     inputValue: name,
     isChanged: isNameChanged,
@@ -22,13 +22,21 @@ function PetNameSection() {
   return (
     <PetRegistrationSection title={TITLES.PET_NAME}>
       <div className="flex flex-col">
-        <Input
-          className="w-full h-[60px] text-caption"
-          placeholder={INFO_MESSAGES.ENTER_NAME}
-          value={name}
-          onChange={handleInputChange}
-          onBlur={handleNameChange}
-        />
+        {isEdit ? (
+          <Input
+            className="w-full h-[60px] text-caption"
+            disabled
+            value={mandatoryData.name || ''}
+          />
+        ) : (
+          <Input
+            className="w-full h-[60px] text-caption"
+            placeholder={INFO_MESSAGES.ENTER_NAME}
+            value={name}
+            onChange={handleInputChange}
+            onBlur={handleNameChange}
+          />
+        )}
         <InputAlert
           message={INFO_MESSAGES.UNCHANGEABLE_NAME_NOTICE}
           isVisible={isNameChanged}
