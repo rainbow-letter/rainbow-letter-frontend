@@ -47,7 +47,7 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
   }, [petData]);
 
   return (
-    <div className="flex flex-col gap-y-6">
+    <div className="flex flex-col gap-y-6 px-2">
       <PetNameSection isEdit={isEdit} />
       <DateOfDeathSection />
       <PetTypeSection />

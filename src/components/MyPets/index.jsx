@@ -24,7 +24,7 @@ function MyPets() {
   if (!existingPets) return <NoPets />;
   return (
     <>
-      <ul>
+      <ul className="px-2">
         {pets.map((pet) => (
           <li className="h-[487px] w-full" key={pet.id}>
             <PetCard pet={pet} />
