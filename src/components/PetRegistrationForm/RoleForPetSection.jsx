@@ -10,12 +10,14 @@ import InputAlert from '../InputAlert';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 import useAutoFocus from '../../hooks/useAutoFocus';
 
+const ALL_ROLES = [...ROLES_FOR_MEN, ...ROLES_FOR_WOMEN];
+
 function RoleForPetSection() {
   const miscInputRef = useRef(null);
+  const { mandatoryData, setMandatoryData } = usePetRegistration();
   const [selectedRole, setSelectedRole] = useState(null);
   const [miscValue, setMiscValue] = useState('');
   const [isMiscValueInvalid, setIsMiscValueInvalid] = useState(false);
-  const { mandatoryData, setMandatoryData } = usePetRegistration();
 
   const shouldFocus = selectedRole === '기타';
   useAutoFocus(shouldFocus, miscInputRef);
@@ -24,6 +26,7 @@ function RoleForPetSection() {
     setSelectedRole(value);
     if (value !== '기타') {
       setMiscValue('');
+      setMandatoryData({ ...mandatoryData, owner: selectedRole });
     }
   };
 
@@ -38,18 +41,23 @@ function RoleForPetSection() {
   };
 
   useEffect(() => {
+    const role = ALL_ROLES.find((t) => t.NAME === mandatoryData.owner);
+
+    if (role) {
+      setSelectedRole(mandatoryData.owner);
+    } else if (mandatoryData.owner) {
+      setSelectedRole('기타');
+      setMiscValue(mandatoryData.owner);
+    }
+  }, [mandatoryData.owner]);
+
+  useEffect(() => {
     if (miscValue.length === 0 || miscValue.length > 10) {
       setIsMiscValueInvalid(true);
     } else {
       setIsMiscValueInvalid(false);
     }
   }, [miscValue]);
-
-  useEffect(() => {
-    if (selectedRole && selectedRole !== '기타') {
-      setMandatoryData({ ...mandatoryData, owner: selectedRole });
-    }
-  }, [selectedRole]);
 
   return (
     <PetRegistrationSection title={TITLES.ROLES_FOR_PETS}>
