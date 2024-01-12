@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { USER_ACTIONS, PREFIX } from './constants';
 import { calculateDDay } from '../../utils/date';
-import pen from '../../assets/pen.svg';
 import PetCardImage from './PetCardImage';
 import LikeButton from './LikeButton';
+import pen from '../../assets/pen.svg';
 
 function PetCard({ pet }) {
   const navigate = useNavigate();
+
+  const deathAnniversaryDDay =
+    pet.deathAnniversary && calculateDDay(pet.deathAnniversary);
 
   const handleEditPet = () => {
     navigate('edit', { state: pet.id });
@@ -27,7 +30,7 @@ function PetCard({ pet }) {
           <div className="flex items-center grow gap-5">
             <span className="text-heading-2">{pet.name}</span>
             <span className="text-solo-small text-orange-400">
-              {calculateDDay(pet.deathAnniversary)}
+              {deathAnniversaryDDay}
             </span>
           </div>
           <button className="pr-2" type="button" onClick={handleEditPet}>

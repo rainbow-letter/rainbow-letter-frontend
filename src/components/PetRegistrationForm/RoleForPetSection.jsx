@@ -26,7 +26,7 @@ function RoleForPetSection() {
     setSelectedRole(value);
     if (value !== '기타') {
       setMiscValue('');
-      setMandatoryData({ ...mandatoryData, owner: selectedRole });
+      setMandatoryData({ ...mandatoryData, owner: value });
     }
   };
 
