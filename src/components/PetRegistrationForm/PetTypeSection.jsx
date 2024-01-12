@@ -12,13 +12,11 @@ import useAutoFocus from '../../hooks/useAutoFocus';
 
 function PetTypeSection() {
   const miscInputRef = useRef(null);
-  const [selectedType, setSelectedType] = useState(null);
-  const [miscValue, setMiscValue] = useState('');
-  const [isMiscValueInvalid, setIsMiscValueInvalid] = useState(false);
   const { mandatoryData, setMandatoryData } = usePetRegistration();
 
-  const shouldFocus = selectedType === '기타';
-  useAutoFocus(shouldFocus, miscInputRef);
+  const [selectedType, setSelectedType] = useState(mandatoryData.species);
+  const [miscValue, setMiscValue] = useState('');
+  const [isMiscValueInvalid, setIsMiscValueInvalid] = useState(false);
 
   const handleChipSelect = (value) => {
     setSelectedType(value);
@@ -40,12 +38,26 @@ function PetTypeSection() {
   };
 
   useEffect(() => {
+    const role = PET_TYPES.find((t) => t.NAME === mandatoryData.species);
+
+    if (role) {
+      setSelectedType(mandatoryData.species);
+    } else if (mandatoryData.species) {
+      setSelectedType('기타');
+      setMiscValue(mandatoryData.species);
+    }
+  }, [mandatoryData]);
+
+  useEffect(() => {
     if (miscValue.length === 0 || miscValue.length > 10) {
       setIsMiscValueInvalid(true);
     } else {
       setIsMiscValueInvalid(false);
     }
   }, [miscValue]);
+
+  const shouldFocus = selectedType === '기타';
+  useAutoFocus(shouldFocus, miscInputRef);
 
   return (
     <PetRegistrationSection title={TITLES.PET_TYPES}>

@@ -20,3 +20,9 @@ export const registerPet = async (pet) => {
 
   return response;
 };
+
+export const updatePet = async (pet, id) => {
+  const response = await apiRequest.put(`${RESOURSE}/${id}`, pet);
+
+  return response;
+};
