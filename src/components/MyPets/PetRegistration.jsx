@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 import PetRegistrationForm from '../PetRegistrationForm';
-import usePetRegistrationForm from '../../hooks/usePetRegistrationForm';
+import usePetRegistrationForm from '../../hooks/usePetForm';
 
 function PetRegistration() {
   const { mandatoryData, optionalData } = usePetRegistration();
