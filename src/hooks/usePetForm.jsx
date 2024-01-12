@@ -9,6 +9,10 @@ const usePetForm = (initialData, onSuccess, onError) => {
   );
 
   const formatDeathAnniversary = ({ year, month, day }) => {
+    if (year === '' || month === '' || day === '') {
+      return null;
+    }
+
     const formattedMonth = String(month).padStart(2, '0');
     const formattedDay = String(day).padStart(2, '0');
     return `${year}-${formattedMonth}-${formattedDay}`;
@@ -23,9 +27,9 @@ const usePetForm = (initialData, onSuccess, onError) => {
   const handleSubmit = async (mandatoryData, optionalData) => {
     try {
       const imageId = await uploadImage(mandatoryData.image);
-      const formattedDeathAnniversary = formatDeathAnniversary(
-        mandatoryData.deathAnniversary
-      );
+      const formattedDeathAnniversary =
+        mandatoryData.deathAnniversary &&
+        formatDeathAnniversary(mandatoryData.deathAnniversary);
       const dataToSubmit = {
         ...mandatoryData,
         ...optionalData,

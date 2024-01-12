@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import { TITLES, DATE_OF_DEATH } from './constants';
+import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 import { validateDateInput } from '../../utils/validators';
 import Input from '../Input';
 import Chip from '../Chips/Chip';
 import PetRegistrationSection from './PetRegistrationSection';
-import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function DateOfDeathSection() {
-  const [date, setDate] = useState({ year: '', month: '', day: '' });
-  const [isChipSelected, setIsChipSelected] = useState(false);
   const { mandatoryData, setMandatoryData } = usePetRegistration();
+  const [date, setDate] = useState(mandatoryData.deathAnniversary);
+  const [isChipSelected, setIsChipSelected] = useState(false);
 
   useEffect(() => {
     if ((date.year && date.month && date.day) || isChipSelected) {
@@ -36,6 +36,13 @@ function DateOfDeathSection() {
     }
   };
 
+  useEffect(() => {
+    setDate(mandatoryData.deathAnniversary);
+    if (mandatoryData.deathAnniversary === null) {
+      handleChipClick();
+    }
+  }, [mandatoryData]);
+
   return (
     <PetRegistrationSection title={TITLES.DATE_OF_DEATH}>
       <div className="flex justify-between">
@@ -44,7 +51,7 @@ function DateOfDeathSection() {
             className="h-11 w-[65px] py-[15px] px-[15px] text-caption text-center"
             type="tel"
             placeholder="YYYY"
-            value={date.year}
+            value={date?.year || ''}
             onChange={handleDateValidation('year')}
           />
           <span className="p-[7px] text-caption">{DATE_OF_DEATH.YEAR}</span>
@@ -52,7 +59,7 @@ function DateOfDeathSection() {
             className="h-11 w-[55px] py-[15px] px-[15px] text-caption text-center"
             type="tel"
             placeholder="MM"
-            value={date.month}
+            value={date?.month || ''}
             onChange={handleDateValidation('month')}
           />
           <span className="p-[7px] text-caption">{DATE_OF_DEATH.MONTH}</span>
@@ -60,7 +67,7 @@ function DateOfDeathSection() {
             className="h-11 w-[55px] py-[15px] px-[15px] text-caption text-center"
             type="tel"
             placeholder="DD"
-            value={date.day}
+            value={date?.day || ''}
             onChange={handleDateValidation('day')}
           />
           <span className="p-[7px] text-caption">{DATE_OF_DEATH.DAY}</span>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Button from '../Button';
 import PetNameSection from './PetNameSection';
@@ -7,11 +8,47 @@ import PetTypeSection from './PetTypeSection';
 import RoleForPetSection from './RoleForPetSection';
 import PetPersonalitiesSection from './PetPersonalitiesSection';
 import PetImageSection from './PetImageSection';
+import {
+  usePetRegistration,
+  setInitialPetData,
+} from '../../contexts/PetRegistrationContext';
+import { convertDateStringToObject } from '../../utils/date';
 
-function PetRegistrationForm({ isDisabled, handleSubmit }) {
+function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
+  const { pathname } = useLocation();
+  const isEdit = pathname.includes('edit');
+  const { setMandatoryData, setOptionalData } = usePetRegistration();
+
+  const setPetData = () => {
+    if (petData) {
+      const { name, species, owner, deathAnniversary, image, personalities } =
+        petData;
+
+      setMandatoryData({
+        name,
+        species,
+        owner,
+        deathAnniversary:
+          deathAnniversary && convertDateStringToObject(deathAnniversary),
+        image,
+      });
+      setOptionalData({
+        personalities,
+      });
+    }
+  };
+
+  useEffect(() => {
+    setPetData();
+    window.scrollTo(0, 0);
+    return () => {
+      setInitialPetData(setMandatoryData, setOptionalData);
+    };
+  }, [petData]);
+
   return (
     <div className="flex flex-col gap-y-6">
-      <PetNameSection />
+      <PetNameSection isEdit={isEdit} />
       <DateOfDeathSection />
       <PetTypeSection />
       <RoleForPetSection />
