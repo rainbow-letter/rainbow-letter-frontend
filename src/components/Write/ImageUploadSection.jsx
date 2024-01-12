@@ -2,6 +2,8 @@
 import { React, useState } from 'react';
 
 import ImageInput from '../Input/ImageInput';
+
+import { INFO_MESSAGES } from './constants';
 import roundX from '../../assets/roundX.svg';
 
 export default function ImageUploadSection({ setImageFile }) {
@@ -25,10 +27,11 @@ export default function ImageUploadSection({ setImageFile }) {
   return (
     <section className="mt-10">
       <h4 className="text-solo-large">
-        사진을 보내보세요. <span className="text-gray-2">(선택)</span>
+        {INFO_MESSAGES.SUGGEST_SEND_PHOTO}
+        <span className="text-gray-2">{INFO_MESSAGES.OPTION}</span>
       </h4>
       <p className="text-gray-2 text-caption mt-[13px] mb-[26px]">
-        딱 1장만 보낼 수 있어요.
+        {INFO_MESSAGES.POSSIBLE_NUMBER}
       </p>
       <ImageInput
         imageSrc={previewUrl}

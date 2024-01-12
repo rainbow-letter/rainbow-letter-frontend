@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import InfoImage from '../../assets/gg_info.svg';
 import { openModal } from '../../store/modal';
+
+import { INFO_MESSAGES } from './constants';
+import InfoImage from '../../assets/gg_info.svg';
 
 export default function TopicSuggestion() {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ export default function TopicSuggestion() {
       >
         <img src={InfoImage} alt="infomation" />
         <p className="underline text-caption text-gray-2">
-          TIP. 이런 주제로도 써보세요
+          {INFO_MESSAGES.SUGGEST_TOPIC}
         </p>
       </button>
     </article>

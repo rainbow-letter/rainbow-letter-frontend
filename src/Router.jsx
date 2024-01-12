@@ -21,6 +21,7 @@ import PetEdit from './components/MyPets/PetEdit';
 import WriteLetter from './view/WriteLetter';
 import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
+import DetailLetter from './view/DetailLetter';
 
 function Router() {
   const user = useSelector((state) => state.user);
@@ -47,7 +48,8 @@ function Router() {
             <Route path="/my-pets/register" element={<PetRegistration />} />
             <Route path="/my-pets/edit" element={<PetEdit />} />
             <Route path="/letter/write" element={<WriteLetter />} />
-            <Route path="/letter" element={<LetterBox />} />
+            <Route path="/letter-box" element={<LetterBox />} />
+            <Route path="/letter-box/:letterId" element={<DetailLetter />} />
           </Route>
         </Routes>
       </Layout>
