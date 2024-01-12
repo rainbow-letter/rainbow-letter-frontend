@@ -5,7 +5,9 @@ function Layout({ className, children }) {
 
   return (
     <div className="w-full h-full min-w-[360px] flex justify-center bg-white">
-      <div className={`${styles} w-[390px] bg-white px-3`}>{children}</div>
+      <div className={`${styles} min-h-screen w-[390px] bg-white px-3`}>
+        {children}
+      </div>
     </div>
   );
 }
