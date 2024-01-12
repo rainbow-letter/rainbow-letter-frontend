@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import AppBar from '../AppBar';
+import NavBar from '../NavBar';
 
 function ProtectedLayout({ isLoggedIn }) {
   if (!isLoggedIn) {
@@ -12,6 +13,7 @@ function ProtectedLayout({ isLoggedIn }) {
     <>
       <AppBar />
       <Outlet />
+      <NavBar />
     </>
   );
 }
