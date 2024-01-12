@@ -1,4 +1,4 @@
-const navConfig = {
+const appBarConfig = {
   '/my-page': {
     title: '마이페이지',
   },
@@ -34,4 +34,4 @@ const navConfig = {
   },
 };
 
-export default navConfig;
+export default appBarConfig;

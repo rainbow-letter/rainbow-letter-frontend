@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
-import navConfig from './constants';
+import appBarConfig from './constants';
 import normalizePath from '../../utils/normalizers';
 import chevronLeft from '../../assets/chevronLeft.svg';
 
-function Navbar() {
+function AppBar() {
   const location = useLocation();
   const normalizedPath = normalizePath(location.pathname);
   const params = Object.keys(useParams())[0];
-  const config = navConfig[params] || navConfig[normalizedPath];
+  const config = appBarConfig[params] || appBarConfig[normalizedPath];
 
   if (!config) {
     return null;
@@ -35,4 +35,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default AppBar;
