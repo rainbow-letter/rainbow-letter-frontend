@@ -47,7 +47,7 @@ function Router() {
             <Route path="/my-pets" element={<MyPets />} />
             <Route path="/my-pets/register" element={<PetRegistration />} />
             <Route path="/my-pets/edit" element={<PetEdit />} />
-            <Route path="/letter/write" element={<WriteLetter />} />
+            <Route path="/write-letter" element={<WriteLetter />} />
             <Route path="/letter-box" element={<LetterBox />} />
             <Route path="/letter-box/:letterId" element={<DetailLetter />} />
           </Route>
