@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 export const INFO_MESSAGES = {
-  LETTER_RECIPIENT_ABSENT: '앗, 편지를 받을 아이가 없어요',
-  SUGGEST_PET_REGISTRATION: '반려동물을 등록하러 가볼까요?',
+  LETTER_RECIPIENT_ABSENT: '우리 아이 프로필을 등록해보세요',
+  SUGGEST_PET_REGISTRATION: '등록 후에 편지를 보낼 수 있어요',
 };
 
 export const USER_ACTIONS = {
