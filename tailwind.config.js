@@ -36,6 +36,7 @@ module.exports = {
         gray: {
           1: '#BDBDBD',
           2: '#F8F8F8',
+          3: '#DFDFDF',
         },
         orange: {
           50: '#FFF8ED',
