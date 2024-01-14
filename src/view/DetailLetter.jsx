@@ -35,7 +35,7 @@ export default function DetailLetter() {
   }, []);
 
   const onClickReplyButton = () => {
-    navigate('/letter/write', { state: letterData.pet });
+    navigate('/write-letter', { state: letterData.pet });
   };
 
   const processDate = (date) => {

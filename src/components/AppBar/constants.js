@@ -26,9 +26,6 @@ const appBarConfig = {
   '/my-page/register': {
     title: '등록하기',
   },
-  '/letter/write': {
-    title: '편지 쓰기',
-  },
   letterId: {
     title: '편지함',
   },
