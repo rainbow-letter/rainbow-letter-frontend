@@ -18,7 +18,7 @@ export default function NoLetters() {
             {INFO_MESSAGES.SUGGEST_LETTER_REGISTRATION}
           </span>
         </div>
-        <Button onClick={() => navigate('/letter/write')}>
+        <Button onClick={() => navigate('/write-letter')}>
           {USER_ACTIONS.GO_TO_LETTERS}
         </Button>
       </section>
