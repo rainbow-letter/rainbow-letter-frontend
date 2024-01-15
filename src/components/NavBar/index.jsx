@@ -13,7 +13,7 @@ import myInfo from '../../assets/myInfo.svg';
 import myInfoActive from '../../assets/myInfoActive.svg';
 
 const navItems = [
-  { to: '/home', label: '홈', icon: home, activeIcon: homeActive },
+  { to: '/', label: '홈', icon: home, activeIcon: homeActive },
   {
     to: '/write-letter',
     label: '편지쓰기',
