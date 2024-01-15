@@ -4,7 +4,7 @@ import { INFO_MESSAGES, USER_ACTIONS } from './constants';
 
 export default function NoPets() {
   return (
-    <article className="mt-5 border rounded-[15px] border-gray-3 px-[17px] flex flex-col items-center">
+    <article className="border rounded-[15px] border-gray-3 px-[17px] flex flex-col items-center">
       <h4 className="text-heading-3 mt-[30px] mb-[13px]">
         {INFO_MESSAGES.PETS_ABSENT}
       </h4>
