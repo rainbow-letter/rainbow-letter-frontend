@@ -8,6 +8,7 @@ import SentPhoto from '../components/LetterBox/SentPhoto';
 import Button from '../components/Button';
 import { getLetter } from '../api/letter';
 import { readReply } from '../api/reply';
+import { USER_ACTIONS } from '../components/LetterBox/constants';
 
 export default function DetailLetter() {
   const { letterId } = useParams();
@@ -18,7 +19,6 @@ export default function DetailLetter() {
     (async () => {
       const data = await getLetter(letterId);
       setLetterData(data);
-      console.log(data);
       if (data.reply.type === 'REPLY') {
         await readReply(data.id);
       }
@@ -58,7 +58,7 @@ export default function DetailLetter() {
           />
           {letterData.image.id && <SentPhoto letterData={letterData} />}
           <Button onClick={onClickReplyButton} className="mt-12">
-            답장쓰기
+            {USER_ACTIONS.GO_TO_REPLY}
           </Button>
         </main>
       )}
