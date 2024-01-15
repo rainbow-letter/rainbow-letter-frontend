@@ -26,3 +26,9 @@ export const updatePet = async (pet, id) => {
 
   return response;
 };
+
+export const getDashboard = async () => {
+  const response = await apiRequest.get(`${RESOURSE}/dashboard`);
+
+  return response;
+};
