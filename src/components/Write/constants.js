@@ -7,5 +7,5 @@ export const INFO_MESSAGES = Object.freeze({
 
 export const USER_ACTIONS = Object.freeze({
   ADD: '추가하기',
-  RESISTER_PET: '동물 등록하기',
+  RESISTER_PET: '편지 받을 아이를 등록해주세요',
 });
