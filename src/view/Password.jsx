@@ -9,7 +9,11 @@ import { validatePasswordMatch, validatePassword } from '../utils/validators';
 import { getToken, removeToken } from '../store/user';
 import { updatePassword } from '../api/user';
 
-import { BUTTON_STYLE, ERROR_MESSAGE } from '../components/Login/constants';
+import {
+  BUTTON_STYLE,
+  ERROR_MESSAGE,
+  UPDATE_PASSWORD_MESSAGE,
+} from '../components/Login/constants';
 
 export default function Password() {
   const navigate = useNavigate();
@@ -70,14 +74,16 @@ export default function Password() {
   return (
     <main className="flex flex-col justify-center h-screen">
       <section>
-        <h2 className="text-heading-2 text-center">비밀번호 변경하기</h2>
+        <h2 className="text-heading-2 text-center">
+          {UPDATE_PASSWORD_MESSAGE.TITLE}
+        </h2>
         <p className="text-solo-medium text-gray-1 text-center mt-[18px]">
-          새로운 비밀번호를 입력해주세요
+          {UPDATE_PASSWORD_MESSAGE.DESCRIPTION}
         </p>
       </section>
       <section className="mt-[58px]">
         <label htmlFor="newPassword" className="block mb-4">
-          새 비밀번호
+          {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD}
         </label>
         <UserInput
           placeholder="비밀번호를 입력해주세요"
@@ -91,7 +97,7 @@ export default function Password() {
           errorMessage={errorData && errorData.message}
         />
         <label htmlFor="newPasswordCheck" className="block mb-4 mt-[53px]">
-          새 비밀번호 확인
+          {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD_CONFIRM}
         </label>
         <UserInput
           placeholder="비밀번호를 입력해주세요"
@@ -106,7 +112,7 @@ export default function Password() {
         />
         <SubmitButton
           onclick={() => onClickUpdatePasswordButton()}
-          value="변경하기"
+          value={UPDATE_PASSWORD_MESSAGE.UPDATE}
           className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-[55px]`}
         />
       </section>

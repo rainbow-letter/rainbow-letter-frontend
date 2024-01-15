@@ -11,7 +11,7 @@ import LetterListSection from '../components/LetterBox/LetterListSection';
 const DEFAULT = '전체';
 
 export default function LetterBox() {
-  const location = useLocation();
+  const { state } = useLocation();
   const [petsList, setPetsList] = useState([]);
   const [letterList, setLetterList] = useState([]);
   const [selectedPet, setSelectedPet] = useState(DEFAULT);
@@ -23,8 +23,8 @@ export default function LetterBox() {
 
       setPetsList(pets || []);
       setLetterList(letters || []);
-      if (location.state) {
-        const findedPet = pets.find((pet) => pet.id === location.state);
+      if (state) {
+        const findedPet = pets.find((pet) => pet.id === state);
         setSelectedPet(findedPet.name || DEFAULT);
       }
     })();

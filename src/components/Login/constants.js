@@ -37,6 +37,26 @@ const ERROR_MESSAGE = Object.freeze({
   NOT_VALID_EMAIL: '이메일 형식이 아닙니다.',
 });
 
+const FIND_EMAIL_MESSAGE = Object.freeze({
+  PASSWORD: '비밀번호를 찾을',
+  EMAIL: '이메일을 입력해주세요',
+  SUBMIT: '제출하기',
+});
+
+const UPDATE_PASSWORD_MESSAGE = Object.freeze({
+  TITLE: '비밀번호 변경하기',
+  DESCRIPTION: '새로운 비밀번호로 입력해주세요.',
+  NEW_PASSWORD: '새 비밀번호',
+  NEW_PASSWORD_CONFIRM: '새 비밀번호 확인',
+  UPDATE: '변경하기',
+});
+
 const BUTTON_STYLE = 'w-full rounded-[15px] flex justify-center items-center';
 
-export { LOGIN_MESSAGE, BUTTON_STYLE, ERROR_MESSAGE };
+export {
+  LOGIN_MESSAGE,
+  BUTTON_STYLE,
+  ERROR_MESSAGE,
+  FIND_EMAIL_MESSAGE,
+  UPDATE_PASSWORD_MESSAGE,
+};

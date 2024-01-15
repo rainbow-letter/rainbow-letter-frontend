@@ -11,7 +11,7 @@ import { trylogin } from '../api/user';
 import { LOGIN_MESSAGE, BUTTON_STYLE } from '../components/Login/constants';
 
 export default function Login() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
@@ -38,9 +38,7 @@ export default function Login() {
     [profile, errorData]
   );
 
-  const message = LOGIN_MESSAGE.find(
-    (item) => item.pathname === location.pathname
-  );
+  const message = LOGIN_MESSAGE.find((item) => item.pathname === pathname);
 
   return (
     <main className="h-screen flex flex-col justify-center text-center">

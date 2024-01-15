@@ -23,6 +23,8 @@ import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
 import DetailLetter from './view/DetailLetter';
 
+import ScrollToTop from './hooks/useScrollTop';
+
 function Router() {
   const user = useSelector((state) => state.user);
   const { isOpen } = useSelector((state) => state.modal);
@@ -30,30 +32,32 @@ function Router() {
 
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<Join />} />
-          <Route path="/auth/email" element={<Email />} />
-          <Route path="/members/password/reset" element={<Password />} />
-          <Route path="/oauth/success" element={<Auth />} />
-          <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
-            {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
-            <Route path="/my-page" element={<MyPage />} />
-            <Route path="/my-page/faqs" element={<FAQs />} />
-            <Route path="/my-page/password" element={<PasswordChange />} />
-            <Route path="/my-page/leave" element={<AccountDeactivation />} />
-            <Route path="/my-pets" element={<MyPets />} />
-            <Route path="/my-pets/register" element={<PetRegistration />} />
-            <Route path="/my-pets/edit" element={<PetEdit />} />
-            <Route path="/write-letter" element={<WriteLetter />} />
-            <Route path="/letter-box" element={<LetterBox />} />
-            <Route path="/letter-box/:letterId" element={<DetailLetter />} />
-          </Route>
-        </Routes>
-      </Layout>
-      {isOpen && <Modal />}
+      <ScrollToTop>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<Join />} />
+            <Route path="/auth/email" element={<Email />} />
+            <Route path="/members/password/reset" element={<Password />} />
+            <Route path="/oauth/success" element={<Auth />} />
+            <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
+              {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
+              <Route path="/my-page" element={<MyPage />} />
+              <Route path="/my-page/faqs" element={<FAQs />} />
+              <Route path="/my-page/password" element={<PasswordChange />} />
+              <Route path="/my-page/leave" element={<AccountDeactivation />} />
+              <Route path="/my-pets" element={<MyPets />} />
+              <Route path="/my-pets/register" element={<PetRegistration />} />
+              <Route path="/my-pets/edit" element={<PetEdit />} />
+              <Route path="/write-letter" element={<WriteLetter />} />
+              <Route path="/letter-box" element={<LetterBox />} />
+              <Route path="/letter-box/:letterId" element={<DetailLetter />} />
+            </Route>
+          </Routes>
+        </Layout>
+        {isOpen && <Modal />}
+      </ScrollToTop>
     </BrowserRouter>
   );
 }

@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import UserInput from '../Login/UserInput';
 import Button from '../Button';
 
+import { UPDATE_PASSWORD_MESSAGE } from '../Login/constants';
+
 function PasswordChangeForm({ onClick }) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,14 +21,16 @@ function PasswordChangeForm({ onClick }) {
   return (
     <main className="flex flex-col justify-center h-screen">
       <section>
-        <h2 className="text-heading-2 text-center">비밀번호 변경하기</h2>
+        <h2 className="text-heading-2 text-center">
+          {UPDATE_PASSWORD_MESSAGE.TITLE}
+        </h2>
         <p className="text-solo-medium text-gray-1 text-center mt-[18px]">
-          새로운 비밀번호를 입력해주세요
+          {UPDATE_PASSWORD_MESSAGE.DESCRIPTION}
         </p>
       </section>
       <section className="mt-[38px]">
         <label htmlFor="newPassword" className="block p-2.5">
-          새 비밀번호
+          {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD}
         </label>
         <UserInput
           placeholder="비밀번호를 입력해주세요"
@@ -42,7 +46,7 @@ function PasswordChangeForm({ onClick }) {
           }
         />
         <label htmlFor="newPasswordCheck" className="block p-2.5 mt-2">
-          새 비밀번호 확인
+          {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD_CONFIRM}
         </label>
         <UserInput
           placeholder="비밀번호를 입력해주세요"
@@ -65,7 +69,7 @@ function PasswordChangeForm({ onClick }) {
           disabled={!isValidPassword || !isMatching}
           onclick={() => onClick(newPassword)}
         >
-          제출하기
+          {UPDATE_PASSWORD_MESSAGE.UPDATE}
         </Button>
       </section>
     </main>
