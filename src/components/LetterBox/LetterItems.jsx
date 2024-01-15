@@ -39,7 +39,7 @@ export default function LetterItems({
     <li
       className={`${
         isCheckUnread(readStatus, status) && `bg-orange-50`
-      } list-none mb-4 border rounded-[15px] cursor-pointer relative `}
+      } border-gray-3 list-none mb-4 border rounded-[15px] cursor-pointer relative `}
     >
       <div className="pl-6 pt-6">
         <img
