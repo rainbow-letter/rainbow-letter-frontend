@@ -39,7 +39,7 @@ export default function LetterBox() {
   if (petsList.length < 1) return <NoPets />;
 
   return (
-    <main>
+    <main className="h-full">
       <NameSection
         petsNames={[DEFAULT, ...petsNames]}
         selectedPet={selectedPet}

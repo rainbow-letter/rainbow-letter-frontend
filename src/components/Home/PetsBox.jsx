@@ -18,8 +18,10 @@ export default function PetsBox() {
       const { letters } = await getLetters();
 
       setPetsList(pets || []);
-      setSelectedPet(pets[0].name);
-      setLetterList(letters);
+      if (pets.length > 0) {
+        setSelectedPet(pets[0].name || null);
+        setLetterList(letters);
+      }
     })();
   }, []);
 

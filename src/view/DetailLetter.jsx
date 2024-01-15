@@ -9,16 +9,6 @@ import Button from '../components/Button';
 import { getLetter } from '../api/letter';
 import { readReply } from '../api/reply';
 
-const reply = {
-  id: 1,
-  summary: '엄마 미키 여기서 잘 지내!',
-  content:
-    '엄마 미키 여기서 잘 지내! 여기 무지개마을은 매일 햇살이 따뜻해. 미키 언제나 엄마 곁에 있을게. 사랑해!',
-  // content: null,
-  readStatus: 'UNREAD',
-  type: 'REPLY',
-};
-
 export default function DetailLetter() {
   const { letterId } = useParams();
   const navigate = useNavigate();
@@ -28,6 +18,7 @@ export default function DetailLetter() {
     (async () => {
       const data = await getLetter(letterId);
       setLetterData(data);
+      console.log(data);
       if (data.reply.type === 'REPLY') {
         await readReply(data.id);
       }
@@ -50,7 +41,7 @@ export default function DetailLetter() {
     <>
       {letterData && (
         <main>
-          {reply.content && (
+          {letterData.reply.content && (
             <WritingPadSection
               image={letterData.pet.image.url}
               petName={letterData.pet.name + '로부터'}
@@ -59,7 +50,7 @@ export default function DetailLetter() {
             />
           )}
           <WritingPadSection
-            image={!reply.content && letterData.pet.image.url}
+            image={!letterData.reply.content && letterData.pet.image.url}
             petName={letterData.pet.name + '에게'}
             reply={letterData.content}
             date={processDate(letterData.createdAt)}
