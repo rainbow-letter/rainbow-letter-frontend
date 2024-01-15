@@ -8,7 +8,7 @@ function PetRegisterButton({ className, children }) {
   const styles = className || '';
 
   return (
-    <Button className={styles} onClick={() => navigate('register')}>
+    <Button className={styles} onClick={() => navigate('/my-pets/register')}>
       {children}
     </Button>
   );
