@@ -8,7 +8,7 @@ import PetCardImage from './PetCardImage';
 import LikeButton from './LikeButton';
 import pen from '../../assets/pen.svg';
 
-function PetCard({ pet }) {
+function PetCard({ pet, ref }) {
   const navigate = useNavigate();
 
   const deathAnniversaryDDay =
@@ -23,7 +23,7 @@ function PetCard({ pet }) {
   };
 
   return (
-    <article className="relative">
+    <article className="relative" ref={ref}>
       <PetCardImage name={pet.name} image={pet.image} />
       <div className="absolute top-60 w-full bg-white p-4 rounded-2xl shadow-default">
         <header className="flex justify-between items-center mb-5 mt-2.5 ml-3">

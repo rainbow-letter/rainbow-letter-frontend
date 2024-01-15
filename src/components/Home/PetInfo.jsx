@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { calculateDDay } from '../../utils/date';
 
@@ -8,11 +9,19 @@ import heart from '../../assets/fa-regular_heart.svg';
 import arrow from '../../assets/ion_chevron-back_home_black.svg';
 
 export default function PetInfo({ pet, letterCount }) {
+  const navigate = useNavigate();
   const deathAnniversaryDDay =
     pet.deathAnniversary && calculateDDay(pet.deathAnniversary);
 
+  const handleScroll = () => {
+    navigate('/my-pets', { state: pet.id });
+  };
+
   return (
-    <article className="border rounded-[15px] mt-5 py-6 pl-6 flex flex-row items-center relative">
+    <article
+      onClick={handleScroll}
+      className="border rounded-[15px] mt-5 py-6 pl-6 flex flex-row items-center relative cursor-pointer"
+    >
       <img
         src={pet && pet.image.url}
         alt="pet"
