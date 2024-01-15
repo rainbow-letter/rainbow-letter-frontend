@@ -9,7 +9,7 @@ import plus from '../../assets/plus.svg';
 import PetRegisterButton from './PetRegisterButton';
 
 function MyPets() {
-  const location = useLocation();
+  const { state } = useLocation();
   const ref = useRef([]);
   const [pets, setPets] = useState([]);
   const existingPets = pets.length > 0;
@@ -24,8 +24,8 @@ function MyPets() {
   }, []);
 
   useEffect(() => {
-    if (location.state) {
-      ref.current[location.state]?.scrollIntoView({
+    if (state) {
+      ref.current[state]?.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
       });
