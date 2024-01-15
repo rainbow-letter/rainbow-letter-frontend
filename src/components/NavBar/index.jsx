@@ -1,38 +1,42 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import writing from '../../assets/writing.svg';
-import letterBox from '../../assets/letterBox.svg';
+import home from '../../assets/home.svg';
 import homeActive from '../../assets/homeActive.svg';
+import writing from '../../assets/writing.svg';
+import writingActive from '../../assets/writingActive.svg';
+import letterBox from '../../assets/letterBox.svg';
+import letterBoxActive from '../../assets/letterBoxActive.svg';
 import petInfo from '../../assets/petInfo.svg';
+import petInfoActive from '../../assets/petInfoActive.svg';
 import myInfo from '../../assets/myInfo.svg';
+import myInfoActive from '../../assets/myInfoActive.svg';
 
-// TODO: active icon 추가
 const navItems = [
+  { to: '/home', label: '홈', icon: home, activeIcon: homeActive },
   {
     to: '/write-letter',
     label: '편지쓰기',
     icon: writing,
-    activeIcon: writing,
+    activeIcon: writingActive,
   },
   {
     to: '/letter-box',
     label: '편지함',
     icon: letterBox,
-    activeIcon: letterBox,
+    activeIcon: letterBoxActive,
   },
-  { to: '/home', label: '홈', icon: homeActive, activeIcon: homeActive },
   {
     to: '/my-pets',
     label: '아이 정보',
     icon: petInfo,
-    activeIcon: petInfo,
+    activeIcon: petInfoActive,
   },
   {
     to: '/my-page',
     label: '마이페이지',
     icon: myInfo,
-    activeIcon: myInfo,
+    activeIcon: myInfoActive,
   },
 ];
 
@@ -44,14 +48,16 @@ function NavBar() {
           <li key={to} className="flex-1">
             <NavLink
               to={to}
-              className="flex flex-col items-center justify-center space-y-2.5"
+              className="flex flex-col items-center justify-center space-y-[5px]"
             >
               {({ isActive }) => (
                 <>
                   <img
-                    className="h-7 w-7"
+                    className="h-8 w-8"
                     src={isActive ? activeIcon : icon}
                     alt={label}
+                    width={32}
+                    height={32}
                   />
                   <span>{label}</span>
                 </>
