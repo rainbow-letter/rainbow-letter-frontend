@@ -73,7 +73,7 @@ export default function WriteLetter() {
   };
 
   return (
-    <main>
+    <main className="h-screen">
       {petsList.length > 0 ? (
         <PetsListDropDown
           petName={selectedPet && selectedPet.name}
