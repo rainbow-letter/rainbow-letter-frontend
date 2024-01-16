@@ -25,7 +25,7 @@ export default function PetInfo({ pet, letterCount }) {
       <img
         src={pet && pet.image.url}
         alt="pet"
-        className="w-[88px] rounded-full mr-4"
+        className="h-[88px] w-[88px] rounded-full mr-4"
       />
       <div>
         <div className="flex gap-2 mb-[15px]">
