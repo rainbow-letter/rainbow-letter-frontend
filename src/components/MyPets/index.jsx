@@ -37,15 +37,14 @@ function MyPets() {
     <>
       <ul className="h-screen px-2">
         {pets.map((pet) => (
-          <li
-            className="h-[487px] w-full"
+          <PetCard
+            className="w-full"
             key={pet.id}
+            pet={pet}
             ref={(el) => {
               ref.current[pet.id] = el;
             }}
-          >
-            <PetCard pet={pet} />
-          </li>
+          />
         ))}
       </ul>
       <PetRegisterButton className="flex items-center justify-center gap-x-2 py-5 bg-white border border-dashed border-orange-400 rounded-2xl">
