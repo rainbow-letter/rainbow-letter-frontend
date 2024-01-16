@@ -27,14 +27,14 @@ function MyPage() {
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [editedPhone, setEditedPhone] = useState('');
   const [isValidPhone, setIsValidPhone] = useState(true);
-  const phoneConstant = userInfo.phone || USER_INFO_LABELS.NO_PHONE;
+  const phoneConstant = userInfo.phoneNumber || USER_INFO_LABELS.NO_PHONE;
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const toggleEditPhone = () => {
     setIsEditingPhone(!isEditingPhone);
-    setEditedPhone(userInfo.phone);
+    setEditedPhone(userInfo.phoneNumber);
   };
 
   const handlePhoneChange = ({ target }) => {
@@ -53,7 +53,7 @@ function MyPage() {
   };
 
   const savePhone = async () => {
-    if (!isValidPhone || editedPhone === userInfo.phone) {
+    if (!isValidPhone || editedPhone === userInfo.phoneNumber) {
       setIsEditingPhone(false);
       return;
     }
