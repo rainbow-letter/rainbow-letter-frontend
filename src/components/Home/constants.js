@@ -25,6 +25,7 @@ export const CONTENTS_MESSAGE = [
     description_top_row: '무지개 편지에',
     description_bottom_line: '의견을 보내주세요!',
     image: analytics,
+    url: 'https://forms.gle/bHsDq3XSqHsMuSh36',
   },
   {
     id: 1,
@@ -32,6 +33,7 @@ export const CONTENTS_MESSAGE = [
     description_top_row: '편지 쓰기가',
     description_bottom_line: '정말 도움이 되나요?',
     image: bookmark,
+    url: 'https://blog.naver.com/rainbowletter/223324381170',
   },
   {
     id: 2,
@@ -39,13 +41,15 @@ export const CONTENTS_MESSAGE = [
     description_top_row: '아이와의 마지막날로',
     description_bottom_line: '돌아간다면',
     image: analytics,
+    url: 'https://forms.gle/6j2HfvdwjH66Scrh8',
   },
   {
     id: 3,
     title: '따뜻한 조언',
-    description_top_row: '마지막 날엔',
-    description_bottom_line: '서두르지 마세요',
+    description_top_row: '무지개마을 그림을',
+    description_bottom_line: '그린 잔디 언니 이야기',
     image: coffee,
+    url: 'https://blog.naver.com/rainbowletter/223324567774',
   },
 ];
 

@@ -14,7 +14,7 @@
     }
   },
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/prop-types": "off",
     "jsx-a11y/label-has-associated-control": [
       2,
