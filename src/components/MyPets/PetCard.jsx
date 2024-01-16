@@ -23,9 +23,9 @@ function PetCard({ pet, ref }) {
   };
 
   return (
-    <article className="relative" ref={ref}>
+    <li className="relative pt-[243px]" ref={ref}>
       <PetCardImage name={pet.name} image={pet.image} />
-      <div className="absolute top-60 w-full bg-white p-4 rounded-2xl shadow-default">
+      <article className="w-full z-10 relative bg-white p-4 rounded-2xl shadow-default">
         <header className="flex justify-between items-center mb-5 mt-2.5 ml-3">
           <div className="flex items-center grow gap-5">
             <span className="text-heading-2">{pet.name}</span>
@@ -57,8 +57,8 @@ function PetCard({ pet, ref }) {
           </button>
           <LikeButton favoriteData={pet.favorite} />
         </footer>
-      </div>
-    </article>
+      </article>
+    </li>
   );
 }
 
