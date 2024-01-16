@@ -35,10 +35,9 @@ function MyPets() {
   if (!existingPets) return <NoPets />;
   return (
     <>
-      <ul className="h-screen px-2">
+      <ul className="min-h-screen px-2">
         {pets.map((pet) => (
           <PetCard
-            className="w-full"
             key={pet.id}
             pet={pet}
             ref={(el) => {
@@ -47,7 +46,7 @@ function MyPets() {
           />
         ))}
       </ul>
-      <PetRegisterButton className="flex items-center justify-center gap-x-2 py-5 bg-white border border-dashed border-orange-400 rounded-2xl">
+      <PetRegisterButton className="flex items-center justify-center gap-x-2 mt-1 py-5 bg-white border border-dashed border-orange-400 rounded-2xl">
         <img src={plus} alt="add" />
         <span className="pt-1 text-solo-label-pc text-orange-400 font-semibold">
           추가하기

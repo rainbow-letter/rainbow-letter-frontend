@@ -23,9 +23,9 @@ function PetCard({ pet, ref }) {
   };
 
   return (
-    <li className="relative pt-[243px]" ref={ref}>
+    <li className="relative pt-[243px] mb-4" ref={ref}>
       <PetCardImage name={pet.name} image={pet.image} />
-      <article className="w-full z-10 relative bg-white p-4 rounded-2xl shadow-default">
+      <article className="relative bg-white p-4 rounded-2xl shadow-default">
         <header className="flex justify-between items-center mb-5 mt-2.5 ml-3">
           <div className="flex items-center grow gap-5">
             <span className="text-heading-2">{pet.name}</span>
