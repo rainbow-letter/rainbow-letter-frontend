@@ -15,9 +15,10 @@ const usePetForm = (initialData, onSuccess, onError) => {
     const isSpeciesFilled = !!data.species;
     const isOwnerFilled = !!data.owner;
     const isDeathAnniversaryFilled =
-      data.deathAnniversary.year !== '' &&
-      data.deathAnniversary.month !== '' &&
-      data.deathAnniversary.day !== '';
+      data.deathAnniversary === null ||
+      (data.deathAnniversary.year !== '' &&
+        data.deathAnniversary.month !== '' &&
+        data.deathAnniversary.day !== '');
     const isImageUrlFilled = !!(data.image && data.image.url);
     const isImageFileFilled = !!(
       data.image &&

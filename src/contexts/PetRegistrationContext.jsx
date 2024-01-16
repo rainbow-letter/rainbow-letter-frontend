@@ -13,7 +13,7 @@ const initialMandatoryData = {
   name: '',
   species: '',
   owner: '',
-  deathAnniversary: [],
+  deathAnniversary: {},
   image: {
     id: null,
     url: null,
