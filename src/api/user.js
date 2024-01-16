@@ -22,7 +22,7 @@ export const authEmail = async (email) => {
 };
 
 export const updatePassword = async (data) => {
-  const response = await apiRequest.put(`${RESOURSE}/password`, data);
+  const response = await apiRequest.put(`${RESOURSE}/password/reset`, data);
 
   return response;
 };
