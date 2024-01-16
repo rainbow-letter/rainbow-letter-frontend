@@ -22,3 +22,15 @@ export const convertDateStringToObject = (dateStr) => {
 
   return { year, month, day };
 };
+
+export const getFormattedDate = (data = new Date()) => {
+  const options = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  };
+  let formattedDate = data.toLocaleDateString('ko-KR', options);
+  formattedDate = formattedDate.replace(/\./g, '').replace(/ /g, '-');
+
+  return formattedDate;
+};
