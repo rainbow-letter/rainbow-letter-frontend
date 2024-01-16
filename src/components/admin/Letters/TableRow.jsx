@@ -3,7 +3,7 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { toggleCheck } from '../../../store/admin/letters';
-import { getFormattedDate } from '../../../utils/date';
+import { formatDateToYYDDMMHHMM } from '../../../utils/date';
 
 function TableRow({ letter }) {
   const dispatch = useDispatch();
@@ -16,14 +16,18 @@ function TableRow({ letter }) {
 
   return (
     <tr className="border-b">
-      <td className="border px-4 py-2 text-center">{id}</td>
-      <td className="border px-4 py-2">{userId}</td>
-      <td className="border px-4 py-2 text-center">
-        {getFormattedDate(new Date(createdAt))}
+      <td className="border p-2 text-center">{id}</td>
+      <td className="border p-2">{userId}</td>
+      <td className="border p-2 text-center">
+        {formatDateToYYDDMMHHMM(createdAt)}
       </td>
-      <td className="border px-4 py-2">{summary}</td>
-      <td className="border px-4 py-2">{reply.summary}</td>
-      <td className="border px-4 py-2">
+      <td className="border p-2">
+        <button type="button">{summary}</button>
+      </td>
+      <td className="border p-2">
+        <button type="button">{reply.summary}</button>
+      </td>
+      <td className="border p-2">
         <div className="flex justify-center items-center h-full">
           <input
             className="form-checkbox h-5 w-5 text-blue-600"
@@ -33,8 +37,8 @@ function TableRow({ letter }) {
           />
         </div>
       </td>
-      <td className="border px-4 py-2 text-center">
-        {getFormattedDate(new Date(reply.timestamp))}
+      <td className="border p-2 text-center">
+        {formatDateToYYDDMMHHMM(reply.timestamp)}
       </td>
     </tr>
   );

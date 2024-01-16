@@ -1,27 +1,44 @@
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-cycle */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { loadLetters } from '../../../store/admin/letters';
 import { getLettersForAdmin } from '../../../api/letter';
+import { formatDateToYMD } from '../../../utils/date';
+
 import LetterTable from './LetterTable';
 
 function Letters() {
   const dispatch = useDispatch();
+  const today = formatDateToYMD();
 
-  const onGetLetters = async () => {
-    const letters = await getLettersForAdmin('2024-01-13', '2024-01-16');
+  const [dateRange, setDateRange] = useState({
+    startDate: today,
+    endDate: today,
+  });
+
+  const setDates = (date) => {
+    setDateRange(date);
+  };
+
+  const getLetters = async () => {
+    const { startDate, endDate } = dateRange;
+    const letters = await getLettersForAdmin(startDate, endDate);
     dispatch(loadLetters(letters.content));
   };
 
   useEffect(() => {
-    onGetLetters();
+    getLetters();
   }, [dispatch]);
 
   return (
     <div>
-      <LetterTable />
+      <LetterTable
+        dateRange={dateRange}
+        onDateSet={setDates}
+        onLetterFilter={getLetters}
+      />
     </div>
   );
 }
