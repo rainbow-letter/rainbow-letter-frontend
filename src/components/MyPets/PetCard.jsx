@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { USER_ACTIONS, PREFIX } from './constants';
@@ -8,7 +8,7 @@ import PetCardImage from './PetCardImage';
 import LikeButton from './LikeButton';
 import pen from '../../assets/pen.svg';
 
-function PetCard({ pet, ref }) {
+function PetCard({ pet }, ref) {
   const navigate = useNavigate();
 
   const deathAnniversaryDDay =
@@ -62,4 +62,4 @@ function PetCard({ pet, ref }) {
   );
 }
 
-export default PetCard;
+export default forwardRef(PetCard);
