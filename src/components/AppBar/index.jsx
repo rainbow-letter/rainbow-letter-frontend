@@ -23,7 +23,7 @@ function AppBar() {
   };
 
   return (
-    <header className="sticky top-0 pt-[38px] pb-6 flex justify-between items-center bg-white z-40">
+    <header className="sticky top-0 pt-2.5 pb-6 flex justify-between items-center bg-white z-40">
       <section className="flex flex-1 justify-start">
         <button type="button" onClick={handleBack}>
           <img src={chevronLeft} alt="left" />
