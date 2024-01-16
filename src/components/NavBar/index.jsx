@@ -59,7 +59,13 @@ function NavBar() {
                     width={32}
                     height={32}
                   />
-                  <span>{label}</span>
+                  <span
+                    className={`${
+                      isActive ? 'text-orange-400' : 'text-gray-2'
+                    }`}
+                  >
+                    {label}
+                  </span>
                 </>
               )}
             </NavLink>

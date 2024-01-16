@@ -35,7 +35,7 @@ function MyPets() {
   if (!existingPets) return <NoPets />;
   return (
     <>
-      <ul className="px-2">
+      <ul className="h-screen px-2">
         {pets.map((pet) => (
           <PetCard
             className="w-full"

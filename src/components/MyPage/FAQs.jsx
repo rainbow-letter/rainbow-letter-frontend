@@ -40,7 +40,7 @@ function FAQs() {
   }, []);
 
   return (
-    <section className="flex flex-col gap-y-3 mt-[22px]">
+    <section className="h-screen flex flex-col gap-y-3 mt-[22px]">
       {!!FAQData.length &&
         FAQData.map((faq) => (
           <FAQ
