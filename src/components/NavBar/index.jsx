@@ -43,7 +43,7 @@ const navItems = [
 function NavBar() {
   return (
     <nav className=" h-[100px] sticky bottom-0 flex w-full pt-5 pb-6 mt-5 bg-white">
-      <ul className="flex justify-between w-full text-gray-2 text-xs leading-6">
+      <ul className="flex justify-between w-full text-xs leading-6">
         {navItems.map(({ to, label, icon, activeIcon }) => (
           <li key={to} className="flex-1">
             <NavLink
@@ -59,7 +59,13 @@ function NavBar() {
                     width={32}
                     height={32}
                   />
-                  <span>{label}</span>
+                  <span
+                    className={`${
+                      isActive ? 'text-orange-400' : 'text-gray-2'
+                    }`}
+                  >
+                    {label}
+                  </span>
                 </>
               )}
             </NavLink>
