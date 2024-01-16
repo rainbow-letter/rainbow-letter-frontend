@@ -1,6 +1,6 @@
 /* eslint-disable */
 import apiRequest from '.';
-import { getFormattedDate } from '../utils/date';
+import { formatDateToYMD } from '../utils/date';
 
 const RESOURSE = '/api/letters';
 
@@ -22,7 +22,7 @@ export const sendLetter = async (id, letter) => {
   return response;
 };
 
-const today = getFormattedDate();
+const today = formatDateToYMD();
 export const getLettersForAdmin = async (
   startDate = today,
   endDate = today,
