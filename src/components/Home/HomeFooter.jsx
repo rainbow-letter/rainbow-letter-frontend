@@ -5,7 +5,7 @@ import blog from '../../assets/blog.png';
 
 export default function HomeFooter() {
   return (
-    <footer className="flex flex-col items-center pt-8 pb-[75px] text-caption">
+    <footer className="flex flex-col items-center pt-8 pb-[75px] text-caption text-gray-1">
       <p className="mb-[18px]">{FOOTER_MESSAGE.ADDRESS}</p>
       <div className="text-center mb-[18px]">
         <p>{FOOTER_MESSAGE.COPYRIGHT}</p>
