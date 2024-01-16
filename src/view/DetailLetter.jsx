@@ -9,15 +9,17 @@ import Button from '../components/Button';
 import { getLetter } from '../api/letter';
 import { readReply } from '../api/reply';
 import { USER_ACTIONS } from '../components/LetterBox/constants';
+import metaData from '../utils/metaData';
 
 export default function DetailLetter() {
-  const { letterId } = useParams();
+  const params = useParams();
   const navigate = useNavigate();
   const [letterData, setLetterData] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const data = await getLetter(letterId);
+      metaData(Object.keys(params)[0]);
+      const data = await getLetter(params.letterId);
       setLetterData(data);
       if (data.reply.type === 'REPLY') {
         await readReply(data.id);
