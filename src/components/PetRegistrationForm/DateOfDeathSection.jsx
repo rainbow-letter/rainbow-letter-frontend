@@ -10,23 +10,21 @@ import PetRegistrationSection from './PetRegistrationSection';
 function DateOfDeathSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();
   const [date, setDate] = useState(mandatoryData.deathAnniversary);
-  const [isChipSelected, setIsChipSelected] = useState(false);
+  const isChipSelected = date === null;
 
   useEffect(() => {
-    if ((date.year && date.month && date.day) || isChipSelected) {
+    if ((date?.year && date?.month && date?.day) || !date) {
       setMandatoryData({ ...mandatoryData, deathAnniversary: date });
     }
-  }, [date, isChipSelected]);
+  }, [date]);
 
   const handleInputChange = (field) => (event) => {
-    setIsChipSelected(false);
     const { value } = event.target;
     setDate({ ...date, [field]: value });
   };
 
   const handleChipClick = () => {
-    setIsChipSelected(!isChipSelected);
-    setDate({ year: '', month: '', day: '' });
+    setDate(date ? null : { year: '', month: '', day: '' });
   };
 
   const handleDateValidation = (field) => (event) => {
@@ -38,9 +36,6 @@ function DateOfDeathSection() {
 
   useEffect(() => {
     setDate(mandatoryData.deathAnniversary);
-    if (mandatoryData.deathAnniversary === null) {
-      handleChipClick();
-    }
   }, [mandatoryData]);
 
   return (
