@@ -21,7 +21,7 @@ export default function PetInfo({ pet, letterCount }) {
   return (
     <article
       onClick={handleScroll}
-      className="border rounded-[15px] mt-5 py-6 pl-6 flex flex-row items-center relative cursor-pointer"
+      className="border rounded-[15px] mt-5 py-6 pl-6 flex flex-row items-center relative cursor-pointer bg-red-50"
     >
       <img
         src={pet && pet.image.url}
@@ -42,10 +42,10 @@ export default function PetInfo({ pet, letterCount }) {
           </div>
           <div className="flex gap-2.5">
             <img src={heart} alt="heart" />
-            <p>보낸 하트 {pet && pet.favorite.total}회</p>
+            <p>보낸 하트 {pet && pet.favoriteCount}회</p>
           </div>
         </div>
-        <img src={arrow} alt="arrow" className="absolute right-4 inset-y-1/2" />
+        <img src={arrow} alt="arrow" className="absolute right-4 top-16" />
       </div>
     </article>
   );

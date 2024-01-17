@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import home from '../../assets/home.svg';
 import homeActive from '../../assets/homeActive.svg';
@@ -41,8 +41,15 @@ const navItems = [
 ];
 
 function NavBar() {
+  const { pathname } = useLocation();
+  const isHomeLayOut = pathname === '/' || false;
+
   return (
-    <nav className="h-[100px] sticky bottom-0 flex w-full pt-5 pb-6 mt-5 bg-white z-20">
+    <nav
+      className={`${
+        isHomeLayOut ? 'px-3' : 'px-0'
+      } h-[100px] sticky bottom-0 flex w-full pt-5 pb-6 mt-5 bg-white z-20`}
+    >
       <ul className="flex justify-between w-full text-gray-2 text-xs leading-6">
         {navItems.map(({ to, label, icon, activeIcon }) => (
           <li key={to} className="flex-1">
