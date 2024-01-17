@@ -1,10 +1,21 @@
-import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+/* eslint-disable */
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Layout({ className }) {
-  const location = useLocation();
-  const isHomeLayOut = location.pathname === '/' || false;
+import metaData from '../../utils/metaData';
+
+function Layout({ className, children }) {
+  const { pathname } = useLocation();
+  const isHomeLayOut = pathname === '/' || false;
+
   const styles = className || '';
+
+  useEffect(() => {
+    metaData(pathname);
+    return () => {
+      metaData('default');
+    };
+  }, [pathname]);
 
   return (
     <div className="w-full h-full min-w-[360px] flex justify-center bg-white ">
