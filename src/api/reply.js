@@ -9,16 +9,21 @@ export const readReply = async (id) => {
   return response;
 };
 
+// For Admin
 const RESOURSE_ADMIN = '/api/replies/admin';
 
-export const generateReply = async (id) => {
-  const response = await apiRequest.post(`${RESOURSE_ADMIN}/generate/${id}`);
+export const generateReply = async (letterId) => {
+  const response = await apiRequest.post(
+    `${RESOURSE_ADMIN}/generate/${letterId}`
+  );
 
   return response;
 };
 
-export const inspectReply = async (id) => {
-  const response = await apiRequest.post(`${RESOURSE_ADMIN}/inspect/${id}`);
+export const inspectReply = async (replyId) => {
+  const response = await apiRequest.post(
+    `${RESOURSE_ADMIN}/inspect/${replyId}`
+  );
 
   return response;
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
-function Layout({ className, children }) {
+function Layout({ className }) {
   const location = useLocation();
   const isHomeLayOut = location.pathname === '/' || false;
   const styles = className || '';
@@ -13,7 +13,7 @@ function Layout({ className, children }) {
           isHomeLayOut ? 'px-0' : 'px-3'
         } min-h-screen w-[390px] bg-white`}
       >
-        {children}
+        <Outlet />
       </div>
     </div>
   );

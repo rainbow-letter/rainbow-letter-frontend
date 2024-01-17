@@ -52,7 +52,7 @@ export default function letters(state = initialState, action) {
       return {
         ...state,
         letters: state.letters.map((letter) =>
-          letter.id === action.payload
+          letter.reply.id === action.payload
             ? {
                 ...letter,
                 reply: {
