@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { React, useRef } from 'react';
 
 import CoverImage from '../CoverImage';
@@ -18,7 +17,7 @@ export default function WritingPadSection({
 
   const handleResizeHeight = () => {
     textarea.current.style.height = 'auto';
-    textarea.current.style.height = textarea.current.scrollHeight + 'px';
+    textarea.current.style.height = `${textarea.current.scrollHeight}px`;
   };
 
   return (
@@ -42,7 +41,7 @@ export default function WritingPadSection({
           defaultValue={reply}
           readOnly={reply}
           className={`${textareaStyle} w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:32px_32px] leading-8 text-clip`}
-        ></textarea>
+        />
         <p className="font-sans text-caption text-gray-1 text-right">{date}</p>
       </section>
     </section>

@@ -1,4 +1,5 @@
-/* eslint-disable */
+/* eslint-disable consistent-return */
+/* eslint-disable import/no-cycle */
 import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,10 +14,9 @@ import Button from '../components/Button';
 import { getUserInfo } from '../api/user';
 import { openModal } from '../store/modal';
 import { getPets } from '../api/pets';
-import { sendLetter } from '../api/letter';
+import { sendLetter, getLetters } from '../api/letter';
 import { generateFormData } from '../utils/formData';
 import { updateImageAndGetId } from '../api/images';
-import { getLetters } from '../api/letter';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -45,6 +45,13 @@ export default function WriteLetter() {
     })();
   }, []);
 
+  const uploadImage = async (image) => {
+    const formData = generateFormData(image);
+    const response = await updateImageAndGetId(formData);
+
+    return response.id;
+  };
+
   const onClickSendButton = async () => {
     try {
       const newLetter = { ...letter };
@@ -65,13 +72,6 @@ export default function WriteLetter() {
     }
   };
 
-  const uploadImage = async (image) => {
-    const formData = generateFormData(image);
-    const response = await updateImageAndGetId(formData);
-
-    return response.id;
-  };
-
   return (
     <main className="min-h-screen">
       {petsList.length > 0 ? (
@@ -84,7 +84,7 @@ export default function WriteLetter() {
         <ResisterButtonSection />
       )}
       <WritingPadSection
-        petName={selectedPet && selectedPet.name + '에게'}
+        petName={selectedPet && `${selectedPet.name}에게`}
         image={selectedPet && selectedPet.image.url}
         onchange={setLetter}
         letter={letter}
@@ -92,11 +92,12 @@ export default function WriteLetter() {
       <TopicSuggestion />
       <ImageUploadSection setImageFile={setImageFile} />
       <Button
-        children={'편지 보내기'}
         disabled={letter.content.length < 1 || selectedPet === null}
         onClick={() => onClickSendButton()}
         className="mt-[58px]"
-      />
+      >
+        편지 보내기
+      </Button>
     </main>
   );
 }

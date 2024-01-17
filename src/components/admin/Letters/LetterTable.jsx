@@ -1,6 +1,4 @@
-/* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -7,7 +8,6 @@ import {
   ACCOUNT_DEACTIVATION,
   ACCOUNT_DEACTIVATION_GUIDELINES,
 } from './constants';
-// eslint-disable-next-line import/no-cycle
 import { deactivateUser } from '../../api/user';
 import { removeToken } from '../../store/user';
 import check from '../../assets/check.svg';

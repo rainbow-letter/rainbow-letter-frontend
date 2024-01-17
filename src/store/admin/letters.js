@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable default-param-last */
 const initialState = {
   letters: [],
@@ -8,8 +9,6 @@ export const TOGGLE_CHECK = 'TOGGLE_CHECK';
 export const TOGGLE_ALL_CHECKS = 'TOGGLE_ALL_CHECKS';
 export const UPDATE_SEND_DATE = 'UPDATE_SEND_DATE';
 
-// 편지 데이터 로드
-// eslint-disable-next-line no-shadow
 export const loadLetters = (letters) => {
   return {
     type: LOAD_LETTERS,
@@ -17,7 +16,6 @@ export const loadLetters = (letters) => {
   };
 };
 
-// 개별 체크박스 토글
 export const toggleCheck = (id) => {
   return {
     type: TOGGLE_CHECK,
@@ -25,7 +23,6 @@ export const toggleCheck = (id) => {
   };
 };
 
-// 모든 체크박스 토글
 export const toggleAllChecks = (isChecked) => {
   return {
     type: TOGGLE_ALL_CHECKS,
@@ -33,7 +30,6 @@ export const toggleAllChecks = (isChecked) => {
   };
 };
 
-// 답장 발송일 업데이트
 export const updateSendDate = (ids) => {
   return {
     type: UPDATE_SEND_DATE,

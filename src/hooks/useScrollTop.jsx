@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 

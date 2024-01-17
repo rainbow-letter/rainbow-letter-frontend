@@ -16,7 +16,7 @@ export default function TopicSuggestion() {
         onClick={() => dispatch(openModal('TOPIC'))}
         className="flex items-center gap-1"
       >
-        <img src={InfoImage} alt="infomation" />
+        <img src={InfoImage} alt="information" />
         <p className="underline text-caption text-gray-2">
           {INFO_MESSAGES.SUGGEST_TOPIC}
         </p>

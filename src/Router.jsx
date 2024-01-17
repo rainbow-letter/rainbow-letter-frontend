@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import React from 'react';

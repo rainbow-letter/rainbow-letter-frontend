@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 export default function SubmitButton({ onclick, value, ...props }) {

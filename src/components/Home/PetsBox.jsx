@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 import { React, useState, useEffect } from 'react';
 
 import NoPets from './NoPets';
@@ -39,7 +39,7 @@ export default function PetsBox() {
         petsNames={petsNames}
         onClick={setSelectedPet}
         selectedPet={selectedPet}
-        className={'gap-2.5'}
+        className="gap-2.5"
       />
       <PetInfo pet={filteredPet} letterCount={filteredLetter.length} />
     </>

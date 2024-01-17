@@ -1,4 +1,4 @@
-/* eslint-disable*/
+/* eslint-disable default-param-last */
 const initialState = {
   isOpen: false,
   type: '',

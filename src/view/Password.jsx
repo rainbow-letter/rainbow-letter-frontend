@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 import { React, useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -18,7 +18,7 @@ import {
 export default function Password() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [userInfo, setUserInfo] = useState({
     password: '',
     newPassword: '',
@@ -31,6 +31,24 @@ export default function Password() {
   useEffect(() => {
     dispatch(getToken(searchParams.get('token')));
   }, [searchParams]);
+
+  const isCheckProperPassword = () => {
+    const { password, newPassword } = userInfo;
+    if (!validatePassword(password)) {
+      throw new Error('NOT_VALID_PASSWORD');
+    }
+    if (!validatePasswordMatch(password, newPassword)) {
+      throw new Error('NOT_MATCH');
+    }
+  };
+
+  const onFinishUpdate = (isSuccess) => {
+    if (isSuccess) {
+      setErrorData(null);
+    }
+    dispatch(removeToken());
+    navigate('/');
+  };
 
   const onClickUpdatePasswordButton = useCallback(async () => {
     try {
@@ -52,24 +70,6 @@ export default function Password() {
       });
     }
   }, [userInfo, errorData]);
-
-  const onFinishUpdate = (isSuccess) => {
-    if (isSuccess) {
-      setErrorData(null);
-    }
-    dispatch(removeToken());
-    navigate('/');
-  };
-
-  const isCheckProperPassword = () => {
-    const { password, newPassword } = userInfo;
-    if (!validatePassword(password)) {
-      throw new Error('NOT_VALID_PASSWORD');
-    }
-    if (!validatePasswordMatch(password, newPassword)) {
-      throw new Error('NOT_MATCH');
-    }
-  };
 
   return (
     <main className="flex flex-col justify-center h-screen">

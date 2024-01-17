@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/no-unknown-property */
-/* eslint-disable no-undef */
 import React from 'react';
 
 import ImageDeleteButton from './ImageDeleteButton';

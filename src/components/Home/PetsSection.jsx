@@ -1,8 +1,8 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 import React from 'react';
-import PetsBox from './PetsBox';
-import LoginBox from './LoginBox';
 
+import LoginBox from './LoginBox';
+import PetsBox from './PetsBox';
 import { INFO_MESSAGES } from './constants';
 
 export default function PetsSection({ isLoggedIn }) {

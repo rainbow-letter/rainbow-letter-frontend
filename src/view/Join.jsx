@@ -1,4 +1,5 @@
-/* eslint-disable*/
+/* eslint-disable consistent-return */
+/* eslint-disable import/no-cycle */
 import { React, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -23,6 +24,16 @@ export default function Join() {
   const [errorData, setErrorData] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
 
+  const isCheckProperForm = () => {
+    const { email, password } = profile;
+    if (!validateEmail(email)) {
+      throw new Error('NOT_VALID_EMAIL');
+    }
+    if (!validatePassword(password)) {
+      throw new Error('NOT_VALID_PASSWORD');
+    }
+  };
+
   const onClickSignUpButton = useCallback(
     async (e) => {
       try {
@@ -46,16 +57,6 @@ export default function Join() {
     },
     [profile, errorData]
   );
-
-  const isCheckProperForm = () => {
-    const { email, password } = profile;
-    if (!validateEmail(email)) {
-      throw new Error('NOT_VALID_EMAIL');
-    }
-    if (!validatePassword(password)) {
-      throw new Error('NOT_VALID_PASSWORD');
-    }
-  };
 
   const message = LOGIN_MESSAGE.find(
     (item) => item.pathname === location.pathname

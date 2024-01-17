@@ -1,4 +1,5 @@
-/* eslint-disable */
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable import/no-cycle */
 import { React, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -46,17 +47,17 @@ export default function DetailLetter() {
           {letterData.reply.content && (
             <WritingPadSection
               image={letterData.pet.image.url}
-              petName={letterData.pet.name + '로부터'}
-              reply={reply.content}
+              petName={`${letterData.pet.name}로부터`}
+              reply={letterData.reply.content}
               date={processDate(letterData.createdAt)}
             />
           )}
           <WritingPadSection
             image={!letterData.reply.content && letterData.pet.image.url}
-            petName={letterData.pet.name + '에게'}
+            petName={`${letterData.pet.name}에게`}
             reply={letterData.content}
             date={processDate(letterData.createdAt)}
-            className={'bg-gray-2'}
+            className="bg-gray-2"
           />
           {letterData.image.id && <SentPhoto letterData={letterData} />}
           <Button onClick={onClickReplyButton} className="mt-12">

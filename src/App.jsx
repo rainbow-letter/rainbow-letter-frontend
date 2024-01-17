@@ -1,4 +1,4 @@
-/* eslint-disable*/
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import Router from './Router';
 

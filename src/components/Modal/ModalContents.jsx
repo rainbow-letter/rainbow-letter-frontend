@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -69,16 +69,14 @@ export default function ModalContents() {
                     ))}
                 </ul>
                 <Input
-                  placeholder={'예) 01012341234'}
+                  placeholder="예) 01012341234"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                   className="py-5 w-full my-4"
                 />
-                <Button
-                  children={'등록하기'}
-                  onClick={() => registerPhoneNumber()}
-                  className="mb-5"
-                />
+                <Button onClick={() => registerPhoneNumber()} className="mb-5">
+                  등록하기
+                </Button>
                 <div className="w-full">
                   <button
                     type="button"
@@ -109,12 +107,14 @@ export default function ModalContents() {
                     ))}
                 </ul>
                 <Button
-                  children={'편지함 가기'}
                   onClick={() => {
-                    dispatch(closeModal()), navigate('/letter-box');
+                    dispatch(closeModal());
+                    navigate('/letter-box');
                   }}
                   className="mb-5"
-                />
+                >
+                  편지함 가기
+                </Button>
               </div>
             );
           default:
