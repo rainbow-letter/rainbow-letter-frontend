@@ -21,7 +21,7 @@ export default function PetInfo({ pet, letterCount }) {
   return (
     <article
       onClick={handleScroll}
-      className="border rounded-[15px] mt-5 py-6 pl-6 flex flex-row items-center relative cursor-pointer bg-red-50"
+      className="border rounded-[15px] mt-5 py-6 pl-6 flex flex-row items-center relative cursor-pointer"
     >
       <img
         src={pet && pet.image.url}
