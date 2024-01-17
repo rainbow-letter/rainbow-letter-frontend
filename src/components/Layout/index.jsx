@@ -1,10 +1,9 @@
-/* eslint-disable */
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import metaData from '../../utils/metaData';
 
-function Layout({ className, children }) {
+function Layout({ className }) {
   const { pathname } = useLocation();
   const isHomeLayOut = pathname === '/' || false;
 
