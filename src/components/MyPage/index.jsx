@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { removeToken } from '../../store/user';
+import { setUserRole, removeToken } from '../../store/user';
 // eslint-disable-next-line import/no-cycle
 import {
   getUserInfo,
@@ -20,15 +20,13 @@ import chevronRight from '../../assets/chevronRight.svg';
 import Divider from '../Divider';
 
 function MyPage() {
-  const [userInfo, setUserInfo] = useState({
-    email: '',
-    phone: '',
-  });
+  const user = useSelector((state) => state.user);
+  const [userInfo, setUserInfo] = useState({});
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [editedPhone, setEditedPhone] = useState('');
   const [isValidPhone, setIsValidPhone] = useState(true);
+  const isAdmin = userInfo.role === 'ROLE_ADMIN';
   const phoneConstant = userInfo.phoneNumber || USER_INFO_LABELS.NO_PHONE;
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -77,6 +75,7 @@ function MyPage() {
     const fetchAndSetUserInfo = async () => {
       try {
         const info = await getUserInfo();
+        dispatch(setUserRole(info.role));
         setUserInfo(info);
       } catch (error) {
         // TODO: handle error
@@ -174,6 +173,31 @@ function MyPage() {
             {USER_ACTIONS.LOG_OUT}
           </div>
         </button>
+        {isAdmin && (
+          <>
+            <Divider />
+            <div className="p-2.5 text-heading-3">관리자 페이지</div>
+            <Link
+              to="/admin/letters"
+              className="flex justify-between items-center"
+            >
+              <div className="p-2.5 text-solo-large">편지 리스트</div>
+              <div>
+                <img src={chevronRight} alt="chevronRight" />
+              </div>
+            </Link>
+            <Link
+              to="/admin/letters"
+              className="flex justify-between items-center"
+              disabled
+            >
+              <div className="p-2.5 text-solo-large">반려동물 리스트</div>
+              <div>
+                <img src={chevronRight} alt="chevronRight" />
+              </div>
+            </Link>
+          </>
+        )}
       </div>
     </section>
   );
