@@ -8,12 +8,14 @@ import { getLettersForAdmin } from '../../../api/letter';
 import { formatDateToYMD, getPastDate } from '../../../utils/date';
 
 import LetterTable from './LetterTable';
+import Pagination from './Pagination';
 
 const DAYS_AGO = 7;
 
 function Letters() {
   const dispatch = useDispatch();
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [dateRange, setDateRange] = useState({
     startDate: getPastDate(DAYS_AGO),
     endDate: formatDateToYMD(),
@@ -25,13 +27,18 @@ function Letters() {
 
   const getLetters = async () => {
     const { startDate, endDate } = dateRange;
-    const letters = await getLettersForAdmin(startDate, endDate);
-    dispatch(loadLetters(letters.content));
+    const response = await getLettersForAdmin(startDate, endDate, currentPage);
+    dispatch(loadLetters(response.content));
+    setTotalPages(response.pageable.pageSize);
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
     getLetters();
-  }, [dispatch]);
+  }, [dispatch, currentPage, dateRange]);
 
   return (
     <div>
@@ -39,6 +46,11 @@ function Letters() {
         dateRange={dateRange}
         onDateSet={setDates}
         onLetterFilter={getLetters}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
       />
     </div>
   );
