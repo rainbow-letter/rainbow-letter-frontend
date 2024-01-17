@@ -5,17 +5,18 @@ import { useDispatch } from 'react-redux';
 
 import { loadLetters } from '../../../store/admin/letters';
 import { getLettersForAdmin } from '../../../api/letter';
-import { formatDateToYMD } from '../../../utils/date';
+import { formatDateToYMD, getPastDate } from '../../../utils/date';
 
 import LetterTable from './LetterTable';
 
+const DAYS_AGO = 7;
+
 function Letters() {
   const dispatch = useDispatch();
-  const today = formatDateToYMD();
 
   const [dateRange, setDateRange] = useState({
-    startDate: today,
-    endDate: today,
+    startDate: getPastDate(DAYS_AGO),
+    endDate: formatDateToYMD(),
   });
 
   const setDates = (date) => {

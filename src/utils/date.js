@@ -45,3 +45,9 @@ export const formatDateToYYDDMMHHMM = (date) => {
 
   return `${year}.${day}.${month} ${hours}:${minutes}`;
 };
+
+export const getPastDate = (daysAgo) => {
+  const date = new Date();
+  date.setDate(date.getDate() - daysAgo);
+  return formatDateToYMD(date);
+};
