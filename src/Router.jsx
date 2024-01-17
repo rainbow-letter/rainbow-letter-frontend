@@ -24,6 +24,8 @@ import Modal from './components/Modal';
 import DetailLetter from './view/DetailLetter';
 
 import ScrollToTop from './hooks/useScrollTop';
+import Letters from './components/admin/Letters';
+import AdminLayout from './components/Layout/AdminLayout';
 
 function Router() {
   const user = useSelector((state) => state.user);
@@ -33,8 +35,8 @@ function Router() {
   return (
     <BrowserRouter>
       <ScrollToTop>
-        <Layout>
-          <Routes>
+        <Routes>
+          <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Join />} />
@@ -54,8 +56,12 @@ function Router() {
               <Route path="/letter-box" element={<LetterBox />} />
               <Route path="/letter-box/:letterId" element={<DetailLetter />} />
             </Route>
-          </Routes>
-        </Layout>
+          </Route>
+          {/* NOTE: 관리자 권한이 필요한 페이지 */}
+          <Route element={<AdminLayout isLoggedIn={isLoggedIn} />}>
+            <Route path="/admin/letters" element={<Letters />} />
+          </Route>
+        </Routes>
         {isOpen && <Modal />}
       </ScrollToTop>
     </BrowserRouter>

@@ -29,6 +29,12 @@ const appBarConfig = {
   letterId: {
     title: '편지함',
   },
+  '/admin/letters': {
+    title: '편지 리스트 관리',
+  },
+  '/admin/petss': {
+    title: '반려동물 리스트 관리',
+  },
 };
 
 export default appBarConfig;

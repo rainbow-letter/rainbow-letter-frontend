@@ -40,7 +40,6 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
 
   useEffect(() => {
     setPetData();
-    window.scrollTo(0, 0);
     return () => {
       setInitialPetData(setMandatoryData, setOptionalData);
     };

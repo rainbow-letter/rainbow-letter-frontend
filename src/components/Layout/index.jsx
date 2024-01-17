@@ -7,6 +7,7 @@ import metaData from '../../utils/metaData';
 function Layout({ className, children }) {
   const { pathname } = useLocation();
   const isHomeLayOut = pathname === '/' || false;
+
   const styles = className || '';
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function Layout({ className, children }) {
           isHomeLayOut ? 'px-0' : 'px-3'
         } min-h-screen w-[390px] bg-white`}
       >
-        {children}
+        <Outlet />
       </div>
     </div>
   );

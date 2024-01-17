@@ -9,31 +9,31 @@ export const getFaqs = async () => {
   return response;
 };
 
-export const getFagsWithAdmin = async () => {
+export const getFagsForAdmin = async () => {
   const response = await apiRequest.get(`${RESOURSE}/list/admin`);
 
   return response;
 };
 
-export const createFaqWithAdmin = async (data) => {
+export const createFaqForAdmin = async (data) => {
   const response = await apiRequest.post(`${RESOURSE}`, data);
 
   return response;
 };
 
-export const updateFaqWithAdmin = async (data, id) => {
+export const updateFaqForAdmin = async (data, id) => {
   const response = await apiRequest.put(`${RESOURSE}/${id}`, data);
 
   return response;
 };
 
-export const changeFaqSequenceWithAdmin = async (data, id) => {
+export const changeFaqSequenceForAdmin = async (data, id) => {
   const response = await apiRequest.put(`${RESOURSE}/sequence/${id}`, data);
 
   return response;
 };
 
-export const deleteFaqWithAdmin = async (id) => {
+export const deleteFaqForAdmin = async (id) => {
   const response = await apiRequest.delete(`${RESOURSE}/${id}`);
 
   return response;
