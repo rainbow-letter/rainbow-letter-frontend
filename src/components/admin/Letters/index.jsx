@@ -10,7 +10,7 @@ import { formatDateToYMD, getPastDate } from '../../../utils/date';
 import LetterTable from './LetterTable';
 import Pagination from './Pagination';
 
-const DAYS_AGO = 7;
+const DAYS_AGO = 2;
 
 function Letters() {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function Letters() {
     const { startDate, endDate } = dateRange;
     const response = await getLettersForAdmin(startDate, endDate, currentPage);
     dispatch(loadLetters(response.content));
-    setTotalPages(response.pageable.pageSize);
+    setTotalPages(response.totalPages);
   };
 
   const handlePageChange = (pageNumber) => {
@@ -38,7 +38,7 @@ function Letters() {
 
   useEffect(() => {
     getLetters();
-  }, [dispatch, currentPage, dateRange]);
+  }, [dispatch, currentPage]);
 
   return (
     <div>

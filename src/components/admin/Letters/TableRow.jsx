@@ -36,17 +36,25 @@ function TableRow({ letter }) {
         {formatDateToYYDDMMHHMM(createdAt)}
       </td>
       <td className="border p-2">
-        <button type="button" onClick={toggleViewer}>
+        <button
+          className="w-full text-left overflow-hidden text-ellipsis whitespace-nowrap"
+          type="button"
+          onClick={toggleViewer}
+        >
           {summary}
         </button>
       </td>
       <td className="border p-2">
-        <button type="button" onClick={toggleEditor}>
+        <button
+          className="w-full text-left"
+          type="button"
+          onClick={toggleEditor}
+        >
           {reply.summary}
         </button>
       </td>
       <td className="border p-2">
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-full overflow-hidden text-ellipsis whitespace-nowrap">
           <input
             className="form-checkbox h-5 w-5 text-blue-600"
             type="checkbox"
