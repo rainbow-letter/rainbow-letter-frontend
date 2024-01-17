@@ -1,7 +1,11 @@
+/* eslint-disable no-alert */
+/* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleAllChecks } from '../../../store/admin/letters';
+
+import { toggleCheck, toggleAllChecks } from '../../../store/admin/letters';
+import { inspectReply } from '../../../api/reply';
 import TableRow from './TableRow';
 
 function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
@@ -9,9 +13,30 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
   const { letters } = useSelector((state) => state.letters);
   const [selectAll, setSelectAll] = useState(false);
 
-  const handleSelectAll = () => {
+  const handleSelectAll = async () => {
     const newSelectAll = !selectAll;
     setSelectAll(newSelectAll);
+
+    // 변경된 체크 상태의 편지에 대한 요청 수집
+    const requests = letters
+      .filter((letter) => letter.reply.inspection !== newSelectAll)
+      .map((letter) => {
+        return inspectReply(letter.reply.id)
+          .then(() => ({ id: letter.reply.id, success: true }))
+          .catch((error) => ({ id: letter.reply.id, success: false, error }));
+      });
+
+    const results = await Promise.allSettled(requests);
+
+    // 각 요청의 결과 처리
+    results.forEach((result) => {
+      if (result.status === 'fulfilled' && result.value.success) {
+        dispatch(toggleCheck(result.value.id));
+      } else if (result.status === 'fulfilled') {
+        alert('Error inspecting reply:', result.value.error);
+      }
+    });
+
     dispatch(toggleAllChecks(newSelectAll));
   };
 
@@ -31,7 +56,7 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-wrap">
         <div className="mb-4 flex items-center gap-2">
           <input
             className="border rounded-md py-1 px-2"
@@ -63,14 +88,14 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
             type="button"
             onClick={handleSelectAll}
           >
-            {selectAll ? 'Uncheck All' : 'Check All'}
+            {selectAll ? '전체 해제' : '전체 선택'}
           </button>
           <button
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             type="button"
             onClick={handleSendLetters}
           >
-            Send Letters
+            편지 보내기
           </button>
         </div>
       </div>
