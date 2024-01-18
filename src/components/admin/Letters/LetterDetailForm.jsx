@@ -2,10 +2,13 @@ import React, { useState, useRef } from 'react';
 
 import useModalClose from '../../../hooks/useModalClose';
 
+const MAX_CONTENT_LENGTH = 1000;
 function LetterDetailForm({ mode, isOpen, content, onClose, onSave }) {
   const isViewer = mode === 'view';
   const modalRef = useRef();
   const [contentValue, setContentValue] = useState(content);
+  const isContentValidAndChanged =
+    content !== contentValue && contentValue.length <= MAX_CONTENT_LENGTH;
 
   useModalClose(modalRef, onClose);
 
@@ -13,32 +16,47 @@ function LetterDetailForm({ mode, isOpen, content, onClose, onSave }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
       <div
-        className="h-3/5 w-4/5 bg-white p-4 rounded-lg shadow-xl"
+        className="h-3/5 w-4/5 bg-white p-4 rounded-lg shadow-xl flex flex-col justify-between"
         ref={modalRef}
       >
         <textarea
-          className="w-full h-5/6 p-5 mt-4 rounded-lg bg-gray-2 resize-none"
+          className="w-full flex-1 p-5 mt-4 rounded-lg bg-gray-2 resize-none"
           disabled={isViewer}
+          maxLength={MAX_CONTENT_LENGTH}
           value={contentValue}
           onChange={({ target }) => setContentValue(target.value)}
         />
-        <div className="flex justify-end mt-3">
+        <div
+          className={`flex ${
+            isViewer ? 'justify-end' : 'justify-between'
+          } flex-wrap mt-3`}
+        >
           {isViewer || (
-            <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-3 rounded"
-              type="button"
-              onClick={onSave}
-            >
-              save
-            </button>
+            <div className="text-solo-label text-gray-1 mr-3">
+              {`${contentValue.length} / ${MAX_CONTENT_LENGTH}`}
+            </div>
           )}
-          <button
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={onClose}
-          >
-            close
-          </button>
+          <div className="flex">
+            {isViewer || (
+              <button
+                className={`bg-green-500 ${
+                  isContentValidAndChanged && 'hover:bg-green-700'
+                } text-white font-bold py-2 px-4 mr-3 rounded`}
+                type="button"
+                disabled={!isContentValidAndChanged}
+                onClick={() => onSave(contentValue)}
+              >
+                저장
+              </button>
+            )}
+            <button
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              type="button"
+              onClick={onClose}
+            >
+              닫기
+            </button>
+          </div>
         </div>
       </div>
     </div>

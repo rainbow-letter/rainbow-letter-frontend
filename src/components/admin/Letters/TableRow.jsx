@@ -10,14 +10,14 @@ import Editor from './Editor';
 import Viewer from './Viewer';
 
 function TableRow({ letter }) {
-  const { id, userId, createdAt, summary, content, reply } = letter;
+  const { id, memberId, createdAt, summary, content, reply } = letter;
   const dispatch = useDispatch();
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
 
   const handleCheck = async () => {
     await inspectReply(reply.id);
-    dispatch(toggleCheck(id));
+    dispatch(toggleCheck(reply.id));
   };
 
   const toggleViewer = () => {
@@ -31,7 +31,7 @@ function TableRow({ letter }) {
   return (
     <tr className="border-b">
       <td className="border p-2 text-center">{id}</td>
-      <td className="border p-2">{userId}</td>
+      <td className="border p-2 text-center">{memberId}</td>
       <td className="border p-2 text-center">
         {formatDateToYYDDMMHHMM(createdAt)}
       </td>
@@ -64,7 +64,7 @@ function TableRow({ letter }) {
         </div>
       </td>
       <td className="border p-2 text-center">
-        {formatDateToYYDDMMHHMM(reply.timestamp)}
+        {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}
       </td>
       <Viewer
         id={id}
@@ -73,7 +73,7 @@ function TableRow({ letter }) {
         onClose={toggleViewer}
       />
       <Editor
-        id={id}
+        id={reply.id}
         isOpen={isEditorOpen}
         content={reply.content}
         onClose={toggleEditor}

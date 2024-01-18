@@ -8,6 +8,7 @@ export const LOAD_LETTERS = 'LOAD_LETTERS';
 export const TOGGLE_CHECK = 'TOGGLE_CHECK';
 export const TOGGLE_ALL_CHECKS = 'TOGGLE_ALL_CHECKS';
 export const UPDATE_SEND_DATE = 'UPDATE_SEND_DATE';
+export const UPDATE_REPLY_CONTENT = 'UPDATE_REPLY_CONTENT';
 
 export const loadLetters = (letters) => {
   return {
@@ -34,6 +35,13 @@ export const updateSendDate = (ids) => {
   return {
     type: UPDATE_SEND_DATE,
     payload: ids,
+  };
+};
+
+export const updateReplyContent = (id, content, summary) => {
+  return {
+    type: UPDATE_REPLY_CONTENT,
+    payload: { id, content, summary },
   };
 };
 
@@ -75,7 +83,29 @@ export default function letters(state = initialState, action) {
         ...state,
         letters: state.letters.map((letter) =>
           action.payload.includes(letter.id)
-            ? { ...letter, sentDate: new Date().toISOString() }
+            ? {
+                ...letter,
+                reply: {
+                  ...letter.reply,
+                  timestamp: new Date().toISOString(),
+                },
+              }
+            : letter
+        ),
+      };
+    case UPDATE_REPLY_CONTENT:
+      return {
+        ...state,
+        letters: state.letters.map((letter) =>
+          letter.id === action.payload.id
+            ? {
+                ...letter,
+                reply: {
+                  ...letter.reply,
+                  content: action.payload.content,
+                  summary: action.payload.summary,
+                },
+              }
             : letter
         ),
       };
