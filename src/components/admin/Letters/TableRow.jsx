@@ -10,7 +10,7 @@ import Editor from './Editor';
 import Viewer from './Viewer';
 
 function TableRow({ letter }) {
-  const { id, userId, createdAt, summary, content, reply } = letter;
+  const { id, memberId, createdAt, summary, content, reply } = letter;
   const dispatch = useDispatch();
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -31,7 +31,7 @@ function TableRow({ letter }) {
   return (
     <tr className="border-b">
       <td className="border p-2 text-center">{id}</td>
-      <td className="border p-2">{userId}</td>
+      <td className="border p-2 text-center">{memberId}</td>
       <td className="border p-2 text-center">
         {formatDateToYYDDMMHHMM(createdAt)}
       </td>
