@@ -75,7 +75,13 @@ export default function letters(state = initialState, action) {
         ...state,
         letters: state.letters.map((letter) =>
           action.payload.includes(letter.id)
-            ? { ...letter, sentDate: new Date().toISOString() }
+            ? {
+                ...letter,
+                reply: {
+                  ...letter.reply,
+                  timestamp: new Date().toISOString(),
+                },
+              }
             : letter
         ),
       };

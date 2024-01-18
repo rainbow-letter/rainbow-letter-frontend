@@ -60,7 +60,7 @@ export const inspectReply = async (replyId) => {
  * @throws {Error} API 요청에 실패하면 에러가 발생합니다.
  */
 
-export const submitReply = async (replyId, letterId) => {
+export const sendReply = async (replyId, letterId) => {
   const response = await apiRequest.post(
     `${RESOURSE_ADMIN}/submit/${replyId}`,
     letterId

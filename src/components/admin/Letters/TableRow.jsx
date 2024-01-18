@@ -17,7 +17,7 @@ function TableRow({ letter }) {
 
   const handleCheck = async () => {
     await inspectReply(reply.id);
-    dispatch(toggleCheck(id));
+    dispatch(toggleCheck(reply.id));
   };
 
   const toggleViewer = () => {
@@ -64,7 +64,7 @@ function TableRow({ letter }) {
         </div>
       </td>
       <td className="border p-2 text-center">
-        {formatDateToYYDDMMHHMM(reply.timestamp)}
+        {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}
       </td>
       <Viewer
         id={id}

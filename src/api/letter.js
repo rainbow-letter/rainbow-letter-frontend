@@ -22,12 +22,14 @@ export const sendLetter = async (id, letter) => {
   return response;
 };
 
-const today = formatDateToYMD();
+// For admin
+const TODAY = formatDateToYMD();
+const DEFAULT_LETTERS_PER_PAGE = 20;
 export const getLettersForAdmin = async (
-  startDate = today,
-  endDate = today,
+  startDate = TODAY,
+  endDate = TODAY,
   page = 0,
-  size = 1
+  size = DEFAULT_LETTERS_PER_PAGE
 ) => {
   const response = await apiRequest.get(
     `${RESOURSE}/admin/list?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}`

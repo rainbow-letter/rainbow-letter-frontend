@@ -2,8 +2,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleCheck, toggleAllChecks } from '../../../store/admin/letters';
-import { inspectReply } from '../../../api/reply';
+import {
+  toggleCheck,
+  toggleAllChecks,
+  updateSendDate,
+} from '../../../store/admin/letters';
+import { inspectReply, sendReply } from '../../../api/reply';
 import TableRow from './TableRow';
 
 function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
@@ -15,18 +19,19 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
     const newSelectAll = !selectAll;
     setSelectAll(newSelectAll);
 
-    // 변경된 체크 상태의 편지에 대한 요청 수집
     const requests = letters
       .filter((letter) => letter.reply.inspection !== newSelectAll)
-      .map((letter) => {
-        return inspectReply(letter.reply.id)
-          .then(() => ({ id: letter.reply.id, success: true }))
-          .catch((error) => ({ id: letter.reply.id, success: false, error }));
+      .map(async (letter) => {
+        try {
+          await inspectReply(letter.reply.id);
+          return { id: letter.reply.id, success: true };
+        } catch (error) {
+          return { id: letter.reply.id, success: false, error };
+        }
       });
 
     const results = await Promise.allSettled(requests);
 
-    // 각 요청의 결과 처리
     results.forEach((result) => {
       if (result.status === 'fulfilled' && result.value.success) {
         dispatch(toggleCheck(result.value.id));
@@ -38,13 +43,31 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
     dispatch(toggleAllChecks(newSelectAll));
   };
 
-  const handleSendLetters = () => {
-    // const lettersToSend = letters.filter(
-    //   (letter) => letter.isChecked && !letter.sentDate
-    // );
-    // sendLetters(lettersToSend).then(() => {
-    //   dispatch(updateSendDate(lettersToSend.map((letter) => letter.id)));
-    // });
+  const handleSendReplies = async () => {
+    const letterToSend = letters
+      .filter((letter) => letter.reply.inspection && !letter.reply.timestamp)
+      .map(async (letter) => {
+        try {
+          await sendReply(letter.reply.id, { letterId: letter.id });
+          return { id: letter.id, success: true };
+        } catch (error) {
+          return { id: letter.id, success: false, error };
+        }
+      });
+
+    const results = await Promise.allSettled(letterToSend);
+
+    const sentReplies = results.map((result) => {
+      if (result.status === 'fulfilled' && result.value.success) {
+        return result.value.id;
+      }
+      if (result.status === 'fulfilled') {
+        alert('Error sending reply:', result.value.error);
+      }
+      return null;
+    });
+
+    dispatch(updateSendDate(sentReplies));
   };
 
   const handleDateSet = (date) => {
@@ -91,7 +114,7 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
           <button
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             type="button"
-            onClick={handleSendLetters}
+            onClick={handleSendReplies}
           >
             편지 보내기
           </button>
