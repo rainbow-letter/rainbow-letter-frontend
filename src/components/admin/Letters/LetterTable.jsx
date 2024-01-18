@@ -97,24 +97,26 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
           </button>
         </div>
       </div>
-      <table className="min-w-full table-auto border-collapse mt-4">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border px-4 py-2">번호</th>
-            <th className="border px-4 py-2">사용자 ID</th>
-            <th className="border px-4 py-2">편지 등록일</th>
-            <th className="border px-4 py-2">편지 원본</th>
-            <th className="border px-4 py-2">GPT 답장</th>
-            <th className="border px-4 py-2">검수 여부</th>
-            <th className="border px-4 py-2">답장 발송일</th>
-          </tr>
-        </thead>
-        <tbody>
-          {letters?.map((letter) => (
-            <TableRow key={letter.id} letter={letter} />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[870px] table-auto border-collapse mt-4">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border px-4 py-2">번호</th>
+              <th className="border px-4 py-2">사용자 ID</th>
+              <th className="border px-4 py-2">편지 등록일</th>
+              <th className="border px-4 py-2">편지 원본</th>
+              <th className="border px-4 py-2">GPT 답장</th>
+              <th className="border px-4 py-2">검수 여부</th>
+              <th className="border px-4 py-2">답장 발송일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {letters?.map((letter) => (
+              <TableRow key={letter.id} letter={letter} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
