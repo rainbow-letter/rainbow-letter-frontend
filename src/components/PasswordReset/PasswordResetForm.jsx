@@ -1,22 +1,20 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import UserInput from '../Login/UserInput';
 import Button from '../Button';
 
 import { UPDATE_PASSWORD_MESSAGE } from '../Login/constants';
+import {
+  validatePassword,
+  validatePasswordMatch,
+} from '../../utils/validators';
 
-function PasswordChangeForm({ onClick }) {
+function PasswordResetForm({ onClick }) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isValidPassword, setIsValidPassword] = useState(false);
-  const [isMatching, setIsMatching] = useState(false);
-
-  useEffect(() => {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    setIsValidPassword(passwordRegex.test(newPassword));
-    setIsMatching(newPassword === confirmPassword);
-  }, [newPassword, confirmPassword]);
+  const isValidPassword = validatePassword(newPassword);
+  const isMatching = validatePasswordMatch(newPassword, confirmPassword);
 
   return (
     <main className="flex flex-col justify-center h-screen">
@@ -67,7 +65,7 @@ function PasswordChangeForm({ onClick }) {
         <Button
           className="mt-5"
           disabled={!isValidPassword || !isMatching}
-          onclick={() => onClick(newPassword)}
+          onClick={() => onClick(newPassword)}
         >
           {UPDATE_PASSWORD_MESSAGE.UPDATE}
         </Button>
@@ -76,4 +74,4 @@ function PasswordChangeForm({ onClick }) {
   );
 }
 
-export default PasswordChangeForm;
+export default PasswordResetForm;
