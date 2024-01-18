@@ -73,7 +73,7 @@ function TableRow({ letter }) {
         onClose={toggleViewer}
       />
       <Editor
-        id={id}
+        id={reply.id}
         isOpen={isEditorOpen}
         content={reply.content}
         onClose={toggleEditor}
