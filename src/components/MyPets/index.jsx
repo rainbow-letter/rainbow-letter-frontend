@@ -34,8 +34,8 @@ function MyPets() {
 
   if (!existingPets) return <NoPets />;
   return (
-    <>
-      <ul className="min-h-screen px-2">
+    <div className="min-h-screen">
+      <ul className="px-2">
         {pets.map((pet) => (
           <PetCard
             key={pet.id}
@@ -52,7 +52,7 @@ function MyPets() {
           추가하기
         </span>
       </PetRegisterButton>
-    </>
+    </div>
   );
 }
 
