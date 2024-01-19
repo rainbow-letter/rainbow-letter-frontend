@@ -2,11 +2,13 @@
 /* eslint-disable import/no-cycle */
 import { React, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Header from '../components/Login/Header';
 import Form from '../components/Login/Form';
 import LinkAvailable from '../components/Login/LinkAvailable';
-import { trySignUp } from '../api/user';
+import { trySignUp, trylogin } from '../api/user';
+import { getToken } from '../store/user';
 import { validateEmail, validatePassword } from '../utils/validators';
 import {
   LOGIN_MESSAGE,
@@ -16,13 +18,13 @@ import {
 
 export default function Join() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
     email: '',
     password: '',
   });
   const [errorData, setErrorData] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   const isCheckProperForm = () => {
     const { email, password } = profile;
@@ -40,9 +42,11 @@ export default function Join() {
         e.preventDefault();
         isCheckProperForm();
         await trySignUp(profile);
+        const { token } = await trylogin(profile);
+        dispatch(getToken(token));
 
         setErrorData(null);
-        navigate('/login');
+        navigate('/');
       } catch (error) {
         if (error.response) {
           return setErrorData(error.response && error.response.data);
@@ -51,8 +55,6 @@ export default function Join() {
           code: error.message,
           message: ERROR_MESSAGE[error.message],
         });
-
-        setIsDisabled(true);
       }
     },
     [profile, errorData]
@@ -69,9 +71,8 @@ export default function Join() {
         message={message}
         profile={profile}
         errorData={errorData}
-        isDisabled={isDisabled}
         setProfile={setProfile}
-        setIsDisabled={setIsDisabled}
+        setErrorData={setErrorData}
         onclick={onClickSignUpButton}
         BUTTON_STYLE={BUTTON_STYLE}
       />

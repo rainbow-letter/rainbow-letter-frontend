@@ -19,7 +19,6 @@ export default function Login() {
     password: '',
   });
   const [errorData, setErrorData] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   const onClickLoginButton = useCallback(
     async (e) => {
@@ -32,7 +31,6 @@ export default function Login() {
         navigate('/');
       } catch (error) {
         setErrorData(error.response.data);
-        setIsDisabled(true);
       }
     },
     [profile, errorData]
@@ -47,10 +45,9 @@ export default function Login() {
         message={message}
         profile={profile}
         errorData={errorData}
-        isDisabled={isDisabled}
         setProfile={setProfile}
-        setIsDisabled={setIsDisabled}
         onclick={onClickLoginButton}
+        setErrorData={setErrorData}
         BUTTON_STYLE={BUTTON_STYLE}
       />
       <LinkAvailable message={message} />

@@ -8,13 +8,12 @@ export default function Form({
   profile,
   setProfile,
   errorData,
-  isDisabled,
-  setIsDisabled,
   onclick,
+  setErrorData,
   BUTTON_STYLE,
 }) {
   useEffect(() => {
-    setIsDisabled(false);
+    setErrorData(null);
   }, [profile]);
 
   return (
@@ -59,9 +58,7 @@ export default function Form({
         />
         <SubmitButton
           onclick={(e) => onclick(e)}
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5 ${
-            isDisabled && 'bg-gray-1 text-[#898989]'
-          }`}
+          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5`}
           value={button.default}
         />
       </form>
