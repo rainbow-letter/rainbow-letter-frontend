@@ -7,7 +7,7 @@ export default function Header({ message: { title, button }, BUTTON_STYLE }) {
     <section>
       <h2 className="text-heading-2">{title}</h2>
       <a
-        href="http://rainbowletter.handwoong.com/api/oauth2/authorization/google"
+        href={`${process.env.REACT_APP_API_URL}/api/oauth2/authorization/google`}
         type="button"
         className={`${BUTTON_STYLE} border text-solo-medium mt-[35px] gap-3 py-7`}
       >
