@@ -50,7 +50,7 @@ export default function DetailLetter() {
               image={letterData.pet.image.url}
               petName={`${letterData.pet.name}로부터`}
               reply={letterData.reply.content}
-              date={processDate(letterData.createdAt)}
+              date={processDate(letterData.reply.timestamp)}
             />
           )}
           <WritingPadSection
