@@ -1,4 +1,4 @@
-import { React, useRef } from 'react';
+import { React, useRef, useEffect } from 'react';
 
 import CoverImage from '../CoverImage';
 
@@ -19,6 +19,10 @@ export default function WritingPadSection({
     textarea.current.style.height = 'auto';
     textarea.current.style.height = `${textarea.current.scrollHeight}px`;
   };
+
+  useEffect(() => {
+    handleResizeHeight();
+  }, [reply]);
 
   return (
     <section className={`relative mt-4 ${style}`}>
