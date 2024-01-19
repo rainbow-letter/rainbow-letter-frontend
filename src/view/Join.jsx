@@ -25,7 +25,6 @@ export default function Join() {
     password: '',
   });
   const [errorData, setErrorData] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   const isCheckProperForm = () => {
     const { email, password } = profile;
@@ -56,8 +55,6 @@ export default function Join() {
           code: error.message,
           message: ERROR_MESSAGE[error.message],
         });
-
-        setIsDisabled(true);
       }
     },
     [profile, errorData]
@@ -74,9 +71,8 @@ export default function Join() {
         message={message}
         profile={profile}
         errorData={errorData}
-        isDisabled={isDisabled}
         setProfile={setProfile}
-        setIsDisabled={setIsDisabled}
+        setErrorData={setErrorData}
         onclick={onClickSignUpButton}
         BUTTON_STYLE={BUTTON_STYLE}
       />
