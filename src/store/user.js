@@ -1,6 +1,6 @@
 /* eslint-disable default-param-last */
 const initialState = {
-  token: {},
+  token: '',
   role: null,
 };
 

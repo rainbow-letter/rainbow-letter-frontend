@@ -23,7 +23,7 @@ export default function LandingPage() {
       <PhoneButton />
       <Divider />
       <HomeFooter />
-      {token && <NavBar />}
+      <NavBar />
     </main>
   );
 }
