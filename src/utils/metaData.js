@@ -26,9 +26,9 @@ const metaDataConfig = {
     'og:description': '무지개편지 : 편지를 보내고 아이의 답장을 받아보세요.',
   },
   letterId: {
-    title: '무지개편지 : 편지함',
-    description: '아이와의 주고 받은 편지를 확인할 수 있어요.',
-    'og:title': '무지개편지 : 아이와 주고받은 편지',
+    title: '무지개편지 : 아이와 주고 받은 편지',
+    description: '아이와 주고 받은 편지를 확인할 수 있어요.',
+    'og:title': '무지개편지 : 아이와 주고 받은 편지',
     'og:description': '',
   },
   '/write-letter': {
@@ -37,10 +37,10 @@ const metaDataConfig = {
   },
   '/letter-box': {
     title: '무지개편지 : 편지함',
-    description: '아이와의 주고 받은 편지를 확인할 수 있어요.',
+    description: '아이와 주고 받은 편지를 확인할 수 있어요.',
   },
   '/my-pets': {
-    title: '무지개편지 : 아이정보',
+    title: '무지개편지 : 아이 정보',
     description: '아이의 정보를 확인하고 수정할 수 있어요.',
   },
   '/my-page': {
