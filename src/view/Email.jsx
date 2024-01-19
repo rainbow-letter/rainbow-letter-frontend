@@ -16,7 +16,7 @@ export default function Email() {
   const onClickFindEmailButton = async () => {
     try {
       await authEmail(auth);
-      alert('이메일을 확인하세요!');
+      alert('메일이 정상적으로 발송되었습니다.');
     } catch (error) {
       setErrorData(error.response.data);
     }
