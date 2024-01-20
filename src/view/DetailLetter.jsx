@@ -61,7 +61,11 @@ export default function DetailLetter() {
             className="bg-gray-2"
           />
           {letterData.image.id && <SentPhoto letterData={letterData} />}
-          <Button onClick={onClickReplyButton} className="mt-12">
+          <Button
+            disabled={!letterData.reply.content}
+            onClick={onClickReplyButton}
+            className="mt-12"
+          >
             {USER_ACTIONS.GO_TO_REPLY}
           </Button>
         </main>
