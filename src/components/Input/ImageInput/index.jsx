@@ -27,7 +27,7 @@ function ImageInput({ className, imageSrc, deleteIcon, onChange, onDelete }) {
           type="file"
           accept="image/*"
           className="hidden"
-          onChange={onChange}
+          onChange={(e) => onChange(e)}
         />
         {imageSrc && (
           <ImageDeleteButton icon={deleteIcon} onDelete={onDelete} />
