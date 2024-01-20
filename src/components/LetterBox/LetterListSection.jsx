@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import NoLetters from './NoLetters';
 import LetterItems from './LetterItems';
 
-export default function LetterListSection({ letters }) {
-  if (letters.length < 1) return <NoLetters />;
+export default function LetterListSection({ letters, pet }) {
+  if (letters.length < 1) return <NoLetters pet={pet} />;
 
   return (
     <section className="mt-6">

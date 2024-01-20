@@ -22,7 +22,6 @@ export default function DetailLetter() {
       metaData(Object.keys(params)[0]);
       const data = await getLetter(params.letterId);
       setLetterData(data);
-      console.log(data);
       if (data.reply.type === 'REPLY') {
         await readReply(data.reply.id);
       }
@@ -30,7 +29,7 @@ export default function DetailLetter() {
   }, []);
 
   const onClickReplyButton = () => {
-    navigate('/write-letter', { state: letterData.pet });
+    navigate('/write-letter', { state: letterData.pet.name });
   };
 
   const processDate = (date) => {
