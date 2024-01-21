@@ -8,13 +8,14 @@ import roundX from '../../assets/roundX.svg';
 export default function ImageUploadSection({ setImageFile }) {
   const [previewUrl, setPreviewUrl] = useState('');
 
-  const handleImageChange = ({ target }) => {
-    const file = target.files[0];
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
 
     if (file && file.type.match('image.*')) {
       const imageUrl = URL.createObjectURL(file);
       setPreviewUrl(imageUrl);
       setImageFile(file);
+      e.target.value = '';
     }
   };
 

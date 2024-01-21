@@ -45,11 +45,7 @@ export default function LetterBox() {
         selectedPet={selectedPet}
         onClick={setSelectedPet}
       />
-      <LetterListSection
-        letters={filteredLetter}
-        selectedPet={selectedPet}
-        setLetterList={setLetterList}
-      />
+      <LetterListSection letters={filteredLetter} pet={selectedPet} />
     </main>
   );
 }

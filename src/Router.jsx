@@ -22,6 +22,7 @@ import WriteLetter from './view/WriteLetter';
 import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
 import DetailLetter from './view/DetailLetter';
+import ShareLetter from './view/ShareLetter';
 
 import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';
@@ -44,6 +45,7 @@ function Router() {
             <Route path="/auth/email" element={<Email />} />
             <Route path="/members/password/reset" element={<Password />} />
             <Route path="/oauth/success" element={<Auth />} />
+
             <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
               {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
               <Route path="/my-page" element={<MyPage />} />
@@ -57,6 +59,7 @@ function Router() {
               <Route path="/letter-box" element={<LetterBox />} />
               <Route path="/letter-box/:letterId" element={<DetailLetter />} />
             </Route>
+            <Route path="/share/:shareLink" element={<ShareLetter />} />
           </Route>
           {/* NOTE: 관리자 권한이 필요한 페이지 */}
           <Route element={<AdminLayout isLoggedIn={isLoggedIn} />}>

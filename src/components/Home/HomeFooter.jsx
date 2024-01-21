@@ -14,7 +14,7 @@ export default function HomeFooter() {
         <p>{FOOTER_MESSAGE.COPYRIGHT}</p>
         <p>{FOOTER_MESSAGE.COPYRIGHT_2}</p>
       </div>
-      <Link to="https://blog.naver.com/rainbowletter" target="_blank">
+      <Link to={`${FOOTER_MESSAGE.EMAIL}`} target="_blank">
         <img src={blog} width={46} alt="blog" />
       </Link>
     </footer>

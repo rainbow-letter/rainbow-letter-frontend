@@ -10,8 +10,8 @@ function PetImageSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();
   const [previewUrl, setPreviewUrl] = useState(mandatoryData.image.url);
 
-  const handleImageChange = ({ target }) => {
-    const file = target.files[0];
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
 
     if (file && file.type.match('image.*')) {
       const imageUrl = URL.createObjectURL(file);
@@ -24,6 +24,7 @@ function PetImageSection() {
           file,
         },
       });
+      e.target.value = '';
     }
   };
 

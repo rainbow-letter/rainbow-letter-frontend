@@ -23,7 +23,7 @@ export default function WriteLetter() {
   const location = useLocation();
   const { canOpenAgain } = useSelector((state) => state.modal);
   const [petsList, setPetsList] = useState([]);
-  const [selectedPet, setSelectedPet] = useState(location.state || null);
+  const [selectedPet, setSelectedPet] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [letter, setLetter] = useState({
     summary: '',
@@ -41,6 +41,9 @@ export default function WriteLetter() {
       }
       if (!location.state) {
         setSelectedPet(pets[0] || null);
+      } else {
+        const finedPet = pets.find((pet) => pet.name === location.state);
+        setSelectedPet(finedPet);
       }
     })();
   }, []);

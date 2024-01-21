@@ -54,7 +54,8 @@ export const CONTENTS_MESSAGE = [
 ];
 
 export const FOOTER_MESSAGE = Object.freeze({
-  ADDRESS: '문의 | swcteam41@gmail.com',
+  ADDRESS: '문의 | rainbowletter41@gmail.com',
   COPYRIGHT: 'Copyright © 2023 무지개편지',
   COPYRIGHT_2: 'All Rights Reserved',
+  EMAIL: 'https://blog.naver.com/rainbowletter',
 });

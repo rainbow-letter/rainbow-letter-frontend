@@ -33,7 +33,8 @@ export default function Form({
             (errorData && errorData.code === 'EXISTS_EMAIL') ||
             (errorData && errorData.code === 'NOT_VALID_EMAIL') ||
             (errorData && errorData.code === 'METHOD_ARGUMENT_NOT_VALID') ||
-            (errorData && errorData.code === 'CHECK_EMAIL_AND_PASSWORD')
+            (errorData && errorData.code === 'CHECK_EMAIL_AND_PASSWORD') ||
+            (errorData && errorData.code === 'LEAVE_MEMBER')
           }
           errorMessage={
             (errorData &&
@@ -41,6 +42,9 @@ export default function Form({
               errorData.message) ||
             (errorData &&
               errorData.code === 'NOT_VALID_EMAIL' &&
+              errorData.message) ||
+            (errorData &&
+              errorData.code === 'LEAVE_MEMBER' &&
               errorData.message)
           }
         />
