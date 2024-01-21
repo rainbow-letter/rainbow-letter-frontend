@@ -51,3 +51,16 @@ export const getPastDate = (daysAgo) => {
   date.setDate(date.getDate() - daysAgo);
   return formatDateToYMD(date);
 };
+
+export const isFutureDate = ({ year, month, day }) => {
+  if (!year || !month || !day) {
+    return false;
+  }
+
+  const inputDate = new Date(year, month - 1, day);
+  const currentDate = new Date();
+
+  currentDate.setHours(0, 0, 0, 0);
+
+  return inputDate > currentDate;
+};

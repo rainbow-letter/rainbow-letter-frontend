@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-import { TITLES, DATE_OF_DEATH } from './constants';
+import { TITLES, DATE_OF_DEATH, INFO_MESSAGES } from './constants';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 import { validateDateInput } from '../../utils/validators';
+import { isFutureDate } from '../../utils/date';
 import Input from '../Input';
 import Chip from '../Chips/Chip';
 import PetRegistrationSection from './PetRegistrationSection';
+import InputAlert from '../InputAlert';
 
 function DateOfDeathSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();
   const [date, setDate] = useState(mandatoryData.deathAnniversary);
+  const [isDateInFuture, setIsDateInFuture] = useState(false);
   const isChipSelected = date === null;
-
-  useEffect(() => {
-    if ((date?.year && date?.month && date?.day) || !date) {
-      setMandatoryData({ ...mandatoryData, deathAnniversary: date });
-    }
-  }, [date]);
 
   const handleInputChange = (field) => (event) => {
     const { value } = event.target;
@@ -33,6 +30,13 @@ function DateOfDeathSection() {
       handleInputChange(field)(event);
     }
   };
+
+  useEffect(() => {
+    if ((date?.year && date?.month && date?.day) || !date) {
+      setMandatoryData({ ...mandatoryData, deathAnniversary: date });
+      setIsDateInFuture(date ? isFutureDate(date) : false);
+    }
+  }, [date]);
 
   useEffect(() => {
     setDate(mandatoryData.deathAnniversary);
@@ -75,6 +79,10 @@ function DateOfDeathSection() {
           />
         </div>
       </div>
+      <InputAlert
+        message={INFO_MESSAGES.CHECK_DATE_AGAIN}
+        isVisible={isDateInFuture}
+      />
     </PetRegistrationSection>
   );
 }
