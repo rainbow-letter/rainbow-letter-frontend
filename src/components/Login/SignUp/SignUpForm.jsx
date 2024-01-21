@@ -97,6 +97,7 @@ export default function SignUpForm({ message: { describe, button } }) {
         <Agree setIsChecked={setIsChecked} />
         <SubmitButton
           onclick={(e) => onClickSignUpButton(e)}
+          disabled={errorData}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
           } w-full rounded-[15px] flex justify-center items-center text-heading-3 py-[22px] mt-6`}

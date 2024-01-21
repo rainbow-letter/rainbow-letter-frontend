@@ -70,6 +70,7 @@ export default function LoginForm({ message: { describe, button } }) {
         />
         <SubmitButton
           onclick={(e) => onClickLoginButton(e)}
+          disabled={errorData}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
           } text-heading-3  py-[22px] mt-[18px] w-full rounded-[15px] flex justify-center items-center`}
