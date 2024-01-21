@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../Button';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
-function AccountDeletionConfirmationModal({ onClise }) {
+function AccountDeletionConfirmationModal() {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40">
       <div className="w-[354px] flex flex-col p-2.5 bg-white rounded-2xl">
