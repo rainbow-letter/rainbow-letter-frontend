@@ -5,7 +5,7 @@ export default function LinkAvailable({ message: { findPassword, link } }) {
   return (
     <section className="mt-7 text-body-medium">
       <article className="flex justify-center gap-3">
-        <Link to="/password">
+        <Link to="/auth/email">
           <p>{findPassword}</p>
         </Link>
         <Link to={`${link.address}`}>

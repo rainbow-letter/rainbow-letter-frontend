@@ -10,7 +10,6 @@ import { getToken, removeToken } from '../store/user';
 import { updatePassword } from '../api/user';
 
 import {
-  BUTTON_STYLE,
   ERROR_MESSAGE,
   UPDATE_PASSWORD_MESSAGE,
 } from '../components/Login/constants';
@@ -113,7 +112,7 @@ export default function Password() {
         <SubmitButton
           onclick={() => onClickUpdatePasswordButton()}
           value={UPDATE_PASSWORD_MESSAGE.UPDATE}
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-[55px]`}
+          className="w-full rounded-[15px] flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[22px] mt-[55px]"
         />
       </section>
     </main>

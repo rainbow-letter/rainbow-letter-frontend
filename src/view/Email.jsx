@@ -4,10 +4,7 @@ import { React, useState } from 'react';
 import UserInput from '../components/Login/UserInput';
 import { authEmail } from '../api/user';
 
-import {
-  BUTTON_STYLE,
-  FIND_EMAIL_MESSAGE,
-} from '../components/Login/constants';
+import { FIND_EMAIL_MESSAGE } from '../components/Login/constants';
 
 export default function Email() {
   const [auth, setAuth] = useState({ email: '' });
@@ -41,7 +38,7 @@ export default function Email() {
       <button
         type="submit"
         onClick={() => onClickFindEmailButton()}
-        className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-12`}
+        className="w-full rounded-[15px] flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[22px] mt-12"
       >
         {FIND_EMAIL_MESSAGE.SUBMIT}
       </button>

@@ -48,11 +48,8 @@ const UPDATE_PASSWORD_MESSAGE = Object.freeze({
   UPDATE: '변경하기',
 });
 
-const BUTTON_STYLE = 'w-full rounded-[15px] flex justify-center items-center';
-
 export {
   LOGIN_MESSAGE,
-  BUTTON_STYLE,
   ERROR_MESSAGE,
   FIND_EMAIL_MESSAGE,
   UPDATE_PASSWORD_MESSAGE,
