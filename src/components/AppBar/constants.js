@@ -29,6 +29,9 @@ const appBarConfig = {
   letterId: {
     title: '편지함',
   },
+  shareLink: {
+    title: '편지함',
+  },
   '/admin/letters': {
     title: '편지 리스트 관리',
   },

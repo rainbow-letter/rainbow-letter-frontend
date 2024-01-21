@@ -22,6 +22,12 @@ export const sendLetter = async (id, letter) => {
   return response;
 };
 
+export const getShareLetter = async (uuid) => {
+  const response = await apiRequest.get(`${RESOURSE}/share/${uuid}`);
+
+  return response;
+};
+
 // For admin
 const TODAY = formatDateToYMD();
 const DEFAULT_LETTERS_PER_PAGE = 20;

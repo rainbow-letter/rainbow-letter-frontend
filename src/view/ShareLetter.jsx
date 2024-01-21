@@ -1,35 +1,29 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable import/no-cycle */
-import { React, useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import WritingPadSection from '../components/Write/WritingPadSection';
+/* eslint-disable */
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import SentPhoto from '../components/LetterBox/SentPhoto';
+import { getShareLetter } from '../api/letter';
+import WritingPadSection from '../components/Write/WritingPadSection';
+import AppBar from '../components/AppBar';
+import NavBar from '../components/NavBar';
 import Button from '../components/Button';
-import { getLetter } from '../api/letter';
-import { readReply } from '../api/reply';
 import { USER_ACTIONS } from '../components/LetterBox/constants';
 import metaData from '../utils/metaData';
 
-export default function DetailLetter() {
-  const params = useParams();
-  const navigate = useNavigate();
+export default function ShareLetter() {
   const [letterData, setLetterData] = useState(null);
+  const { shareLink } = useParams();
 
   useEffect(() => {
     (async () => {
       metaData(Object.keys(params)[0]);
-      const data = await getLetter(params.letterId);
+      const data = await getShareLetter(shareLink);
       setLetterData(data);
       if (data.reply.type === 'REPLY') {
         await readReply(data.reply.id);
       }
     })();
   }, []);
-
-  const onClickReplyButton = () => {
-    navigate('/write-letter', { state: letterData.pet.name });
-  };
 
   const processDate = (date) => {
     const year = date.slice(0, 4);
@@ -39,10 +33,15 @@ export default function DetailLetter() {
     return `${year}년 ${month}월 ${day}일`;
   };
 
+  const onClickReplyButton = () => {
+    navigate('/write-letter', { state: letterData.pet.name });
+  };
+
   return (
     <>
       {letterData && (
         <main>
+          <AppBar />
           {letterData.reply.content && (
             <WritingPadSection
               image={letterData.pet.image.url}
@@ -66,6 +65,7 @@ export default function DetailLetter() {
           >
             {USER_ACTIONS.GO_TO_REPLY}
           </Button>
+          <NavBar />
         </main>
       )}
     </>

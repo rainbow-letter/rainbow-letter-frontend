@@ -31,6 +31,12 @@ const metaDataConfig = {
     'og:title': '무지개편지 : 아이와 주고 받은 편지',
     'og:description': '',
   },
+  shareLink: {
+    title: '무지개편지 : 아이와 주고 받은 편지',
+    description: '아이와 주고 받은 편지를 확인할 수 있어요.',
+    'og:title': '무지개편지 : 아이와 주고 받은 편지',
+    'og:description': '',
+  },
   '/write-letter': {
     title: '무지개편지 : 편지쓰기',
     description: '아이에게 편지를 보내보세요.',
