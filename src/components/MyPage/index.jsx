@@ -86,9 +86,36 @@ function MyPage() {
   }, []);
 
   return (
-    <section>
+    <section className="min-h-screen pb-3">
+      {isAdmin && (
+        <div className="flex flex-col mb-5">
+          <div className="p-2.5 text-heading-3">관리자 페이지</div>
+          <Link
+            to="/admin/letters"
+            className="flex justify-between items-center"
+          >
+            <div className="p-2.5 text-solo-large mb-[22px]">편지 리스트</div>
+            <div>
+              <img src={chevronRight} alt="chevronRight" />
+            </div>
+          </Link>
+          <Link
+            to="/admin/letters"
+            className="flex justify-between items-center"
+            disabled
+          >
+            <div className="p-2.5 text-solo-large mb-[22px]">
+              반려동물 리스트
+            </div>
+            <div>
+              <img src={chevronRight} alt="chevronRight" />
+            </div>
+          </Link>
+          <Divider />
+        </div>
+      )}
       <div className="text-heading-3 p-2.5">{PAGE_TITLES.MY_INFO}</div>
-      <div className="flex flex-col mb-14 gap-y-[22px]">
+      <div className="flex flex-col gap-y-[22px]">
         <div>
           <div className="text-solo-large p-2.5">{USER_INFO_LABELS.EMAIL}</div>
           <div className="p-2.5 text-solo-medium text-gray-1">
@@ -175,31 +202,6 @@ function MyPage() {
             {USER_ACTIONS.LOG_OUT}
           </div>
         </button>
-        {isAdmin && (
-          <>
-            <Divider />
-            <div className="p-2.5 text-heading-3">관리자 페이지</div>
-            <Link
-              to="/admin/letters"
-              className="flex justify-between items-center"
-            >
-              <div className="p-2.5 text-solo-large">편지 리스트</div>
-              <div>
-                <img src={chevronRight} alt="chevronRight" />
-              </div>
-            </Link>
-            <Link
-              to="/admin/letters"
-              className="flex justify-between items-center"
-              disabled
-            >
-              <div className="p-2.5 text-solo-large">반려동물 리스트</div>
-              <div>
-                <img src={chevronRight} alt="chevronRight" />
-              </div>
-            </Link>
-          </>
-        )}
       </div>
     </section>
   );
