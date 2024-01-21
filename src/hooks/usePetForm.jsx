@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { registerPet, updatePet } from '../api/pets';
 import { updateImageAndGetId } from '../api/images';
 import { generateFormData } from '../utils/formData';
+import { isFutureDate } from '../utils/date';
 
 const usePetForm = (initialData, onSuccess, onError) => {
   const { pathname } = useLocation();
@@ -18,7 +19,8 @@ const usePetForm = (initialData, onSuccess, onError) => {
       data.deathAnniversary === null ||
       (data.deathAnniversary.year !== '' &&
         data.deathAnniversary.month !== '' &&
-        data.deathAnniversary.day !== '');
+        data.deathAnniversary.day !== '' &&
+        !isFutureDate(data.deathAnniversary));
     const isImageUrlFilled = !!(data.image && data.image.url);
     const isImageFileFilled = !!(
       data.image &&
