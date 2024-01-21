@@ -44,7 +44,7 @@ export default function LoginForm({ message: { describe, button } }) {
   );
 
   return (
-    <section className="mt-[46px]">
+    <section className="mt-[43px]">
       <header className="flex justify-between items-center">
         <div className="border-t w-[84px]" />
         <h3 className="text-solo-small">{describe}</h3>
@@ -58,6 +58,7 @@ export default function LoginForm({ message: { describe, button } }) {
           placeholder="이메일을 입력해주세요"
           isNotValid={errorData && emailError(errorData)}
           errorMessage={errorData && emailErrorMessage(errorData)}
+          className="mb-[14px]"
         />
         <UserInput
           type="password"
@@ -71,7 +72,7 @@ export default function LoginForm({ message: { describe, button } }) {
           onclick={(e) => onClickLoginButton(e)}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
-          } text-heading-3  py-[22px] mt-6 w-full rounded-[15px] flex justify-center items-center`}
+          } text-heading-3  py-[22px] mt-[18px] w-full rounded-[15px] flex justify-center items-center`}
           value={button.default}
         />
       </form>

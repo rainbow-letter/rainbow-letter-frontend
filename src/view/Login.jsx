@@ -17,7 +17,7 @@ export default function Login() {
     <main className="h-screen flex flex-col justify-center text-center">
       <Header message={message} />
       <LoginForm message={message} />
-      <LinkAvailable message={message} />
+      <LinkAvailable message={message} className="justify-around" />
     </main>
   );
 }
