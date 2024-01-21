@@ -30,7 +30,7 @@ export const getShareLetter = async (uuid) => {
 
 // For admin
 const TODAY = formatDateToYMD();
-const DEFAULT_LETTERS_PER_PAGE = 20;
+const DEFAULT_LETTERS_PER_PAGE = 25;
 export const getLettersForAdmin = async (
   startDate = TODAY,
   endDate = TODAY,
