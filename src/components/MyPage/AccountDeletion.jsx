@@ -5,37 +5,44 @@ import { useDispatch } from 'react-redux';
 
 import {
   USER_ACTIONS,
-  ACCOUNT_DEACTIVATION,
-  ACCOUNT_DEACTIVATION_GUIDELINES,
+  ACCOUNT_DELETION,
+  ACCOUNT_DELETION_GUIDELINES,
 } from './constants';
-import { deactivateUser } from '../../api/user';
+import { deleteUser } from '../../api/user';
 import { removeToken } from '../../store/user';
 import check from '../../assets/check.svg';
 import Button from '../Button';
+import AccountDeletionConfirmationModal from './AccountDeletionConfirmationModal';
 
-function AccountDeactivation() {
+function AccountDeletion() {
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDeactivation = async () => {
+  const handleDeletion = async () => {
     try {
-      await deactivateUser();
+      await deleteUser();
       dispatch(removeToken());
-      navigate('/');
+      setIsDeleted(true);
     } catch (error) {
-      // TODO: handle error
+      setIsDeleted(false);
     }
+  };
+
+  const handleModalClose = () => {
+    setIsDeleted(false);
+    navigate('/');
   };
 
   return (
     <div className="h-screen flex flex-col gap-[159px] pb-5">
       <section className="p-7 bg-gray-2 rounded-2xl">
         <span className="text-solo-large">
-          {ACCOUNT_DEACTIVATION.GUIDELINES_TITLE}
+          {ACCOUNT_DELETION.GUIDELINES_TITLE}
         </span>
         <ul className="p-2.5 list-disc text-body-small text-gray-1 space-y-[6px]">
-          {ACCOUNT_DEACTIVATION_GUIDELINES.map((guideline) => (
+          {ACCOUNT_DELETION_GUIDELINES.map((guideline) => (
             <li key={guideline.ID}>{guideline.CONTENT}</li>
           ))}
         </ul>
@@ -59,16 +66,19 @@ function AccountDeactivation() {
           </div>
           <div>
             <span className="font-semibold text-body-medium text-gray-1">
-              {ACCOUNT_DEACTIVATION.CONFIRM_MESSAGE}
+              {ACCOUNT_DELETION.CONFIRM_MESSAGE}
             </span>
           </div>
         </button>
-        <Button disabled={!isConfirmed} onClick={handleDeactivation}>
+        <Button disabled={!isConfirmed} onClick={handleDeletion}>
           {USER_ACTIONS.LEAVE}
         </Button>
+        {isDeleted && (
+          <AccountDeletionConfirmationModal onClose={handleModalClose} />
+        )}
       </section>
     </div>
   );
 }
 
-export default AccountDeactivation;
+export default AccountDeletion;
