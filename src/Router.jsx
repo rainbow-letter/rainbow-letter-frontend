@@ -14,7 +14,7 @@ import ProtectedLayout from './components/Layout/ProtectedLayout';
 import MyPage from './components/MyPage';
 import PasswordReset from './components/PasswordReset';
 import FAQs from './components/MyPage/FAQs';
-import AccountDeactivation from './components/MyPage/AccountDeactivation';
+import AccountDeletion from './components/MyPage/AccountDeletion';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
@@ -51,7 +51,7 @@ function Router() {
               <Route path="/my-page" element={<MyPage />} />
               <Route path="/my-page/faqs" element={<FAQs />} />
               <Route path="/my-page/password" element={<PasswordReset />} />
-              <Route path="/my-page/leave" element={<AccountDeactivation />} />
+              <Route path="/my-page/leave" element={<AccountDeletion />} />
               <Route path="/my-pets" element={<MyPets />} />
               <Route path="/my-pets/register" element={<PetRegistration />} />
               <Route path="/my-pets/edit" element={<PetEdit />} />

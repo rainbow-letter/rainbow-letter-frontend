@@ -112,7 +112,9 @@ function MyPage() {
                   onChange={handlePhoneChange}
                 />
               ) : (
-                <div className="grow p-2.5 text-caption">{phoneConstant}</div>
+                <div className="grow p-2.5 text-caption">
+                  {editedPhone || phoneConstant}
+                </div>
               )}
               <button
                 className={`px-2.5 py-[9px] text-xs font-semibold leading-3 rounded ${

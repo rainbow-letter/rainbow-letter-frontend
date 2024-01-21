@@ -13,11 +13,13 @@ import {
   setInitialPetData,
 } from '../../contexts/PetRegistrationContext';
 import { convertDateStringToObject } from '../../utils/date';
+import usePreventDoubleClick from '../../hooks/usePreventDoubleClick';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
   const { pathname } = useLocation();
-  const isEdit = pathname.includes('edit');
   const { setMandatoryData, setOptionalData } = usePetRegistration();
+  const isEdit = pathname.includes('edit');
+  const { isSubmitting, handleButtonClick } = usePreventDoubleClick();
 
   const setPetData = () => {
     if (petData) {
@@ -54,7 +56,10 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
       <PetPersonalitiesSection />
       <PetImageSection />
       <section className="pt-6">
-        <Button disabled={!isDisabled} onClick={handleSubmit}>
+        <Button
+          disabled={!isDisabled || isSubmitting}
+          onClick={handleButtonClick(handleSubmit)}
+        >
           <span>등록하기</span>
         </Button>
       </section>

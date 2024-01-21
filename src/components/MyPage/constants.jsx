@@ -52,12 +52,12 @@ export const FAQS = [
   },
 ];
 
-export const ACCOUNT_DEACTIVATION = {
+export const ACCOUNT_DELETION = {
   GUIDELINES_TITLE: '탈퇴 안내사항',
   CONFIRM_MESSAGE: '위 내용을 확인하였으며, 탈퇴를 진행합니다.',
 };
 
-export const ACCOUNT_DEACTIVATION_GUIDELINES = [
+export const ACCOUNT_DELETION_GUIDELINES = [
   {
     ID: 1,
     CONTENT: ['탈퇴 시 ', <strong>편지는 모두 삭제</strong>, '됩니다.'],
