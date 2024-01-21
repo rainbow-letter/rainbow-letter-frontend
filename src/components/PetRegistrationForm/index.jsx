@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Button from '../Button';
@@ -13,12 +13,13 @@ import {
   setInitialPetData,
 } from '../../contexts/PetRegistrationContext';
 import { convertDateStringToObject } from '../../utils/date';
+import usePreventDoubleClick from '../../hooks/usePreventDoubleClick';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
   const { pathname } = useLocation();
   const { setMandatoryData, setOptionalData } = usePetRegistration();
   const isEdit = pathname.includes('edit');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { isSubmitting, handleButtonClick } = usePreventDoubleClick();
 
   const setPetData = () => {
     if (petData) {
@@ -39,11 +40,6 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
     }
   };
 
-  const handleFormSubmit = () => {
-    setIsSubmitting(true);
-    handleSubmit();
-  };
-
   useEffect(() => {
     setPetData();
     return () => {
@@ -62,7 +58,7 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
       <section className="pt-6">
         <Button
           disabled={!isDisabled || isSubmitting}
-          onClick={handleFormSubmit}
+          onClick={handleButtonClick(handleSubmit)}
         >
           <span>등록하기</span>
         </Button>
