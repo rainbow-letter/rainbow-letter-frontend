@@ -16,7 +16,7 @@ export default function Email() {
   const onClickFindEmailButton = async () => {
     try {
       await authEmail(auth);
-      alert('메일이 정상적으로 발송되었습니다.');
+      alert('비밀번호 변경 메일이 발송됐어요!');
     } catch (error) {
       setErrorData(error.response.data);
     }

@@ -12,12 +12,12 @@ import metaData from '../utils/metaData';
 
 export default function ShareLetter() {
   const [letterData, setLetterData] = useState(null);
-  const { shareLink } = useParams();
+  const params = useParams();
 
   useEffect(() => {
     (async () => {
       metaData(Object.keys(params)[0]);
-      const data = await getShareLetter(shareLink);
+      const data = await getShareLetter(params.shareLink);
       setLetterData(data);
       if (data.reply.type === 'REPLY') {
         await readReply(data.reply.id);

@@ -25,6 +25,7 @@ export default function Join() {
     password: '',
   });
   const [errorData, setErrorData] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
 
   const isCheckProperForm = () => {
     const { email, password } = profile;
@@ -41,6 +42,10 @@ export default function Join() {
       try {
         e.preventDefault();
         isCheckProperForm();
+        if (!isChecked) {
+          setErrorData(true);
+          return alert('서비스 이용약관 및 개인정보 처리방침을 체크해주세요!');
+        }
         await trySignUp(profile);
         const { token } = await trylogin(profile);
         dispatch(getToken(token));
@@ -57,7 +62,7 @@ export default function Join() {
         });
       }
     },
-    [profile, errorData]
+    [profile, errorData, isChecked]
   );
 
   const message = LOGIN_MESSAGE.find(
@@ -75,6 +80,8 @@ export default function Join() {
         setErrorData={setErrorData}
         onclick={onClickSignUpButton}
         BUTTON_STYLE={BUTTON_STYLE}
+        setIsChecked={setIsChecked}
+        isChecked={isChecked}
       />
       <LinkAvailable message={message} />
     </main>

@@ -9,7 +9,7 @@ export default function Header({ message: { title, button }, BUTTON_STYLE }) {
       <a
         href={`${process.env.REACT_APP_API_URL}/api/oauth2/authorization/google`}
         type="button"
-        className={`${BUTTON_STYLE} border text-solo-medium mt-[35px] gap-3 py-7`}
+        className={`${BUTTON_STYLE} border text-solo-large mt-10 gap-[1.35rem] py-6`}
       >
         <img src={googleIcon} alt="google icon" />
         {button.google}

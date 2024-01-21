@@ -1,6 +1,8 @@
 import { React, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import UserInput from './UserInput';
+import Agree from './SignUp/Agree';
 import SubmitButton from './SubmitButton';
 
 export default function Form({
@@ -11,19 +13,24 @@ export default function Form({
   onclick,
   setErrorData,
   BUTTON_STYLE,
+  setIsChecked,
+  isChecked,
 }) {
+  const { pathname } = useLocation();
+  const isAgree = pathname === '/sign-up';
+
   useEffect(() => {
     setErrorData(null);
-  }, [profile]);
+  }, [profile, isChecked]);
 
   return (
-    <section className="mt-[44px]">
+    <section className="mt-[46px]">
       <header className="flex justify-between items-center">
         <div className="border-t w-[84px]" />
         <h3 className="text-solo-small">{describe}</h3>
         <div className="border-t w-[84px]" />
       </header>
-      <form className="mt-[26px]">
+      <form className="mt-[24px]">
         <UserInput
           type="text"
           value={profile.email}
@@ -60,9 +67,12 @@ export default function Form({
           }
           errorMessage={errorData && errorData.message}
         />
+        {isAgree && <Agree setIsChecked={setIsChecked} />}
         <SubmitButton
           onclick={(e) => onclick(e)}
-          className={`${BUTTON_STYLE} bg-orange-400 text-heading-3 text-white py-[22px] mt-2.5`}
+          className={`${BUTTON_STYLE} ${
+            errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
+          } text-heading-3  py-[22px] mt-6`}
           value={button.default}
         />
       </form>

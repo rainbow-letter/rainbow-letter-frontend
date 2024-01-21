@@ -2,7 +2,7 @@
 import React from 'react';
 
 const INPUT_STYLE =
-  'w-full rounded-[15px] p-5 bg-gray-2 text-caption mb-2.5 outline-none';
+  'w-full rounded-[15px] py-[18px] px-5 bg-gray-2 text-solo-small mb-3 outline-none';
 const ERROR_MESSAGE_STYLE =
   'text-caption text-left text-alarm-red px-2.5 pb-2.5';
 
