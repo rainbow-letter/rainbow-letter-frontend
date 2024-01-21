@@ -8,7 +8,7 @@ import Login from './view/Login';
 import Join from './view/Join';
 import Email from './view/Email';
 import Password from './view/Password';
-import Auth from './components/Login/Auth';
+import Auth from './view/Auth';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
 import MyPage from './components/MyPage';

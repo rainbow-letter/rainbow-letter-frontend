@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { getToken } from '../../store/user';
+import { getToken } from '../store/user';
 
 export default function Auth() {
   const navigate = useNavigate();
