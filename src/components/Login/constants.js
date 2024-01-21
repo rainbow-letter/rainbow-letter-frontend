@@ -35,9 +35,12 @@ const ERROR_MESSAGE = Object.freeze({
 });
 
 const FIND_EMAIL_MESSAGE = Object.freeze({
-  PASSWORD: '비밀번호를 찾을',
-  EMAIL: '이메일을 입력해주세요',
+  TITLE: '비밀번호 재설정',
+  DESCRIPTION: '이메일로 비밀번호 재설정 링크가 발송돼요',
   SUBMIT: '제출하기',
+  ANNOUNCEMENT_1: '메일을 받지 못했다면',
+  ANNOUNCEMENT: '공지사항',
+  ANNOUNCEMENT_2: '을 확인해주세요',
 });
 
 const UPDATE_PASSWORD_MESSAGE = Object.freeze({
