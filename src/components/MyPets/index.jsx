@@ -35,7 +35,7 @@ function MyPets() {
   if (!existingPets) return <NoPets />;
   return (
     <div className="h-full">
-      <ul className="px-2">
+      <ul className="px-1">
         {pets.map((pet) => (
           <PetCard
             key={pet.id}
@@ -48,7 +48,7 @@ function MyPets() {
       </ul>
       <PetRegisterButton className="flex items-center justify-center gap-x-2 mt-1 py-5 bg-white border border-dashed border-orange-400 rounded-2xl">
         <img src={plus} alt="add" />
-        <span className="pt-1 text-solo-label-pc text-orange-400 font-semibold">
+        <span className="text-solo-label-pc text-orange-400 font-semibold">
           추가하기
         </span>
       </PetRegisterButton>
