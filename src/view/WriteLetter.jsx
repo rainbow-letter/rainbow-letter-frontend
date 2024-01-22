@@ -12,7 +12,7 @@ import TopicSuggestion from '../components/Write/TopicSuggestion';
 import Button from '../components/Button';
 
 import { getUserInfo } from '../api/user';
-import { openModal } from '../store/modal';
+import { closeModal, openModal } from '../store/modal';
 import { getPets } from '../api/pets';
 import { sendLetter, getLetters } from '../api/letter';
 import { generateFormData } from '../utils/formData';
@@ -45,6 +45,10 @@ export default function WriteLetter() {
         const finedPet = pets.find((pet) => pet.name === location.state);
         setSelectedPet(finedPet);
       }
+
+      return () => {
+        dispatch(closeModal());
+      };
     })();
   }, []);
 
