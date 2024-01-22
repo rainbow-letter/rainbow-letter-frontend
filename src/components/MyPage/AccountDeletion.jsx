@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,27 +13,21 @@ import { deleteUser } from '../../api/user';
 import { removeToken } from '../../store/user';
 import check from '../../assets/check.svg';
 import Button from '../Button';
-import AccountDeletionConfirmationModal from './AccountDeletionConfirmationModal';
 
 function AccountDeletion() {
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleDeletion = async () => {
     try {
       await deleteUser();
+      alert('탈퇴가 완료됐어요');
       dispatch(removeToken());
-      setIsDeleted(true);
+      navigate('/');
     } catch (error) {
-      setIsDeleted(false);
+      alert(error.message);
     }
-  };
-
-  const handleModalClose = () => {
-    setIsDeleted(false);
-    navigate('/');
   };
 
   return (
@@ -73,9 +68,6 @@ function AccountDeletion() {
         <Button disabled={!isConfirmed} onClick={handleDeletion}>
           {USER_ACTIONS.LEAVE}
         </Button>
-        {isDeleted && (
-          <AccountDeletionConfirmationModal onClose={handleModalClose} />
-        )}
       </section>
     </div>
   );
