@@ -15,7 +15,7 @@ export default function LandingPage() {
   const { token } = useSelector((state) => state.user);
 
   return (
-    <main className="min-h-screen">
+    <main>
       <LogoBar />
       <BackgroundSection />
       <PetsSection isLoggedIn={!!token} />

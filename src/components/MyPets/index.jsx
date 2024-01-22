@@ -34,7 +34,7 @@ function MyPets() {
 
   if (!existingPets) return <NoPets />;
   return (
-    <div className="min-h-screen">
+    <div className="h-full">
       <ul className="px-2">
         {pets.map((pet) => (
           <PetCard
