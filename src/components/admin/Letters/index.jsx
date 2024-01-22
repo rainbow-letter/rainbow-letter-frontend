@@ -41,7 +41,7 @@ function Letters() {
   }, [dispatch, currentPage]);
 
   return (
-    <div className="text-solo-label">
+    <div className="w-full min-w-[600px] text-solo-label">
       <LetterTable
         dateRange={dateRange}
         onDateSet={setDates}
