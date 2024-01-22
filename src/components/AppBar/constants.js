@@ -9,7 +9,7 @@ const appBarConfig = {
     title: '회원 탈퇴',
   },
   '/my-pets': {
-    title: '내 반려동물',
+    title: '우리아이',
   },
   '/my-pets/register': {
     title: '등록하기',

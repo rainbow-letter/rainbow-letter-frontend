@@ -86,7 +86,7 @@ function MyPage() {
   }, []);
 
   return (
-    <section className="min-h-screen pb-3">
+    <section>
       <div className="text-heading-3 p-2.5">{PAGE_TITLES.MY_INFO}</div>
       <div className="flex flex-col mb-14 gap-y-[22px]">
         <div>

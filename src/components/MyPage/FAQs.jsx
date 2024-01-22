@@ -6,7 +6,7 @@ import { getFaqs } from '../../api/faqs';
 
 function FAQ({ FAQData }) {
   return (
-    <div className="pb-3">
+    <div>
       <header className="p-2.5 text-solo-large">
         <span className=" text-orange-400">{QUESTION_PREFIX}</span>
         <span>{FAQData.question}</span>
