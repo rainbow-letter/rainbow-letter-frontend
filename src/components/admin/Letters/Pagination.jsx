@@ -14,7 +14,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
     <div className="flex justify-center items-center space-x-2 mt-2.5">
       {getPaginationNumbers().map((number) => (
         <button
-          className={`px-3 py-1 rounded ${
+          className={`w-7 h-7 rounded ${
             currentPage === number ? 'bg-blue-500 text-white' : 'bg-gray-200'
           }`}
           key={number}
