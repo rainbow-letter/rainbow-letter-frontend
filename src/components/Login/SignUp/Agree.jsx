@@ -44,9 +44,10 @@ export default function Agree({ setIsChecked }) {
           label={'전체 동의'}
           onChange={handleAllCheck}
           checked={CHECK_LIST.length === checkItems.length}
+          // className='g'
         />
       </article>
-      <article className="pl-[22px] flex mb-[13px] gap-3 relative">
+      <article className="pl-[22px] flex mb-[13px] gap-3 relative pr-6">
         <CheckBox
           id={'service-checkbox'}
           label={'서비스 이용약관 동의'}
@@ -59,7 +60,7 @@ export default function Agree({ setIsChecked }) {
           }
         />
       </article>
-      <article className="pl-[22px] flex gap-3 relative">
+      <article className="pl-[22px] flex gap-3 relative pr-6">
         <CheckBox
           id={'infomation-checkbox'}
           label={'개인정보 처리방침 동의'}
