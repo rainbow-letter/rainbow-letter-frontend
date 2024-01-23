@@ -38,6 +38,7 @@ function Editor({ id, isOpen, content, isSent, onClose }) {
   return createPortal(
     <LetterDetailForm
       isOpen={isOpen}
+      isSent={isSent}
       content={content}
       onClose={onClose}
       onSave={handleSave}
