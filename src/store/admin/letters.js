@@ -10,6 +10,7 @@ export const TOGGLE_INSPECTION = 'TOGGLE_INSPECTION';
 export const TOGGLE_ALL_CHECKS = 'TOGGLE_ALL_CHECKS';
 export const UPDATE_SEND_DATE = 'UPDATE_SEND_DATE';
 export const UPDATE_REPLY_CONTENT = 'UPDATE_REPLY_CONTENT';
+export const SET_INSPECTION_TRUE = 'SET_INSPECTION_TRUE';
 
 export const loadLetters = (letters) => {
   return {
@@ -43,6 +44,13 @@ export const updateReplyContent = (id, content, summary) => {
   return {
     type: UPDATE_REPLY_CONTENT,
     payload: { id, content, summary },
+  };
+};
+
+export const setInspectionTrue = (id) => {
+  return {
+    type: SET_INSPECTION_TRUE,
+    payload: id,
   };
 };
 
@@ -106,6 +114,21 @@ export default function letters(state = initialState, action) {
                   ...letter.reply,
                   content: action.payload.content,
                   summary: action.payload.summary,
+                },
+              }
+            : letter
+        ),
+      };
+    case SET_INSPECTION_TRUE:
+      return {
+        ...state,
+        letters: state.letters.map((letter) =>
+          letter.reply.id === action.payload
+            ? {
+                ...letter,
+                reply: {
+                  ...letter.reply,
+                  inspection: true,
                 },
               }
             : letter

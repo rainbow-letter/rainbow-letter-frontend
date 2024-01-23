@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
@@ -130,6 +129,7 @@ function TableRow({ no, letter }) {
         id={reply.id}
         isOpen={isReplyEditorOpen}
         content={reply.content}
+        isSent={!!reply.timestamp}
         onClose={toggleReplyEditor}
       />
     </tr>
