@@ -6,6 +6,9 @@ module.exports = {
       sans: ['Noto Sans KR', 'sans-serif'],
       OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
     },
+    screens: {
+      md: '388px',
+    },
     extend: {
       fontSize: {
         'heading-1': ['1.875rem', { lineHeight: '130%', fontWeight: '600' }],
