@@ -86,33 +86,32 @@ function MyPage() {
   }, []);
 
   return (
-    <section className="min-h-screen pb-3">
+    <section className="">
       {isAdmin && (
-        <div className="flex flex-col mb-5">
-          <div className="p-2.5 text-heading-3">관리자 페이지</div>
-          <Link
-            to="/admin/letters"
-            className="flex justify-between items-center"
-          >
-            <div className="p-2.5 text-solo-large mb-[22px]">편지 리스트</div>
-            <div>
-              <img src={chevronRight} alt="chevronRight" />
-            </div>
-          </Link>
-          <Link
-            to="/admin/letters"
-            className="flex justify-between items-center"
-            disabled
-          >
-            <div className="p-2.5 text-solo-large mb-[22px]">
-              반려동물 리스트
-            </div>
-            <div>
-              <img src={chevronRight} alt="chevronRight" />
-            </div>
-          </Link>
-          <Divider />
-        </div>
+        <>
+          <div className="text-heading-3 p-2.5">관리자 페이지</div>
+          <div className="flex flex-col gap-y-[22px] mb-[22px]">
+            <Link
+              to="/admin/letters"
+              className="flex justify-between items-center"
+            >
+              <div className="p-2.5 text-solo-large">편지 리스트</div>
+              <div>
+                <img src={chevronRight} alt="chevronRight" />
+              </div>
+            </Link>
+            <Link
+              to="/admin/letters"
+              className="flex justify-between items-center"
+            >
+              <div className="p-2.5 text-solo-large">반려동물 리스트</div>
+              <div>
+                <img src={chevronRight} alt="chevronRight" />
+              </div>
+            </Link>
+            <Divider />
+          </div>
+        </>
       )}
       <div className="text-heading-3 p-2.5">{PAGE_TITLES.MY_INFO}</div>
       <div className="flex flex-col gap-y-[22px]">
