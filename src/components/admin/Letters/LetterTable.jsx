@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';

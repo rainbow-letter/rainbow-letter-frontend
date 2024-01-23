@@ -28,7 +28,10 @@ function Letters() {
   const getLetters = async () => {
     const { startDate, endDate } = dateRange;
     const response = await getLettersForAdmin(startDate, endDate, currentPage);
-    dispatch(loadLetters(response.content));
+    const sortedResponse = [...response.content].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    dispatch(loadLetters(sortedResponse));
     setTotalPages(response.totalPages);
   };
 

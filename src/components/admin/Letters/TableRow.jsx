@@ -48,6 +48,7 @@ function TableRow({ no, letter }) {
           <input
             className="form-checkbox h-5 w-5 text-blue-600"
             type="checkbox"
+            disabled={replyStatus === '성공'}
             checked={isChecked}
             onChange={handleRowCheck}
           />
@@ -90,8 +91,11 @@ function TableRow({ no, letter }) {
           <input
             className="form-checkbox h-5 w-5 text-blue-600"
             type="checkbox"
-            // TODO: 답장 발송 여부가 있으면 disabled 처리
-            disabled={replyStatus === '실패'}
+            disabled={
+              replyStatus === '성공' ||
+              replyStatus === '실패' ||
+              reply.id === null
+            }
             checked={reply.inspection}
             onChange={handleInspect}
           />
@@ -100,7 +104,13 @@ function TableRow({ no, letter }) {
       <td className="border p-2 text-center">
         {formatDateToYYDDMMHHMM(reply.inspectionTime)}
       </td>
-      <td className="border p-2 text-center">{replyStatus}</td>
+      <td
+        className={`border p-2 text-center ${
+          replyStatus === '실패' && 'text-red-600 text-bold'
+        }`}
+      >
+        {replyStatus}
+      </td>
       <td className="border p-2 text-center">
         {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}
       </td>
