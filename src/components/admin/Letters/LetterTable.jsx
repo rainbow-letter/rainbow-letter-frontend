@@ -120,8 +120,9 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
               <th className="border px-4 py-2">편지 등록일</th>
               <th className="border px-4 py-2">편지 원본</th>
               <th className="border px-4 py-2">GPT 답장 원본</th>
-              <th className="border px-4 py-2">답장 최종칸</th>
+              <th className="border px-4 py-2">최종 답장</th>
               <th className="border px-4 py-2">검수 여부</th>
+              <th className="border px-4 py-2">검수일</th>
               <th className="border px-4 py-2">답장 발송 여부</th>
               <th className="border px-4 py-2">답장 발송일</th>
             </tr>

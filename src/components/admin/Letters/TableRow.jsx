@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
@@ -5,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { toggleRowCheck, toggleInspection } from '../../../store/admin/letters';
 import { formatDateToYYDDMMHHMM } from '../../../utils/date';
+import { checkLetterStatus } from '../../../utils/replyStatus';
 import { inspectReply } from '../../../api/reply';
 import Editor from './Editor';
 import Viewer from './Viewer';
@@ -16,6 +18,7 @@ function TableRow({ no, letter }) {
   const [isLetterViewerOpen, setIsLetterViewerOpen] = useState(false);
   const [isReplyViewerOpen, setIsReplyViewerOpen] = useState(false);
   const [isReplyEditorOpen, setIsReplyEditorOpen] = useState(false);
+  const replyStatus = checkLetterStatus(reply.inspectionTime, reply.timestamp);
 
   const handleRowCheck = () => {
     dispatch(toggleRowCheck(id));
@@ -70,7 +73,7 @@ function TableRow({ no, letter }) {
           type="button"
           onClick={toggleReplyViewer}
         >
-          {reply.summary}
+          {reply.chatGptContent}
         </button>
       </td>
       <td className="border p-2">
@@ -88,13 +91,16 @@ function TableRow({ no, letter }) {
             className="form-checkbox h-5 w-5 text-blue-600"
             type="checkbox"
             // TODO: 답장 발송 여부가 있으면 disabled 처리
-            disabled={reply.inspection && reply.timestamp}
+            disabled={replyStatus === '실패'}
             checked={reply.inspection}
             onChange={handleInspect}
           />
         </div>
       </td>
-      <td className="border p-2 text-center">{reply.timestamp && '성공'}</td>
+      <td className="border p-2 text-center">
+        {formatDateToYYDDMMHHMM(reply.inspectionTime)}
+      </td>
+      <td className="border p-2 text-center">{replyStatus}</td>
       <td className="border p-2 text-center">
         {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}
       </td>
