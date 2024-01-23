@@ -44,7 +44,6 @@ export default function Agree({ setIsChecked }) {
           label={'전체 동의'}
           onChange={handleAllCheck}
           checked={CHECK_LIST.length === checkItems.length}
-          // className='g'
         />
       </article>
       <article className="pl-[22px] flex mb-[13px] gap-3 relative pr-6">
