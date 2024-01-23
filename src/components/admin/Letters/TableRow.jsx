@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import { toggleRowCheck, toggleInspection } from '../../../store/admin/letters';
 import { formatDateToYYDDMMHHMM } from '../../../utils/date';
-import { checkLetterStatus } from '../../../utils/replyStatus';
 import { inspectReply } from '../../../api/reply';
 import Editor from './Editor';
 import Viewer from './Viewer';
@@ -17,7 +16,6 @@ function TableRow({ no, letter }) {
   const [isLetterViewerOpen, setIsLetterViewerOpen] = useState(false);
   const [isReplyViewerOpen, setIsReplyViewerOpen] = useState(false);
   const [isReplyEditorOpen, setIsReplyEditorOpen] = useState(false);
-  const replyStatus = checkLetterStatus(reply.inspectionTime, reply.timestamp);
 
   const handleRowCheck = () => {
     dispatch(toggleRowCheck(id));
@@ -47,7 +45,6 @@ function TableRow({ no, letter }) {
           <input
             className="form-checkbox h-5 w-5 text-blue-600"
             type="checkbox"
-            disabled={replyStatus === '성공'}
             checked={isChecked}
             onChange={handleRowCheck}
           />
@@ -91,8 +88,8 @@ function TableRow({ no, letter }) {
             className="form-checkbox h-5 w-5 text-blue-600"
             type="checkbox"
             disabled={
-              replyStatus === '성공' ||
-              replyStatus === '실패' ||
+              reply.status === '성공' ||
+              reply.status === '실패' ||
               reply.id === null
             }
             checked={reply.inspection}
@@ -105,10 +102,10 @@ function TableRow({ no, letter }) {
       </td>
       <td
         className={`border p-2 text-center ${
-          replyStatus === '실패' && 'text-red-600 text-bold'
+          reply.status === '실패' && 'text-red-600 text-bold'
         }`}
       >
-        {replyStatus}
+        {reply.status}
       </td>
       <td className="border p-2 text-center">
         {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}

@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
 import React from 'react';
@@ -10,33 +11,6 @@ import TableRow from './TableRow';
 function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
   const dispatch = useDispatch();
   const { letters } = useSelector((state) => state.letters);
-  // const [selectAll, setSelectAll] = useState(false);
-
-  // const handleSelectAll = async () => {
-  //   const newSelectAll = !selectAll;
-  //   setSelectAll(newSelectAll);
-
-  //   const requests = letters
-  //     .filter((letter) => letter.reply.inspection !== newSelectAll)
-  //     .map(async (letter) => {
-  //       try {
-  //         await inspectReply(letter.reply.id);
-  //         return { id: letter.reply.id, success: true };
-  //       } catch (error) {
-  //         return { id: letter.reply.id, success: false, error };
-  //       }
-  //     });
-
-  //   const results = await Promise.allSettled(requests);
-
-  //   results.forEach((result) => {
-  //     if (result.status === 'fulfilled' && result.value.success) {
-  //       dispatch(toggleInspection(result.value.id));
-  //     } else if (result.status === 'fulfilled') {
-  //       alert('Error inspecting reply:', result.value.error);
-  //     }
-  //   });
-  // };
 
   const handleSendReplies = async () => {
     const letterToSend = letters
@@ -73,6 +47,17 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
     onDateSet(newDate);
   };
 
+  const areAllCheckedLettersFailed = (letters) => {
+    const checkedLetters = letters.filter((letter) => letter.isChecked);
+    if (checkedLetters.length === 0) {
+      return false;
+    }
+
+    return checkedLetters.every((letter) => letter.reply.status === '실패');
+  };
+
+  const allCheckedAreFailed = areAllCheckedLettersFailed(letters);
+
   return (
     <div className="p-4">
       <div className="flex justify-between flex-wrap">
@@ -103,8 +88,13 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
         </div>
         <div>
           <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            className={`${
+              !allCheckedAreFailed
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-green-500 hover:bg-green-700'
+            } text-white font-bold py-2 px-4 rounded`}
             type="button"
+            disabled={!allCheckedAreFailed}
             onClick={handleSendReplies}
           >
             편지 보내기
