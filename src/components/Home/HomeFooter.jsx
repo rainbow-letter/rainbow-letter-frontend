@@ -6,7 +6,7 @@ import blog from '../../assets/blog.png';
 
 export default function HomeFooter() {
   return (
-    <footer className="flex flex-col items-center pt-8 pb-[75px] text-caption text-gray-1">
+    <footer className="flex flex-col items-center pt-8 pb-40 text-caption text-gray-1">
       <Link to={`mailto:${FOOTER_MESSAGE.ADDRESS}`} className="mb-[18px]">
         {FOOTER_MESSAGE.ADDRESS}
       </Link>
