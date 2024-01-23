@@ -13,7 +13,9 @@ function ProtectedLayout({ isLoggedIn }) {
   return (
     <>
       <AppBar />
-      <Outlet />
+      <div className="pb-28">
+        <Outlet />
+      </div>
       <NavBar />
     </>
   );

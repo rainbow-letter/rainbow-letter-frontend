@@ -15,7 +15,7 @@ function Layout() {
   }, [pathname]);
 
   return (
-    <div className="w-full h-full min-w-[360px] flex justify-center bg-white pb-28">
+    <div className="w-full h-full min-w-[360px] flex justify-center bg-white">
       <div className={`${isHomeLayOut ? 'px-0' : 'px-5'} w-[390px] bg-white`}>
         <Outlet />
       </div>
