@@ -37,7 +37,7 @@ export default function Agree({ setIsChecked }) {
   };
 
   return (
-    <section className="mt-[36px] text-left text-caption">
+    <section className="mt-[28px] text-left text-caption">
       <article className="bg-gray-2 rounded-[15px] py-[13px] pl-[22px] mb-3 flex items-center gap-3">
         <CheckBox
           id={'all-checkBox'}
