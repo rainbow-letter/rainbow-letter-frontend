@@ -16,6 +16,8 @@ function TableRow({ no, letter }) {
   const [isLetterViewerOpen, setIsLetterViewerOpen] = useState(false);
   const [isReplyViewerOpen, setIsReplyViewerOpen] = useState(false);
   const [isReplyEditorOpen, setIsReplyEditorOpen] = useState(false);
+  const isInspectionDisabled =
+    reply.status === '성공' || reply.status === '실패' || reply.id === null;
 
   const handleRowCheck = () => {
     dispatch(toggleRowCheck(id));
@@ -43,7 +45,7 @@ function TableRow({ no, letter }) {
       <td className="border p-2">
         <div className="flex justify-center items-center h-full overflow-hidden text-ellipsis whitespace-nowrap">
           <input
-            className="form-checkbox h-5 w-5 text-blue-600"
+            className="form-checkbox h-5 w-5"
             type="checkbox"
             checked={isChecked}
             onChange={handleRowCheck}
@@ -85,13 +87,14 @@ function TableRow({ no, letter }) {
       <td className="border p-2">
         <div className="flex justify-center items-center h-full overflow-hidden text-ellipsis whitespace-nowrap">
           <input
-            className="form-checkbox h-5 w-5 text-blue-600"
+            // className="form-checkbox h-5 w-5 accent-red-500"
+            className={`form-checkbox h-5 w-5 ${
+              reply.inspection || isInspectionDisabled
+                ? 'appearance-auto accent-red-500'
+                : 'appearance-none border border-red-400 rounded-sm'
+            }`}
             type="checkbox"
-            disabled={
-              reply.status === '성공' ||
-              reply.status === '실패' ||
-              reply.id === null
-            }
+            disabled={isInspectionDisabled}
             checked={reply.inspection}
             onChange={handleInspect}
           />
