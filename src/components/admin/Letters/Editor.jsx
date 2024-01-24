@@ -9,7 +9,7 @@ import {
   setInspectionTrue,
 } from '../../../store/admin/letters';
 import { editReply, inspectReply } from '../../../api/reply';
-import { editTextToFirstSentence } from '../../../utils/string';
+import { extractFirstTenChars } from '../../../utils/string';
 import LetterDetailForm from './LetterDetailForm';
 
 function Editor({ id, isOpen, content, isSent, onClose }) {
@@ -19,7 +19,8 @@ function Editor({ id, isOpen, content, isSent, onClose }) {
   const handleSave = async (newContent) => {
     if (isSent) return alert('이미 답장을 보낸 편지입니다.');
     try {
-      const newSummary = editTextToFirstSentence(newContent);
+      const newSummary = extractFirstTenChars(newContent);
+      console.log(newSummary);
 
       await editReply(id, {
         summary: newSummary,
