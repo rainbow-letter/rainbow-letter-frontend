@@ -8,6 +8,7 @@ import Input from '../Input';
 import { closeModal, openModal, doNotOpenAgain } from '../../store/modal';
 import { validatePhoneNumber } from '../../utils/validators';
 import { updatePhoneNumber } from '../../api/user';
+import CancelImage from '../../assets/ph_x-bold.svg';
 
 import MODAL_MESSAGE from './constants';
 
@@ -51,6 +52,13 @@ export default function ModalContents() {
                       </li>
                     ))}
                 </ul>
+                <button
+                  type="button"
+                  onClick={() => dispatch(closeModal())}
+                  className="absolute top-4 right-4"
+                >
+                  <img src={CancelImage} alt="cancel" />
+                </button>
               </div>
             );
           case 'PHONE':
@@ -89,6 +97,13 @@ export default function ModalContents() {
                     다시 보지 않기
                   </button>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => dispatch(openModal('COMPLETE'))}
+                  className="absolute top-4 right-4"
+                >
+                  <img src={CancelImage} alt="cancel" />
+                </button>
               </div>
             );
           case 'COMPLETE':

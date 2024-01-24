@@ -9,9 +9,9 @@ import { inspectReply } from '../../../api/reply';
 import Editor from './Editor';
 import Viewer from './Viewer';
 
-function TableRow({ no, letter }) {
-  const { id, memberId, createdAt, summary, content, reply, isChecked } =
-    letter;
+
+function TableRow({ letter }) {
+  const { id, email, createdAt, summary, content, reply } = letter;
   const dispatch = useDispatch();
   const [isLetterViewerOpen, setIsLetterViewerOpen] = useState(false);
   const [isReplyViewerOpen, setIsReplyViewerOpen] = useState(false);
@@ -53,7 +53,7 @@ function TableRow({ no, letter }) {
         </div>
       </td>
       <td className="border p-2 text-center">{no}</td>
-      <td className="border p-2 text-center">{memberId}</td>
+      <td className="border p-2 text-center">{email}</td>
       <td className="border p-2 text-center">
         {formatDateToYYDDMMHHMM(createdAt)}
       </td>

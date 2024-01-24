@@ -31,7 +31,6 @@ export default function PetsBox() {
         petsNames={petsNames}
         onClick={setSelectedPet}
         selectedPet={selectedPet}
-        className="gap-2.5"
       />
       <PetInfo pet={filteredPet} letterCount={filteredPet.letterCount} />
     </>
