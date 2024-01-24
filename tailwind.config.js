@@ -10,6 +10,9 @@ module.exports = {
       md: '388px',
     },
     extend: {
+      width: {
+        inherit: 'inherit',
+      },
       fontSize: {
         'heading-1': ['1.875rem', { lineHeight: '130%', fontWeight: '600' }],
         'heading-1-pc': ['3rem', { lineHeight: '130%', fontWeight: '600' }],
