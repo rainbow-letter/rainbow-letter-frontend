@@ -99,6 +99,7 @@ export default function WriteLetter() {
       <TopicSuggestion />
       <ImageUploadSection setImageFile={setImageFile} />
       <Button
+        id="letter_submit"
         disabled={letter.content.length < 1 || selectedPet === null}
         onClick={() => onClickSendButton()}
         className="mt-[58px]"

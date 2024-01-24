@@ -8,7 +8,10 @@ import arrowIcon from '../../assets/ion_chevron-back-home.svg';
 export default function ContentsItem() {
   return CONTENTS_MESSAGE.map((contents) => (
     <Link to={contents.url} key={contents.id} target="_blank">
-      <article className="flex items-center pt-4 pb-[14px] pl-[26px] rounded-[15px] relative text-caption cursor-pointer shadow-default">
+      <article
+        id="content_read"
+        className="flex items-center pt-4 pb-[14px] pl-[26px] rounded-[15px] relative text-caption cursor-pointer shadow-default"
+      >
         <div className="w-8 h-8 flex justify-center items-center">
           <img src={contents.image} alt="analytics" />
         </div>
