@@ -36,6 +36,7 @@ export const formatDateToYMD = (data = new Date()) => {
 };
 
 export const formatDateToYYDDMMHHMM = (date) => {
+  if (!date) return '';
   const newDate = new Date(date);
   const year = newDate.getFullYear().toString().substr(-2);
   const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
@@ -43,7 +44,7 @@ export const formatDateToYYDDMMHHMM = (date) => {
   const hours = newDate.getHours().toString().padStart(2, '0');
   const minutes = newDate.getMinutes().toString().padStart(2, '0');
 
-  return `${year}.${day}.${month} ${hours}:${minutes}`;
+  return `${year}.${month}.${day} ${hours}:${minutes}`;
 };
 
 export const getPastDate = (daysAgo) => {
@@ -63,4 +64,22 @@ export const isFutureDate = ({ year, month, day }) => {
   currentDate.setHours(0, 0, 0, 0);
 
   return inputDate > currentDate;
+};
+
+export const isPastNextDay10AM = (dateString) => {
+  if (!dateString) return false;
+
+  const givenDate = new Date(dateString);
+  const nextDay10AM = new Date(
+    givenDate.getFullYear(),
+    givenDate.getMonth(),
+    givenDate.getDate() + 1,
+    10,
+    0,
+    0,
+    0
+  );
+
+  const now = new Date();
+  return now > nextDay10AM;
 };

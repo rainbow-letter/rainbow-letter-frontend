@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { loadLetters } from '../../../store/admin/letters';
 import { getLettersForAdmin } from '../../../api/letter';
 import { formatDateToYMD, getPastDate } from '../../../utils/date';
+import { checkLetterStatus } from '../../../utils/replyStatus';
 
 import LetterTable from './LetterTable';
 import Pagination from './Pagination';
@@ -28,7 +29,21 @@ function Letters() {
   const getLetters = async () => {
     const { startDate, endDate } = dateRange;
     const response = await getLettersForAdmin(startDate, endDate, currentPage);
-    dispatch(loadLetters(response.content));
+
+    const sortedResponse = [...response.content]
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .map((letter) => ({
+        ...letter,
+        reply: {
+          ...letter.reply,
+          status: checkLetterStatus(
+            letter.reply.inspectionTime,
+            letter.reply.timestamp
+          ),
+        },
+      }));
+
+    dispatch(loadLetters(sortedResponse));
     setTotalPages(response.totalPages);
   };
 
@@ -41,7 +56,7 @@ function Letters() {
   }, [dispatch, currentPage]);
 
   return (
-    <div className="text-solo-label">
+    <div className="w-full min-w-[600px] text-solo-label">
       <LetterTable
         dateRange={dateRange}
         onDateSet={setDates}

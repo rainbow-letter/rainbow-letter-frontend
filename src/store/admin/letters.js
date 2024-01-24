@@ -5,10 +5,12 @@ const initialState = {
 };
 
 export const LOAD_LETTERS = 'LOAD_LETTERS';
-export const TOGGLE_CHECK = 'TOGGLE_CHECK';
+export const TOGGLE_ROW_CHECK = 'TOGGLE_ROW_CHECK';
+export const TOGGLE_INSPECTION = 'TOGGLE_INSPECTION';
 export const TOGGLE_ALL_CHECKS = 'TOGGLE_ALL_CHECKS';
 export const UPDATE_SEND_DATE = 'UPDATE_SEND_DATE';
 export const UPDATE_REPLY_CONTENT = 'UPDATE_REPLY_CONTENT';
+export const SET_INSPECTION_TRUE = 'SET_INSPECTION_TRUE';
 
 export const loadLetters = (letters) => {
   return {
@@ -17,17 +19,17 @@ export const loadLetters = (letters) => {
   };
 };
 
-export const toggleCheck = (id) => {
+export const toggleRowCheck = (id) => {
   return {
-    type: TOGGLE_CHECK,
+    type: TOGGLE_ROW_CHECK,
     payload: id,
   };
 };
 
-export const toggleAllChecks = (isChecked) => {
+export const toggleInspection = (id) => {
   return {
-    type: TOGGLE_ALL_CHECKS,
-    payload: isChecked,
+    type: TOGGLE_INSPECTION,
+    payload: id,
   };
 };
 
@@ -45,14 +47,33 @@ export const updateReplyContent = (id, content, summary) => {
   };
 };
 
+export const setInspectionTrue = (id) => {
+  return {
+    type: SET_INSPECTION_TRUE,
+    payload: id,
+  };
+};
+
 export default function letters(state = initialState, action) {
   switch (action.type) {
     case LOAD_LETTERS:
       return {
         ...state,
-        letters: action.payload,
+        letters: action.payload.map((letter) => ({
+          ...letter,
+          isChecked: false,
+        })),
       };
-    case TOGGLE_CHECK:
+    case TOGGLE_ROW_CHECK:
+      return {
+        ...state,
+        letters: state.letters.map((letter) =>
+          letter.id === action.payload
+            ? { ...letter, isChecked: !letter.isChecked }
+            : letter
+        ),
+      };
+    case TOGGLE_INSPECTION:
       return {
         ...state,
         letters: state.letters.map((letter) =>
@@ -66,17 +87,6 @@ export default function letters(state = initialState, action) {
               }
             : letter
         ),
-      };
-    case TOGGLE_ALL_CHECKS:
-      return {
-        ...state,
-        letters: state.letters.map((letter) => ({
-          ...letter,
-          reply: {
-            ...letter.reply,
-            inspection: action.payload,
-          },
-        })),
       };
     case UPDATE_SEND_DATE:
       return {
@@ -104,6 +114,21 @@ export default function letters(state = initialState, action) {
                   ...letter.reply,
                   content: action.payload.content,
                   summary: action.payload.summary,
+                },
+              }
+            : letter
+        ),
+      };
+    case SET_INSPECTION_TRUE:
+      return {
+        ...state,
+        letters: state.letters.map((letter) =>
+          letter.reply.id === action.payload
+            ? {
+                ...letter,
+                reply: {
+                  ...letter.reply,
+                  inspection: true,
                 },
               }
             : letter

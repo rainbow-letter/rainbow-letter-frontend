@@ -1,51 +1,23 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-alert */
 /* eslint-disable import/no-cycle */
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  toggleCheck,
-  toggleAllChecks,
-  updateSendDate,
-} from '../../../store/admin/letters';
-import { inspectReply, sendReply } from '../../../api/reply';
+import { updateSendDate } from '../../../store/admin/letters';
+import { sendReply } from '../../../api/reply';
 import TableRow from './TableRow';
 
 function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
   const dispatch = useDispatch();
   const { letters } = useSelector((state) => state.letters);
-  const [selectAll, setSelectAll] = useState(false);
-
-  const handleSelectAll = async () => {
-    const newSelectAll = !selectAll;
-    setSelectAll(newSelectAll);
-
-    const requests = letters
-      .filter((letter) => letter.reply.inspection !== newSelectAll)
-      .map(async (letter) => {
-        try {
-          await inspectReply(letter.reply.id);
-          return { id: letter.reply.id, success: true };
-        } catch (error) {
-          return { id: letter.reply.id, success: false, error };
-        }
-      });
-
-    const results = await Promise.allSettled(requests);
-
-    results.forEach((result) => {
-      if (result.status === 'fulfilled' && result.value.success) {
-        dispatch(toggleCheck(result.value.id));
-      } else if (result.status === 'fulfilled') {
-        alert('Error inspecting reply:', result.value.error);
-      }
-    });
-
-    dispatch(toggleAllChecks(newSelectAll));
-  };
 
   const handleSendReplies = async () => {
     const letterToSend = letters
-      .filter((letter) => letter.reply.inspection && !letter.reply.timestamp)
+      .filter(
+        (letter) =>
+          letter.isChecked && letter.reply.inspection && !letter.reply.timestamp
+      )
       .map(async (letter) => {
         try {
           await sendReply(letter.reply.id, { letterId: letter.id });
@@ -74,6 +46,17 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
     const newDate = { ...dateRange, ...date };
     onDateSet(newDate);
   };
+
+  const areAllCheckedLettersFailed = (letters) => {
+    const checkedLetters = letters.filter((letter) => letter.isChecked);
+    if (checkedLetters.length === 0) {
+      return false;
+    }
+
+    return checkedLetters.every((letter) => letter.reply.status === '실패');
+  };
+
+  const allCheckedAreFailed = areAllCheckedLettersFailed(letters);
 
   return (
     <div className="p-4">
@@ -105,15 +88,13 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
         </div>
         <div>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+            className={`${
+              !allCheckedAreFailed
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-green-500 hover:bg-green-700'
+            } text-white font-bold py-2 px-4 rounded`}
             type="button"
-            onClick={handleSelectAll}
-          >
-            {selectAll ? '전체 해제' : '전체 선택'}
-          </button>
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
+            disabled={!allCheckedAreFailed}
             onClick={handleSendReplies}
           >
             편지 보내기
@@ -124,18 +105,22 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
         <table className="w-full min-w-[870px] table-auto border-collapse mt-4">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border px-4 py-2">번호</th>
+              <th className="border px-4 py-2">행 체크</th>
+              <th className="border px-4 py-2">행 NO.</th>
               <th className="border px-4 py-2">사용자 ID</th>
               <th className="border px-4 py-2">편지 등록일</th>
               <th className="border px-4 py-2">편지 원본</th>
-              <th className="border px-4 py-2">GPT 답장</th>
+              <th className="border px-4 py-2">GPT 답장 원본</th>
+              <th className="border px-4 py-2">최종 답장</th>
               <th className="border px-4 py-2">검수 여부</th>
+              <th className="border px-4 py-2">검수일</th>
+              <th className="border px-4 py-2">답장 발송 여부</th>
               <th className="border px-4 py-2">답장 발송일</th>
             </tr>
           </thead>
           <tbody>
-            {letters?.map((letter) => (
-              <TableRow key={letter.id} letter={letter} />
+            {letters?.map((letter, index) => (
+              <TableRow key={letter.id} no={index + 1} letter={letter} />
             ))}
           </tbody>
         </table>

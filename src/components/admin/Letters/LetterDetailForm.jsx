@@ -3,12 +3,13 @@ import React, { useState, useRef } from 'react';
 import useModalClose from '../../../hooks/useModalClose';
 
 const MAX_CONTENT_LENGTH = 1000;
-function LetterDetailForm({ mode, isOpen, content, onClose, onSave }) {
+function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
   const isViewer = mode === 'view';
   const modalRef = useRef();
   const [contentValue, setContentValue] = useState(content);
   const isContentValidAndChanged =
-    content !== contentValue && contentValue.length <= MAX_CONTENT_LENGTH;
+    (content !== contentValue && contentValue.length <= MAX_CONTENT_LENGTH) ||
+    !isSent;
 
   useModalClose(modalRef, onClose);
 
@@ -39,8 +40,10 @@ function LetterDetailForm({ mode, isOpen, content, onClose, onSave }) {
           <div className="flex">
             {isViewer || (
               <button
-                className={`bg-green-500 ${
-                  isContentValidAndChanged && 'hover:bg-green-700'
+                className={`${
+                  isContentValidAndChanged
+                    ? 'bg-green-500 hover:bg-green-700'
+                    : 'bg-green-300'
                 } text-white font-bold py-2 px-4 mr-3 rounded`}
                 type="button"
                 disabled={!isContentValidAndChanged}
