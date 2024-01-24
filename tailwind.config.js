@@ -6,9 +6,6 @@ module.exports = {
       sans: ['Noto Sans KR', 'sans-serif'],
       OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
     },
-    screens: {
-      md: '388px',
-    },
     extend: {
       width: {
         inherit: 'inherit',

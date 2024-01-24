@@ -49,6 +49,8 @@ export const CONTENTS_MESSAGE = [
   },
 ];
 
+export const PHONE_MESSAGE = '자살예방 상담전화 109';
+
 export const FOOTER_MESSAGE = Object.freeze({
   ADDRESS: '문의 | rainbowletter41@gmail.com',
   COPYRIGHT: 'Copyright © 2023 무지개편지',
