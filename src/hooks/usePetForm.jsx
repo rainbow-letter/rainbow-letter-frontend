@@ -6,7 +6,7 @@ import { updateImageAndGetId } from '../api/images';
 import { generateFormData } from '../utils/formData';
 import { isFutureDate } from '../utils/date';
 
-const usePetForm = (initialData, onSuccess, onError) => {
+const usePetForm = (initialData, onSuccess, onError, id) => {
   const { pathname } = useLocation();
   const isEdit = pathname.includes('edit');
 
@@ -76,7 +76,7 @@ const usePetForm = (initialData, onSuccess, onError) => {
       };
 
       if (isEdit) {
-        await updatePet(dataToSubmit, initialData.id);
+        await updatePet(dataToSubmit, id);
       } else {
         await registerPet(dataToSubmit);
       }

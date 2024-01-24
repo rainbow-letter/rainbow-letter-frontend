@@ -28,9 +28,10 @@ function PetEdit() {
   };
 
   const { isAllMandatoryDataFilled, handleSubmit } = usePetForm(
-    pet,
+    mandatoryData,
     onSuccess,
-    onError
+    onError,
+    petId
   );
 
   useEffect(() => {

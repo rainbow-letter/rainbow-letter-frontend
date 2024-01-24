@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { toggleRowCheck, toggleInspection } from '../../../store/admin/letters';
 import { formatDateToYYDDMMHHMM } from '../../../utils/date';
+import { extractFirstTenChars } from '../../../utils/string';
 import { inspectReply } from '../../../api/reply';
 import Editor from './Editor';
 import Viewer from './Viewer';
@@ -17,6 +18,8 @@ function TableRow({ no, letter, isChecked }) {
   const [isReplyEditorOpen, setIsReplyEditorOpen] = useState(false);
   const isInspectionDisabled =
     reply.status === '성공' || reply.status === '실패' || reply.id === null;
+  const gptReplySummary =
+    reply.chatGptContent && extractFirstTenChars(reply.chatGptContent);
 
   const handleRowCheck = () => {
     dispatch(toggleRowCheck(id));
@@ -71,7 +74,7 @@ function TableRow({ no, letter, isChecked }) {
           type="button"
           onClick={toggleReplyViewer}
         >
-          {reply.summary}
+          {gptReplySummary}
         </button>
       </td>
       <td className="border p-2">
@@ -121,7 +124,7 @@ function TableRow({ no, letter, isChecked }) {
       <Viewer
         id={id}
         isOpen={isReplyViewerOpen}
-        content={reply.content}
+        content={reply.chatGptContent}
         onClose={toggleReplyViewer}
       />
       <Editor
