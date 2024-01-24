@@ -10,7 +10,7 @@ export default function ContentsSection() {
       <h3 className="mt-[42px] text-solo-large font-semibold">
         {INFO_MESSAGES.CONTENTS_TITLE}
       </h3>
-      <div className="mt-5 flex flex-wrap md:gap-[18px] gap-[19px]">
+      <div className="mt-5 flex flex-col gap-4">
         <ContentsItem />
       </div>
     </section>
