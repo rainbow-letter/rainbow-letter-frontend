@@ -71,7 +71,7 @@ function TableRow({ no, letter, isChecked }) {
           type="button"
           onClick={toggleReplyViewer}
         >
-          {reply.chatGptContent}
+          {reply.summary}
         </button>
       </td>
       <td className="border p-2">
