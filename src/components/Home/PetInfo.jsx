@@ -8,6 +8,7 @@ import { calculateDDay } from '../../utils/date';
 import letter from '../../assets/fa-regular_message_color.svg';
 import heart from '../../assets/fa-regular_heart_color.svg';
 import arrow from '../../assets/ion_chevron-back-home.svg';
+import defaultImage from '../../assets/Logo_256px.png';
 
 export default function PetInfo({ pet, letterCount }) {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function PetInfo({ pet, letterCount }) {
       className="rounded-[15px] mt-5 py-[13px] pl-5 flex flex-row items-center relative cursor-pointer shadow-default"
     >
       <img
-        src={pet && pet.image.url}
+        src={(pet && pet.image.url) || defaultImage}
         alt="pet"
         className="h-[88px] w-[88px] rounded-full mr-7"
       />
