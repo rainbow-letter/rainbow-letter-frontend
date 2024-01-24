@@ -16,7 +16,11 @@ function Layout() {
 
   return (
     <div className="w-full h-full min-w-[360px] flex justify-center bg-white">
-      <div className={`${isHomeLayOut ? 'px-0' : 'px-5'} w-[390px] bg-white`}>
+      <div
+        className={`${
+          isHomeLayOut ? 'px-0' : 'px-5'
+        } max-w-[390px] w-full bg-white`}
+      >
         <Outlet />
       </div>
     </div>
