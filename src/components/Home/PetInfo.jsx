@@ -33,7 +33,7 @@ export default function PetInfo({ pet, letterCount }) {
         <div className="flex items-center gap-2 mb-2">
           <h5 className="text-orange-400 text-solo-large">{pet && pet.name}</h5>
           <span className="text-caption text-gray-2 leading-none ">
-            {deathAnniversaryDDay}
+            {deathAnniversaryDDay}ㄹ ㅇ
           </span>
         </div>
         <div className="text-gray-1">
