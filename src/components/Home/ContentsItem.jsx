@@ -8,14 +8,18 @@ import arrowIcon from '../../assets/ion_chevron-back-home.svg';
 export default function ContentsItem() {
   return CONTENTS_MESSAGE.map((contents) => (
     <Link to={contents.url} key={contents.id} target="_blank">
-      <article className="w-[153px] py-4 md:w-[160px] md:py-[19px] pl-5 rounded-[15px] relative text-caption cursor-pointer shadow-default">
-        <img src={arrowIcon} alt="arrow" className="absolute top-5 right-4" />
-        <img src={contents.image} alt="analytics" />
-        <h3 className="mt-[14px] text-gray-1 font-bold">{contents.title}</h3>
-        <p className="mt-[11px]">
-          {contents.description_top_row} <br />{' '}
-          {contents.description_bottom_line}
-        </p>
+      <article
+        id="content_read"
+        className="flex items-center pt-4 pb-[14px] pl-[26px] rounded-[15px] relative text-caption cursor-pointer shadow-default"
+      >
+        <div className="w-8 h-8 flex justify-center items-center">
+          <img src={contents.image} alt="analytics" />
+        </div>
+        <div className="flex flex-col ml-[14px]">
+          <h3 className="text-gray-1 font-bold">{contents.title}</h3>
+          <p>{contents.description}</p>
+        </div>
+        <img src={arrowIcon} alt="arrow" className="absolute right-3" />
       </article>
     </Link>
   ));

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Button({ className, disabled, children, onClick }) {
+function Button({ className, disabled, children, onClick, id }) {
   const styles = className || '';
   const disabledStyles = disabled
     ? 'bg-gray-1 text-gray-1'
@@ -8,6 +8,7 @@ function Button({ className, disabled, children, onClick }) {
 
   return (
     <button
+      id={id}
       className={`${styles} ${disabledStyles} w-full h-[70px] text-heading-3 font-semibold rounded-2xl`}
       type="button"
       disabled={disabled}
