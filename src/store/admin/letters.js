@@ -1,5 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable default-param-last */
+import { checkLetterStatus } from '../../utils/replyStatus';
+
 const initialState = {
   letters: [],
 };
@@ -76,18 +78,31 @@ export default function letters(state = initialState, action) {
     case TOGGLE_INSPECTION:
       return {
         ...state,
-        letters: state.letters.map((letter) =>
-          letter.reply.id === action.payload
-            ? {
-                ...letter,
-                reply: {
-                  ...letter.reply,
-                  inspection: !letter.reply.inspection,
-                },
-              }
-            : letter
-        ),
+        letters: state.letters.map((letter) => {
+          if (letter.reply.id === action.payload) {
+            const isCurrentlyInspected = letter.reply.inspection;
+            const inspectionTime = isCurrentlyInspected
+              ? null
+              : new Date().toISOString();
+
+            return {
+              ...letter,
+              reply: {
+                ...letter.reply,
+                inspection: !isCurrentlyInspected,
+                inspectionTime,
+                status: checkLetterStatus(
+                  inspectionTime,
+                  letter.reply.timestamp
+                ),
+              },
+            };
+          }
+
+          return letter;
+        }),
       };
+
     case UPDATE_SEND_DATE:
       return {
         ...state,
@@ -107,13 +122,18 @@ export default function letters(state = initialState, action) {
       return {
         ...state,
         letters: state.letters.map((letter) =>
-          letter.id === action.payload.id
+          letter.reply.id === action.payload.id
             ? {
                 ...letter,
                 reply: {
                   ...letter.reply,
                   content: action.payload.content,
                   summary: action.payload.summary,
+                  inspectionTime: new Date().toISOString(),
+                  status: checkLetterStatus(
+                    new Date().toISOString(),
+                    letter.reply.timestamp
+                  ),
                 },
               }
             : letter
