@@ -60,6 +60,7 @@ export default function DetailLetter() {
           />
           {letterData.image.id && <SentPhoto letterData={letterData} />}
           <Button
+            id="reply_write"
             disabled={!letterData.reply.content}
             onClick={onClickReplyButton}
             className="mt-12"

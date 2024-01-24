@@ -35,6 +35,7 @@ function LikeButton({ favoriteData }) {
 
   return (
     <button
+      id="click_heart"
       className="flex w-full px-5 py-4 flex-1 items-center justify-between border text-orange-400 border-orange-400 rounded-2xl"
       disabled={!likeData.canIncrease}
       type="button"
