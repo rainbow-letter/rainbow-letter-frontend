@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { QUESTION_PREFIX, FAQS } from './constants';
 // eslint-disable-next-line import/no-cycle
-import { getFaqs } from '../../api/faqs';
+// import { getFaqs } from '../../api/faqs';
 
 function FAQ({ FAQData }) {
   return (
@@ -19,30 +19,30 @@ function FAQ({ FAQData }) {
 }
 
 function FAQs() {
-  const [FAQData, setFAQData] = useState([]);
+  // TODO: API 연결 후 수정
+  // const [FAQData, setFAQData] = useState([]);
 
-  useEffect(() => {
-    const fetchAndSetFAQs = async () => {
-      const res = await getFaqs();
-      const transformedData = res.faqs.map((faq) => ({
-        id: faq.id,
-        question: faq.summary,
-        answer: faq.detail,
-      }));
+  // useEffect(() => {
+  //   const fetchAndSetFAQs = async () => {
+  //     const res = await getFaqs();
+  //     const transformedData = res.faqs.map((faq) => ({
+  //       id: faq.id,
+  //       question: faq.summary,
+  //       answer: faq.detail,
+  //     }));
 
-      // TODO: API 연결 후 수정
-      const data = transformedData.length > 0 ? transformedData : FAQS;
+  //     const data = transformedData.length > 0 ? transformedData : FAQS;
 
-      setFAQData(data);
-    };
+  //     setFAQData(data);
+  //   };
 
-    fetchAndSetFAQs();
-  }, []);
+  //   fetchAndSetFAQs();
+  // }, []);
 
   return (
-    <section className="h-screen flex flex-col gap-y-3 mt-[22px]">
-      {!!FAQData.length &&
-        FAQData.map((faq) => (
+    <section className="h-full flex flex-col gap-y-[32px] mt-[22px]">
+      {!!FAQS.length &&
+        FAQS.map((faq) => (
           <FAQ
             key={faq.id}
             FAQData={{ question: faq.question, answer: faq.answer }}
