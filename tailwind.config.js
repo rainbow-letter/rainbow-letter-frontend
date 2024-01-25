@@ -60,7 +60,7 @@ module.exports = {
       },
       boxShadow: {
         default: '0px 0px 10px 0px rgba(0, 0, 0, 0.15)',
-        home: '0px 0px 7px 0px rgba(0, 0, 0, 0.15)',
+        home: '0px 0px 5px 0px rgba(0, 0, 0, 0.15)',
       },
     },
   },
