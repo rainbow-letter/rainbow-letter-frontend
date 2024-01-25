@@ -1,6 +1,6 @@
-/* eslint-disable consistent-return */
+/* eslint-disable */
 /* eslint-disable import/no-cycle */
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,6 +30,7 @@ export default function WriteLetter() {
     content: '',
     image: null,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -59,8 +60,9 @@ export default function WriteLetter() {
     return response.id;
   };
 
-  const onClickSendButton = async () => {
+  const onClickSendButton = useCallback(async () => {
     try {
+      setIsLoading(true);
       const newLetter = { ...letter };
       if (imageFile) {
         const imageId = await uploadImage(imageFile);
@@ -76,8 +78,10 @@ export default function WriteLetter() {
       return dispatch(openModal('COMPLETE'));
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, [letter, imageFile, selectedPet]);
 
   return (
     <main>
@@ -98,14 +102,19 @@ export default function WriteLetter() {
       />
       <TopicSuggestion />
       <ImageUploadSection setImageFile={setImageFile} />
-      <Button
-        id="letter_submit"
-        disabled={letter.content.length < 1 || selectedPet === null}
-        onClick={() => onClickSendButton()}
-        className="mt-[58px]"
-      >
-        편지 보내기
-      </Button>
+
+      {!isLoading ? (
+        <Button
+          id="letter_submit"
+          disabled={letter.content.length < 1 || selectedPet === null}
+          onClick={() => onClickSendButton()}
+          className="mt-[58px]"
+        >
+          편지 보내기
+        </Button>
+      ) : (
+        <Button className="mt-[58px]">편지 보내는 중</Button>
+      )}
     </main>
   );
 }
