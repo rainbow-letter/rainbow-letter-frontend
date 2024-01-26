@@ -44,7 +44,7 @@ export default function WriteLetter() {
         setSelectedPet(pets[0] || null);
       } else {
         const finedPet = pets.find((pet) => pet.name === location.state);
-        setSelectedPet(finedPet);
+        setSelectedPet(finedPet || pets[0]);
       }
 
       return () => {
