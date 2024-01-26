@@ -1,8 +1,11 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/no-cycle */
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { checkTokenValidity } from './api/user';
+import { removeToken } from './store/user';
 import Home from './view/Home';
 import Login from './view/Login';
 import Join from './view/Join';
@@ -23,16 +26,31 @@ import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
 import DetailLetter from './view/DetailLetter';
 import ShareLetter from './view/ShareLetter';
-
 import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';
 import AdminLayout from './components/Layout/AdminLayout';
 
 function Router() {
+  const dispatch = useDispatch();
   const { token } = useSelector((state) => state.user);
   const { isOpen } = useSelector((state) => state.modal);
 
-  const isLoggedIn = !!token;
+  const isLoggedIn = async () => {
+    if (token) {
+      try {
+        const response = await checkTokenValidity(token);
+        if (response.status === 200) {
+          return true;
+        }
+        dispatch(removeToken());
+        return false;
+      } catch (error) {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
 
   return (
     <BrowserRouter>
@@ -45,7 +63,7 @@ function Router() {
             <Route path="/auth/email" element={<Email />} />
             <Route path="/members/password/reset" element={<Password />} />
             <Route path="/oauth/success" element={<Auth />} />
-            <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
+            <Route element={<ProtectedLayout isLoggedIn={isLoggedIn()} />}>
               {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
               <Route path="/my-page" element={<MyPage />} />
               <Route path="/my-page/faqs" element={<FAQs />} />

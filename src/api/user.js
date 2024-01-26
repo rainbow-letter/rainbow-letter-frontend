@@ -15,6 +15,12 @@ export const trylogin = async (data) => {
   return response;
 };
 
+export const checkTokenValidity = async () => {
+  const response = await apiRequest.post(`${RESOURSE}/verify`);
+
+  return response;
+};
+
 export const authEmail = async (email) => {
   const response = await apiRequest.post(`${RESOURSE}/password/find`, email);
 
