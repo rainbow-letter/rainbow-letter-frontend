@@ -105,17 +105,25 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
         <table className="w-full min-w-[870px] table-auto border-collapse mt-4">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border px-4 py-2">행 체크</th>
-              <th className="border px-4 py-2">행 NO.</th>
-              <th className="border px-4 py-2">사용자 ID</th>
-              <th className="border px-4 py-2">편지 등록일</th>
-              <th className="border px-4 py-2">편지 원본</th>
-              <th className="border px-4 py-2">GPT 답장 원본</th>
-              <th className="border px-4 py-2">최종 답장</th>
-              <th className="border px-4 py-2">검수 여부</th>
-              <th className="border px-4 py-2">검수일</th>
-              <th className="border px-4 py-2">답장 발송 여부</th>
-              <th className="border px-4 py-2">답장 발송일</th>
+              <th className="border px-4 py-2 whitespace-nowrap">행 체크</th>
+              <th className="border px-4 py-2 whitespace-nowrap">행 NO.</th>
+              <th className="border px-4 py-2 whitespace-nowrap">사용자 ID</th>
+              <th className="border px-4 py-2 whitespace-nowrap">
+                편지 등록일
+              </th>
+              <th className="border px-4 py-2 whitespace-nowrap">편지 원본</th>
+              <th className="border px-4 py-2 whitespace-nowrap">
+                GPT 답장 원본
+              </th>
+              <th className="border px-4 py-2 whitespace-nowrap">최종 답장</th>
+              <th className="border px-4 py-2 whitespace-nowrap">검수 여부</th>
+              <th className="border px-4 py-2 whitespace-nowrap">검수일</th>
+              <th className="border px-4 py-2 whitespace-nowrap">
+                답장 발송 여부
+              </th>
+              <th className="border px-4 py-2 whitespace-nowrap">
+                답장 발송일
+              </th>
             </tr>
           </thead>
           <tbody>
