@@ -1,6 +1,7 @@
 import analytics from '../../assets/Analytics Pie.svg';
 import bookmark from '../../assets/Bookmark.svg';
 import coffee from '../../assets/ph_coffee.svg';
+import megaphone from '../../assets/Megaphone.svg';
 
 export const INFO_MESSAGES = Object.freeze({
   LOGIN_ABSENT: '앗, 로그인 하셔야 해요',
@@ -21,31 +22,31 @@ export const USER_ACTIONS = Object.freeze({
 export const CONTENTS_MESSAGE = [
   {
     id: 0,
-    title: '설문조사',
-    description: '무지개 편지에 의견을 보내주세요!',
-    image: analytics,
-    url: 'https://forms.gle/bHsDq3XSqHsMuSh36',
+    title: '공지사항',
+    description: '새로운 사이트 이용 방법 안내',
+    image: megaphone,
+    url: 'https://blog.naver.com/rainbowletter/223331486755',
   },
   {
     id: 1,
-    title: '전문가 인터뷰',
-    description: '편지 쓰기가 정말 도움이 되나요?',
-    image: bookmark,
-    url: 'https://blog.naver.com/rainbowletter/223324381170',
-  },
-  {
-    id: 2,
     title: '따뜻한 조언',
     description: '무지개마을 그림을 그린 잔디 언니 이야기',
     image: coffee,
     url: 'https://blog.naver.com/rainbowletter/223324567774',
   },
   {
+    id: 2,
+    title: '전문가 인터뷰',
+    description: '편지 쓰기가 정말 도움이 되나요?',
+    image: bookmark,
+    url: 'https://blog.naver.com/rainbowletter/223324381170',
+  },
+  {
     id: 3,
     title: '설문조사',
-    description: '아이와의 마지막날로 돌아간다면',
+    description: '무지개 편지에 의견을 보내주세요!',
     image: analytics,
-    url: 'https://forms.gle/6j2HfvdwjH66Scrh8',
+    url: 'https://forms.gle/bHsDq3XSqHsMuSh36',
   },
 ];
 
