@@ -60,7 +60,7 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
           disabled={!isDisabled || isSubmitting}
           onClick={handleButtonClick(handleSubmit)}
         >
-          <span>등록하기</span>
+          <span>{isSubmitting ? '등록 중' : '등록하기'}</span>
         </Button>
       </section>
     </div>
