@@ -84,7 +84,6 @@ export default function letters(state = initialState, action) {
             const inspectionTime = isCurrentlyInspected
               ? null
               : new Date().toISOString();
-
             return {
               ...letter,
               reply: {
