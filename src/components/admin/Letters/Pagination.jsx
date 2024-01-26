@@ -35,7 +35,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   };
 
   return (
-    <div className="flex justify-center items-center space-x-2 mt-2.5">
+    <div className="flex justify-center items-center space-x-2 pb-7 mt-2.5">
       {totalPages > 10 && (
         <button
           className="w-7 h-7 rounded"

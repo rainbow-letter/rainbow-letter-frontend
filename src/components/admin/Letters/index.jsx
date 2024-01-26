@@ -49,6 +49,11 @@ function Letters() {
     setCurrentPage(pageNumber);
   };
 
+  const handleLetterFilter = () => {
+    setCurrentPage(0);
+    getLetters();
+  };
+
   useEffect(() => {
     getLetters();
   }, [dispatch, currentPage]);
@@ -58,7 +63,7 @@ function Letters() {
       <LetterTable
         dateRange={dateRange}
         onDateSet={setDates}
-        onLetterFilter={getLetters}
+        onLetterFilter={handleLetterFilter}
       />
       <Pagination
         currentPage={currentPage}
