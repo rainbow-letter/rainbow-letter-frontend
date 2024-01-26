@@ -119,9 +119,11 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
             </tr>
           </thead>
           <tbody>
-            {letters?.map((letter, index) => (
-              <TableRow key={letter.id} no={index + 1} letter={letter} />
-            ))}
+            {letters
+              ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .map((letter, index) => (
+                <TableRow key={letter.id} no={index + 1} letter={letter} />
+              ))}
           </tbody>
         </table>
       </div>

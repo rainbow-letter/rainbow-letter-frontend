@@ -30,18 +30,16 @@ function Letters() {
     const { startDate, endDate } = dateRange;
     const response = await getLettersForAdmin(startDate, endDate, currentPage);
 
-    const sortedResponse = [...response.content]
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      .map((letter) => ({
-        ...letter,
-        reply: {
-          ...letter.reply,
-          status: checkLetterStatus(
-            letter.reply.inspectionTime,
-            letter.reply.timestamp
-          ),
-        },
-      }));
+    const sortedResponse = [...response.content].map((letter) => ({
+      ...letter,
+      reply: {
+        ...letter.reply,
+        status: checkLetterStatus(
+          letter.reply.inspectionTime,
+          letter.reply.timestamp
+        ),
+      },
+    }));
 
     dispatch(loadLetters(sortedResponse));
     setTotalPages(response.totalPages);
