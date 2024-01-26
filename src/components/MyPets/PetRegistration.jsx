@@ -14,8 +14,8 @@ function PetRegistration() {
     navigate(-1);
   };
 
-  const onError = () => {
-    // TODO: 에러 처리
+  const onError = (error) => {
+    alert(error);
   };
 
   const { isAllMandatoryDataFilled, handleSubmit } = usePetRegistrationForm(
