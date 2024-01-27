@@ -41,10 +41,11 @@ export default function WritingPadSection({
             });
           }}
           ref={textarea}
-          rows={9}
+          rows={7}
           defaultValue={reply}
           readOnly={reply}
-          className={`${textareaStyle} w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:32px_32px] leading-8 text-clip`}
+          spellCheck="false"
+          className={`${textareaStyle} whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:1px_48.62px] leading-[187%] text-clip`}
         />
         <p className="font-sans text-caption text-gray-1 text-right">{date}</p>
       </section>
