@@ -1,10 +1,10 @@
 /* eslint-disable */
 import apiRequest from '.';
 
-const RESOURSE = '/api/images';
+const RESOURCE = '/api/images';
 
 export const updateImageAndGetId = async (data) => {
-  const response = await apiRequest.post(`${RESOURSE}/upload?type=PET`, data);
+  const response = await apiRequest.post(`${RESOURCE}/upload?type=PET`, data);
 
   return response;
 };

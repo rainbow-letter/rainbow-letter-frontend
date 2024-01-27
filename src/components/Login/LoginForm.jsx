@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import UserInput from './UserInput';
 import SubmitButton from './SubmitButton';
-import { trylogin } from '../../api/user';
+import { tryLogin } from '../../api/user';
 import { getToken } from '../../store/user';
 import {
   emailError,
@@ -31,7 +31,7 @@ export default function LoginForm({ message: { describe, button } }) {
     async (e) => {
       try {
         e.preventDefault();
-        const { token } = await trylogin(profile);
+        const { token } = await tryLogin(profile);
 
         setErrorData(null);
         dispatch(getToken(token));

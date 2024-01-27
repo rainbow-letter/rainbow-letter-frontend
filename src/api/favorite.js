@@ -1,10 +1,10 @@
 /* eslint-disable */
 import apiRequest from '.';
 
-const RESOURSE = '/api/favorite';
+const RESOURCE = '/api/favorite';
 
 export const incrementLikes = async (favoriteId) => {
-  const response = await apiRequest.post(`${RESOURSE}/${favoriteId}`);
+  const response = await apiRequest.post(`${RESOURCE}/${favoriteId}`);
 
   return response;
 };

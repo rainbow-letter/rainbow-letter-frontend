@@ -1,10 +1,10 @@
 /* eslint-disable */
 import apiRequest from '.';
 
-const RESOURSE = '/api/replies/read';
+const RESOURCE = '/api/replies/read';
 
 export const readReply = async (id) => {
-  const response = await apiRequest.post(`${RESOURSE}/${id}`);
+  const response = await apiRequest.post(`${RESOURCE}/${id}`);
 
   return response;
 };

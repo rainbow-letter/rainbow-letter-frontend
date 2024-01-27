@@ -1,58 +1,52 @@
 /* eslint-disable */
 import apiRequest from '.';
 
-const RESOURSE = '/api/members';
+const RESOURCE = '/api/members';
 
 export const trySignUp = async (data) => {
-  const response = await apiRequest.post(`${RESOURSE}`, data);
+  const response = await apiRequest.post(`${RESOURCE}`, data);
 
   return response;
 };
 
-export const trylogin = async (data) => {
-  const response = await apiRequest.post(`${RESOURSE}/login`, data);
-
-  return response;
-};
-
-export const checkTokenValidity = async () => {
-  const response = await apiRequest.post(`${RESOURSE}/verify`);
+export const tryLogin = async (data) => {
+  const response = await apiRequest.post(`${RESOURCE}/login`, data);
 
   return response;
 };
 
 export const authEmail = async (email) => {
-  const response = await apiRequest.post(`${RESOURSE}/password/find`, email);
+  const response = await apiRequest.post(`${RESOURCE}/password/find`, email);
 
   return response;
 };
 
 export const updatePassword = async (data) => {
-  const response = await apiRequest.put(`${RESOURSE}/password/reset`, data);
+  const response = await apiRequest.put(`${RESOURCE}/password/reset`, data);
 
   return response;
 };
 
 export const updatePhoneNumber = async (data) => {
-  const response = await apiRequest.put(`${RESOURSE}/phoneNumber`, data);
+  const response = await apiRequest.put(`${RESOURCE}/phoneNumber`, data);
 
   return response;
 };
 
 export const deletePhoneNumber = async () => {
-  const response = await apiRequest.delete(`${RESOURSE}/phoneNumber`);
+  const response = await apiRequest.delete(`${RESOURCE}/phoneNumber`);
 
   return response;
 };
 
 export const getUserInfo = async () => {
-  const response = await apiRequest.get(`${RESOURSE}/info`);
+  const response = await apiRequest.get(`${RESOURCE}/info`);
 
   return response;
 };
 
 export const deleteUser = async () => {
-  const response = await apiRequest.delete(`${RESOURSE}/leave`);
+  const response = await apiRequest.delete(`${RESOURCE}/leave`);
 
   return response;
 };

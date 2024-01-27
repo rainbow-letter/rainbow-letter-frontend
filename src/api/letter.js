@@ -2,28 +2,28 @@
 import apiRequest from '.';
 import { formatDateToYMD } from '../utils/date';
 
-const RESOURSE = '/api/letters';
+const RESOURCE = '/api/letters';
 
 export const getLetters = async () => {
-  const response = await apiRequest.get(`${RESOURSE}/list`);
+  const response = await apiRequest.get(`${RESOURCE}/list`);
 
   return response;
 };
 
 export const getLetter = async (id) => {
-  const response = await apiRequest.get(`${RESOURSE}/${id}`);
+  const response = await apiRequest.get(`${RESOURCE}/${id}`);
 
   return response;
 };
 
 export const sendLetter = async (id, letter) => {
-  const response = await apiRequest.post(`${RESOURSE}?pet=${id}`, letter);
+  const response = await apiRequest.post(`${RESOURCE}?pet=${id}`, letter);
 
   return response;
 };
 
 export const getShareLetter = async (uuid) => {
-  const response = await apiRequest.get(`${RESOURSE}/share/${uuid}`);
+  const response = await apiRequest.get(`${RESOURCE}/share/${uuid}`);
 
   return response;
 };
@@ -38,7 +38,7 @@ export const getLettersForAdmin = async (
   size = DEFAULT_LETTERS_PER_PAGE
 ) => {
   const response = await apiRequest.get(
-    `${RESOURSE}/admin/list?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}`
+    `${RESOURCE}/admin/list?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}`
   );
 
   return response;

@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import UserInput from '../UserInput';
 import Agree from './Agree';
 import SubmitButton from '../SubmitButton';
-import { trySignUp, trylogin } from '../../../api/user';
+import { trySignUp, tryLogin } from '../../../api/user';
 import { getToken } from '../../../store/user';
 import { validateEmail, validatePassword } from '../../../utils/validators';
 import {
@@ -52,7 +52,7 @@ export default function SignUpForm({ message: { describe, button } }) {
           return alert('서비스 이용약관 및 개인정보 처리방침을 체크해주세요!');
         }
         await trySignUp(profile);
-        const { token } = await trylogin(profile);
+        const { token } = await tryLogin(profile);
         dispatch(getToken(token));
 
         setErrorData(null);
