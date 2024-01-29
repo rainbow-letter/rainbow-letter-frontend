@@ -30,7 +30,7 @@ export const CONTENTS_MESSAGE = [
   {
     id: 1,
     title: '따뜻한 조언',
-    description: '무지개마을 그림을 그린 잔디 언니 이야기',
+    description: '무지개 마을을 그린 잔디 언니 인터뷰',
     image: coffee,
     url: 'https://blog.naver.com/rainbowletter/223324567774',
   },
@@ -51,6 +51,7 @@ export const CONTENTS_MESSAGE = [
 ];
 
 export const PHONE_MESSAGE = '자살예방 상담전화 109';
+export const OPEN_TALK_MESSAGE = '오류 시 오픈카카오톡 문의하기';
 
 export const FOOTER_MESSAGE = Object.freeze({
   ADDRESS: '문의 | rainbowletter41@gmail.com',

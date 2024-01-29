@@ -8,7 +8,7 @@ export default function PhoneButton() {
     document.location.href = 'tel:109';
   };
   return (
-    <section className="px-[25px] my-[34px] ">
+    <section className="px-[25px] mb-[38px] ">
       <button
         type="button"
         onClick={() => onPhoneButtonclick()}

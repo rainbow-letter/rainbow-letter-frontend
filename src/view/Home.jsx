@@ -6,6 +6,7 @@ import LogoBar from '../components/Home/LogoBar';
 import BackgroundSection from '../components/Home/BackgroundSection';
 import PetsSection from '../components/Home/PetsSection';
 import ContentsSection from '../components/Home/ContentsSection';
+import OpenTalk from '../components/Home/OpenTalk';
 import PhoneButton from '../components/Home/PhoneButton';
 import Divider from '../components/Divider';
 import HomeFooter from '../components/Home/HomeFooter';
@@ -20,6 +21,7 @@ export default function LandingPage() {
       <BackgroundSection />
       <PetsSection isLoggedIn={!!token} />
       <ContentsSection />
+      <OpenTalk />
       <PhoneButton />
       <Divider />
       <HomeFooter />
