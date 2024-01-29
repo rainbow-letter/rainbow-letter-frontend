@@ -26,6 +26,7 @@ export default function Password() {
     type: '',
     message: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     dispatch(getToken(searchParams.get('token')));
@@ -51,6 +52,7 @@ export default function Password() {
 
   const onClickUpdatePasswordButton = useCallback(async () => {
     try {
+      setIsLoading(true);
       isCheckProperPassword();
       await updatePassword({
         password: null,
@@ -67,6 +69,8 @@ export default function Password() {
         type: error.message,
         message: ERROR_MESSAGE[error.message],
       });
+    } finally {
+      setIsLoading(false);
     }
   }, [userInfo, errorData]);
 
@@ -110,6 +114,7 @@ export default function Password() {
           errorMessage={errorData && errorData.message}
         />
         <SubmitButton
+          disabled={isLoading}
           onclick={() => onClickUpdatePasswordButton()}
           value={UPDATE_PASSWORD_MESSAGE.UPDATE}
           className="w-full rounded-[15px] flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[22px] mt-[55px]"
