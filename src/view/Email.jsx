@@ -10,11 +10,13 @@ import { FIND_EMAIL_MESSAGE } from '../components/Login/constants';
 export default function Email() {
   const [auth, setAuth] = useState({ email: '' });
   const [errorData, setErrorData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onClickFindEmailButton = async () => {
     try {
       await authEmail(auth);
       alert('비밀번호 변경 메일이 발송됐어요!');
+      setIsLoading(true);
     } catch (error) {
       setErrorData(error.response.data);
     }
@@ -39,6 +41,7 @@ export default function Email() {
       />
       <button
         type="submit"
+        disabled={isLoading}
         onClick={() => onClickFindEmailButton()}
         className="w-full rounded-[15px] flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[22px] mt-[20px]"
       >
