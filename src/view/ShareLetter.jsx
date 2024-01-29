@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { getShareLetter } from '../api/letter';
 import WritingPadSection from '../components/Write/WritingPadSection';
+import SentPhoto from '../components/LetterBox/SentPhoto';
 import AppBar from '../components/AppBar';
 import NavBar from '../components/NavBar';
 import Button from '../components/Button';
