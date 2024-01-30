@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import LogoBar from '../components/Home/LogoBar';
 import BackgroundSection from '../components/Home/BackgroundSection';
 import PetsSection from '../components/Home/PetsSection';
+import Banner from '../components/Home/Banner';
 import ContentsSection from '../components/Home/ContentsSection';
 import OpenTalk from '../components/Home/OpenTalk';
 import PhoneButton from '../components/Home/PhoneButton';
@@ -20,6 +21,7 @@ export default function LandingPage() {
       <LogoBar />
       <BackgroundSection />
       <PetsSection isLoggedIn={!!token} />
+      <Banner />
       <ContentsSection />
       <OpenTalk />
       <PhoneButton />

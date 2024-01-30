@@ -49,7 +49,10 @@ export const CONTENTS_MESSAGE = [
     url: 'https://forms.gle/bHsDq3XSqHsMuSh36',
   },
 ];
-
+export const BANNER_MESSAGE = Object.freeze({
+  title: '펫로스 증후군 상담 망설이고 있다면?',
+  description: '무료 예술심리상담 참여자 모집 바로가기',
+});
 export const PHONE_MESSAGE = '자살예방 상담전화 109';
 export const OPEN_TALK_MESSAGE = '오류 시 오픈카카오톡 문의하기';
 
