@@ -5,7 +5,7 @@ import metaData from '../../utils/metaData';
 
 function Layout() {
   const { pathname } = useLocation();
-  const isHomeLayOut = pathname === '/' || false;
+  const isHomeLayOut = pathname === '/' || pathname === '/landing' || false;
 
   useEffect(() => {
     metaData(pathname);
@@ -18,7 +18,7 @@ function Layout() {
     <div className="w-full h-full min-w-[360px] flex justify-center bg-white">
       <div
         className={`${
-          isHomeLayOut ? 'px-0' : 'px-5'
+          isHomeLayOut ? 'px-0 overflow-hidden' : 'px-5'
         } max-w-[390px] w-full bg-white`}
       >
         <Outlet />
