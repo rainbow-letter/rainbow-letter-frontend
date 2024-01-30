@@ -23,6 +23,7 @@ import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
 import DetailLetter from './view/DetailLetter';
 import ShareLetter from './view/ShareLetter';
+import LandingPage from './view/LandingPage';
 
 import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';
@@ -40,6 +41,7 @@ function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Join />} />
             <Route path="/auth/email" element={<Email />} />
