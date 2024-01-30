@@ -10,6 +10,7 @@ export default function Banner() {
       <Link
         to="https://blog.naver.com/rainbowletter/223338521441"
         target="_blank"
+        id="ads_consult1"
         className="flex justify-center items-center gap-6 bg-orange-50 rounded-[15px] shadow-home pt-3 pb-2"
       >
         <div className="flex flex-col justify-center gap-1">
