@@ -45,7 +45,7 @@ export default function LandingPage() {
               <Button
                 type="button"
                 onClick={() => onClickButtonNextButton(item.id)}
-                className="w-[351px] absolute inset-x-0 bottom-7 left-1/2 transform -translate-x-1/2"
+                className="w-[353px] absolute inset-x-0 bottom-7 left-1/2 transform -translate-x-1/2"
               >
                 {item.id === LandingItems.length - 1
                   ? '편지 쓰러 가기'
