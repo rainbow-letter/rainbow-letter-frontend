@@ -30,8 +30,8 @@ import Letters from './components/admin/Letters';
 import AdminLayout from './components/Layout/AdminLayout';
 
 function Router() {
-  const token = useSelector((state) => state.user.token);
-  const isModalOpen = useSelector((state) => state.modal.isOpen);
+  const { token } = useSelector((state) => state.auth);
+  const { isOpen } = useSelector((state) => state.modal);
 
   const isLoggedIn = !!token;
 
@@ -67,7 +67,7 @@ function Router() {
             <Route path="/admin/letters" element={<Letters />} />
           </Route>
         </Routes>
-        {isModalOpen && <Modal />}
+        {isOpen && <Modal />}
       </ScrollToTop>
     </BrowserRouter>
   );

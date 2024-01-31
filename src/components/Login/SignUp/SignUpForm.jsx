@@ -4,7 +4,7 @@ import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { userActions } from '../../../store/user-slice';
+import { authActions } from '../../../store/auth-slice';
 import UserInput from '../UserInput';
 import Agree from './Agree';
 import SubmitButton from '../SubmitButton';
@@ -53,7 +53,7 @@ export default function SignUpForm({ message: { describe, button } }) {
         }
         await trySignUp(profile);
         const { token } = await tryLogin(profile);
-        dispatch(userActions.getToken(token));
+        dispatch(authActions.getToken(token));
 
         setErrorData(null);
         navigate('/home');

@@ -14,7 +14,7 @@ import HomeFooter from '../components/Home/HomeFooter';
 import NavBar from '../components/NavBar';
 
 export default function LandingPage() {
-  const { token } = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.auth);
 
   return (
     <main>

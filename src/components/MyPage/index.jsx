@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { userActions } from '../../store/user-slice';
+import { authActions } from '../../store/auth-slice';
 import {
   getUserInfo,
   updatePhoneNumber,
@@ -19,7 +19,7 @@ import chevronRight from '../../assets/chevronRight.svg';
 import Divider from '../Divider';
 
 function MyPage() {
-  const { token } = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.auth);
   const [userInfo, setUserInfo] = useState({});
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [editedPhone, setEditedPhone] = useState('');
@@ -66,7 +66,7 @@ function MyPage() {
   };
 
   const handleLogout = () => {
-    if (user.token) dispatch(userActions.removeToken());
+    if (token) dispatch(authActions.removeToken());
     navigate('/home');
   };
 
@@ -74,7 +74,7 @@ function MyPage() {
     const fetchAndSetUserInfo = async () => {
       try {
         const info = await getUserInfo();
-        dispatch(userActions.setUserRole(info.role));
+        dispatch(authActions.setUserRole(info.role));
         setUserInfo(info);
       } catch (error) {
         // TODO: handle error

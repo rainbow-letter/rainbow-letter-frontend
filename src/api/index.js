@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 import store from '../store';
-import { userActions } from '../store/user-slice';
+import { authActions } from '../store/auth-slice';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -31,7 +31,7 @@ const checkTokenValidity = async (token) => {
 };
 
 baseInstance.interceptors.request.use(async (config) => {
-  const { token } = store.getState().user;
+  const { token } = store.getState().auth;
   const newConfig = { ...config };
 
   try {
@@ -40,7 +40,7 @@ baseInstance.interceptors.request.use(async (config) => {
       if (isValid) {
         newConfig.headers.Authorization = `Bearer ${token}`;
       } else {
-        store.dispatch(userActions.removeToken());
+        store.dispatch(authActions.removeToken());
         window.location.href = '/login';
         return Promise.reject(new Error('Invalid token'));
       }

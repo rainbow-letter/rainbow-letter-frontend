@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import UserInput from './UserInput';
 import SubmitButton from './SubmitButton';
 import { tryLogin } from '../../api/user';
-import { userActions } from '../../store/user-slice';
+import { authActions } from '../../store/auth-slice';
 import {
   emailError,
   emailErrorMessage,

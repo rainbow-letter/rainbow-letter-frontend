@@ -9,7 +9,7 @@ function AdminLayout({ isLoggedIn }) {
     return <Navigate to="/login" />;
   }
 
-  const role = useSelector((state) => state.user.role);
+  const role = useSelector((state) => state.auth.role);
 
   if (!role) {
     return <h1>관리자 전용 페이지입니다.</h1>;

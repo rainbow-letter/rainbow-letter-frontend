@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { userActions } from '../store/user-slice';
+import { authActions } from '../store/auth-slice';
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function Auth() {
   useEffect(() => {
     const token = searchParams.get('token');
 
-    dispatch(userActions.getToken(token));
+    dispatch(authActions.getToken(token));
     navigate('/home');
   }, []);
 
