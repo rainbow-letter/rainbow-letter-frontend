@@ -39,13 +39,13 @@ export default function LandingPage() {
         className="w-[1560px] min-h-screen bg-[#FFFCF7] flex items-center duration-500"
       >
         {LandingItems.map((item) => (
-          <li key={item.id} className="w-[100vw]">
+          <li key={item.id} className="w-[100vw] px-3">
             <img src={item.imageSrc} alt="landing" className="object-cover" />
-            <div className="relative px-3">
+            <div className="relative">
               <Button
                 type="button"
                 onClick={() => onClickButtonNextButton(item.id)}
-                className="w-[353px] absolute inset-x-0 bottom-7 left-1/2 transform -translate-x-1/2"
+                className="absolute inset-x-0 bottom-7 left-1/2 transform -translate-x-1/2"
               >
                 {item.id === LandingItems.length - 1
                   ? '편지 쓰러 가기'
