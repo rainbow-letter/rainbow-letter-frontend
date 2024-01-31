@@ -1,7 +1,8 @@
-/* eslint-disable */
+/* eslint-disable no-alert */
 import axios from 'axios';
-import store from '../index';
-import { removeToken } from '../store/user';
+
+import store from '../store';
+import { userActions } from '../store/user-slice';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -31,21 +32,23 @@ const checkTokenValidity = async (token) => {
 
 baseInstance.interceptors.request.use(async (config) => {
   const { token } = store.getState().user;
+  const newConfig = { ...config };
+
   try {
     if (token) {
       const isValid = await checkTokenValidity(token);
       if (isValid) {
-        config.headers['Authorization'] = `Bearer ${token}`;
+        newConfig.headers.Authorization = `Bearer ${token}`;
       } else {
-        store.dispatch(removeToken());
+        store.dispatch(userActions.removeToken());
         window.location.href = '/login';
-        return Promise.reject('Invalid token');
+        return Promise.reject(new Error('Invalid token'));
       }
     }
-    return config;
+    return newConfig;
   } catch (error) {
-    console.error(error);
-    return Promise.reject(error);
+    alert('Token validation error:', error);
+    return Promise.reject(new Error(error));
   }
 });
 

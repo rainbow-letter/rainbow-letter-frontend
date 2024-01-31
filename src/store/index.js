@@ -1,17 +1,10 @@
-/* eslint-disable */
-import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import user from './user';
-import modal from './modal';
-import letters from './admin/letters';
+import { configureStore } from '@reduxjs/toolkit';
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['user', 'modal', 'letter'],
-};
+import userSlice from './user-slice';
+import modalSlice from './modal-slice';
 
-const rootReducer = combineReducers({ user, modal, letters });
+const store = configureStore({
+  reducer: { user: userSlice.reducer, modal: modalSlice.reducer },
+});
 
-export default persistReducer(persistConfig, rootReducer);
+export default store;

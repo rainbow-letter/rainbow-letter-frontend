@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../Button';
 import Input from '../Input';
-import { closeModal, openModal, doNotOpenAgain } from '../../store/modal';
 import { validatePhoneNumber } from '../../utils/validators';
 import { updatePhoneNumber } from '../../api/user';
 import CancelImage from '../../assets/ph_x-bold.svg';
+import { modalActions } from '../../store/modal-slice';
 
 import MODAL_MESSAGE from './constants';
 
@@ -27,7 +27,7 @@ export default function ModalContents() {
       await updatePhoneNumber({
         phoneNumber: value,
       });
-      dispatch(openModal('COMPLETE'));
+      dispatch(modalActions.openModal('COMPLETE'));
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +54,7 @@ export default function ModalContents() {
                 </ul>
                 <button
                   type="button"
-                  onClick={() => dispatch(closeModal())}
+                  onClick={() => dispatch(modalActions.closeModal())}
                   className="absolute top-4 right-4"
                 >
                   <img src={CancelImage} alt="cancel" />
@@ -89,8 +89,8 @@ export default function ModalContents() {
                   <button
                     type="button"
                     onClick={() => {
-                      dispatch(doNotOpenAgain());
-                      dispatch(openModal('COMPLETE'));
+                      dispatch(modalActions.doNotOpenAgain());
+                      dispatch(modalActions.openModal('COMPLETE'));
                     }}
                     className="underline text-caption text-gray-1 mb-6 block mx-auto"
                   >
@@ -99,7 +99,7 @@ export default function ModalContents() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => dispatch(openModal('COMPLETE'))}
+                  onClick={() => dispatch(modalActions.openModal('COMPLETE'))}
                   className="absolute top-4 right-4"
                 >
                   <img src={CancelImage} alt="cancel" />
@@ -123,7 +123,7 @@ export default function ModalContents() {
                 </ul>
                 <Button
                   onClick={() => {
-                    dispatch(closeModal());
+                    dispatch(modalActions.closeModal());
                     navigate('/letter-box');
                   }}
                   className="mb-5"

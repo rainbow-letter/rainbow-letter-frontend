@@ -1,14 +1,14 @@
+/* eslint-disable no-alert */
 /* eslint-disable consistent-return */
-/* eslint-disable import/no-cycle */
 import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import { userActions } from '../../../store/user-slice';
 import UserInput from '../UserInput';
 import Agree from './Agree';
 import SubmitButton from '../SubmitButton';
 import { trySignUp, tryLogin } from '../../../api/user';
-import { getToken } from '../../../store/user';
 import { validateEmail, validatePassword } from '../../../utils/validators';
 import {
   emailError,
@@ -53,7 +53,7 @@ export default function SignUpForm({ message: { describe, button } }) {
         }
         await trySignUp(profile);
         const { token } = await tryLogin(profile);
-        dispatch(getToken(token));
+        dispatch(userActions.getToken(token));
 
         setErrorData(null);
         navigate('/home');

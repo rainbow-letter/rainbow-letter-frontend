@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setUserRole, removeToken } from '../../store/user';
-// eslint-disable-next-line import/no-cycle
+import { userActions } from '../../store/user-slice';
 import {
   getUserInfo,
   updatePhoneNumber,
@@ -20,7 +19,7 @@ import chevronRight from '../../assets/chevronRight.svg';
 import Divider from '../Divider';
 
 function MyPage() {
-  const user = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.user);
   const [userInfo, setUserInfo] = useState({});
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [editedPhone, setEditedPhone] = useState('');
@@ -67,7 +66,7 @@ function MyPage() {
   };
 
   const handleLogout = () => {
-    if (user.token) dispatch(removeToken());
+    if (user.token) dispatch(userActions.removeToken());
     navigate('/home');
   };
 
@@ -75,7 +74,7 @@ function MyPage() {
     const fetchAndSetUserInfo = async () => {
       try {
         const info = await getUserInfo();
-        dispatch(setUserRole(info.role));
+        dispatch(userActions.setUserRole(info.role));
         setUserInfo(info);
       } catch (error) {
         // TODO: handle error

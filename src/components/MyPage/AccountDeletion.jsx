@@ -10,7 +10,7 @@ import {
   ACCOUNT_DELETION_GUIDELINES,
 } from './constants';
 import { deleteUser } from '../../api/user';
-import { removeToken } from '../../store/user';
+import { userActions } from '../../store/user-slice';
 import check from '../../assets/check.svg';
 import Button from '../Button';
 
@@ -23,7 +23,7 @@ function AccountDeletion() {
     try {
       await deleteUser();
       alert('탈퇴가 완료됐어요');
-      dispatch(removeToken());
+      dispatch(userActions.removeToken());
       navigate('/');
     } catch (error) {
       alert(error.message);

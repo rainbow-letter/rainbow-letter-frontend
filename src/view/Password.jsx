@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import UserInput from '../components/Login/UserInput';
 import SubmitButton from '../components/Login/SubmitButton';
 import { validatePasswordMatch, validatePassword } from '../utils/validators';
-import { getToken, removeToken } from '../store/user';
+import { userActions } from '../store/user-slice';
 import { updatePassword } from '../api/user';
 
 import {
@@ -29,7 +29,7 @@ export default function Password() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(getToken(searchParams.get('token')));
+    dispatch(userActions.getToken(searchParams.get('token')));
   }, [searchParams]);
 
   const isCheckProperPassword = () => {
@@ -46,7 +46,8 @@ export default function Password() {
     if (isSuccess) {
       setErrorData(null);
     }
-    dispatch(removeToken());
+
+    dispatch(userActions.removeToken());
     navigate('/home');
   };
 

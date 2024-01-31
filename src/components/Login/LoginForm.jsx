@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import UserInput from './UserInput';
 import SubmitButton from './SubmitButton';
 import { tryLogin } from '../../api/user';
-import { getToken } from '../../store/user';
+import { userActions } from '../../store/user-slice';
 import {
   emailError,
   emailErrorMessage,
@@ -34,7 +34,7 @@ export default function LoginForm({ message: { describe, button } }) {
         const { token } = await tryLogin(profile);
 
         setErrorData(null);
-        dispatch(getToken(token));
+        dispatch(userActions.removeToken(token));
         navigate('/home');
       } catch (error) {
         setErrorData(error.response.data);

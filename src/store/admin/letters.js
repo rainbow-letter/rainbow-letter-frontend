@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-/* eslint-disable default-param-last */
 import { checkLetterStatus } from '../../utils/replyStatus';
 
 const initialState = {
