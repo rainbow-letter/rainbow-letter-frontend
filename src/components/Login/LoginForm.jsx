@@ -35,7 +35,7 @@ export default function LoginForm({ message: { describe, button } }) {
 
         setErrorData(null);
         dispatch(getToken(token));
-        navigate('/');
+        navigate('/home');
       } catch (error) {
         setErrorData(error.response.data);
       }

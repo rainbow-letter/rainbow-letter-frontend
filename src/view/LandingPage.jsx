@@ -31,7 +31,7 @@ export default function LandingPage() {
 
   const onClickButtonNextButton = (id) => {
     if (id === LandingItems.length - 1) {
-      navigate('/');
+      navigate('/home');
     }
 
     return setCurrentSlide((prev) => prev + 1);
