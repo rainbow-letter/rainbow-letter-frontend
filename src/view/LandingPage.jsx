@@ -9,6 +9,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [deviceWidth, setDeviceWidth] = useState(0);
+  const [buttonId, setButtonId] = useState(null);
 
   useEffect(() => {
     if (window.innerWidth < 390) {
@@ -22,6 +23,10 @@ export default function LandingPage() {
     landingImageList.current.style.marginLeft = `${
       -currentSlide * deviceWidth
     }px`;
+
+    if (currentSlide === LandingItems.length - 1) {
+      setButtonId('service_start');
+    }
   }, [currentSlide]);
 
   const onClickButtonNextButton = (id) => {
@@ -43,7 +48,7 @@ export default function LandingPage() {
             <img src={item.imageSrc} alt="landing" className="object-cover" />
             <div className="relative">
               <Button
-                type="button"
+                id={buttonId}
                 onClick={() => onClickButtonNextButton(item.id)}
                 className="absolute inset-x-0 bottom-7 left-1/2 transform -translate-x-1/2"
               >
