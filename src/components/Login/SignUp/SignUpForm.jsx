@@ -56,7 +56,7 @@ export default function SignUpForm({ message: { describe, button } }) {
         dispatch(getToken(token));
 
         setErrorData(null);
-        navigate('/');
+        navigate('/home');
       } catch (error) {
         if (error.response) {
           return setErrorData(error.response && error.response.data);

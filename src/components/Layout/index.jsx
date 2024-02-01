@@ -5,7 +5,7 @@ import metaData from '../../utils/metaData';
 
 function Layout() {
   const { pathname } = useLocation();
-  const isHomeLayOut = pathname === '/' || pathname === '/landing' || false;
+  const isHomeLayOut = pathname === '/home' || pathname === '/' || false;
 
   useEffect(() => {
     metaData(pathname);

@@ -68,7 +68,7 @@ function MyPage() {
 
   const handleLogout = () => {
     if (user.token) dispatch(removeToken());
-    navigate('/');
+    navigate('/home');
   };
 
   useEffect(() => {

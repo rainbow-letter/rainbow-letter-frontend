@@ -12,7 +12,7 @@ export default function Auth() {
   useEffect(() => {
     const token = searchParams.get('token');
     dispatch(getToken(token));
-    navigate('/');
+    navigate('/home');
   }, []);
 
   return null;

@@ -47,7 +47,7 @@ export default function Password() {
       setErrorData(null);
     }
     dispatch(removeToken());
-    navigate('/');
+    navigate('/home');
   };
 
   const onClickUpdatePasswordButton = useCallback(async () => {
