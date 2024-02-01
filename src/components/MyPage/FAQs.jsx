@@ -13,6 +13,14 @@ function FAQ({ FAQData }) {
       </header>
       <main className="m-2.5 p-[18px] bg-gray-2 text-body-small text-gray-1 rounded-2xl">
         {FAQData.answer}
+        {FAQData.link && (
+          <a href={FAQData.link} target="_blank" rel="noopener noreferrer">
+            {FAQData.link}
+          </a>
+        )}
+        {FAQData.email && (
+          <a href={`mailto:${FAQData.email}`}>{FAQData.email}</a>
+        )}
       </main>
     </div>
   );
@@ -41,13 +49,7 @@ function FAQs() {
 
   return (
     <section className="h-full flex flex-col gap-y-[32px] mt-[22px]">
-      {!!FAQS.length &&
-        FAQS.map((faq) => (
-          <FAQ
-            key={faq.id}
-            FAQData={{ question: faq.question, answer: faq.answer }}
-          />
-        ))}
+      {!!FAQS.length && FAQS.map((faq) => <FAQ key={faq.id} FAQData={faq} />)}
     </section>
   );
 }

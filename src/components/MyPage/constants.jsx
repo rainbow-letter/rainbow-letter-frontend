@@ -54,14 +54,14 @@ export const FAQS = [
   {
     id: 5,
     question: '서비스 공지사항은 어디에서 확인하나요?',
-    answer:
-      '네이버 ‘무지개편지’ 블로그를 확인해주세요. \nhttps://blog.naver.com/rainbowletter',
+    answer: '네이버 ‘무지개편지’ 블로그를 확인해주세요. \n',
+    link: 'https://blog.naver.com/rainbowletter',
   },
   {
     id: 6,
     question: '문의/제휴하고 싶다면 어디로 연락하나요?',
-    answer:
-      'rainbowletter41@gmail.com 으로 메일 주시면 영업일 기준 1~2일 이내 회신 드릴게요.',
+    answer: '메일 주시면 영업일 기준 1~2일 이내 회신 드릴게요. \n',
+    email: 'rainbowletter41@gmail.com',
   },
 ];
 
