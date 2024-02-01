@@ -27,5 +27,6 @@
       { "extensions": [".js", ".jsx", "ts", ".tsx"] },
     ],
     "default-param-last": "off",
+    "no-param-reassign": "off",
   },
 }
