@@ -1,8 +1,8 @@
 /* eslint-disable */
-/* eslint-disable import/no-cycle */
 import { React, useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import ResisterButtonSection from '../components/Write/ResisterButtonSection';
 import PetsListDropDown from '../components/Write/PetsListDropDown';
@@ -60,6 +60,13 @@ export default function WriteLetter() {
     return response.id;
   };
 
+  const isCheckPhoneNumberModalOpen = async () => {
+    const { phoneNumber } = await getUserInfo();
+    if (!phoneNumber && canOpenAgain) {
+      return dispatch(openModal('PHONE'));
+    }
+  };
+
   const onClickSendButton = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -70,11 +77,7 @@ export default function WriteLetter() {
       }
       await sendLetter(selectedPet.id, newLetter);
 
-      const { phoneNumber } = await getUserInfo();
-      if (!phoneNumber && canOpenAgain) {
-        return dispatch(openModal('PHONE'));
-      }
-
+      isCheckPhoneNumberModalOpen();
       return dispatch(openModal('COMPLETE'));
     } catch (error) {
       console.log(error);
@@ -107,13 +110,15 @@ export default function WriteLetter() {
         <Button
           id="letter_submit"
           disabled={letter.content.length < 1 || selectedPet === null}
-          onClick={() => onClickSendButton()}
+          onClick={onClickSendButton}
           className="mt-[58px]"
         >
           편지 보내기
         </Button>
       ) : (
-        <Button className="mt-[58px]">편지 보내는 중</Button>
+        <div className="text-center mt-[58px]">
+          <ClipLoader color="#FFB347" />
+        </div>
       )}
     </main>
   );
