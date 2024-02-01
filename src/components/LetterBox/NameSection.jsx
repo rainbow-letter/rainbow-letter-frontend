@@ -27,7 +27,6 @@ export default function NameSection({ onChange, selectedPet }) {
   }, []);
 
   if (petsList !== null && petsList.length < 1) return <NoPets />;
-
   return (
     <nav>
       <ul className="flex flex-wrap gap-2">
