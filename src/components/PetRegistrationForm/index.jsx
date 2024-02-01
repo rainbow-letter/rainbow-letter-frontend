@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import ClipLoader from 'react-spinners/ClipLoader';
 import Button from '../Button';
 import PetNameSection from './PetNameSection';
 import DateOfDeathSection from './DateOfDeathSection';
@@ -56,12 +57,18 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
       <PetPersonalitiesSection />
       <PetImageSection />
       <section className="pt-6">
-        <Button
-          disabled={!isDisabled || isSubmitting}
-          onClick={handleButtonClick(handleSubmit)}
-        >
-          <span>{isSubmitting ? '등록 중' : '등록하기'}</span>
-        </Button>
+        {!isSubmitting ? (
+          <Button
+            disabled={!isDisabled || isSubmitting}
+            onClick={handleButtonClick(handleSubmit)}
+          >
+            <span>등록하기</span>
+          </Button>
+        ) : (
+          <div className="text-center">
+            <ClipLoader color="#FFB347" />
+          </div>
+        )}
       </section>
     </div>
   );
