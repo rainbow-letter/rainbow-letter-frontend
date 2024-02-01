@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-alert */
 import axios from 'axios';
 
@@ -9,12 +10,9 @@ const baseURL = process.env.REACT_APP_API_URL;
 const authInstance = axios.create({ baseURL });
 const baseInstance = axios.create({
   baseURL,
-  headers: {
-    Authorization: '',
-  },
 });
 
-const checkTokenValidity = async (token) => {
+const tokenIsValid = async (token) => {
   try {
     const response = await authInstance.post(
       '/api/members/verify',
@@ -25,34 +23,38 @@ const checkTokenValidity = async (token) => {
     );
     return response.status === 200;
   } catch (error) {
-    alert('Token validation error:', error);
+    alert(`Token validation error: ${error.message}`);
     return false;
   }
 };
 
-baseInstance.interceptors.request.use(async (config) => {
-  const { token } = store.getState().auth;
-  const newConfig = { ...config };
+baseInstance.interceptors.request.use(
+  async (config) => {
+    const { token } = store.getState().auth;
+    const newConfig = { ...config };
 
-  try {
+    if (token && !tokenIsValid(token)) {
+      store.dispatch(authActions.removeToken());
+      window.location.href = '/login';
+      return Promise.reject(new Error('Invalid token'));
+    }
+
     if (token) {
-      const isValid = await checkTokenValidity(token);
-      if (isValid) {
-        newConfig.headers.Authorization = `Bearer ${token}`;
-      } else {
-        store.dispatch(authActions.removeToken());
-        window.location.href = '/login';
-        return Promise.reject(new Error('Invalid token'));
-      }
+      newConfig.headers.Authorization = `Bearer ${token}`;
     }
     return newConfig;
-  } catch (error) {
-    alert('Token validation error:', error);
-    return Promise.reject(new Error(error));
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-});
+);
 
-baseInstance.interceptors.response.use(({ data }) => data);
+baseInstance.interceptors.response.use(
+  ({ data }) => data,
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 const apiRequest = {
   get: (url, request) => baseInstance.get(url, request),
