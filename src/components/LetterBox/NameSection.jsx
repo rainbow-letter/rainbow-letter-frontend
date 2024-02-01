@@ -17,7 +17,7 @@ export default function NameSection({ onChange, selectedPet }) {
       const { pets } = await getPets();
       const petsNames = pets.map((pet) => pet.name);
 
-      setPetsList([DEFAULT, ...petsNames] || []);
+      setPetsList((pets.length > 0 && [DEFAULT, ...petsNames]) || []);
 
       if (state) {
         const findedPet = pets.find((pet) => pet.id === state);
