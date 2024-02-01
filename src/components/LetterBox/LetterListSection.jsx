@@ -9,7 +9,7 @@ import { getLetters } from '../../api/letter';
 const DEFAULT = '전체';
 
 export default function LetterListSection({ pet }) {
-  const [letterList, setLetterList] = useState([]);
+  const [letterList, setLetterList] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -23,7 +23,8 @@ export default function LetterListSection({ pet }) {
       ? letterList
       : letterList.filter((letter) => letter.petName === pet);
 
-  if (filteredLetter.length < 1) return <NoLetters pet={pet} />;
+  if (filteredLetter !== null && filteredLetter.length < 1)
+    return <NoLetters pet={pet} />;
 
   return (
     <section className="mt-6">
