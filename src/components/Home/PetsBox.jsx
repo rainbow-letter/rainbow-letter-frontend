@@ -2,7 +2,7 @@
 import { React, useState, useEffect } from 'react';
 
 import NoPets from './NoPets';
-import NameSection from '../LetterBox/NameSection';
+import NameSection from './NameSection';
 import { getDashboard } from '../../api/pets';
 import PetInfo from './PetInfo';
 
