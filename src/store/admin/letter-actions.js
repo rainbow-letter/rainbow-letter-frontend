@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from '../../api';
@@ -39,21 +40,24 @@ export const inspectReply = createAsyncThunk(
   }
 );
 
-// type Request = {
-//   replyId: Number,
-//   letterId: Number,
-// }
 export const sendReply = createAsyncThunk(
   'adminLetter/sendReply',
-  async (requests) => {
+  async (requests, { rejectWithValue }) => {
     const requestsArray = Array.isArray(requests) ? requests : [requests];
 
-    await Promise.all(
+    const results = await Promise.allSettled(
       requestsArray.map((request) =>
         api.post(`/api/replies/admin/submit/${request.replyId}`, {
           letterId: request.letterId,
         })
       )
     );
+
+    const failed = results.filter((result) => result.status === 'rejected');
+    if (failed.length > 0) {
+      // 여기서 실패 처리를 할 수 있습니다. 예를 들어, 실패한 요청에 대한 정보를 반환할 수 있습니다.
+      // 이 예시에서는 단순히 실패한 요청의 수를 rejectWithValue와 함께 반환합니다.
+      return rejectWithValue(failed.length);
+    }
   }
 );

@@ -63,7 +63,7 @@ export default function WriteLetter() {
   const isCheckPhoneNumberModalOpen = async () => {
     const { phoneNumber } = await getUserInfo();
     if (!phoneNumber && canOpenAgain) {
-      return dispatch(openModal('PHONE'));
+      return dispatch(modalActions.openModal('PHONE'));
     }
   };
 

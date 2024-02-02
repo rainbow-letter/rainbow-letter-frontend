@@ -1,7 +1,5 @@
 /* eslint-disable no-shadow */
-
 import { createSlice } from '@reduxjs/toolkit';
-// import { startListening } from '../index';
 
 import { fetchLetters, inspectReply } from './letter-actions';
 
@@ -76,10 +74,3 @@ const adminLettersSlice = createSlice({
 
 export const adminLetterActions = adminLettersSlice.actions;
 export default adminLettersSlice;
-
-// startListening({
-//   actionCreator: sendReply,
-//   effect: async (action, listenerApi) => {
-//     await listenerApi.dispatch(fetchLetters());
-//   },
-// });
