@@ -40,13 +40,21 @@ export const inspectReply = createAsyncThunk(
   }
 );
 
+// type Request = {
+//   replyId: Number,
+//   letterId: Number,
+// }
 export const sendReply = createAsyncThunk(
   'adminLetter/sendReply',
-  async ({ replyId, letterId }) => {
-    const response = await api.post(
-      `/api/replies/admin/submit/${replyId}`,
-      letterId
+  async (requests) => {
+    const requestsArray = Array.isArray(requests) ? requests : [requests];
+
+    await Promise.all(
+      requestsArray.map((request) =>
+        api.post(`/api/replies/admin/submit/${request.replyId}`, {
+          letterId: request.letterId,
+        })
+      )
     );
-    return response;
   }
 );

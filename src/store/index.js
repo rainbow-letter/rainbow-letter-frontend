@@ -1,5 +1,9 @@
 /* eslint-disable import/no-cycle */
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  combineReducers,
+  createListenerMiddleware,
+} from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -25,9 +29,13 @@ const rootReducer = combineReducers({
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+const listenerMiddleware = createListenerMiddleware();
+export const { startListening, stopListening } = listenerMiddleware;
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(listenerMiddleware),
   devTools: process.env.NODE_ENV !== 'production',
 });
 
