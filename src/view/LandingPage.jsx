@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import LandingItems from '../components/LandingPage/constants';
 import Button from '../components/Button';
 
+const DEFAULT = 390;
+
 export default function LandingPage() {
+  const { token } = useSelector((state) => state.user);
   const landingImageList = useRef();
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,11 +16,14 @@ export default function LandingPage() {
   const [buttonId, setButtonId] = useState(null);
 
   useEffect(() => {
-    if (window.innerWidth < 390) {
+    if (token) {
+      return navigate('/home');
+    }
+    if (window.innerWidth < DEFAULT) {
       return setDeviceWidth(window.innerWidth);
     }
 
-    return setDeviceWidth(390);
+    return setDeviceWidth(DEFAULT);
   }, []);
 
   useEffect(() => {
