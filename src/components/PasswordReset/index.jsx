@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-/* eslint-disable import/no-cycle */
+
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';

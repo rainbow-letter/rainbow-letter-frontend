@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { useLocation } from 'react-router-dom';
 
 import { registerPet, updatePet } from '../api/pets';

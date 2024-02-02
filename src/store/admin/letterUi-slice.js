@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { fetchLetters } from './letter-actions';

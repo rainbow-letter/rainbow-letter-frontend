@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from '../../api';

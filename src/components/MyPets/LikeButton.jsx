@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-shadow */
 import React, { useState } from 'react';
 

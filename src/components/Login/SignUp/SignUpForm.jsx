@@ -2,9 +2,8 @@
 /* eslint-disable consistent-return */
 import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
-import { authActions } from '../../../store/auth-slice';
+import { saveToken } from '../../../utils/localStorage';
 import UserInput from '../UserInput';
 import Agree from './Agree';
 import SubmitButton from '../SubmitButton';
@@ -20,7 +19,6 @@ import { ERROR_MESSAGE } from '../constants';
 
 export default function SignUpForm({ message: { describe, button } }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [profile, setProfile] = useState({
     email: '',
     password: '',
@@ -53,8 +51,7 @@ export default function SignUpForm({ message: { describe, button } }) {
         }
         await trySignUp(profile);
         const { token } = await tryLogin(profile);
-        dispatch(authActions.setToken(token));
-
+        saveToken(token);
         setErrorData(null);
         navigate('/home');
       } catch (error) {

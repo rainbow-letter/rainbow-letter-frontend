@@ -1,9 +1,6 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-alert */
 import axios from 'axios';
 
-import store from '../store';
-import { authActions } from '../store/auth-slice';
+import { getToken, removeToken } from '../utils/localStorage';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -30,11 +27,11 @@ const tokenIsValid = async (token) => {
 
 baseInstance.interceptors.request.use(
   async (config) => {
-    const { token } = store.getState().auth;
+    const token = getToken();
     const newConfig = { ...config };
 
     if (token && !tokenIsValid(token)) {
-      store.dispatch(authActions.removeToken());
+      removeToken();
       window.location.href = '/login';
       return Promise.reject(new Error('Invalid token'));
     }

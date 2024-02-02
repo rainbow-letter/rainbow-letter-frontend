@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-/* eslint-disable import/no-cycle */
+
 import { createSlice } from '@reduxjs/toolkit';
 // import { startListening } from '../index';
 

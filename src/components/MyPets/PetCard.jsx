@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React, { forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 

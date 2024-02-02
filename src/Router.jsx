@@ -1,8 +1,8 @@
-/* eslint-disable import/no-cycle */
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { getToken } from './utils/localStorage';
 import Home from './view/Home';
 import Login from './view/Login';
 import Join from './view/Join';
@@ -30,7 +30,7 @@ import Letters from './components/admin/Letters';
 import AdminLayout from './components/Layout/AdminLayout';
 
 function Router() {
-  const { token } = useSelector((state) => state.auth);
+  const token = getToken();
   const { isOpen } = useSelector((state) => state.modal);
 
   const isLoggedIn = !!token;

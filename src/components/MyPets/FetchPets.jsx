@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-/* eslint-disable import/no-cycle */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getPets } from '../../api/pets';

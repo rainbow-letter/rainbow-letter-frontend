@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-/* eslint-disable import/no-cycle */
+
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 

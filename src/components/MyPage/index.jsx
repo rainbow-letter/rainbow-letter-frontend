@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { authActions } from '../../store/auth-slice';
+import { removeToken } from '../../utils/localStorage';
 import { fetchUserInfo } from '../../store/user-actions';
 import { PAGE_TITLES, USER_INFO_LABELS, USER_ACTIONS } from './constants';
 import AdminLinks from './AdminLinks';
@@ -22,7 +22,7 @@ function MyPage() {
   }, [dispatch]);
 
   const handleLogout = () => {
-    dispatch(authActions.removeToken());
+    removeToken();
     navigate('/home');
   };
 

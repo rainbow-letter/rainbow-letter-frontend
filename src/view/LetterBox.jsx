@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React, { Suspense, useState } from 'react';
 
 import Spinner from '../components/Spinner';

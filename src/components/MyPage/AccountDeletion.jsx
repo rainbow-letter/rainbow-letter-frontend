@@ -1,29 +1,27 @@
 /* eslint-disable no-alert */
-/* eslint-disable import/no-cycle */
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
+import { removeToken } from '../../utils/localStorage';
 import {
   USER_ACTIONS,
   ACCOUNT_DELETION,
   ACCOUNT_DELETION_GUIDELINES,
 } from './constants';
 import { deleteUser } from '../../api/user';
-import { authActions } from '../../store/auth-slice';
 import check from '../../assets/check.svg';
 import Button from '../Button';
 
 function AccountDeletion() {
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleDeletion = async () => {
     try {
       await deleteUser();
       alert('탈퇴가 완료됐어요');
-      dispatch(authActions.removeToken());
+      removeToken();
       navigate('/');
     } catch (error) {
       alert(error.message);
