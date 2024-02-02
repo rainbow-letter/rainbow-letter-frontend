@@ -6,7 +6,8 @@ import storage from 'redux-persist/lib/storage';
 import authSlice from './auth-slice';
 import userSlice from './user-slice';
 import modalSlice from './modal-slice';
-// import adminLettersSlice from './admin/letter-slice';
+import adminLettersSlice from './admin/letter-slice';
+import adminLetterUiSlice from './admin/letterUi-slice';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   auth: authSlice.reducer,
   user: userSlice.reducer,
   modal: modalSlice.reducer,
-  // adminLetters: adminLettersSlice.reducer,
+  adminLetters: adminLettersSlice.reducer,
+  adminLetterUi: adminLetterUiSlice.reducer,
   // 여기에 다른 리듀서들을 추가
 });
 
