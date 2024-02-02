@@ -11,7 +11,7 @@ import rootReducer from './store';
 import './index.css';
 import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 const store = createStore(rootReducer);
 const persistor = persistStore(store);
