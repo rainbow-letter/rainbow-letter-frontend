@@ -29,7 +29,7 @@ export default function Password() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(authActions.getToken(searchParams.get('token')));
+    dispatch(authActions.setToken(searchParams.get('token')));
   }, [searchParams]);
 
   const isCheckProperPassword = () => {

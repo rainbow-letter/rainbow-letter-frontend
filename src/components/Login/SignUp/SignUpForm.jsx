@@ -53,7 +53,7 @@ export default function SignUpForm({ message: { describe, button } }) {
         }
         await trySignUp(profile);
         const { token } = await tryLogin(profile);
-        dispatch(authActions.getToken(token));
+        dispatch(authActions.setToken(token));
 
         setErrorData(null);
         navigate('/home');
