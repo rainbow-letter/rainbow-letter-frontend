@@ -34,10 +34,10 @@ export default function LoginForm({ message: { describe, button } }) {
         const { token } = await tryLogin(profile);
 
         setErrorData(null);
-        dispatch(userActions.removeToken(token));
+        dispatch(authActions.setToken(token));
         navigate('/home');
       } catch (error) {
-        setErrorData(error.response.data);
+        setErrorData(error.response);
       }
     },
     [profile, errorData]
