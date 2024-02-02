@@ -10,11 +10,9 @@ import LinkAvailable from '../components/Login/LinkAvailable';
 import { LOGIN_MESSAGE } from '../components/Login/constants';
 
 export default function Join() {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  const message = LOGIN_MESSAGE.find(
-    (item) => item.pathname === location.pathname
-  );
+  const message = LOGIN_MESSAGE.find((item) => item.pathname === pathname);
 
   return (
     <main className="h-screen flex flex-col justify-center text-center">
