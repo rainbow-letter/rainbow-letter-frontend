@@ -15,11 +15,13 @@ function Editor({ id, isOpen, content, isSent, onClose }) {
     if (isSent) return alert('이미 답장을 보낸 편지입니다.');
 
     const newSummary = extractFirstTenChars(newContent);
-    // dispatch(inspectReply(id));
     dispatch(
-      editReply(id, {
-        summary: newSummary,
-        content: newContent,
+      editReply({
+        replyId: id,
+        editedReply: {
+          summary: newSummary,
+          content: newContent,
+        },
       })
     );
     onClose();

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -23,12 +24,17 @@ export const fetchLetters = createAsyncThunk(
 
 export const editReply = createAsyncThunk(
   'adminLetter/editReply',
-  async ({ replyId, editedReply }) => {
+  async ({ replyId, editedReply }, { getState }) => {
     const response = await api.put(
       `/api/replies/admin/${replyId}`,
       editedReply
     );
-    return { response, meta: { replyId } };
+
+    const inspection = getState().adminLetters?.letters?.find(
+      (letter) => letter.reply.id === replyId
+    )?.reply.inspection;
+
+    return { response, inspection };
   }
 );
 

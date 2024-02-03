@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { inspectReply } from '../../../store/admin/letter-actions';
+import { adminLetterActions } from '../../../store/admin/letter-slice';
 import { formatDateToYYDDMMHHMM } from '../../../utils/date';
 import { extractFirstTenChars } from '../../../utils/string';
 import Editor from './Editor';
@@ -20,7 +21,7 @@ function TableRow({ no, letter, isChecked }) {
     reply.chatGptContent && extractFirstTenChars(reply.chatGptContent);
 
   const handleRowCheck = () => {
-    // dispatch(toggleRowCheck(id));
+    dispatch(adminLetterActions.toggleLetterCheck(id));
   };
 
   const handleInspect = async () => {
@@ -86,7 +87,6 @@ function TableRow({ no, letter, isChecked }) {
       <td className="border p-2">
         <div className="flex justify-center items-center h-full overflow-hidden text-ellipsis whitespace-nowrap">
           <input
-            // className="form-checkbox h-5 w-5 accent-red-500"
             className={`form-checkbox h-5 w-5 ${
               reply.inspection || isInspectionDisabled
                 ? 'appearance-auto accent-red-500'

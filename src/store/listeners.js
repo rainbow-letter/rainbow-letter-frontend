@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import {
   inspectReply,
@@ -18,7 +19,10 @@ export const setupListeners = ({ startListening }) => {
   startListening({
     matcher: (action) => action.type === editReply.fulfilled.type,
     effect: async (action, listenerApi) => {
-      const { replyId } = action.meta;
+      const { inspection } = action.payload;
+      if (inspection) return;
+
+      const { replyId } = action.meta.arg;
       await listenerApi.dispatch(inspectReply(replyId));
     },
   });
