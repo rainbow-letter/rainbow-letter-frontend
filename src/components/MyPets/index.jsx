@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-/* eslint-disable import/no-cycle */
+
 import React, { Suspense } from 'react';
 
 import Spinner from '../Spinner';

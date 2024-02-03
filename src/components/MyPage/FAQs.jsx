@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { QUESTION_PREFIX, FAQS } from './constants';
-// eslint-disable-next-line import/no-cycle
 // import { getFaqs } from '../../api/faqs';
 
 function FAQ({ FAQData }) {

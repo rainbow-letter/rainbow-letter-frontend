@@ -1,7 +1,6 @@
-/* eslint-disable import/no-cycle */
 import React from 'react';
-import { useSelector } from 'react-redux';
 
+import { getToken } from '../utils/localStorage';
 import LogoBar from '../components/Home/LogoBar';
 import BackgroundSection from '../components/Home/BackgroundSection';
 import PetsSection from '../components/Home/PetsSection';
@@ -14,7 +13,7 @@ import HomeFooter from '../components/Home/HomeFooter';
 import NavBar from '../components/NavBar';
 
 export default function LandingPage() {
-  const { token } = useSelector((state) => state.user);
+  const token = getToken();
 
   return (
     <main>

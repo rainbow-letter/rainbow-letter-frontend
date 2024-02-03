@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 

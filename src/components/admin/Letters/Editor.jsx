@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-/* eslint-disable import/no-cycle */
+
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';

@@ -1,13 +1,11 @@
 /* eslint-disable consistent-return */
-/* eslint-disable import/no-cycle */
 import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import UserInput from './UserInput';
 import SubmitButton from './SubmitButton';
 import { tryLogin } from '../../api/user';
-import { getToken } from '../../store/user';
+import { saveToken } from '../../utils/localStorage';
 import {
   emailError,
   emailErrorMessage,
@@ -16,7 +14,6 @@ import {
 
 export default function LoginForm({ message: { describe, button } }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [profile, setProfile] = useState({
     email: '',
     password: '',
@@ -34,7 +31,7 @@ export default function LoginForm({ message: { describe, button } }) {
         const { token } = await tryLogin(profile);
 
         setErrorData(null);
-        dispatch(getToken(token));
+        saveToken(token);
         navigate('/home');
       } catch (error) {
         setErrorData(error.response.data);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { setUserRole, removeToken } from '../../store/user';
-// eslint-disable-next-line import/no-cycle
+import { setUserRole } from '../../store/user';
+import { removeToken } from '../../utils/localStorage';
 import {
   getUserInfo,
   updatePhoneNumber,
@@ -20,7 +20,6 @@ import chevronRight from '../../assets/chevronRight.svg';
 import Divider from '../Divider';
 
 function MyPage() {
-  const user = useSelector((state) => state.user);
   const [userInfo, setUserInfo] = useState({});
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [editedPhone, setEditedPhone] = useState('');
@@ -67,7 +66,7 @@ function MyPage() {
   };
 
   const handleLogout = () => {
-    if (user.token) dispatch(removeToken());
+    removeToken();
     navigate('/home');
   };
 

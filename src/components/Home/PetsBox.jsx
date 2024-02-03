@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { React, useState, useEffect } from 'react';
 
 import NoPets from './NoPets';

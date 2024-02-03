@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-/* eslint-disable import/no-cycle */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 

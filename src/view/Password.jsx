@@ -1,12 +1,10 @@
-/* eslint-disable import/no-cycle */
 import { React, useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
+import { removeToken, saveToken } from '../utils/localStorage';
 import UserInput from '../components/Login/UserInput';
 import SubmitButton from '../components/Login/SubmitButton';
 import { validatePasswordMatch, validatePassword } from '../utils/validators';
-import { getToken, removeToken } from '../store/user';
 import { updatePassword } from '../api/user';
 
 import {
@@ -16,7 +14,6 @@ import {
 
 export default function Password() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [userInfo, setUserInfo] = useState({
     password: '',
@@ -29,7 +26,7 @@ export default function Password() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(getToken(searchParams.get('token')));
+    saveToken(searchParams.get('token'));
   }, [searchParams]);
 
   const isCheckProperPassword = () => {
@@ -46,7 +43,7 @@ export default function Password() {
     if (isSuccess) {
       setErrorData(null);
     }
-    dispatch(removeToken());
+    removeToken();
     navigate('/home');
   };
 
