@@ -1,50 +1,29 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-alert */
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { updateSendDate } from '../../../store/admin/letters';
-import { sendReply } from '../../../api/reply';
+import { fetchLetters, sendReply } from '../../../store/admin/letter-actions';
+import { letterUiActions } from '../../../store/admin/letterUi-slice';
 import TableRow from './TableRow';
 
-function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
+function LetterTable() {
   const dispatch = useDispatch();
-  const { letters } = useSelector((state) => state.letters);
+  const { letters } = useSelector((state) => state.adminLetters);
+  const { filterOption } = useSelector((state) => state.adminLetterUi);
 
-  const handleSendReplies = async () => {
-    const letterToSend = letters
+  const handleSendReplies = () => {
+    const requests = letters
       .filter(
         (letter) =>
           letter.isChecked && letter.reply.inspection && !letter.reply.timestamp
       )
-      .map(async (letter) => {
-        try {
-          await sendReply(letter.reply.id, { letterId: letter.id });
-          return { id: letter.id, success: true };
-        } catch (error) {
-          return { id: letter.id, success: false, error };
-        }
-      });
+      .map((letter) => ({
+        replyId: letter.reply.id,
+        letterId: letter.id,
+      }));
 
-    const results = await Promise.allSettled(letterToSend);
-
-    const sentReplies = results.map((result) => {
-      if (result.status === 'fulfilled' && result.value.success) {
-        return result.value.id;
-      }
-      if (result.status === 'fulfilled') {
-        alert('Error sending reply:', result.value.error);
-      }
-      return null;
-    });
-
-    dispatch(updateSendDate(sentReplies));
-  };
-
-  const handleDateSet = (date) => {
-    const newDate = { ...dateRange, ...date };
-    onDateSet(newDate);
+    dispatch(sendReply(requests));
   };
 
   const areAllCheckedLettersFailed = (letters) => {
@@ -65,23 +44,29 @@ function LetterTable({ dateRange, onDateSet, onLetterFilter }) {
           <input
             className="border rounded-md py-1 px-2"
             type="date"
-            value={dateRange.startDate}
+            value={filterOption.startDate}
             onChange={({ target }) =>
-              handleDateSet({ startDate: target.value })
+              dispatch(
+                letterUiActions.setFilterOption({ startDate: target.value })
+              )
             }
           />
           <span>부터</span>
           <input
             className="border rounded-md py-1 px-2"
             type="date"
-            value={dateRange.endDate}
-            onChange={({ target }) => handleDateSet({ endDate: target.value })}
+            value={filterOption.endDate}
+            onChange={({ target }) =>
+              dispatch(
+                letterUiActions.setFilterOption({ endDate: target.value })
+              )
+            }
           />
           <span>까지</span>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             type="button"
-            onClick={onLetterFilter}
+            onClick={() => dispatch(fetchLetters())}
           >
             검색
           </button>

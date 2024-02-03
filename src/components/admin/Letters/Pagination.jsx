@@ -1,11 +1,17 @@
-/* eslint-disable no-lonely-if */
-/* eslint-disable no-plusplus */
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { letterUiActions } from '../../../store/admin/letterUi-slice';
 import doubleArrowLeft from '../../../assets/admin/doubleArrowLeft.svg';
 import doubleArrowRight from '../../../assets/admin/doubleArrowRight.svg';
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
+function Pagination() {
+  const dispatch = useDispatch();
+  const {
+    filterOption: { page: currentPage },
+    totalPages,
+  } = useSelector((state) => state.adminLetterUi);
+
   const getPaginationNumbers = () => {
     const maxPagesToShow = 10;
     const halfPagesToShow = Math.floor(maxPagesToShow / 2);
@@ -15,17 +21,15 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
     if (totalPages <= maxPagesToShow) {
       startPage = 0;
       endPage = totalPages - 1;
+    } else if (currentPage <= halfPagesToShow) {
+      startPage = 0;
+      endPage = maxPagesToShow - 1;
+    } else if (currentPage + halfPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow;
+      endPage = totalPages - 1;
     } else {
-      if (currentPage <= halfPagesToShow) {
-        startPage = 0;
-        endPage = maxPagesToShow - 1;
-      } else if (currentPage + halfPagesToShow >= totalPages) {
-        startPage = totalPages - maxPagesToShow;
-        endPage = totalPages - 1;
-      } else {
-        startPage = currentPage - halfPagesToShow;
-        endPage = currentPage + halfPagesToShow;
-      }
+      startPage = currentPage - halfPagesToShow;
+      endPage = currentPage + halfPagesToShow;
     }
 
     return Array.from(
@@ -41,7 +45,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
           className="w-7 h-7 rounded"
           type="button"
           disabled={currentPage === 0}
-          onClick={() => onPageChange(0)}
+          onClick={() => {
+            dispatch(letterUiActions.setFilterOption({ page: 0 }));
+          }}
         >
           <img src={doubleArrowLeft} alt="<<" />
         </button>
@@ -53,7 +59,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
           }`}
           key={number}
           type="button"
-          onClick={() => onPageChange(number)}
+          onClick={() => {
+            dispatch(letterUiActions.setFilterOption({ page: number }));
+          }}
         >
           {number + 1}
         </button>
@@ -63,7 +71,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
           className="w-7 h-7 rounded"
           type="button"
           disabled={currentPage === totalPages - 1}
-          onClick={() => onPageChange(totalPages - 1)}
+          onClick={dispatch(
+            letterUiActions.setFilterOption({ page: totalPages - 1 })
+          )}
         >
           <img src={doubleArrowRight} alt=">>" />
         </button>
