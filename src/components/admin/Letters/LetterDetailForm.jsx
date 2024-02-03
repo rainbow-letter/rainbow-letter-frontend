@@ -6,9 +6,9 @@ const MAX_CONTENT_LENGTH = 1000;
 function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
   const isViewer = mode === 'view';
   const modalRef = useRef();
-  const [contentValue, setContentValue] = useState(content);
+  const [newContent, setNewContentValue] = useState(content);
   const isContentValidAndChanged =
-    (content !== contentValue && contentValue.length <= MAX_CONTENT_LENGTH) ||
+    (content !== newContent && newContent.length <= MAX_CONTENT_LENGTH) ||
     !isSent;
 
   useModalClose(modalRef, onClose);
@@ -24,8 +24,8 @@ function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
           className="w-full flex-1 p-5 mt-4 rounded-lg bg-gray-2 resize-none"
           disabled={isViewer}
           maxLength={MAX_CONTENT_LENGTH}
-          value={contentValue}
-          onChange={({ target }) => setContentValue(target.value)}
+          value={newContent}
+          onChange={({ target }) => setNewContentValue(target.value)}
         />
         <div
           className={`flex ${
@@ -34,7 +34,7 @@ function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
         >
           {isViewer || (
             <div className="text-solo-label text-gray-1 mr-3">
-              {`${contentValue.length} / ${MAX_CONTENT_LENGTH}`}
+              {`${newContent.length} / ${MAX_CONTENT_LENGTH}`}
             </div>
           )}
           <div className="flex">
@@ -47,7 +47,7 @@ function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
                 } text-white font-bold py-2 px-4 mr-3 rounded`}
                 type="button"
                 disabled={!isContentValidAndChanged}
-                onClick={() => onSave(contentValue)}
+                onClick={() => onSave(newContent)}
               >
                 저장
               </button>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { removeToken } from '../../utils/localStorage';
+import { saveToSessionStorage } from '../../utils/sessionStorage';
 import { fetchUserInfo } from '../../store/user-actions';
 import { PAGE_TITLES, USER_INFO_LABELS, USER_ACTIONS } from './constants';
 import AdminLinks from './AdminLinks';
@@ -17,18 +18,15 @@ function MyPage() {
 
   const isAdmin = user?.role === 'ROLE_ADMIN';
 
-  useEffect(() => {
-    dispatch(fetchUserInfo());
-  }, [dispatch]);
-
   const handleLogout = () => {
     removeToken();
     navigate('/home');
   };
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    dispatch(fetchUserInfo());
+    if (isAdmin) saveToSessionStorage('admin', true);
+  }, [dispatch]);
 
   return (
     <>

@@ -2,7 +2,7 @@
 /* eslint-disable no-shadow */
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchLetters, inspectReply } from './letter-actions';
+import { fetchLetters } from './letter-actions';
 
 // type Letter = {
 //   id: Number,
@@ -39,7 +39,7 @@ const adminLettersSlice = createSlice({
         (letter) => letter.id === action.payload
       );
       if (letter) {
-        letter.isCheck = !letter.isCheck;
+        letter.isChecked = !letter.isChecked;
       }
     },
   },
@@ -52,23 +52,12 @@ const adminLettersSlice = createSlice({
         state.status = 'success';
         state.letters = action.payload.content.map((letter) => ({
           ...letter,
-          isCheck: false,
+          isChecked: false,
         }));
       })
       .addCase(fetchLetters.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      })
-      .addCase(inspectReply.fulfilled, (state, action) => {
-        const replyId = action.meta.arg;
-        const letterIndex = state.letters.findIndex(
-          (letter) => letter.reply && letter.reply.id === replyId
-        );
-
-        if (letterIndex !== -1) {
-          const currentInspection = state.letters[letterIndex].reply.inspection;
-          state.letters[letterIndex].reply.inspection = !currentInspection;
-        }
       });
   },
 });

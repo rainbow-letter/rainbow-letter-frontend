@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { toggleRowCheck, toggleInspection } from '../../../store/admin/letters';
+import { inspectReply } from '../../../store/admin/letter-actions';
+import { adminLetterActions } from '../../../store/admin/letter-slice';
 import { formatDateToYYDDMMHHMM } from '../../../utils/date';
 import { extractFirstTenChars } from '../../../utils/string';
-import { inspectReply } from '../../../api/reply';
 import Editor from './Editor';
 import Viewer from './Viewer';
 
@@ -21,12 +21,11 @@ function TableRow({ no, letter, isChecked }) {
     reply.chatGptContent && extractFirstTenChars(reply.chatGptContent);
 
   const handleRowCheck = () => {
-    dispatch(toggleRowCheck(id));
+    dispatch(adminLetterActions.toggleLetterCheck(id));
   };
 
   const handleInspect = async () => {
-    await inspectReply(reply.id);
-    dispatch(toggleInspection(reply.id));
+    dispatch(inspectReply(reply.id));
   };
 
   const toggleLetterViewer = () => {
@@ -88,7 +87,6 @@ function TableRow({ no, letter, isChecked }) {
       <td className="border p-2">
         <div className="flex justify-center items-center h-full overflow-hidden text-ellipsis whitespace-nowrap">
           <input
-            // className="form-checkbox h-5 w-5 accent-red-500"
             className={`form-checkbox h-5 w-5 ${
               reply.inspection || isInspectionDisabled
                 ? 'appearance-auto accent-red-500'
@@ -109,7 +107,7 @@ function TableRow({ no, letter, isChecked }) {
           reply.status === '실패' && 'text-red-600 text-bold'
         }`}
       >
-        {reply.status}
+        {reply.type === 'CHAT_GPT' ? '대기' : '발송'}
       </td>
       <td className="border p-2 text-center">
         {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}

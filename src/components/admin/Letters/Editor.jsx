@@ -1,14 +1,9 @@
 /* eslint-disable consistent-return */
-
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
-import {
-  updateReplyContent,
-  setInspectionTrue,
-} from '../../../store/admin/letters';
-import { editReply, inspectReply } from '../../../api/reply';
+import { editReply } from '../../../store/admin/letter-actions';
 import { extractFirstTenChars } from '../../../utils/string';
 import LetterDetailForm from './LetterDetailForm';
 
@@ -18,21 +13,18 @@ function Editor({ id, isOpen, content, isSent, onClose }) {
 
   const handleSave = async (newContent) => {
     if (isSent) return alert('이미 답장을 보낸 편지입니다.');
-    try {
-      const newSummary = extractFirstTenChars(newContent);
 
-      await editReply(id, {
-        summary: newSummary,
-        content: newContent,
-      });
-
-      await inspectReply(id);
-      dispatch(setInspectionTrue(id));
-      dispatch(updateReplyContent(id, newContent, newSummary));
-      onClose();
-    } catch (error) {
-      console.log(error);
-    }
+    const newSummary = extractFirstTenChars(newContent);
+    dispatch(
+      editReply({
+        replyId: id,
+        editedReply: {
+          summary: newSummary,
+          content: newContent,
+        },
+      })
+    );
+    onClose();
   };
 
   return createPortal(
