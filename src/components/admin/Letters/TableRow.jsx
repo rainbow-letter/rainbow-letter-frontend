@@ -2,10 +2,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { toggleRowCheck, toggleInspection } from '../../../store/admin/letters';
+import { inspectReply } from '../../../store/admin/letter-actions';
 import { formatDateToYYDDMMHHMM } from '../../../utils/date';
 import { extractFirstTenChars } from '../../../utils/string';
-import { inspectReply } from '../../../api/reply';
 import Editor from './Editor';
 import Viewer from './Viewer';
 
@@ -21,12 +20,11 @@ function TableRow({ no, letter, isChecked }) {
     reply.chatGptContent && extractFirstTenChars(reply.chatGptContent);
 
   const handleRowCheck = () => {
-    dispatch(toggleRowCheck(id));
+    // dispatch(toggleRowCheck(id));
   };
 
   const handleInspect = async () => {
-    await inspectReply(reply.id);
-    dispatch(toggleInspection(reply.id));
+    dispatch(inspectReply(reply.id));
   };
 
   const toggleLetterViewer = () => {

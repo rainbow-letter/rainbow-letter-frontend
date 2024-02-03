@@ -16,7 +16,7 @@ export const fetchLetters = createAsyncThunk(
       size: filterOption.size,
     });
 
-    const response = await api.get(`/api/admin/letters?${queryParams}`);
+    const response = await api.get(`/api/letters/admin/list?${queryParams}`);
     return response;
   }
 );
@@ -28,7 +28,7 @@ export const editReply = createAsyncThunk(
       `/api/replies/admin/${replyId}`,
       editedReply
     );
-    return response;
+    return { response, meta: { replyId } };
   }
 );
 
