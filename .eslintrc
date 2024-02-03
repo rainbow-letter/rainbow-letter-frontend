@@ -13,6 +13,13 @@
       "jsx": true,
     },
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/prop-types": "off",
