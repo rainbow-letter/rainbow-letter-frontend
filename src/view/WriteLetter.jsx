@@ -1,5 +1,5 @@
-/* eslint-disable */
-import { React, useState, useEffect, useCallback } from 'react';
+/* eslint-disable consistent-return */
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -12,7 +12,7 @@ import TopicSuggestion from '../components/Write/TopicSuggestion';
 import Button from '../components/Button';
 
 import { getUserInfo } from '../api/user';
-import { closeModal, openModal } from '../store/modal';
+import { modalActions } from '../store/modal-slice';
 import { getPets } from '../api/pets';
 import { sendLetter, getLetters } from '../api/letter';
 import { generateFormData } from '../utils/formData';
@@ -38,7 +38,7 @@ export default function WriteLetter() {
       const { letters } = await getLetters();
       setPetsList(pets || []);
       if (letters.length < 1) {
-        dispatch(openModal('TOPIC'));
+        dispatch(modalActions.openModal('TOPIC'));
       }
       if (!location.state) {
         setSelectedPet(pets[0] || null);
@@ -48,7 +48,7 @@ export default function WriteLetter() {
       }
 
       return () => {
-        dispatch(closeModal());
+        dispatch(modalActions.closeModal());
       };
     })();
   }, []);
@@ -63,7 +63,7 @@ export default function WriteLetter() {
   const isCheckPhoneNumberModalOpen = async () => {
     const { phoneNumber } = await getUserInfo();
     if (!phoneNumber && canOpenAgain) {
-      return dispatch(openModal('PHONE'));
+      return dispatch(modalActions.openModal('PHONE'));
     }
   };
 
@@ -78,7 +78,7 @@ export default function WriteLetter() {
       await sendLetter(selectedPet.id, newLetter);
 
       isCheckPhoneNumberModalOpen();
-      return dispatch(openModal('COMPLETE'));
+      return dispatch(modalActions.openModal('COMPLETE'));
     } catch (error) {
       console.log(error);
     } finally {
