@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { openModal } from '../../store/modal';
-
+import { modalActions } from '../../store/modal-slice';
 import { INFO_MESSAGES } from './constants';
 import InfoImage from '../../assets/gg_info.svg';
 
@@ -13,7 +12,7 @@ export default function TopicSuggestion() {
     <article className="mt-2.5">
       <button
         type="button"
-        onClick={() => dispatch(openModal('TOPIC'))}
+        onClick={() => dispatch(modalActions.openModal('TOPIC'))}
         className="flex items-center gap-1"
       >
         <img src={InfoImage} alt="information" />
