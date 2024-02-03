@@ -39,39 +39,75 @@ function LetterTable() {
     );
   };
 
+  const handleStatusChange = ({ target }) => {
+    dispatch(letterUiActions.setFilterOption({ type: target.value }));
+    dispatch(fetchLetters());
+  };
+
   return (
     <div className="p-4">
       <div className="flex justify-between flex-wrap">
-        <div className="mb-4 flex items-center gap-2">
-          <input
-            className="border rounded-md py-1 px-2"
-            type="date"
-            value={filterOption.startDate}
-            onChange={({ target }) =>
-              dispatch(
-                letterUiActions.setFilterOption({ startDate: target.value })
-              )
-            }
-          />
-          <span>부터</span>
-          <input
-            className="border rounded-md py-1 px-2"
-            type="date"
-            value={filterOption.endDate}
-            onChange={({ target }) =>
-              dispatch(
-                letterUiActions.setFilterOption({ endDate: target.value })
-              )
-            }
-          />
-          <span>까지</span>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={() => dispatch(fetchLetters())}
-          >
-            검색
-          </button>
+        <div>
+          <div className="mb-4 flex items-center gap-2">
+            <input
+              className="border rounded-md py-1 px-2"
+              type="date"
+              value={filterOption.startDate}
+              onChange={({ target }) =>
+                dispatch(
+                  letterUiActions.setFilterOption({ startDate: target.value })
+                )
+              }
+            />
+            <span>부터</span>
+            <input
+              className="border rounded-md py-1 px-2"
+              type="date"
+              value={filterOption.endDate}
+              onChange={({ target }) =>
+                dispatch(
+                  letterUiActions.setFilterOption({ endDate: target.value })
+                )
+              }
+            />
+            <span>까지</span>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              type="button"
+              onClick={() => dispatch(fetchLetters())}
+            >
+              검색
+            </button>
+          </div>
+          <div className="flex items-center gap-x-3">
+            <span className="font-bold">상태</span>
+            <div className="flex gap-x-1 bg-gray-300 rounded-md text-white">
+              <button
+                className={`${filterOption.type === 'ALL' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                type="button"
+                value="ALL"
+                onClick={handleStatusChange}
+              >
+                전체
+              </button>
+              <button
+                className={`${filterOption.type === 'WAIT' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                type="button"
+                value="WAIT"
+                onClick={handleStatusChange}
+              >
+                대기
+              </button>
+              <button
+                className={`${filterOption.type === 'COMPLETE' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                type="button"
+                value="COMPLETE"
+                onClick={handleStatusChange}
+              >
+                발송
+              </button>
+            </div>
+          </div>
         </div>
         <div>
           <button
@@ -79,7 +115,7 @@ function LetterTable() {
               !validateLetters(letters)
                 ? 'bg-gray-400'
                 : 'bg-green-500 hover:bg-green-700'
-            } text-white font-bold py-2 px-4 rounded`}
+            } text-white font-bold py-2 px-4 items-end rounded`}
             type="button"
             disabled={!validateLetters(letters)}
             onClick={handleSendReplies}
@@ -105,9 +141,7 @@ function LetterTable() {
               <th className="border px-4 py-2 whitespace-nowrap">최종 답장</th>
               <th className="border px-4 py-2 whitespace-nowrap">검수 여부</th>
               <th className="border px-4 py-2 whitespace-nowrap">검수일</th>
-              <th className="border px-4 py-2 whitespace-nowrap">
-                답장 발송 여부
-              </th>
+              <th className="border px-4 py-2 whitespace-nowrap">답장 상태</th>
               <th className="border px-4 py-2 whitespace-nowrap">
                 답장 발송일
               </th>
