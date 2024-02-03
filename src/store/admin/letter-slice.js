@@ -39,7 +39,7 @@ const adminLettersSlice = createSlice({
         (letter) => letter.id === action.payload
       );
       if (letter) {
-        letter.isCheck = !letter.isCheck;
+        letter.isChecked = !letter.isChecked;
       }
     },
   },
@@ -52,7 +52,7 @@ const adminLettersSlice = createSlice({
         state.status = 'success';
         state.letters = action.payload.content.map((letter) => ({
           ...letter,
-          isCheck: false,
+          isChecked: false,
         }));
       })
       .addCase(fetchLetters.rejected, (state, action) => {

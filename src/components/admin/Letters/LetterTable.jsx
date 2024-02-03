@@ -26,16 +26,18 @@ function LetterTable() {
     dispatch(sendReply(requests));
   };
 
-  const areAllCheckedLettersFailed = (letters) => {
-    const checkedLetters = letters.filter((letter) => letter.isChecked);
-    if (checkedLetters.length === 0) {
-      return false;
-    }
+  const validateLetters = (letters) => {
+    const checkedLetters = letters.filter(
+      (letter) => letter.isChecked === true
+    );
 
-    return checkedLetters.every((letter) => letter.reply.status === '실패');
+    if (checkedLetters.length === 0) return false;
+
+    return checkedLetters.every(
+      (letter) =>
+        letter.reply?.inspection === true && letter.reply?.timestamp === null
+    );
   };
-
-  const allCheckedAreFailed = areAllCheckedLettersFailed(letters);
 
   return (
     <div className="p-4">
@@ -74,12 +76,12 @@ function LetterTable() {
         <div>
           <button
             className={`${
-              !allCheckedAreFailed
-                ? 'bg-gray-400 cursor-not-allowed'
+              !validateLetters(letters)
+                ? 'bg-gray-400'
                 : 'bg-green-500 hover:bg-green-700'
             } text-white font-bold py-2 px-4 rounded`}
             type="button"
-            disabled={!allCheckedAreFailed}
+            disabled={!validateLetters(letters)}
             onClick={handleSendReplies}
           >
             편지 보내기
