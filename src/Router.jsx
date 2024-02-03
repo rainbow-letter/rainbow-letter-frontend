@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { getToken } from './utils/localStorage';
 import Home from './view/Home';
 import Login from './view/Login';
 import Join from './view/Join';
@@ -29,10 +28,7 @@ import Letters from './components/admin/Letters';
 import AdminLayout from './components/Layout/AdminLayout';
 
 function Router() {
-  const token = getToken();
   const { isOpen } = useSelector((state) => state.modal);
-
-  const isLoggedIn = !!token;
 
   return (
     <BrowserRouter>
@@ -47,7 +43,7 @@ function Router() {
             <Route path="/members/password/reset" element={<Password />} />
             <Route path="/oauth/success" element={<Auth />} />
             <Route path="/share/:shareLink" element={<ShareLetter />} />
-            <Route element={<ProtectedLayout isLoggedIn={isLoggedIn} />}>
+            <Route element={<ProtectedLayout />}>
               {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
               <Route path="/my-page" element={<MyPage />} />
               <Route path="/my-page/faqs" element={<FAQs />} />
@@ -62,7 +58,7 @@ function Router() {
             </Route>
           </Route>
           {/* NOTE: 관리자 권한이 필요한 페이지 */}
-          <Route element={<AdminLayout isLoggedIn={isLoggedIn} />}>
+          <Route element={<AdminLayout />}>
             <Route path="/admin/letters" element={<Letters />} />
           </Route>
         </Routes>

@@ -3,8 +3,12 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import AppBar from '../AppBar';
+import { getToken } from '../../utils/localStorage';
 
-function AdminLayout({ isLoggedIn }) {
+function AdminLayout() {
+  const token = getToken();
+  const isLoggedIn = !!token;
+
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }

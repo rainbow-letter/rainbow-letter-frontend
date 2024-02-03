@@ -3,8 +3,12 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import AppBar from '../AppBar';
 import NavBar from '../NavBar';
+import { getToken } from '../../utils/localStorage';
 
-function ProtectedLayout({ isLoggedIn }) {
+function ProtectedLayout() {
+  const token = getToken();
+  const isLoggedIn = !!token;
+
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
