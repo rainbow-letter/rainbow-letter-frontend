@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function LinkAvailable({
   message: { findPassword, link },
   className,
-}) {
+}: any) {
   const style = className || '';
 
   return (
