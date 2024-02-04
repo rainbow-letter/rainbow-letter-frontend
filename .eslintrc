@@ -4,21 +4,21 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
   },
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
-    }
+      "jsx": true,
+    },
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["src"]
-      }
-    }
+        "paths": ["src"],
+      },
+    },
   },
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
@@ -26,12 +26,12 @@
     "jsx-a11y/label-has-associated-control": [
       2,
       {
-        "some": ["nesting", "id"]
-      }
+        "some": ["nesting", "id"],
+      },
     ],
     "react/jsx-filename-extension": [
       1,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ]
-  }
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] },
+    ],
+  },
 }
