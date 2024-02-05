@@ -21,9 +21,9 @@ export default function LetterListSection({ pet }) {
   const filteredLetter =
     pet === DEFAULT
       ? letterList
-      : letterList.filter((letter) => letter.petName === pet);
+      : letterList?.filter((letter) => letter.petName === pet);
 
-  if (filteredLetter !== null && filteredLetter.length < 1)
+  if (filteredLetter !== null && filteredLetter?.length < 1)
     return <NoLetters pet={pet} />;
 
   return (

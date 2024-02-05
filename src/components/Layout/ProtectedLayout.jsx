@@ -10,7 +10,7 @@ function ProtectedLayout() {
   const isLoggedIn = !!token;
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/sign-up" replace />;
   }
 
   return (
