@@ -46,7 +46,7 @@ export default function LoginForm({ message: { describe, button } }: Props) {
   );
 
   return (
-    <section className="mt-[43px]">
+    <section className="mt-10">
       <header className="flex justify-between items-center">
         <div className="border-t w-[84px]" />
         <h3 className="text-solo-small">{describe}</h3>
