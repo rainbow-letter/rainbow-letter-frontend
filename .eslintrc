@@ -1,11 +1,16 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
   "plugins": ["prettier"],
   "env": {
     "browser": true,
     "es6": true,
     "node": true,
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
@@ -14,6 +19,19 @@
     },
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+    },
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+      },
+    ],
     "import/resolver": {
       "node": {
         "paths": ["src"],
@@ -21,6 +39,8 @@
     },
   },
   "rules": {
+    "import/no-unresolved": "off",
+    "react/require-default-props": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/prop-types": "off",
     "jsx-a11y/label-has-associated-control": [

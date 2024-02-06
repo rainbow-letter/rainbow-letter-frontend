@@ -1,4 +1,19 @@
-const LOGIN_MESSAGE = [
+export type Message = {
+  pathname: string;
+  title: string;
+  describe: string;
+  findPassword?: string;
+  button: {
+    google: string;
+    default: string;
+  };
+  link: {
+    address: string;
+    value: string;
+  };
+};
+
+const LOGIN_MESSAGE: Message[] = [
   {
     pathname: '/login',
     title: '다시 와주셨네요!',

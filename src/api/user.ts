@@ -3,31 +3,31 @@ import apiRequest from '.';
 
 const RESOURCE = '/api/members';
 
-export const trySignUp = async (data) => {
+export const trySignUp = async (data: any) => {
   const response = await apiRequest.post(`${RESOURCE}`, data);
 
   return response;
 };
 
-export const tryLogin = async (data) => {
+export const tryLogin = async (data: any): Promise<any> => {
   const response = await apiRequest.post(`${RESOURCE}/login`, data);
 
   return response;
 };
 
-export const authEmail = async (email) => {
+export const authEmail = async (email: any) => {
   const response = await apiRequest.post(`${RESOURCE}/password/find`, email);
 
   return response;
 };
 
-export const updatePassword = async (data) => {
+export const updatePassword = async (data: any) => {
   const response = await apiRequest.put(`${RESOURCE}/password/reset`, data);
 
   return response;
 };
 
-export const updatePhoneNumber = async (data) => {
+export const updatePhoneNumber = async (data: any) => {
   const response = await apiRequest.put(`${RESOURCE}/phoneNumber`, data);
 
   return response;
