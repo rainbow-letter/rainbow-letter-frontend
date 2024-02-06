@@ -1,10 +1,11 @@
 /* eslint-disable consistent-return */
-import { React, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import UserInput from './UserInput';
-import SubmitButton from './SubmitButton';
-import { tryLogin } from '../../api/user';
+import { tryLogin } from 'api/user';
+import { Message } from 'components/Login/constants';
+import UserInput from 'components/Login/UserInput';
+import SubmitButton from 'components/Login/SubmitButton';
 import { saveToken } from '../../utils/localStorage';
 import {
   emailError,
@@ -12,20 +13,24 @@ import {
   passwordError,
 } from '../../utils/errorData';
 
-export default function LoginForm({ message: { describe, button } }) {
+type Props = {
+  message: Message;
+};
+
+export default function LoginForm({ message: { describe, button } }: Props) {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
     email: '',
     password: '',
   });
-  const [errorData, setErrorData] = useState(null);
+  const [errorData, setErrorData] = useState<any>(null);
 
   useEffect(() => {
     setErrorData(null);
   }, [profile]);
 
   const onClickLoginButton = useCallback(
-    async (e) => {
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
       try {
         e.preventDefault();
         const { token } = await tryLogin(profile);
@@ -33,7 +38,7 @@ export default function LoginForm({ message: { describe, button } }) {
         setErrorData(null);
         saveToken(token);
         navigate('/home');
-      } catch (error) {
+      } catch (error: any) {
         setErrorData(error.response.data);
       }
     },
@@ -51,7 +56,9 @@ export default function LoginForm({ message: { describe, button } }) {
         <UserInput
           type="text"
           value={profile.email}
-          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setProfile({ ...profile, email: e.target.value })
+          }
           placeholder="이메일을 입력해주세요"
           isNotValid={errorData && emailError(errorData)}
           errorMessage={errorData && emailErrorMessage(errorData)}
@@ -60,18 +67,22 @@ export default function LoginForm({ message: { describe, button } }) {
         <UserInput
           type="password"
           value={profile.password}
-          onChange={(e) => setProfile({ ...profile, password: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setProfile({ ...profile, password: e.target.value })
+          }
           placeholder="비밀번호를 입력해주세요"
           isNotValid={errorData && passwordError(errorData)}
           errorMessage={errorData && errorData.message}
         />
         <SubmitButton
-          onclick={(e) => onClickLoginButton(e)}
+          onclick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClickLoginButton(e)
+          }
+          value={button.default}
           disabled={errorData}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
           } text-heading-3  py-[22px] mt-[18px] w-full rounded-[15px] flex justify-center items-center`}
-          value={button.default}
         />
       </form>
     </section>
