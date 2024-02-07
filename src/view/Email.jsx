@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import UserInput from '../components/Login/UserInput';
-import { authEmail } from '../api/user';
+import UserInput from 'components/Login/UserInput';
+import { authEmail } from 'api/user';
 
-import { FIND_EMAIL_MESSAGE } from '../components/Login/constants';
+import { FIND_EMAIL_MESSAGE } from 'components/Login/constants';
 
 export default function Email() {
   const [auth, setAuth] = useState({ email: '' });
