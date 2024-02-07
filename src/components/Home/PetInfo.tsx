@@ -3,6 +3,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { PetDashBoard } from 'types/pets';
 import { calculateDDay } from '../../utils/date';
 
 import letter from '../../assets/fa-regular_message_color.svg';
@@ -10,13 +11,18 @@ import heart from '../../assets/fa-regular_heart_color.svg';
 import arrow from '../../assets/ion_chevron-back-home.svg';
 import defaultImage from '../../assets/Logo_256px.png';
 
-export default function PetInfo({ pet, letterCount }) {
+type Props = {
+  pet: PetDashBoard | undefined;
+  letterCount: number | undefined;
+};
+
+export default function PetInfo({ pet, letterCount }: Props) {
   const navigate = useNavigate();
   const deathAnniversaryDDay =
-    pet.deathAnniversary && calculateDDay(pet.deathAnniversary);
+    pet?.deathAnniversary && calculateDDay(pet?.deathAnniversary);
 
   const handleScroll = () => {
-    navigate('/my-pets', { state: pet.id });
+    navigate('/my-pets', { state: pet?.id });
   };
 
   return (

@@ -1,6 +1,10 @@
 import React from 'react';
 
-function Divider({ className }) {
+type Props = {
+  className?: string;
+};
+
+function Divider({ className }: Props) {
   return (
     <hr className={`border-t border-b-[#EEE] w-[354px] mx-auto ${className}`} />
   );

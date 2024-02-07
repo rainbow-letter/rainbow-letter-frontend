@@ -2,7 +2,17 @@ import React from 'react';
 
 import Chip from '../Chips/Chip';
 
-export default function NameSection({ petsNames, onClick, selectedPet }) {
+type Props = {
+  petsNames: string[];
+  onClick: (name: string) => void;
+  selectedPet: string | null;
+};
+
+export default function NameSection({
+  petsNames,
+  onClick,
+  selectedPet,
+}: Props) {
   return (
     <nav>
       <ul className="flex flex-wrap gap-2">

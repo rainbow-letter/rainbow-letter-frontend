@@ -1,13 +1,14 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import NoPets from './NoPets';
-import NameSection from './NameSection';
-import { getDashboard } from '../../api/pets';
-import PetInfo from './PetInfo';
+import { PetDashBoard } from 'types/pets';
+import { getDashboard } from 'api/pets';
+import NoPets from 'components/Home/NoPets';
+import NameSection from 'components/Home/NameSection';
+import PetInfo from 'components/Home/PetInfo';
 
 export default function PetsBox() {
-  const [petsList, setPetsList] = useState([]);
-  const [selectedPet, setSelectedPet] = useState(null);
+  const [petsList, setPetsList] = useState<PetDashBoard[]>([]);
+  const [selectedPet, setSelectedPet] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -31,7 +32,7 @@ export default function PetsBox() {
         onClick={setSelectedPet}
         selectedPet={selectedPet}
       />
-      <PetInfo pet={filteredPet} letterCount={filteredPet.letterCount} />
+      <PetInfo pet={filteredPet} letterCount={filteredPet?.letterCount} />
     </>
   );
 }

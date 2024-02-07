@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { FOOTER_MESSAGE } from './constants';
+import { FOOTER_MESSAGE } from 'components/Home/constants';
 import blog from '../../assets/blog.png';
 
 export default function HomeFooter() {

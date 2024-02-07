@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { OPEN_TALK_MESSAGE } from 'components/Home/constants';
 import kakao from '../../assets/Talk.svg';
 import background from '../../assets/Talk_Background.svg';
-import { OPEN_TALK_MESSAGE } from './constants';
 
 export default function OpenTalk() {
   return (

@@ -3,6 +3,14 @@ import bookmark from '../../assets/Bookmark.svg';
 import coffee from '../../assets/ph_coffee.svg';
 import megaphone from '../../assets/Megaphone.svg';
 
+interface Content_Message {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  url: string;
+}
+
 export const INFO_MESSAGES = Object.freeze({
   LOGIN_ABSENT: '앗, 로그인 하셔야 해요',
   INFOMATION_ABOUT_LETTER_WRITING_METHOD: '로그인하시면 편지를 보낼 수 있어요',
@@ -19,7 +27,7 @@ export const USER_ACTIONS = Object.freeze({
   PEST_REGISTRATION: '등록하기',
 });
 
-export const CONTENTS_MESSAGE = [
+export const CONTENTS_MESSAGE: Content_Message[] = [
   {
     id: 0,
     title: '공지사항',
