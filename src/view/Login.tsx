@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 import Header from 'components/Login/Header';
 import LinkAvailable from 'components/Login/LinkAvailable';
-import { LOGIN_MESSAGE, Message } from 'components/Login/constants';
 import LoginForm from 'components/Login/LoginForm';
+import { LOGIN_MESSAGE, Message } from 'components/Login/constants';
 
 export default function Login() {
   const { pathname } = useLocation();

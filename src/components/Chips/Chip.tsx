@@ -1,6 +1,13 @@
 import React from 'react';
 
-function Chip({ className, isSelected, value, onClick }) {
+type Props = {
+  value: string;
+  isSelected: boolean;
+  onClick: () => void;
+  className?: string;
+};
+
+function Chip({ className, isSelected, value, onClick }: Props) {
   const styles = className || '';
 
   const handleClick = () => {

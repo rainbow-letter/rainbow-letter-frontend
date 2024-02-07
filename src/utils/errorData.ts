@@ -1,4 +1,9 @@
-export function emailError(error) {
+type Error = {
+  code: string;
+  message: string;
+};
+
+export function emailError(error: Error): boolean {
   if (
     error.code === 'EXISTS_EMAIL' ||
     error.code === 'NOT_VALID_EMAIL' ||
@@ -12,7 +17,7 @@ export function emailError(error) {
   return false;
 }
 
-export function emailErrorMessage(error) {
+export function emailErrorMessage(error: Error): Error['message'] | boolean {
   if (!error.message) return false;
   if (
     error.code === 'EXISTS_EMAIL' ||
@@ -25,7 +30,7 @@ export function emailErrorMessage(error) {
   return false;
 }
 
-export function passwordError(error) {
+export function passwordError(error: Error): boolean {
   if (
     error.code === 'NOT_VALID_PASSWORD' ||
     error.code === 'METHOD_ARGUMENT_NOT_VALID' ||

@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { PHONE_MESSAGE } from 'components/Home/constants';
 import phone from '../../assets/Phone.svg';
-import { PHONE_MESSAGE } from './constants';
 
 export default function PhoneButton() {
   const onPhoneButtonclick = () => {

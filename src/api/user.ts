@@ -3,19 +3,27 @@ import apiRequest from '.';
 
 const RESOURCE = '/api/members';
 
-export const trySignUp = async (data: any) => {
+type UserRequestData = {
+  email: string;
+};
+
+type LoginRequestData = UserRequestData & {
+  password: string;
+};
+
+export const trySignUp = async (data: UserRequestData): Promise<any> => {
   const response = await apiRequest.post(`${RESOURCE}`, data);
 
   return response;
 };
 
-export const tryLogin = async (data: any): Promise<any> => {
+export const tryLogin = async (data: LoginRequestData): Promise<any> => {
   const response = await apiRequest.post(`${RESOURCE}/login`, data);
 
   return response;
 };
 
-export const authEmail = async (email: any) => {
+export const authEmail = async (email: UserRequestData) => {
   const response = await apiRequest.post(`${RESOURCE}/password/find`, email);
 
   return response;

@@ -4,10 +4,11 @@ import { useSelector } from 'react-redux';
 
 import Login from 'view/Login';
 import Join from 'view/Join';
-import Home from './view/Home';
-import Email from './view/Email';
-import Password from './view/Password';
-import Auth from './view/Auth';
+import Email from 'view/Email';
+import Password from 'view/Password';
+import LandingPage from 'view/LandingPage';
+import Home from 'view/Home';
+import Auth from 'view/Auth';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
 import MyPage from './components/MyPage';
@@ -22,7 +23,7 @@ import LetterBox from './view/LetterBox';
 import Modal from './components/Modal';
 import DetailLetter from './view/DetailLetter';
 import ShareLetter from './view/ShareLetter';
-import LandingPage from './view/LandingPage';
+
 import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';
 import AdminLayout from './components/Layout/AdminLayout';

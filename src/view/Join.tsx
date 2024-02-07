@@ -3,9 +3,9 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Header from 'components/Login/Header';
+import SignUpForm from 'components/Login/SignUp/SignUpForm';
 import LinkAvailable from 'components/Login/LinkAvailable';
 import { LOGIN_MESSAGE, Message } from 'components/Login/constants';
-import SignUpForm from '../components/Login/SignUp/SignUpForm';
 
 export default function Join() {
   const { pathname } = useLocation();

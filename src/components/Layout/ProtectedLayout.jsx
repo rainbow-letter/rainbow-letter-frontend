@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import NavBar from 'components/NavBar';
 import AppBar from '../AppBar';
-import NavBar from '../NavBar';
 import { getToken } from '../../utils/localStorage';
 
 function ProtectedLayout() {

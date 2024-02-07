@@ -13,6 +13,10 @@ export type Message = {
   };
 };
 
+interface ErrorMessage {
+  [key: string]: string;
+}
+
 const LOGIN_MESSAGE: Message[] = [
   {
     pathname: '/login',
@@ -43,7 +47,7 @@ const LOGIN_MESSAGE: Message[] = [
   },
 ];
 
-const ERROR_MESSAGE = Object.freeze({
+const ERROR_MESSAGE: ErrorMessage = Object.freeze({
   NOT_MATCH: '비밀번호를 다시 확인해주세요.',
   NOT_VALID_PASSWORD: '영어, 숫자 포함 8자리 이상 입력해주세요.',
   NOT_VALID_EMAIL: '이메일 형식이 아닙니다.',

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ContentsItem from './ContentsItem';
+import ContentsItem from 'components/Home/ContentsItem';
 
-import { INFO_MESSAGES } from './constants';
+import { INFO_MESSAGES } from 'components/Home/constants';
 
 export default function ContentsSection() {
   return (
