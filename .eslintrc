@@ -41,6 +41,7 @@
   "rules": {
     "import/no-unresolved": "off",
     "react/require-default-props": "off",
+    "import/no-extraneous-dependencies": 0,
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/prop-types": "off",
     "jsx-a11y/label-has-associated-control": [

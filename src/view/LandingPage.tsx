@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
+import { getToken } from 'utils/localStorage';
 import LandingItems from '../components/LandingPage/constants';
 import Button from '../components/Button';
 
 const DEFAULT = 390;
 
 export default function LandingPage() {
-  const { token } = useSelector((state) => state.user);
-  const landingImageList = useRef();
   const navigate = useNavigate();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [deviceWidth, setDeviceWidth] = useState(0);
-  const [buttonId, setButtonId] = useState(null);
+  const landingImageList = useRef<HTMLUListElement>(null);
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [deviceWidth, setDeviceWidth] = useState<number>(0);
+  const [buttonId, setButtonId] = useState<null | string>(null);
+  const token = getToken();
 
   useEffect(() => {
     if (token) {
@@ -27,16 +27,18 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    landingImageList.current.style.marginLeft = `${
-      -currentSlide * deviceWidth
-    }px`;
+    if (landingImageList.current) {
+      landingImageList.current.style.marginLeft = `${
+        -currentSlide * deviceWidth
+      }px`;
+    }
 
     if (currentSlide === LandingItems.length - 1) {
       setButtonId('service_start');
     }
   }, [currentSlide]);
 
-  const onClickButtonNextButton = (id) => {
+  const onClickButtonNextButton = (id: number) => {
     if (id === LandingItems.length - 1) {
       navigate('/home');
     }
@@ -56,6 +58,7 @@ export default function LandingPage() {
             <div className="relative">
               <Button
                 id={buttonId}
+                disabled={false}
                 onClick={() => onClickButtonNextButton(item.id)}
                 className="absolute inset-x-0 bottom-7 left-1/2 transform -translate-x-1/2"
               >
