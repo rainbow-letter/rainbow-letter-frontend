@@ -9,8 +9,8 @@ type Props = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
-  isNotValid: boolean | null;
-  errorMessage: string | null;
+  isNotValid: boolean | null | undefined;
+  errorMessage: string | null | undefined;
   className?: string;
 };
 

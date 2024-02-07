@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import { tryLogin } from 'api/user';
@@ -17,13 +18,21 @@ type Props = {
   message: Message;
 };
 
+export type LoginError = {
+  code: string;
+  message: string;
+  name: string;
+  status: string;
+  timestamp: Date;
+};
+
 export default function LoginForm({ message: { describe, button } }: Props) {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
     email: '',
     password: '',
   });
-  const [errorData, setErrorData] = useState<any>(null);
+  const [errorData, setErrorData] = useState<LoginError | null>();
 
   useEffect(() => {
     setErrorData(null);
@@ -38,8 +47,10 @@ export default function LoginForm({ message: { describe, button } }: Props) {
         setErrorData(null);
         saveToken(token);
         navigate('/home');
-      } catch (error: any) {
-        setErrorData(error.response.data);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          setErrorData(error.response?.data);
+        }
       }
     },
     [profile, errorData]
