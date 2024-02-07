@@ -23,7 +23,7 @@ export const tryLogin = async (data: LoginRequestData): Promise<any> => {
   return response;
 };
 
-export const authEmail = async (email: any) => {
+export const authEmail = async (email: UserRequestData) => {
   const response = await apiRequest.post(`${RESOURCE}/password/find`, email);
 
   return response;

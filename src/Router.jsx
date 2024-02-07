@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 
 import Login from 'view/Login';
 import Join from 'view/Join';
-import Home from './view/Home';
-import Email from './view/Email';
+import Email from 'view/Email';
 import Password from './view/Password';
+import Home from './view/Home';
 import Auth from './view/Auth';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';

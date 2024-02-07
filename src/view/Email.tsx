@@ -1,4 +1,5 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import UserInput from 'components/Login/UserInput';
@@ -6,10 +7,12 @@ import { authEmail } from 'api/user';
 
 import { FIND_EMAIL_MESSAGE } from 'components/Login/constants';
 
+import { ErrorData } from 'components/Login/LoginForm';
+
 export default function Email() {
   const [auth, setAuth] = useState({ email: '' });
-  const [errorData, setErrorData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [errorData, setErrorData] = useState<ErrorData | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onClickFindEmailButton = async () => {
     try {
@@ -17,7 +20,9 @@ export default function Email() {
       alert('비밀번호 변경 메일이 발송됐어요!');
       setIsLoading(true);
     } catch (error) {
-      setErrorData(error.response.data);
+      if (axios.isAxiosError(error)) {
+        setErrorData(error.response?.data);
+      }
     }
   };
 
@@ -35,7 +40,7 @@ export default function Email() {
         placeholder="이메일을 입력해주세요"
         value={auth.email}
         onChange={(e) => setAuth({ ...auth, email: e.target.value })}
-        isNotValid={errorData && errorData}
+        isNotValid={!!errorData}
         errorMessage={errorData && errorData.message}
       />
       <button
