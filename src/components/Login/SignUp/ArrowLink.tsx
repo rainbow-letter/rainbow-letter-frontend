@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 
 import arrow from '../../../assets/Vector.svg';
 
-export default function ArrowLink({ url }) {
+type Props = {
+  url: string;
+};
+
+export default function ArrowLink({ url }: Props) {
   return (
     <Link to={url} target="_blank">
       <img

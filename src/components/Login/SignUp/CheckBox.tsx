@@ -3,7 +3,14 @@ import React from 'react';
 
 import check from '../../../assets/humbleicons_check.svg';
 
-export default function CheckBox({ id, label, onChange, checked }) {
+type Props = {
+  id: string;
+  label: string;
+  onChange: (e: any, name: string) => void;
+  checked: boolean;
+};
+
+export default function CheckBox({ id, label, onChange, checked }: Props) {
   return (
     <>
       <div className="flex">

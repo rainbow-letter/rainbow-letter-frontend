@@ -10,7 +10,7 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   isNotValid: boolean | null | undefined;
-  errorMessage: string | null | undefined;
+  errorMessage: boolean | string | null | undefined;
   className?: string;
 };
 
@@ -33,7 +33,7 @@ export default function UserInput({
         }`}
       />
       {isNotValid && errorMessage && (
-        <p className="text-caption text-left text-alarm-red px-2.5 pb-2.5">
+        <p className="text-caption text-left text-alarm-red px-2.5 pb-2">
           {errorMessage}
         </p>
       )}

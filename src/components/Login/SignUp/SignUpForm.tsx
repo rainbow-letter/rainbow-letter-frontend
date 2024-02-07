@@ -1,28 +1,43 @@
 /* eslint-disable consistent-return */
-import { React, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import UserInput from 'components/Login/UserInput';
 import SubmitButton from 'components/Login/SubmitButton';
+import Agree from 'components/Login/SignUp/Agree';
+
+import { ERROR_MESSAGE, Message } from 'components/Login/constants';
 import { trySignUp, tryLogin } from 'api/user';
-import { ERROR_MESSAGE } from 'components/Login/constants';
-import Agree from './Agree';
+import { ErrorData } from 'components/Login/LoginForm';
+import { emailError, emailErrorMessage, passwordError } from 'utils/errorData';
 import { saveToken } from '../../../utils/localStorage';
 import { validateEmail, validatePassword } from '../../../utils/validators';
-import {
-  emailError,
-  emailErrorMessage,
-  passwordError,
-} from '../../../utils/errorData';
 
-export default function SignUpForm({ message: { describe, button } }) {
+type Props = {
+  message: Message;
+};
+
+type Profile = {
+  email: string;
+  password: string;
+};
+
+export interface ValidError {
+  code: string;
+  message: string;
+}
+
+export default function SignUpForm({ message: { describe, button } }: Props) {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState({
+  const [profile, setProfile] = useState<Profile>({
     email: '',
     password: '',
   });
-  const [errorData, setErrorData] = useState(null);
-  const [isChecked, setIsChecked] = useState(false);
+  const [errorData, setErrorData] = useState<ErrorData | ValidError | null>(
+    null
+  );
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   useEffect(() => {
     setErrorData(null);
@@ -38,13 +53,26 @@ export default function SignUpForm({ message: { describe, button } }) {
     }
   };
 
+  const onErrorHandling = (error: unknown) => {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        return setErrorData(error.response && error.response.data);
+      }
+    }
+    if (error instanceof Error) {
+      setErrorData({
+        code: error.message,
+        message: ERROR_MESSAGE[error.message],
+      });
+    }
+  };
+
   const onClickSignUpButton = useCallback(
-    async (e) => {
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
       try {
         e.preventDefault();
         isCheckProperForm();
         if (!isChecked) {
-          setErrorData(true);
           return alert('서비스 이용약관 및 개인정보 처리방침을 체크해주세요!');
         }
         await trySignUp(profile);
@@ -54,30 +82,26 @@ export default function SignUpForm({ message: { describe, button } }) {
         setErrorData(null);
         navigate('/home');
       } catch (error) {
-        if (error.response) {
-          return setErrorData(error.response && error.response.data);
-        }
-        setErrorData({
-          code: error.message,
-          message: ERROR_MESSAGE[error.message],
-        });
+        onErrorHandling(error);
       }
     },
     [profile, errorData, isChecked]
   );
 
   return (
-    <section className="mt-[46px]">
+    <section className="mt-12">
       <header className="flex justify-between items-center">
         <div className="border-t w-[84px]" />
         <h3 className="text-solo-small">{describe}</h3>
         <div className="border-t w-[84px]" />
       </header>
-      <form className="mt-[24px]">
+      <form className="mt-6">
         <UserInput
           type="text"
           value={profile.email}
-          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setProfile({ ...profile, email: e.target.value })
+          }
           placeholder="이메일을 입력해주세요"
           isNotValid={errorData && emailError(errorData)}
           errorMessage={errorData && emailErrorMessage(errorData)}
@@ -85,14 +109,18 @@ export default function SignUpForm({ message: { describe, button } }) {
         <UserInput
           type="password"
           value={profile.password}
-          onChange={(e) => setProfile({ ...profile, password: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setProfile({ ...profile, password: e.target.value })
+          }
           placeholder="비밀번호를 입력해주세요"
           isNotValid={errorData && passwordError(errorData)}
-          errorMessage={errorData && errorData.message}
+          errorMessage={errorData && errorData?.message}
         />
         <Agree setIsChecked={setIsChecked} />
         <SubmitButton
-          onclick={(e) => onClickSignUpButton(e)}
+          onclick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClickSignUpButton(e)
+          }
           disabled={errorData}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
