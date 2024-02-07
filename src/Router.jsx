@@ -8,7 +8,7 @@ import Email from 'view/Email';
 import Password from 'view/Password';
 import LandingPage from 'view/LandingPage';
 import Home from 'view/Home';
-import Auth from './view/Auth';
+import Auth from 'view/Auth';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
 import MyPage from './components/MyPage';
