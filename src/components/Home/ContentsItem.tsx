@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { CONTENTS_MESSAGE } from './constants';
+import { CONTENTS_MESSAGE } from 'components/Home/constants';
 
 import arrowIcon from '../../assets/ion_chevron-back-home.svg';
 

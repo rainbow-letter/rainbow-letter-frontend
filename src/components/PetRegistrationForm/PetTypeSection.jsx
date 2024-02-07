@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+import Chip from 'components/Chips/Chip';
 import { TITLES, INFO_MESSAGES } from './constants';
 import { PET_TYPES } from '../Chips/constants';
 import PetRegistrationSection from './PetRegistrationSection';
-import Chip from '../Chips/Chip';
 import Chips from '../Chips';
 import MiscInput from '../Input/MiscInput';
 import InputAlert from '../InputAlert';

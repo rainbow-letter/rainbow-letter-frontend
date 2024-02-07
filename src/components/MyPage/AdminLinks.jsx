@@ -1,7 +1,7 @@
 import React from 'react';
 
+import Divider from 'components/Divider';
 import MenuItemLink from './MenuItemLink';
-import Divider from '../Divider';
 
 function AdminLinks() {
   return (

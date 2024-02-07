@@ -1,5 +1,5 @@
 import React from 'react';
-import Chip from './Chip';
+import Chip from 'components/Chips/Chip';
 
 function Chips({ attributes, selectedChips, onChipSelect }) {
   return (

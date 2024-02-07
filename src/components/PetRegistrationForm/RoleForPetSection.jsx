@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+import Chip from 'components/Chips/Chip';
 import { TITLES, INFO_MESSAGES } from './constants';
 import { ROLES_FOR_WOMEN, ROLES_FOR_MEN } from '../Chips/constants';
 import PetRegistrationSection from './PetRegistrationSection';
 import Chips from '../Chips';
-import Chip from '../Chips/Chip';
 import MiscInput from '../Input/MiscInput';
 import InputAlert from '../InputAlert';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import Chip from 'components/Chips/Chip';
 import { TITLES, DATE_OF_DEATH, INFO_MESSAGES } from './constants';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 import { validateDateInput } from '../../utils/validators';
 import { isFutureDate } from '../../utils/date';
 import Input from '../Input';
-import Chip from '../Chips/Chip';
 import PetRegistrationSection from './PetRegistrationSection';
 import InputAlert from '../InputAlert';
 
