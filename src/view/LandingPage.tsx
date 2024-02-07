@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getToken } from 'utils/localStorage';
-import LandingItems from '../components/LandingPage/constants';
+import LandingItems from 'components/LandingPage/constants';
 import Button from '../components/Button';
 
 const DEFAULT = 390;

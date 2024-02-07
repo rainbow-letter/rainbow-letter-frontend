@@ -9,7 +9,7 @@ import OpenTalk from 'components/Home/OpenTalk';
 import PhoneButton from 'components/Home/PhoneButton';
 import Divider from 'components/Divider';
 import HomeFooter from 'components/Home/HomeFooter';
-import NavBar from '../components/NavBar';
+import NavBar from 'components/NavBar';
 import { getToken } from '../utils/localStorage';
 
 export default function LandingPage() {
