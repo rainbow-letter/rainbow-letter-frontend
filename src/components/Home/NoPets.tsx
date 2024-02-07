@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { INFO_MESSAGES, USER_ACTIONS } from './constants';
+import { INFO_MESSAGES, USER_ACTIONS } from 'components/Home/constants';
 
 export default function NoPets() {
   return (

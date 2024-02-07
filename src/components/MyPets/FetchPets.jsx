@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getPets } from '../../api/pets';
+import { getPets } from 'api/pets';
 import PetCard from './PetCard';
 import NoPets from './NoPets';
 

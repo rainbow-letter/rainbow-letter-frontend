@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Chip from '../Chips/Chip';
+import Chip from 'components/Chips/Chip';
 
 type Props = {
   petsNames: string[];
