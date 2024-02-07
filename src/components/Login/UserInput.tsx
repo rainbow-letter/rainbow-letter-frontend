@@ -11,6 +11,7 @@ type Props = {
   placeholder: string;
   isNotValid: boolean | null | undefined;
   errorMessage: boolean | string | null | undefined;
+  id?: string;
   className?: string;
 };
 

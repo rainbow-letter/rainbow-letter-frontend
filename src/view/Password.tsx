@@ -1,5 +1,6 @@
-import { React, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import UserInput from 'components/Login/UserInput';
 import SubmitButton from 'components/Login/SubmitButton';
@@ -11,18 +12,28 @@ import {
 import { removeToken, saveToken } from '../utils/localStorage';
 import { validatePasswordMatch, validatePassword } from '../utils/validators';
 
+type ErrorData = {
+  type: string;
+  message: string;
+};
+
+type UserInfo = {
+  password: string;
+  newPassword: string;
+};
+
 export default function Password() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserInfo>({
     password: '',
     newPassword: '',
   });
-  const [errorData, setErrorData] = useState({
+  const [errorData, setErrorData] = useState<ErrorData | null>({
     type: '',
     message: '',
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     saveToken(searchParams.get('token'));
@@ -38,12 +49,28 @@ export default function Password() {
     }
   };
 
-  const onFinishUpdate = (isSuccess) => {
+  const onFinishUpdate = (isSuccess: boolean) => {
     if (isSuccess) {
       setErrorData(null);
     }
     removeToken();
     navigate('/home');
+  };
+
+  const onErrorHandling = (error: unknown) => {
+    if (axios.isAxiosError(error)) {
+      if (error.response && error.response.data.code === 'UN_AUTHORIZE') {
+        alert('토큰 유효기간이 지났습니다.');
+        onFinishUpdate(false);
+      }
+    }
+    if (error instanceof Error) {
+      setErrorData({
+        ...errorData,
+        type: error.message,
+        message: ERROR_MESSAGE[error.message],
+      });
+    }
   };
 
   const onClickUpdatePasswordButton = useCallback(async () => {
@@ -56,15 +83,7 @@ export default function Password() {
       });
       onFinishUpdate(true);
     } catch (error) {
-      if (error.response && error.response.data.code === 'UN_AUTHORIZE') {
-        alert('토큰 유효기간이 지났습니다.');
-        onFinishUpdate(false);
-      }
-      setErrorData({
-        ...errorData,
-        type: error.message,
-        message: ERROR_MESSAGE[error.message],
-      });
+      onErrorHandling(error);
     } finally {
       setIsLoading(false);
     }
