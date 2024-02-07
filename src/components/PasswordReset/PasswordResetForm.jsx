@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 
-import UserInput from '../Login/UserInput';
+import UserInput from 'components/Login/UserInput';
+import { UPDATE_PASSWORD_MESSAGE } from 'components/Login/constants';
 import Button from '../Button';
 
-import { UPDATE_PASSWORD_MESSAGE } from '../Login/constants';
 import {
   validatePassword,
   validatePasswordMatch,

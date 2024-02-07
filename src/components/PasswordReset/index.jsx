@@ -1,10 +1,9 @@
 /* eslint-disable no-shadow */
-
 import React from 'react';
 
+import { updatePassword } from 'api/user';
 import { useNavigate } from 'react-router-dom';
 import PasswordResetForm from './PasswordResetForm';
-import { updatePassword } from '../../api/user';
 
 function PasswordReset() {
   const navigate = useNavigate();

@@ -2,10 +2,11 @@
 import { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import UserInput from '../UserInput';
+import UserInput from 'components/Login/UserInput';
+import SubmitButton from 'components/Login/SubmitButton';
+import { trySignUp, tryLogin } from 'api/user';
+import { ERROR_MESSAGE } from 'components/Login/constants';
 import Agree from './Agree';
-import SubmitButton from '../SubmitButton';
-import { trySignUp, tryLogin } from '../../../api/user';
 import { saveToken } from '../../../utils/localStorage';
 import { validateEmail, validatePassword } from '../../../utils/validators';
 import {
@@ -13,8 +14,6 @@ import {
   emailErrorMessage,
   passwordError,
 } from '../../../utils/errorData';
-
-import { ERROR_MESSAGE } from '../constants';
 
 export default function SignUpForm({ message: { describe, button } }) {
   const navigate = useNavigate();

@@ -1,16 +1,15 @@
 import { React, useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
-import { removeToken, saveToken } from '../utils/localStorage';
-import UserInput from '../components/Login/UserInput';
-import SubmitButton from '../components/Login/SubmitButton';
-import { validatePasswordMatch, validatePassword } from '../utils/validators';
-import { updatePassword } from '../api/user';
-
+import UserInput from 'components/Login/UserInput';
+import SubmitButton from 'components/Login/SubmitButton';
+import { updatePassword } from 'api/user';
 import {
   ERROR_MESSAGE,
   UPDATE_PASSWORD_MESSAGE,
-} from '../components/Login/constants';
+} from 'components/Login/constants';
+import { removeToken, saveToken } from '../utils/localStorage';
+import { validatePasswordMatch, validatePassword } from '../utils/validators';
 
 export default function Password() {
   const navigate = useNavigate();

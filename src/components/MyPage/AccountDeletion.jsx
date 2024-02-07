@@ -3,13 +3,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { deleteUser } from 'api/user';
 import { removeToken } from '../../utils/localStorage';
 import {
   USER_ACTIONS,
   ACCOUNT_DELETION,
   ACCOUNT_DELETION_GUIDELINES,
 } from './constants';
-import { deleteUser } from '../../api/user';
 import check from '../../assets/check.svg';
 import Button from '../Button';
 

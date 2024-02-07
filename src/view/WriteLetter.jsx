@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 
+import { getUserInfo } from 'api/user';
 import ResisterButtonSection from '../components/Write/ResisterButtonSection';
 import PetsListDropDown from '../components/Write/PetsListDropDown';
 import WritingPadSection from '../components/Write/WritingPadSection';
@@ -11,7 +12,6 @@ import ImageUploadSection from '../components/Write/ImageUploadSection';
 import TopicSuggestion from '../components/Write/TopicSuggestion';
 import Button from '../components/Button';
 
-import { getUserInfo } from '../api/user';
 import { modalActions } from '../store/modal-slice';
 import { getPets } from '../api/pets';
 import { sendLetter, getLetters } from '../api/letter';

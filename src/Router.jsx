@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import Login from 'view/Login';
+import Join from 'view/Join';
 import Home from './view/Home';
-import Login from './view/Login';
-import Join from './view/Join';
 import Email from './view/Email';
 import Password from './view/Password';
 import Auth from './view/Auth';

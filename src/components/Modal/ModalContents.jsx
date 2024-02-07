@@ -2,11 +2,11 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { updatePhoneNumber } from 'api/user';
 import Button from '../Button';
 import Input from '../Input';
 import { modalActions } from '../../store/modal-slice';
 import { validatePhoneNumber } from '../../utils/validators';
-import { updatePhoneNumber } from '../../api/user';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
 import MODAL_MESSAGE from './constants';
