@@ -9,7 +9,7 @@ export default function GifImage({ src }: Props) {
     <img
       src={src}
       alt="write"
-      className="absolute inset-x-0 bottom-14 left-1/2 transform -translate-x-1/2"
+      className="absolute inset-x-0 bottom-14 left-1/2 transform -translate-x-1/2 w-full px-10"
     />
   );
 }

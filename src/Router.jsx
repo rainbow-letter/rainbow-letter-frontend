@@ -9,6 +9,9 @@ import Password from 'view/Password';
 import LandingPage from 'view/LandingPage';
 import Home from 'view/Home';
 import Auth from 'view/Auth';
+import LetterBox from 'view/LetterBox';
+import DetailLetter from 'view/DetailLetter';
+import ShareLetter from 'view/ShareLetter';
 import Layout from './components/Layout';
 import ProtectedLayout from './components/Layout/ProtectedLayout';
 import MyPage from './components/MyPage';
@@ -19,10 +22,8 @@ import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
 import WriteLetter from './view/WriteLetter';
-import LetterBox from './view/LetterBox';
+
 import Modal from './components/Modal';
-import DetailLetter from './view/DetailLetter';
-import ShareLetter from './view/ShareLetter';
 
 import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';

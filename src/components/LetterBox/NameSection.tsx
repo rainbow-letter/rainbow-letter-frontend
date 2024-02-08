@@ -1,26 +1,31 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Chip from '../Chips/Chip';
-import { getPets } from '../../api/pets';
-import NoPets from '../MyPets/NoPets';
+import Chip from 'components/Chips/Chip';
+import NoPets from 'components/MyPets/NoPets';
+import { getPets } from 'api/pets';
+import { Pets } from 'types/pets';
 
 const DEFAULT = '전체';
 
-export default function NameSection({ onChange, selectedPet }) {
-  const [petsList, setPetsList] = useState(null);
+type Props = {
+  onChange: (name: string) => void;
+  selectedPet: '전체' | string;
+};
+
+export default function NameSection({ onChange, selectedPet }: Props) {
+  const [petsList, setPetsList] = useState<string[]>([]);
   const { state } = useLocation();
 
   useEffect(() => {
     (async () => {
       const { pets } = await getPets();
-      const petsNames = pets.map((pet) => pet.name);
+      const petsNames = pets.map((pet: Pets) => pet.name);
 
       setPetsList((pets.length > 0 && [DEFAULT, ...petsNames]) || []);
 
       if (state) {
-        const findedPet = pets.find((pet) => pet.id === state);
+        const findedPet = pets.find((pet: Pets) => pet.id === state);
         onChange(findedPet.name || DEFAULT);
       }
     })();

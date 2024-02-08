@@ -1,13 +1,18 @@
 import React from 'react';
 
-import { INFO_MESSAGES } from './constants';
+import { INFO_MESSAGES } from 'components/LetterBox/constants';
+import { Letters } from 'types/letters';
 import arrowIcon from '../../assets/ion_chevron-back_1.svg';
 import ellipseIcon from '../../assets/Ellipse 439.svg';
 
+type Props = {
+  letter: Letters;
+};
+
 export default function LetterItems({
   letter: { readStatus, petName, summary, status, createdAt },
-}) {
-  const setDate = (date) => {
+}: Props) {
+  const setDate = (date: string) => {
     const year = date.slice(2, 4);
     const month = date.slice(5, 7);
     const day = date.slice(8, 10);
@@ -17,7 +22,7 @@ export default function LetterItems({
     return `${year}/${month}/${day}(${dayOfWeek})`;
   };
 
-  const setStatus = (reply) => {
+  const setStatus = (reply: string) => {
     switch (reply) {
       case 'REQUEST':
         return `${INFO_MESSAGES.STILL_WRITING}`;
@@ -28,7 +33,7 @@ export default function LetterItems({
     }
   };
 
-  const isCheckUnread = (isRead, reply) => {
+  const isCheckUnread = (isRead: string, reply: string): boolean => {
     if (reply === 'REQUEST') return false;
     if (isRead === 'READ') return false;
 

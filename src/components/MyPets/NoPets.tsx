@@ -1,7 +1,7 @@
 import React from 'react';
 
+import PetRegisterButton from 'components/MyPets/PetRegisterButton';
 import { INFO_MESSAGES, USER_ACTIONS } from './constants';
-import PetRegisterButton from './PetRegisterButton';
 
 function NoPets() {
   return (

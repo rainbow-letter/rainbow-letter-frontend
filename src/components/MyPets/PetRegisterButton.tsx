@@ -1,9 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../Button';
+import Button from 'components/Button';
 
-function PetRegisterButton({ className, children }) {
+type Props = {
+  className?: string;
+  children: React.ReactNode;
+};
+
+function PetRegisterButton({ className, children }: Props) {
   const navigate = useNavigate();
   const styles = className || '';
 

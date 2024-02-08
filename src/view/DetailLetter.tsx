@@ -1,20 +1,21 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import WritingPadSection from '../components/Write/WritingPadSection';
 
-import SentPhoto from '../components/LetterBox/SentPhoto';
-import Button from '../components/Button';
-import { getLetter } from '../api/letter';
+import Button from 'components/Button';
+import { USER_ACTIONS } from 'components/LetterBox/constants';
+
+import { getLetter } from 'api/letter';
+import { Letter } from 'types/letters';
+import WritingPadSection from 'components/Write/WritingPadSection';
+import SentPhoto from 'components/LetterBox/SentPhoto';
 import { readReply } from '../api/reply';
-import { USER_ACTIONS } from '../components/LetterBox/constants';
 import metaData from '../utils/metaData';
 
 export default function DetailLetter() {
   const params = useParams();
   const navigate = useNavigate();
-  const [letterData, setLetterData] = useState(null);
+  const [letterData, setLetterData] = useState<Letter>();
 
   useEffect(() => {
     (async () => {
@@ -28,10 +29,10 @@ export default function DetailLetter() {
   }, []);
 
   const onClickReplyButton = () => {
-    navigate('/write-letter', { state: letterData.pet.name });
+    navigate('/write-letter', { state: letterData?.pet.name });
   };
 
-  const processDate = (date) => {
+  const processDate = (date: string) => {
     const year = date.slice(0, 4);
     const month = date.slice(5, 7);
     const day = date.slice(8, 10);
@@ -52,7 +53,7 @@ export default function DetailLetter() {
             />
           )}
           <WritingPadSection
-            image={!letterData.reply.content && letterData.pet.image.url}
+            image={!letterData.reply.content ? letterData.pet.image.url : null}
             petName={`${letterData.pet.name}에게`}
             reply={letterData.content}
             date={processDate(letterData.createdAt)}
