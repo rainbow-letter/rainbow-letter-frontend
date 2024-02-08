@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 type Props = {
@@ -6,10 +7,13 @@ type Props = {
 
 export default function GifImage({ src }: Props) {
   return (
-    <img
-      src={src}
-      alt="write"
-      className="absolute inset-x-0 bottom-14 left-1/2 transform -translate-x-1/2 w-full px-10"
-    />
+    <video
+      autoPlay
+      loop
+      muted
+      className="absolute inset-x-0 bottom-12 left-1/2 transform -translate-x-1/2 w-full px-10"
+    >
+      <source src={src} type="video/mp4" />
+    </video>
   );
 }
