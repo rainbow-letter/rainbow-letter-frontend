@@ -1,18 +1,20 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { getShareLetter } from '../api/letter';
-import WritingPadSection from '../components/Write/WritingPadSection';
-import SentPhoto from '../components/LetterBox/SentPhoto';
+import { getShareLetter } from 'api/letter';
+import WritingPadSection from 'components/Write/WritingPadSection';
+import { Letter } from 'types/letters';
+import SentPhoto from 'components/LetterBox/SentPhoto';
 import AppBar from '../components/AppBar';
 import NavBar from '../components/NavBar';
-import Button from '../components/Button';
-import { USER_ACTIONS } from '../components/LetterBox/constants';
+import Button from 'components/Button';
+import { USER_ACTIONS } from 'components/LetterBox/constants';
 import metaData from '../utils/metaData';
 
 export default function ShareLetter() {
-  const [letterData, setLetterData] = useState(null);
+  const [letterData, setLetterData] = useState<Letter>();
+  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
@@ -20,13 +22,10 @@ export default function ShareLetter() {
       metaData(Object.keys(params)[0]);
       const data = await getShareLetter(params.shareLink);
       setLetterData(data);
-      if (data.reply.type === 'REPLY') {
-        await readReply(data.reply.id);
-      }
     })();
   }, []);
 
-  const processDate = (date) => {
+  const processDate = (date: string) => {
     const year = date.slice(0, 4);
     const month = date.slice(5, 7);
     const day = date.slice(8, 10);
@@ -35,7 +34,7 @@ export default function ShareLetter() {
   };
 
   const onClickReplyButton = () => {
-    navigate('/write-letter', { state: letterData.pet.name });
+    navigate('/write-letter', { state: letterData?.pet.name });
   };
 
   return (
@@ -52,7 +51,7 @@ export default function ShareLetter() {
             />
           )}
           <WritingPadSection
-            image={!letterData.reply.content && letterData.pet.image.url}
+            image={!letterData.reply.content ? letterData.pet.image.url : null}
             petName={`${letterData.pet.name}에게`}
             reply={letterData.content}
             date={processDate(letterData.createdAt)}
