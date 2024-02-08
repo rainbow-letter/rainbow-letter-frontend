@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { INFO_MESSAGES } from 'components/LetterBox/constants';
-import { letter } from 'types/letters';
+import { Letters } from 'types/letters';
 import arrowIcon from '../../assets/ion_chevron-back_1.svg';
 import ellipseIcon from '../../assets/Ellipse 439.svg';
 
 type Props = {
-  letter: letter;
+  letter: Letters;
 };
 
 export default function LetterItems({

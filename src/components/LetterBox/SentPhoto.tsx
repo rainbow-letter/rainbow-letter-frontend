@@ -1,8 +1,13 @@
 import React from 'react';
 
-import CoverImage from '../CoverImage';
+import CoverImage from 'components/CoverImage';
+import { Letter } from 'types/letters';
 
-export default function SentPhoto({ letterData }) {
+type Props = {
+  letterData: Letter;
+};
+
+export default function SentPhoto({ letterData }: Props) {
   return (
     <section className="mt-16">
       <h3 className="text-solo-large">아이에게 보낸 편지</h3>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getLetters } from 'api/letter';
-import { letter } from 'types/letters';
+import { Letters } from 'types/letters';
 import NoLetters from 'components/LetterBox/NoLetters';
 import LetterItems from 'components/LetterBox/LetterItems';
 
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function LetterListSection({ pet }: Props) {
-  const [letterList, setLetterList] = useState<letter[]>([]);
+  const [letterList, setLetterList] = useState<Letters[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -22,7 +22,7 @@ export default function LetterListSection({ pet }: Props) {
     })();
   }, []);
 
-  const filteredLetter: letter[] =
+  const filteredLetter: Letters[] =
     pet === DEFAULT
       ? letterList
       : letterList?.filter((item) => item.petName === pet);

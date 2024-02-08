@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function CoverImage({ image, className }) {
+type Props = {
+  image: any;
+  className?: string;
+};
+
+export default function CoverImage({ image, className }: Props) {
   const style = className || '';
 
   return (
