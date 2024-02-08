@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { getToken } from 'utils/localStorage';
 import LandingItems from 'components/LandingPage/constants';
+import GifImage from 'components/LandingPage/GifImage';
 import Button from '../components/Button';
 
 const DEFAULT = 390;
@@ -56,6 +57,7 @@ export default function LandingPage() {
           <li key={item.id} className="w-[100vw] px-3">
             <img src={item.imageSrc} alt="landing" className="object-cover" />
             <div className="relative">
+              {item.id % 2 === 0 && <GifImage src={item.gifImageSrc} />}
               <Button
                 id={buttonId}
                 disabled={false}
