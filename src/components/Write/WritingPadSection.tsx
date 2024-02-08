@@ -9,7 +9,7 @@ type Letter = {
 };
 
 type Props = {
-  petName: string;
+  petName: string | null;
   image: string | null;
   reply?: string;
   date?: string;

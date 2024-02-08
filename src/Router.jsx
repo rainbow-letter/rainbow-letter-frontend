@@ -12,6 +12,7 @@ import Auth from 'view/Auth';
 import LetterBox from 'view/LetterBox';
 import DetailLetter from 'view/DetailLetter';
 import ShareLetter from 'view/ShareLetter';
+import WriteLetter from 'view/WriteLetter';
 import Layout from 'components/Layout';
 import ProtectedLayout from 'components/Layout/ProtectedLayout';
 import AdminLayout from 'components/Layout/AdminLayout';
@@ -22,7 +23,6 @@ import AccountDeletion from './components/MyPage/AccountDeletion';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
-import WriteLetter from './view/WriteLetter';
 
 import Modal from './components/Modal';
 
