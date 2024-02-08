@@ -1,25 +1,30 @@
-export const PET_TYPES = [
+export interface ChipValue {
+  ID: string;
+  NAME: string;
+}
+
+export const PET_TYPES: ChipValue[] = [
   { ID: 'DOG', NAME: '강아지' },
   { ID: 'CAT', NAME: '고양이' },
   { ID: 'HAMSTER', NAME: '햄스터' },
   { ID: 'PARROT', NAME: '앵무새' },
 ];
 
-export const ROLES_FOR_WOMEN = [
+export const ROLES_FOR_WOMEN: ChipValue[] = [
   { ID: 'MOM', NAME: '엄마' },
   { ID: 'SISTER', NAME: '언니' },
   { ID: 'AUNT', NAME: '이모' },
   { ID: 'BROTHER', NAME: '오빠' },
 ];
 
-export const ROLES_FOR_MEN = [
+export const ROLES_FOR_MEN: ChipValue[] = [
   { ID: 'FATHER', NAME: '아빠' },
   { ID: 'SISTER', NAME: '누나' },
   { ID: 'BROTHER', NAME: '형' },
   { ID: 'UNCLE', NAME: '삼촌' },
 ];
 
-export const PET_PERSONALITIES = [
+export const PET_PERSONALITIES: ChipValue[] = [
   { ID: 'AFFECTIONATE', NAME: '애교많은' },
   { ID: 'SOCIABLE', NAME: '사교적인' },
   { ID: 'ACTIVE', NAME: '활동적인' },

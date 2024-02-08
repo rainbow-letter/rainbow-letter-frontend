@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
-import appBarConfig from './constants';
+import appBarConfig from 'components/AppBar/constants';
 import normalizePath from '../../utils/normalizers';
 import chevronLeft from '../../assets/chevronLeft.svg';
 

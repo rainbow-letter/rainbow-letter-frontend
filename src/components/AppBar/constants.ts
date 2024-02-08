@@ -1,4 +1,10 @@
-const appBarConfig = {
+interface AppBar {
+  [key: string]: {
+    title: string;
+  };
+}
+
+const appBarConfig: AppBar = {
   '/my-page': {
     title: '마이페이지',
   },

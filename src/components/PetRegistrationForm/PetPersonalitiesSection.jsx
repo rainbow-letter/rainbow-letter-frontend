@@ -1,8 +1,9 @@
 import React from 'react';
+
+import Chips from 'components/Chips';
+import { PET_PERSONALITIES } from 'components/Chips/constants';
 import { TITLES } from './constants';
-import { PET_PERSONALITIES } from '../Chips/constants';
 import PetRegistrationSection from './PetRegistrationSection';
-import Chips from '../Chips';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetPersonalitiesSection() {
