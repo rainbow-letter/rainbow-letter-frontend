@@ -6,12 +6,12 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
+import Button from 'components/Button';
 import ResisterButtonSection from '../components/Write/ResisterButtonSection';
 import PetsListDropDown from '../components/Write/PetsListDropDown';
 import WritingPadSection from '../components/Write/WritingPadSection';
 import ImageUploadSection from '../components/Write/ImageUploadSection';
 import TopicSuggestion from '../components/Write/TopicSuggestion';
-import Button from '../components/Button';
 
 import { modalActions } from '../store/modal-slice';
 import { sendLetter, getLetters } from '../api/letter';

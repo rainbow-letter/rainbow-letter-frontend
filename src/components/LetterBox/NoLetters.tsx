@@ -1,10 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../Button';
-import { INFO_MESSAGES, USER_ACTIONS } from './constants';
+import Button from 'components/Button';
+import { INFO_MESSAGES, USER_ACTIONS } from 'components/LetterBox/constants';
 
-export default function NoLetters({ pet }) {
+type Props = {
+  pet: '전체' | string;
+};
+
+export default function NoLetters({ pet }: Props) {
   const navigate = useNavigate();
 
   return (

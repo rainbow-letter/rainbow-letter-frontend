@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getToken } from 'utils/localStorage';
 import LandingItems from 'components/LandingPage/constants';
 import GifImage from 'components/LandingPage/GifImage';
-import Button from '../components/Button';
+import Button from 'components/Button';
 
 const DEFAULT = 390;
 
@@ -13,7 +13,7 @@ export default function LandingPage() {
   const landingImageList = useRef<HTMLUListElement>(null);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [deviceWidth, setDeviceWidth] = useState<number>(0);
-  const [buttonId, setButtonId] = useState<null | string>(null);
+  const [buttonId, setButtonId] = useState<string>('');
   const token = getToken();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function LandingPage() {
           <li key={item.id} className="w-[100vw] px-3">
             <img src={item.imageSrc} alt="landing" className="object-cover" />
             <div className="relative">
-              {item.id % 2 === 0 && <GifImage src={item.gifImageSrc} />}
+              {item.gifImageSrc && <GifImage src={item.gifImageSrc} />}
               <Button
                 id={buttonId}
                 disabled={false}

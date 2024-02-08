@@ -1,6 +1,14 @@
 import React from 'react';
 
-function Button({ className, disabled, children, onClick, id }) {
+type Props = {
+  className?: string;
+  disabled?: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
+  id?: any;
+};
+
+function Button({ className, disabled, children, onClick, id }: Props) {
   const styles = className || '';
   const disabledStyles = disabled
     ? 'bg-gray-1 text-gray-1'

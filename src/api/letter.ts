@@ -4,25 +4,25 @@ import { formatDateToYMD } from '../utils/date';
 
 const RESOURCE = '/api/letters';
 
-export const getLetters = async () => {
+export const getLetters = async (): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/list`);
 
   return response;
 };
 
-export const getLetter = async (id) => {
+export const getLetter = async (id: any): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/${id}`);
 
   return response;
 };
 
-export const sendLetter = async (id, letter) => {
+export const sendLetter = async (id: any, letter: any): Promise<any> => {
   const response = await apiRequest.post(`${RESOURCE}?pet=${id}`, letter);
 
   return response;
 };
 
-export const getShareLetter = async (uuid) => {
+export const getShareLetter = async (uuid: any): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/share/${uuid}`);
 
   return response;
