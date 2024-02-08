@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { deleteUser } from 'api/user';
+import Button from 'components/Button';
 import { removeToken } from '../../utils/localStorage';
 import {
   USER_ACTIONS,
@@ -11,7 +12,6 @@ import {
   ACCOUNT_DELETION_GUIDELINES,
 } from './constants';
 import check from '../../assets/check.svg';
-import Button from '../Button';
 
 function AccountDeletion() {
   const [isConfirmed, setIsConfirmed] = useState(false);

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import UserInput from 'components/Login/UserInput';
 import { UPDATE_PASSWORD_MESSAGE } from 'components/Login/constants';
-import Button from '../Button';
+import Button from 'components/Button';
 
 import {
   validatePassword,

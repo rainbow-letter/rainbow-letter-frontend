@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updatePhoneNumber } from 'api/user';
-import Button from '../Button';
+import Button from 'components/Button';
 import Input from '../Input';
 import { modalActions } from '../../store/modal-slice';
 import { validatePhoneNumber } from '../../utils/validators';

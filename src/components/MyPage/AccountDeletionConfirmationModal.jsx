@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../Button';
+import Button from 'components/Button';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
 function AccountDeletionConfirmationModal() {

@@ -1,10 +1,10 @@
 /* eslint-disable no-shadow */
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { getPets } from 'api/pets';
+import NoPets from 'components/MyPets/NoPets';
 import PetCard from './PetCard';
-import NoPets from './NoPets';
 
 export default function FetchPets() {
   const { state } = useLocation();
