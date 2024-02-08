@@ -3,10 +3,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+import { USER_ACTIONS } from 'components/Write/constants';
 import { Pets } from 'types/pets';
 import useDetectClose from '../../hooks/useDetectClose';
 
-import { USER_ACTIONS } from './constants';
 import dropDownImg from '../../assets/ion_chevron-back.svg';
 import dropUpImg from '../../assets/ion_chevron-up.svg';
 import plusImg from '../../assets/ic_round-plus-black.svg';

@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 import { registerPet, updatePet } from 'api/pets';
-import { updateImageAndGetId } from '../api/images';
+import { updateImageAndGetId } from 'api/images';
 import { generateFormData } from '../utils/formData';
 import { isFutureDate } from '../utils/date';
 
