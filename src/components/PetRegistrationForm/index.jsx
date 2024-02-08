@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import ClipLoader from 'react-spinners/ClipLoader';
-import Button from '../Button';
+import Button from 'components/Button';
 import PetNameSection from './PetNameSection';
 import DateOfDeathSection from './DateOfDeathSection';
 import PetTypeSection from './PetTypeSection';

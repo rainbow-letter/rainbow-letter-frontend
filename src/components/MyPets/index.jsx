@@ -2,8 +2,8 @@
 
 import React, { Suspense } from 'react';
 
-import Spinner from '../Spinner';
-import PetRegisterButton from './PetRegisterButton';
+import Spinner from 'components/Spinner';
+import PetRegisterButton from 'components/MyPets/PetRegisterButton';
 
 import plus from '../../assets/plus.svg';
 
