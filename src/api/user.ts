@@ -29,31 +29,31 @@ export const authEmail = async (email: UserRequestData) => {
   return response;
 };
 
-export const updatePassword = async (data: any) => {
+export const updatePassword = async (data: any): Promise<any> => {
   const response = await apiRequest.put(`${RESOURCE}/password/reset`, data);
 
   return response;
 };
 
-export const updatePhoneNumber = async (data: any) => {
+export const updatePhoneNumber = async (data: any): Promise<any> => {
   const response = await apiRequest.put(`${RESOURCE}/phoneNumber`, data);
 
   return response;
 };
 
-export const deletePhoneNumber = async () => {
+export const deletePhoneNumber = async (): Promise<any> => {
   const response = await apiRequest.delete(`${RESOURCE}/phoneNumber`);
 
   return response;
 };
 
-export const getUserInfo = async () => {
+export const getUserInfo = async (): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/info`);
 
   return response;
 };
 
-export const deleteUser = async () => {
+export const deleteUser = async (): Promise<any> => {
   const response = await apiRequest.delete(`${RESOURCE}/leave`);
 
   return response;

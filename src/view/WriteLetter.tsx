@@ -4,26 +4,28 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 
+import ResisterButtonSection from 'components/Write/ResisterButtonSection';
+import PetsListDropDown from 'components/Write/PetsListDropDown';
 import WritingPadSection from 'components/Write/WritingPadSection';
+import TopicSuggestion from 'components/Write/TopicSuggestion';
+import ImageUploadSection from 'components/Write/ImageUploadSection';
+import Button from 'components/Button';
 import { sendLetter, getLetters } from 'api/letter';
 import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
-import Button from 'components/Button';
-import ResisterButtonSection from '../components/Write/ResisterButtonSection';
-import PetsListDropDown from '../components/Write/PetsListDropDown';
-import ImageUploadSection from '../components/Write/ImageUploadSection';
-import TopicSuggestion from '../components/Write/TopicSuggestion';
+import { updateImageAndGetId } from 'api/images';
+import { Pets } from 'types/pets';
+import { State } from 'types/store';
 
 import { modalActions } from '../store/modal-slice';
 import { generateFormData } from '../utils/formData';
-import { updateImageAndGetId } from '../api/images';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { canOpenAgain } = useSelector((state) => state.modal);
-  const [petsList, setPetsList] = useState([]);
-  const [selectedPet, setSelectedPet] = useState(null);
+  const { canOpenAgain } = useSelector((state: State) => state.modal);
+  const [petsList, setPetsList] = useState<Pets[]>([]);
+  const [selectedPet, setSelectedPet] = useState<Pets | null>(null);
   const [imageFile, setImageFile] = useState(null);
   const [letter, setLetter] = useState({
     summary: '',
@@ -43,7 +45,7 @@ export default function WriteLetter() {
       if (!location.state) {
         setSelectedPet(pets[0] || null);
       } else {
-        const finedPet = pets.find((pet) => pet.name === location.state);
+        const finedPet = pets.find((pet: Pets) => pet.name === location.state);
         setSelectedPet(finedPet || pets[0]);
       }
 
@@ -53,7 +55,7 @@ export default function WriteLetter() {
     })();
   }, []);
 
-  const uploadImage = async (image) => {
+  const uploadImage = async (image: string) => {
     const formData = generateFormData(image);
     const response = await updateImageAndGetId(formData);
 
@@ -75,7 +77,7 @@ export default function WriteLetter() {
         const imageId = await uploadImage(imageFile);
         newLetter.image = imageId;
       }
-      await sendLetter(selectedPet.id, newLetter);
+      await sendLetter(selectedPet?.id, newLetter);
 
       isCheckPhoneNumberModalOpen();
       return dispatch(modalActions.openModal('COMPLETE'));

@@ -12,8 +12,10 @@ import Auth from 'view/Auth';
 import LetterBox from 'view/LetterBox';
 import DetailLetter from 'view/DetailLetter';
 import ShareLetter from 'view/ShareLetter';
-import Layout from './components/Layout';
-import ProtectedLayout from './components/Layout/ProtectedLayout';
+import WriteLetter from 'view/WriteLetter';
+import Layout from 'components/Layout';
+import ProtectedLayout from 'components/Layout/ProtectedLayout';
+import AdminLayout from 'components/Layout/AdminLayout';
 import MyPage from './components/MyPage';
 import PasswordReset from './components/PasswordReset';
 import FAQs from './components/MyPage/FAQs';
@@ -21,13 +23,11 @@ import AccountDeletion from './components/MyPage/AccountDeletion';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
-import WriteLetter from './view/WriteLetter';
 
 import Modal from './components/Modal';
 
 import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';
-import AdminLayout from './components/Layout/AdminLayout';
 
 function Router() {
   const { isOpen } = useSelector((state) => state.modal);

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { INFO_MESSAGES } from 'components/Write/constants';
 import { modalActions } from '../../store/modal-slice';
-import { INFO_MESSAGES } from './constants';
 import InfoImage from '../../assets/gg_info.svg';
 
 export default function TopicSuggestion() {

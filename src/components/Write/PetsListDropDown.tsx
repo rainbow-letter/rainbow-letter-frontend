@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { React, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Pets } from 'types/pets';
 import useDetectClose from '../../hooks/useDetectClose';
 
 import { USER_ACTIONS } from './constants';
@@ -10,8 +11,18 @@ import dropDownImg from '../../assets/ion_chevron-back.svg';
 import dropUpImg from '../../assets/ion_chevron-up.svg';
 import plusImg from '../../assets/ic_round-plus-black.svg';
 
-export default function PetsListDropDown({ petName, petsList, onclick }) {
-  const dropdown = useRef();
+type Props = {
+  petName: string | null;
+  petsList: Pets[];
+  onclick: (pet: Pets) => void;
+};
+
+export default function PetsListDropDown({
+  petName,
+  petsList,
+  onclick,
+}: Props) {
+  const dropdown = useRef<HTMLDivElement>(null);
   const [isDropDown, setIsDropDown] = useDetectClose(dropdown, false);
 
   const imgSrc = isDropDown ? dropUpImg : dropDownImg;

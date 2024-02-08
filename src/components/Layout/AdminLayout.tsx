@@ -1,8 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
 
-import AppBar from '../AppBar';
+import AppBar from 'components/AppBar';
 import { getToken } from '../../utils/localStorage';
 import { getFromSessionStorage } from '../../utils/sessionStorage';
 

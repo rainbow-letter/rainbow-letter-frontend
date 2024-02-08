@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { USER_ACTIONS } from './constants';
+import { USER_ACTIONS } from 'components/Write/constants';
 import thinPlus from '../../assets/ic_round-plus.svg';
 
 export default function ResisterButtonSection() {

@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-
 import React, { Suspense } from 'react';
 
 import Spinner from 'components/Spinner';

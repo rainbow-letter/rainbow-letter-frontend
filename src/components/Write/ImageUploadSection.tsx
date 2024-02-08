@@ -1,21 +1,27 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 
+import { INFO_MESSAGES } from 'components/Write/constants';
 import ImageInput from '../Input/ImageInput';
 
-import { INFO_MESSAGES } from './constants';
 import roundX from '../../assets/roundX.svg';
 
-export default function ImageUploadSection({ setImageFile }) {
+type Props = {
+  setImageFile: (file: any) => void;
+};
+
+export default function ImageUploadSection({ setImageFile }: Props) {
   const [previewUrl, setPreviewUrl] = useState('');
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
 
-    if (file && file.type.match('image.*')) {
-      const imageUrl = URL.createObjectURL(file);
-      setPreviewUrl(imageUrl);
-      setImageFile(file);
-      e.target.value = '';
+      if (file && file.type.match('image.*')) {
+        const imageUrl = URL.createObjectURL(file);
+        setPreviewUrl(imageUrl);
+        setImageFile(file);
+        e.target.value = '';
+      }
     }
   };
 
@@ -38,6 +44,7 @@ export default function ImageUploadSection({ setImageFile }) {
         deleteIcon={roundX}
         onChange={handleImageChange}
         onDelete={handleImageDelete}
+        className=""
       />
     </section>
   );
