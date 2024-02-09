@@ -11,6 +11,7 @@ export default function GifImage({ src }: Props) {
       autoPlay
       loop
       muted
+      playsInline
       className="absolute inset-x-0 bottom-12 left-1/2 transform -translate-x-1/2 w-full px-10"
     >
       <source src={src} type="video/mp4" />
