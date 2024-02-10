@@ -4,13 +4,13 @@ import axios from 'axios';
 
 import UserInput from 'components/Login/UserInput';
 import SubmitButton from 'components/Login/SubmitButton';
-import { updatePassword } from 'api/user';
 import {
   ERROR_MESSAGE,
   UPDATE_PASSWORD_MESSAGE,
 } from 'components/Login/constants';
-import { removeToken, saveToken } from '../utils/localStorage';
-import { validatePasswordMatch, validatePassword } from '../utils/validators';
+import { updatePassword } from 'api/user';
+import { removeToken, saveToken } from 'utils/localStorage';
+import { validatePasswordMatch, validatePassword } from 'utils/validators';
 
 type ErrorData = {
   type: string;
@@ -36,7 +36,10 @@ export default function Password() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    saveToken(searchParams.get('token'));
+    const token = searchParams.get('token');
+    if (token) {
+      saveToken(token);
+    }
   }, [searchParams]);
 
   const isCheckProperPassword = () => {

@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+import { formatDateToYMD, getPastDate } from 'utils/date';
 import { fetchLetters } from './letter-actions';
-import { formatDateToYMD, getPastDate } from '../../utils/date';
 
 // type FilterOption = {
 //   type: 'ALL' | 'WAIT' | 'COMPLETE';

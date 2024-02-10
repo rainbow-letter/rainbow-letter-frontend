@@ -6,11 +6,11 @@ import ImageInput from '../Input/ImageInput';
 import roundX from '../../assets/roundX.svg';
 
 type Props = {
-  setImageFile: (file: any) => void;
+  setImageFile: (file: File | string) => void;
 };
 
 export default function ImageUploadSection({ setImageFile }: Props) {
-  const [previewUrl, setPreviewUrl] = useState('');
+  const [previewUrl, setPreviewUrl] = useState<string>('');
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {

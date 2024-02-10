@@ -2,7 +2,10 @@
 /* eslint-disable import/prefer-default-export */
 import { isPastNextDay10AM } from './date';
 
-export const checkLetterStatus = (inspectionDate, dispatchDate) => {
+export const checkLetterStatus = (
+  inspectionDate: string,
+  dispatchDate: string
+) => {
   const isInspectionPassed = isPastNextDay10AM(inspectionDate);
   // const isDispatched = dispatchDate && isPastNextDay10AM(dispatchDate);
 

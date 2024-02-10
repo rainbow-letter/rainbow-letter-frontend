@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { formatDateToYYDDMMHHMM } from 'utils/date';
+import { extractFirstTenChars } from 'utils/string';
 import { inspectReply } from '../../../store/admin/letter-actions';
 import { adminLetterActions } from '../../../store/admin/letter-slice';
-import { formatDateToYYDDMMHHMM } from '../../../utils/date';
-import { extractFirstTenChars } from '../../../utils/string';
 import Editor from './Editor';
 import Viewer from './Viewer';
 

@@ -1,18 +1,38 @@
 /* eslint-disable */
-export default function metaData(pathname) {
+export default function metaData(pathname: string) {
   if (!metaDataConfig[pathname]) return;
 
   const { title, description, ...metaData } = metaDataConfig[pathname];
-  document.querySelector('title').innerText = title;
-  document.querySelector('meta[name="description"]').content = description;
+  const MetaTitle: HTMLTitleElement | null = document.querySelector('title');
+  const MetaDescription: HTMLMetaElement | null = document.querySelector(
+    'meta[name="description"]'
+  );
+
+  if (MetaTitle && MetaDescription) {
+    MetaTitle.innerText = title;
+    MetaDescription.content = description;
+  }
 
   for (const [key, value] of Object.entries(metaData)) {
-    const element = document.querySelector(`meta[property="${key}"]`);
-    element.content = value;
+    const MetaElement: HTMLMetaElement | null = document.querySelector(
+      `meta[property="${key}"]`
+    );
+    if (MetaElement) {
+      MetaElement.content = value;
+    }
   }
 }
 
-const metaDataConfig = {
+interface MetaData {
+  [key: string]: {
+    title: string;
+    description: string;
+    'og:title'?: string;
+    'og:description'?: string;
+  };
+}
+
+const metaDataConfig: MetaData = {
   default: {
     title: '무지개편지',
     description: '편지를 보내고 아이의 답장을 받아보세요.',

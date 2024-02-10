@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from 'components/Button';
-import { updatePhoneNumber } from 'api/user';
 import { MODAL_MESSAGE, Modal } from 'components/Modal/constants';
+import { updatePhoneNumber } from 'api/user';
 import { State } from 'types/store';
+import { validatePhoneNumber } from 'utils/validators';
 import Input from '../Input';
 import { modalActions } from '../../store/modal-slice';
-import { validatePhoneNumber } from '../../utils/validators';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
 export default function ModalContents() {

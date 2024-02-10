@@ -3,8 +3,8 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
+import { extractFirstTenChars } from 'utils/string';
 import { editReply } from '../../../store/admin/letter-actions';
-import { extractFirstTenChars } from '../../../utils/string';
 import LetterDetailForm from './LetterDetailForm';
 
 function Editor({ id, isOpen, content, isSent, onClose }) {

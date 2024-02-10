@@ -2,8 +2,8 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import AppBar from 'components/AppBar';
-import { getToken } from '../../utils/localStorage';
-import { getFromSessionStorage } from '../../utils/sessionStorage';
+import { getToken } from 'utils/localStorage';
+import { getFromSessionStorage } from 'utils/sessionStorage';
 
 function AdminLayout() {
   const token = getToken();

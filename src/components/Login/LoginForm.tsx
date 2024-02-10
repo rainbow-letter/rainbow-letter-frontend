@@ -5,10 +5,10 @@ import axios from 'axios';
 
 import UserInput from 'components/Login/UserInput';
 import SubmitButton from 'components/Login/SubmitButton';
-import { tryLogin } from 'api/user';
 import { Message } from 'components/Login/constants';
+import { tryLogin } from 'api/user';
 import { emailError, emailErrorMessage, passwordError } from 'utils/errorData';
-import { saveToken } from '../../utils/localStorage';
+import { saveToken } from 'utils/localStorage';
 
 type Props = {
   message: Message;

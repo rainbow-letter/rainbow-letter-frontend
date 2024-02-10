@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { deleteUser } from 'api/user';
 import Button from 'components/Button';
 import {
   USER_ACTIONS,
   ACCOUNT_DELETION,
   ACCOUNT_DELETION_GUIDELINES,
 } from 'components/MyPage/constants';
-import { removeToken } from '../../utils/localStorage';
+import { deleteUser } from 'api/user';
+import { removeToken } from 'utils/localStorage';
 import check from '../../assets/check.svg';
 
 function AccountDeletion() {

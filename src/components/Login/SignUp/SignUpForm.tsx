@@ -6,13 +6,12 @@ import axios from 'axios';
 import UserInput from 'components/Login/UserInput';
 import SubmitButton from 'components/Login/SubmitButton';
 import Agree from 'components/Login/SignUp/Agree';
-
 import { ERROR_MESSAGE, Message } from 'components/Login/constants';
-import { trySignUp, tryLogin } from 'api/user';
 import { ErrorData } from 'components/Login/LoginForm';
+import { trySignUp, tryLogin } from 'api/user';
 import { emailError, emailErrorMessage, passwordError } from 'utils/errorData';
-import { saveToken } from '../../../utils/localStorage';
-import { validateEmail, validatePassword } from '../../../utils/validators';
+import { saveToken } from 'utils/localStorage';
+import { validateEmail, validatePassword } from 'utils/validators';
 
 type Props = {
   message: Message;

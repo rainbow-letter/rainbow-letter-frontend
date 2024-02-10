@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getLetters } from 'api/letter';
-import { Letters } from 'types/letters';
 import NoLetters from 'components/LetterBox/NoLetters';
 import LetterItems from 'components/LetterBox/LetterItems';
+import { getLetters } from 'api/letter';
+import { Letters } from 'types/letters';
 
 const DEFAULT = '전체';
 

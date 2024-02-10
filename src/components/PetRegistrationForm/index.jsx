@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import ClipLoader from 'react-spinners/ClipLoader';
 import Button from 'components/Button';
+import { convertDateStringToObject } from 'utils/date';
 import PetNameSection from './PetNameSection';
 import DateOfDeathSection from './DateOfDeathSection';
 import PetTypeSection from './PetTypeSection';
@@ -13,7 +14,6 @@ import {
   usePetRegistration,
   setInitialPetData,
 } from '../../contexts/PetRegistrationContext';
-import { convertDateStringToObject } from '../../utils/date';
 import usePreventDoubleClick from '../../hooks/usePreventDoubleClick';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {

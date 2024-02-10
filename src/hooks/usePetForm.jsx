@@ -2,8 +2,8 @@ import { useLocation } from 'react-router-dom';
 
 import { registerPet, updatePet } from 'api/pets';
 import { updateImageAndGetId } from 'api/images';
-import { generateFormData } from '../utils/formData';
-import { isFutureDate } from '../utils/date';
+import { generateFormData } from 'utils/formData';
+import { isFutureDate } from 'utils/date';
 
 const usePetForm = (initialData, onSuccess, onError, id) => {
   const { pathname } = useLocation();

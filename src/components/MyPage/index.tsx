@@ -14,8 +14,8 @@ import {
 } from 'components/MyPage/constants';
 import { State } from 'types/store';
 import { fetchUserInfo } from 'store/user-actions';
-import { removeToken } from '../../utils/localStorage';
-import { saveToSessionStorage } from '../../utils/sessionStorage';
+import { removeToken } from 'utils/localStorage';
+import { saveToSessionStorage } from 'utils/sessionStorage';
 
 function MyPage() {
   const navigate = useNavigate();

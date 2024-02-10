@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
 
-import { getToken, removeToken } from '../utils/localStorage';
+import { getToken, removeToken } from 'utils/localStorage';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
