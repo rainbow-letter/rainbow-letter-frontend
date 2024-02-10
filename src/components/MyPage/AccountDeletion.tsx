@@ -1,16 +1,15 @@
 /* eslint-disable no-alert */
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { deleteUser } from 'api/user';
 import Button from 'components/Button';
-import { removeToken } from '../../utils/localStorage';
 import {
   USER_ACTIONS,
   ACCOUNT_DELETION,
   ACCOUNT_DELETION_GUIDELINES,
-} from './constants';
+} from 'components/MyPage/constants';
+import { removeToken } from '../../utils/localStorage';
 import check from '../../assets/check.svg';
 
 function AccountDeletion() {
@@ -24,7 +23,9 @@ function AccountDeletion() {
       removeToken();
       navigate('/');
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     }
   };
 

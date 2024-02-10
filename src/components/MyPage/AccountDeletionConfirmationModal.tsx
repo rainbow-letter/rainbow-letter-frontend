@@ -15,9 +15,7 @@ function AccountDeletionConfirmationModal() {
         <span className="text-heading-3 text-center block">
           탈퇴가 완료됐어요
         </span>
-        <Button className="mt-9" type="button">
-          홈으로 가기
-        </Button>
+        <Button className="mt-9">홈으로 가기</Button>
       </div>
     </div>
   );

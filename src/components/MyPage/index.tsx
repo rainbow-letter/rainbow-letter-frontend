@@ -1,20 +1,26 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from 'store';
 
 import Divider from 'components/Divider';
+import AdminLinks from 'components/MyPage/AdminLinks';
+import MenuItemLink from 'components/MyPage/MenuItemLink';
+import PhoneNumberSection from 'components/MyPage/PhoneNumberSection';
+import {
+  PAGE_TITLES,
+  USER_INFO_LABELS,
+  USER_ACTIONS,
+} from 'components/MyPage/constants';
+import { State } from 'types/store';
+import { fetchUserInfo } from 'store/user-actions';
 import { removeToken } from '../../utils/localStorage';
 import { saveToSessionStorage } from '../../utils/sessionStorage';
-import { fetchUserInfo } from '../../store/user-actions';
-import { PAGE_TITLES, USER_INFO_LABELS, USER_ACTIONS } from './constants';
-import AdminLinks from './AdminLinks';
-import MenuItemLink from './MenuItemLink';
-import PhoneNumberSection from './PhoneNumberSection';
 
 function MyPage() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: State) => state.user);
 
   const isAdmin = user?.role === 'ROLE_ADMIN';
 

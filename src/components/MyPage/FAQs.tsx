@@ -1,9 +1,13 @@
 import React from 'react';
 
-import { QUESTION_PREFIX, FAQS } from './constants';
+import { QUESTION_PREFIX, FAQS, Faqs } from 'components/MyPage/constants';
 // import { getFaqs } from '../../api/faqs';
 
-function FAQ({ FAQData }) {
+type Props = {
+  FAQData: Faqs;
+};
+
+function FAQ({ FAQData }: Props) {
   return (
     <div>
       <header className="p-2.5 text-solo-large">
