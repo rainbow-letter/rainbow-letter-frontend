@@ -16,6 +16,7 @@ import WriteLetter from 'view/WriteLetter';
 import Layout from 'components/Layout';
 import ProtectedLayout from 'components/Layout/ProtectedLayout';
 import AdminLayout from 'components/Layout/AdminLayout';
+import Modal from 'components/Modal';
 import MyPage from 'components/MyPage';
 import AccountDeletion from 'components/MyPage/AccountDeletion';
 import FAQs from 'components/MyPage/FAQs';
@@ -23,8 +24,6 @@ import PasswordReset from './components/PasswordReset';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
-
-import Modal from './components/Modal';
 
 import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';

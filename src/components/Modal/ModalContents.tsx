@@ -1,22 +1,24 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updatePhoneNumber } from 'api/user';
 import Button from 'components/Button';
+import { updatePhoneNumber } from 'api/user';
+import { MODAL_MESSAGE, Modal } from 'components/Modal/constants';
+import { State } from 'types/store';
 import Input from '../Input';
 import { modalActions } from '../../store/modal-slice';
 import { validatePhoneNumber } from '../../utils/validators';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
-import MODAL_MESSAGE from './constants';
-
 export default function ModalContents() {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { type } = useSelector((state) => state.modal);
-  const { title, body } = MODAL_MESSAGE.find((item) => item.type === type);
+  const { type } = useSelector((state: State) => state.modal);
+  const { title, body } = MODAL_MESSAGE.find(
+    (item) => item.type === type
+  ) as Modal;
 
   const registerPhoneNumber = async () => {
     try {
@@ -28,7 +30,9 @@ export default function ModalContents() {
       });
       dispatch(modalActions.openModal('COMPLETE'));
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     }
   };
 
@@ -78,7 +82,9 @@ export default function ModalContents() {
                 <Input
                   placeholder="예) 01012341234"
                   value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setValue(e.target.value)
+                  }
                   className="py-5 w-full my-4"
                 />
                 <Button onClick={() => registerPhoneNumber()} className="mb-5">

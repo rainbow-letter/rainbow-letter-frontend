@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { State } from 'types/store';
 
-export default function ModalSection({ children }) {
-  const { isOpen } = useSelector((state) => state.modal);
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function ModalSection({ children }: Props) {
+  const { isOpen } = useSelector((state: State) => state.modal);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';

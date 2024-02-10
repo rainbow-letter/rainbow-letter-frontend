@@ -1,4 +1,14 @@
-const MODAL_MESSAGE = [
+export interface Modal {
+  type: string;
+  title: string;
+  body: {
+    id: number;
+    prefix?: string;
+    contents: string;
+  }[];
+}
+
+export const MODAL_MESSAGE: Modal[] = [
   {
     type: 'TOPIC',
     title: '이런 주제로도 써보세요',
