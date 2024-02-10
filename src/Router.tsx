@@ -23,11 +23,11 @@ import MyPage from 'components/MyPage';
 import AccountDeletion from 'components/MyPage/AccountDeletion';
 import FAQs from 'components/MyPage/FAQs';
 import PasswordReset from 'components/PasswordReset';
+import ScrollToTop from 'hooks/useScrollTop';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
 
-import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';
 
 function Router() {

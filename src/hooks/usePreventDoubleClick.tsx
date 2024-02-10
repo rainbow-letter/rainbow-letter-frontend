@@ -4,12 +4,14 @@ import { useState } from 'react';
 const usePreventDoubleClick = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleButtonClick = (submitAction) => async () => {
+  const handleButtonClick = (submitAction: () => Promise<any>) => async () => {
     setIsSubmitting(true);
     try {
       await submitAction();
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     } finally {
       setIsSubmitting(false);
     }

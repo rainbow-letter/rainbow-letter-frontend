@@ -4,21 +4,28 @@ import { registerPet, updatePet } from 'api/pets';
 import { updateImageAndGetId } from 'api/images';
 import { generateFormData } from 'utils/formData';
 import { isFutureDate } from 'utils/date';
+import { Dates } from 'types/date';
+import { PetRegister } from 'types/pets';
 
-const usePetForm = (initialData, onSuccess, onError, id) => {
+const usePetForm = (
+  initialData: PetRegister,
+  onSuccess: () => void,
+  onError: (error: Error) => void,
+  id: string
+) => {
   const { pathname } = useLocation();
   const isEdit = pathname.includes('edit');
 
-  const isDataComplete = (data) => {
+  const isDataComplete = (data: PetRegister) => {
     if (!data) return null;
     const isNameFilled = !!data.name;
     const isSpeciesFilled = !!data.species;
     const isOwnerFilled = !!data.owner;
     const isDeathAnniversaryFilled =
       data.deathAnniversary === null ||
-      (data.deathAnniversary.year !== '' &&
-        data.deathAnniversary.month !== '' &&
-        data.deathAnniversary.day !== '' &&
+      (data.deathAnniversary?.year !== '' &&
+        data.deathAnniversary?.month !== '' &&
+        data.deathAnniversary?.day !== '' &&
         !isFutureDate(data.deathAnniversary));
     const isImageUrlFilled = !!(data.image && data.image.url);
     const isImageFileFilled = !!(
@@ -38,7 +45,7 @@ const usePetForm = (initialData, onSuccess, onError, id) => {
 
   const isAllMandatoryDataFilled = isDataComplete(initialData);
 
-  const formatDeathAnniversary = ({ year, month, day }) => {
+  const formatDeathAnniversary = ({ year, month, day }: Dates<string>) => {
     if (year === '' || month === '' || day === '') {
       return null;
     }
@@ -48,13 +55,16 @@ const usePetForm = (initialData, onSuccess, onError, id) => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   };
 
-  const uploadImage = async (image) => {
+  const uploadImage = async (image: string) => {
     const imageFormData = generateFormData(image);
     const response = await updateImageAndGetId(imageFormData);
     return response.id;
   };
 
-  const handleSubmit = async (mandatoryData, optionalData) => {
+  const handleSubmit = async (
+    mandatoryData: PetRegister,
+    optionalData: PetRegister
+  ) => {
     const { image } = mandatoryData;
     let imageId;
 
@@ -81,7 +91,9 @@ const usePetForm = (initialData, onSuccess, onError, id) => {
       }
       onSuccess?.();
     } catch (error) {
-      onError?.(error);
+      if (error instanceof Error) {
+        onError?.(error);
+      }
     }
   };
 

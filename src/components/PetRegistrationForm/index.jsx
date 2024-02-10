@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import ClipLoader from 'react-spinners/ClipLoader';
 import Button from 'components/Button';
+import usePreventDoubleClick from 'hooks/usePreventDoubleClick';
 import { convertDateStringToObject } from 'utils/date';
 import PetNameSection from './PetNameSection';
 import DateOfDeathSection from './DateOfDeathSection';
@@ -14,7 +15,6 @@ import {
   usePetRegistration,
   setInitialPetData,
 } from '../../contexts/PetRegistrationContext';
-import usePreventDoubleClick from '../../hooks/usePreventDoubleClick';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
   const { pathname } = useLocation();

@@ -21,7 +21,7 @@ export const registerPet = async (pet: any): Promise<any> => {
   return response;
 };
 
-export const updatePet = async (pet: any, id: number): Promise<any> => {
+export const updatePet = async (pet: any, id: string): Promise<any> => {
   const response = await apiRequest.put(`${RESOURCE}/${id}`, pet);
 
   return response;

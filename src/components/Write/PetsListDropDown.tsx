@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { USER_ACTIONS } from 'components/Write/constants';
 import { Pets } from 'types/pets';
-import useDetectClose from '../../hooks/useDetectClose';
+import useDetectClose from 'hooks/useDetectClose';
 
 import dropDownImg from '../../assets/ion_chevron-back.svg';
 import dropUpImg from '../../assets/ion_chevron-up.svg';
@@ -23,26 +23,26 @@ export default function PetsListDropDown({
   onclick,
 }: Props) {
   const dropdown = useRef<HTMLDivElement>(null);
-  const [isDropDown, setIsDropDown] = useDetectClose(dropdown, false);
+  const { isOpen, setIsOpen } = useDetectClose(dropdown, false);
 
-  const imgSrc = isDropDown ? dropUpImg : dropDownImg;
+  const imgSrc = isOpen ? dropUpImg : dropDownImg;
 
   useEffect(() => {
-    setIsDropDown(false);
+    setIsOpen(false);
   }, [petName]);
 
   return (
     <section ref={dropdown} className="text-solo-medium">
       <button
         type="button"
-        onClick={() => setIsDropDown(!isDropDown)}
+        onClick={() => setIsOpen(!isOpen)}
         className="w-full px-6 py-[18px] rounded-[15px] flex justify-between items-center border bg-orange-50 border-orange-400"
       >
         <p>{petName}</p>
         <img src={imgSrc} alt="dropdown" />
       </button>
       <div className="relative">
-        {isDropDown && (
+        {isOpen && (
           <ul className="absolute w-full mt-[6px] bg-white border border-orange-400 rounded-[15px] z-10">
             {petsList.map((pet) => (
               <li

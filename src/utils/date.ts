@@ -1,12 +1,8 @@
 // eslint-disable-next-line import/prefer-default-export
+import { Dates } from 'types/date';
+
 type Options = {
   [key: string]: string;
-};
-
-type FutureDate = {
-  year: number;
-  month: number;
-  day: number;
 };
 
 export const calculateDDay = (deathAnniversary: string) => {
@@ -63,12 +59,12 @@ export const getPastDate = (daysAgo: number) => {
   return formatDateToYMD(date);
 };
 
-export const isFutureDate = ({ year, month, day }: FutureDate): boolean => {
+export const isFutureDate = ({ year, month, day }: Dates<string>): boolean => {
   if (!year || !month || !day) {
     return false;
   }
 
-  const inputDate = new Date(year, month - 1, day);
+  const inputDate = new Date(Number(year), Number(month) - 1, Number(day));
   const currentDate = new Date();
 
   currentDate.setHours(0, 0, 0, 0);

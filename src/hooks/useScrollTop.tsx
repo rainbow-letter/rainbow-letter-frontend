@@ -2,7 +2,11 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export default function useScrollTop({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function useScrollTop({ children }: Props) {
   const { pathname } = useLocation();
 
   useEffect(() => {

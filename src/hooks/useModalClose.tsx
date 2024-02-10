@@ -1,14 +1,18 @@
 import { useEffect } from 'react';
 
-const useModalClose = (ref, onClose) => {
+function useModalClose(
+  ref: React.RefObject<HTMLDivElement>,
+  onClose: () => void
+) {
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLDivElement;
+      if (ref.current && !ref.current.contains(target)) {
         onClose();
       }
     };
 
-    const handleEscapeKey = (event) => {
+    const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
       }
@@ -22,6 +26,6 @@ const useModalClose = (ref, onClose) => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [ref, onClose]);
-};
+}
 
 export default useModalClose;

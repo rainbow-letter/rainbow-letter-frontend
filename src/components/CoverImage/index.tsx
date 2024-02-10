@@ -1,7 +1,7 @@
 import React from 'react';
 
 type Props = {
-  image: string;
+  image: any;
   className?: string;
 };
 
