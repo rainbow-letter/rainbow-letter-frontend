@@ -6,7 +6,7 @@ export interface State {
     role: null | string;
   };
   modal: {
-    isOpen: null | boolean;
+    isOpen: boolean;
     type: null | string;
     canOpenAgain: null | boolean;
   };

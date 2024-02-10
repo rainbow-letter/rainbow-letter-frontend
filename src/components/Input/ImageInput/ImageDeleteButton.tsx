@@ -1,6 +1,12 @@
 import React from 'react';
 
-function ImageDeleteButton({ icon, onDelete }) {
+type Props = {
+  isHover: boolean;
+  icon: string;
+  onDelete: () => void;
+};
+
+function ImageDeleteButton({ isHover, icon, onDelete }: Props) {
   const handleDelete = () => {
     onDelete();
   };
@@ -8,7 +14,7 @@ function ImageDeleteButton({ icon, onDelete }) {
   return (
     <button
       type="button"
-      className="hidden absolute -top-2.5 -right-2.5"
+      className={`${isHover ? 'block' : 'hidden'} absolute -top-2.5 -right-2.5`}
       onClick={handleDelete}
     >
       <img src={icon} alt="delete" />

@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import Chips from 'components/Chips';
 import Chip from 'components/Chips/Chip';
+import MiscInput from 'components/Input/MiscInput';
+import InputAlert from 'components/InputAlert';
 import { PET_TYPES } from 'components/Chips/constants';
+import useAutoFocus from 'hooks/useAutoFocus';
 import { TITLES, INFO_MESSAGES } from './constants';
 import PetRegistrationSection from './PetRegistrationSection';
-import MiscInput from '../Input/MiscInput';
-import InputAlert from '../InputAlert';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
-import useAutoFocus from '../../hooks/useAutoFocus';
 
 function PetTypeSection() {
   const miscInputRef = useRef(null);

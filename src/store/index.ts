@@ -1,8 +1,8 @@
 import { configureStore, createListenerMiddleware } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 
+import modalSlice from 'store/modal-slice';
 import userSlice from './user-slice';
-import modalSlice from './modal-slice';
 import adminLettersSlice from './admin/letter-slice';
 import adminLetterUiSlice from './admin/letterUi-slice';
 import { setupListeners } from './listeners';

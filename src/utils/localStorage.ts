@@ -1,4 +1,4 @@
-export const saveToken = (token) => {
+export const saveToken = (token: string) => {
   localStorage.setItem('user', token);
 };
 

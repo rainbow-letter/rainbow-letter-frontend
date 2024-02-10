@@ -17,8 +17,8 @@ import { updateImageAndGetId } from 'api/images';
 import { Pets } from 'types/pets';
 import { State } from 'types/store';
 
+import { generateFormData } from 'utils/formData';
 import { modalActions } from '../store/modal-slice';
-import { generateFormData } from '../utils/formData';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function WriteLetter() {
   const { canOpenAgain } = useSelector((state: State) => state.modal);
   const [petsList, setPetsList] = useState<Pets[]>([]);
   const [selectedPet, setSelectedPet] = useState<Pets | null>(null);
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState<File | string>('');
   const [letter, setLetter] = useState({
     summary: '',
     content: '',
@@ -55,7 +55,7 @@ export default function WriteLetter() {
     })();
   }, []);
 
-  const uploadImage = async (image: string) => {
+  const uploadImage = async (image: string | File) => {
     const formData = generateFormData(image);
     const response = await updateImageAndGetId(formData);
 

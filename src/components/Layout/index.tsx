@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import metaData from '../../utils/metaData';
+import metaData from 'utils/metaData';
 
 function Layout() {
   const { pathname } = useLocation();

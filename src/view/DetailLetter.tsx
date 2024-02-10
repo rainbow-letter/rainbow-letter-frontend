@@ -3,14 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Button from 'components/Button';
-import { USER_ACTIONS } from 'components/LetterBox/constants';
-
-import { getLetter } from 'api/letter';
-import { Letter } from 'types/letters';
 import WritingPadSection from 'components/Write/WritingPadSection';
 import SentPhoto from 'components/LetterBox/SentPhoto';
+import { USER_ACTIONS } from 'components/LetterBox/constants';
+
+import metaData from 'utils/metaData';
+import { Letter } from 'types/letters';
+import { getLetter } from 'api/letter';
 import { readReply } from '../api/reply';
-import metaData from '../utils/metaData';
 
 export default function DetailLetter() {
   const params = useParams();

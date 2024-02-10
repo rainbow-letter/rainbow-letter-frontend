@@ -4,8 +4,8 @@ const useInputWithAlert = (initialValue = '') => {
   const [inputValue, setInputValue] = useState(initialValue);
   const [isChanged, setIsChanged] = useState(false);
 
-  const handleChange = ({ target }) => {
-    const { value } = target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
 
     setInputValue(value);
     setIsChanged(!!value);

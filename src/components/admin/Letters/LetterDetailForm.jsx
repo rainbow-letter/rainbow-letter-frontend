@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import useModalClose from '../../../hooks/useModalClose';
+import useModalClose from 'hooks/useModalClose';
 
 const MAX_CONTENT_LENGTH = 1000;
 function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {

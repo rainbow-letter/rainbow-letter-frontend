@@ -1,5 +1,11 @@
 // eslint-disable-next-line import/prefer-default-export
-export const calculateDDay = (deathAnniversary) => {
+import { Dates } from 'types/date';
+
+type Options = {
+  [key: string]: string;
+};
+
+export const calculateDDay = (deathAnniversary: string) => {
   const anniversaryDate = new Date(deathAnniversary);
   const today = new Date();
 
@@ -14,7 +20,7 @@ export const calculateDDay = (deathAnniversary) => {
     : `D+${Math.abs(Math.ceil(differenceInDays))}`;
 };
 
-export const convertDateStringToObject = (dateStr) => {
+export const convertDateStringToObject = (dateStr: string) => {
   const parts = dateStr.split('-');
   const year = parts[0];
   const month = String(parseInt(parts[1], 10));
@@ -23,8 +29,8 @@ export const convertDateStringToObject = (dateStr) => {
   return { year, month, day };
 };
 
-export const formatDateToYMD = (data = new Date()) => {
-  const options = {
+export const formatDateToYMD = (data = new Date()): string => {
+  const options: Options = {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -35,7 +41,7 @@ export const formatDateToYMD = (data = new Date()) => {
   return formattedDate;
 };
 
-export const formatDateToYYDDMMHHMM = (date) => {
+export const formatDateToYYDDMMHHMM = (date: string): string => {
   if (!date) return '';
   const newDate = new Date(date);
   const year = newDate.getFullYear().toString().substr(-2);
@@ -47,18 +53,18 @@ export const formatDateToYYDDMMHHMM = (date) => {
   return `${year}.${month}.${day} ${hours}:${minutes}`;
 };
 
-export const getPastDate = (daysAgo) => {
+export const getPastDate = (daysAgo: number) => {
   const date = new Date();
   date.setDate(date.getDate() - daysAgo);
   return formatDateToYMD(date);
 };
 
-export const isFutureDate = ({ year, month, day }) => {
+export const isFutureDate = ({ year, month, day }: Dates<string>): boolean => {
   if (!year || !month || !day) {
     return false;
   }
 
-  const inputDate = new Date(year, month - 1, day);
+  const inputDate = new Date(Number(year), Number(month) - 1, Number(day));
   const currentDate = new Date();
 
   currentDate.setHours(0, 0, 0, 0);
@@ -66,7 +72,7 @@ export const isFutureDate = ({ year, month, day }) => {
   return inputDate > currentDate;
 };
 
-export const isPastNextDay10AM = (dateString) => {
+export const isPastNextDay10AM = (dateString: string): boolean => {
   if (!dateString) return false;
 
   const givenDate = new Date(dateString);

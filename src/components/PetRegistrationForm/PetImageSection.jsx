@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import ImageInput from 'components/Input/ImageInput';
 import { TITLES } from './constants';
 import PetRegistrationSection from './PetRegistrationSection';
-import ImageInput from '../Input/ImageInput';
 import roundX from '../../assets/roundX.svg';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
-import { saveToken } from '../utils/localStorage';
+import { saveToken } from 'utils/localStorage';
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -9,7 +9,9 @@ export default function Auth() {
 
   useEffect(() => {
     const token = searchParams.get('token');
-    saveToken(token);
+    if (token) {
+      saveToken(token);
+    }
     navigate('/home');
   }, []);
 

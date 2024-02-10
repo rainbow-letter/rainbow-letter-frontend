@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { calculateDDay } from 'utils/date';
 import { USER_ACTIONS, PREFIX } from './constants';
-import { calculateDDay } from '../../utils/date';
 import PetCardImage from './PetCardImage';
 import LikeButton from './LikeButton';
 import pen from '../../assets/pen.svg';

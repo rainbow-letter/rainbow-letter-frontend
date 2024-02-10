@@ -1,7 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-function Input({ className, ...props }) {
+type Props = {
+  className: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+function Input({ className, ...props }: Props) {
   const styles = className || '';
 
   return (

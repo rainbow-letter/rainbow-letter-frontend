@@ -1,3 +1,5 @@
+import { Dates } from 'types/date';
+
 export interface PetFavorite {
   id: number;
   total: number;
@@ -29,4 +31,16 @@ export interface Pets {
   deathAnniversary: string;
   image: PetImage;
   favorite: PetFavorite;
+}
+
+export interface PetRegister {
+  name: string;
+  species: string;
+  owner: string;
+  deathAnniversary: Dates<string>;
+  image: {
+    id: string;
+    url: string;
+    file: string;
+  };
 }

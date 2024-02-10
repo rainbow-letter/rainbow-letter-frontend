@@ -4,10 +4,7 @@ import React, { useState } from 'react';
 import UserInput from 'components/Login/UserInput';
 import Button from 'components/Button';
 import { UPDATE_PASSWORD_MESSAGE } from 'components/Login/constants';
-import {
-  validatePassword,
-  validatePasswordMatch,
-} from '../../utils/validators';
+import { validatePassword, validatePasswordMatch } from 'utils/validators';
 
 type Props = {
   onClick: (password: string) => void;

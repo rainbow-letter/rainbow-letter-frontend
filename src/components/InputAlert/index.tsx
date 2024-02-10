@@ -1,6 +1,12 @@
 import React from 'react';
 
-function InputAlert({ message, isVisible, reserveSpace = false }) {
+type Props = {
+  message: string;
+  isVisible: boolean;
+  reserveSpace: boolean;
+};
+
+function InputAlert({ message, isVisible, reserveSpace = false }: Props) {
   if (!isVisible) {
     return null;
   }

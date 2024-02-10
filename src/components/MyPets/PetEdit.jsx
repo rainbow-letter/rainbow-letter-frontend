@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { getPet } from 'api/pets';
+import usePetForm from 'hooks/usePetForm';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
-import usePetForm from '../../hooks/usePetForm';
 import PetRegistrationForm from '../PetRegistrationForm';
 
 function PetEdit() {

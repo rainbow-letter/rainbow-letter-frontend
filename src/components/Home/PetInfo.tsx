@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { PetDashBoard } from 'types/pets';
-import { calculateDDay } from '../../utils/date';
+import { calculateDDay } from 'utils/date';
 
 import letter from '../../assets/fa-regular_message_color.svg';
 import heart from '../../assets/fa-regular_heart_color.svg';

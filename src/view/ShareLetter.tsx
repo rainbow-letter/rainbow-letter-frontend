@@ -2,15 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { getShareLetter } from 'api/letter';
 import WritingPadSection from 'components/Write/WritingPadSection';
-import { Letter } from 'types/letters';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import AppBar from 'components/AppBar';
 import NavBar from 'components/NavBar';
 import Button from 'components/Button';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
-import metaData from '../utils/metaData';
+import { getShareLetter } from 'api/letter';
+import { Letter } from 'types/letters';
+import metaData from 'utils/metaData';
 
 export default function ShareLetter() {
   const [letterData, setLetterData] = useState<Letter>();

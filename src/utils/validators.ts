@@ -1,23 +1,26 @@
-function validateEmail(email) {
+function validateEmail(email: string): boolean {
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return regex.test(email);
 }
 
-function validatePassword(password) {
+function validatePassword(password: string): boolean {
   const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
   return regex.test(password);
 }
 
-function validatePasswordMatch(password, confirmPassword) {
+function validatePasswordMatch(
+  password: string,
+  confirmPassword: string
+): boolean {
   return password === confirmPassword;
 }
 
-function validatePhoneNumber(phoneNumber) {
+function validatePhoneNumber(phoneNumber: string): boolean {
   const regex = /^010[0-9]{8}$/;
   return regex.test(phoneNumber) || phoneNumber === '';
 }
 
-export const validateDateInput = (value, type) => {
+export const validateDateInput = (value: string, type: string) => {
   if (value === '') {
     return true;
   }

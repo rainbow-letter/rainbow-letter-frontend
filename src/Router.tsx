@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { State } from 'types/store';
+
 import Login from 'view/Login';
 import Join from 'view/Join';
 import Email from 'view/Email';
@@ -21,15 +23,15 @@ import MyPage from 'components/MyPage';
 import AccountDeletion from 'components/MyPage/AccountDeletion';
 import FAQs from 'components/MyPage/FAQs';
 import PasswordReset from 'components/PasswordReset';
+import ScrollToTop from 'hooks/useScrollTop';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
 
-import ScrollToTop from './hooks/useScrollTop';
 import Letters from './components/admin/Letters';
 
 function Router() {
-  const { isOpen } = useSelector((state) => state.modal);
+  const { isOpen } = useSelector((state: State) => state.modal);
 
   return (
     <BrowserRouter>

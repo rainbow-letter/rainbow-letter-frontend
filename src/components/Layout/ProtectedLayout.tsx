@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import NavBar from 'components/NavBar';
 import AppBar from 'components/AppBar';
-import { getToken } from '../../utils/localStorage';
+import { getToken } from 'utils/localStorage';
 
 function ProtectedLayout() {
   const token = getToken();
