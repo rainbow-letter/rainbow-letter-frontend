@@ -10,7 +10,7 @@ import {
 const initialState = {
   user: { id: null, email: null, phoneNumber: null, role: null },
   status: 'idle',
-  error: null,
+  error: '',
 };
 
 const userSlice = createSlice({
@@ -28,7 +28,9 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserInfo.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        if (action.error.message) {
+          state.error = action.error.message;
+        }
       })
       .addCase(updatePhoneNumber.fulfilled, (state, action) => {
         state.user.phoneNumber = action.payload.phoneNumber;
