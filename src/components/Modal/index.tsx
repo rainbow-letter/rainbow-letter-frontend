@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ModalLayOut from './ModalLayOut';
-import ModalSection from './ModalSection';
-import ModalContainer from './ModalContainer';
-import ModalContents from './ModalContents';
+import ModalLayOut from 'components/Modal/ModalLayOut';
+import ModalSection from 'components/Modal/ModalSection';
+import ModalContainer from 'components/Modal/ModalContainer';
+import ModalContents from 'components/Modal/ModalContents';
 
 export default function Modal() {
   return (
