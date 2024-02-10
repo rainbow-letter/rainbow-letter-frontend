@@ -1,14 +1,14 @@
 /* eslint-disable no-shadow */
 import React from 'react';
-
-import { updatePassword } from 'api/user';
 import { useNavigate } from 'react-router-dom';
-import PasswordResetForm from './PasswordResetForm';
+
+import PasswordResetForm from 'components/PasswordReset/PasswordResetForm';
+import { updatePassword } from 'api/user';
 
 function PasswordReset() {
   const navigate = useNavigate();
 
-  const onChangePassword = async (newPassword) => {
+  const onChangePassword = async (newPassword: string) => {
     try {
       await updatePassword({ newPassword });
       navigate(-1);
