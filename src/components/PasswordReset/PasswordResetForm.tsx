@@ -2,15 +2,18 @@
 import React, { useState } from 'react';
 
 import UserInput from 'components/Login/UserInput';
-import { UPDATE_PASSWORD_MESSAGE } from 'components/Login/constants';
 import Button from 'components/Button';
-
+import { UPDATE_PASSWORD_MESSAGE } from 'components/Login/constants';
 import {
   validatePassword,
   validatePasswordMatch,
 } from '../../utils/validators';
 
-function PasswordResetForm({ onClick }) {
+type Props = {
+  onClick: (password: string) => void;
+};
+
+function PasswordResetForm({ onClick }: Props) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const isValidPassword = validatePassword(newPassword);

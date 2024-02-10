@@ -20,7 +20,7 @@ import Modal from 'components/Modal';
 import MyPage from 'components/MyPage';
 import AccountDeletion from 'components/MyPage/AccountDeletion';
 import FAQs from 'components/MyPage/FAQs';
-import PasswordReset from './components/PasswordReset';
+import PasswordReset from 'components/PasswordReset';
 import MyPets from './components/MyPets';
 import PetRegistration from './components/MyPets/PetRegistration';
 import PetEdit from './components/MyPets/PetEdit';
