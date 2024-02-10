@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { INFO_MESSAGES } from 'components/Write/constants';
-import ImageInput from '../Input/ImageInput';
+import ImageInput from 'components/Input/ImageInput';
 
 import roundX from '../../assets/roundX.svg';
 

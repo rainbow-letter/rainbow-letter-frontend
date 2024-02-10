@@ -1,8 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
 
+type Props = {
+  isInvalid: boolean;
+  value: string;
+  onChange: () => void;
+};
+
 const MiscInput = forwardRef(
-  ({ isInvalid, value, onChange, ...props }, ref) => {
+  (
+    { isInvalid, value, onChange, ...props }: Props,
+    ref: React.ForwardedRef<HTMLInputElement> | undefined
+  ) => {
     const borderStyle = isInvalid ? 'border-alarm-red' : 'border-orange-400';
 
     return (

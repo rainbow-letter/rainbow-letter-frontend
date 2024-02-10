@@ -1,10 +1,10 @@
 import React from 'react';
 
+import Input from 'components/Input';
+import InputAlert from 'components/InputAlert';
 import useInputWithAlert from 'hooks/useInputWithAlert';
 import { TITLES, INFO_MESSAGES } from './constants';
-import Input from '../Input';
 import PetRegistrationSection from './PetRegistrationSection';
-import InputAlert from '../InputAlert';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
 function PetNameSection({ isEdit }) {

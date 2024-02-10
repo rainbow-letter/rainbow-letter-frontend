@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import Chip from 'components/Chips/Chip';
+import Input from 'components/Input';
+import InputAlert from 'components/InputAlert';
 import { validateDateInput } from 'utils/validators';
 import { isFutureDate } from 'utils/date';
 import { TITLES, DATE_OF_DEATH, INFO_MESSAGES } from './constants';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
-import Input from '../Input';
 import PetRegistrationSection from './PetRegistrationSection';
-import InputAlert from '../InputAlert';
 
 function DateOfDeathSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();

@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/prefer-default-export */
-import { isPastNextDay10AM } from './date';
+import { isPastNextDay10AM } from 'utils/date';
 
 export const checkLetterStatus = (
   inspectionDate: string,
