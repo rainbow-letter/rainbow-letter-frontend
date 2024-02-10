@@ -4,7 +4,7 @@ import api from '../api';
 
 export const fetchUserInfo = createAsyncThunk(
   'user/fetchUserInfo',
-  async () => {
+  async (): Promise<any> => {
     const response = await api.get('/api/members/info');
     return response;
   }
@@ -12,7 +12,7 @@ export const fetchUserInfo = createAsyncThunk(
 
 export const updatePhoneNumber = createAsyncThunk(
   'user/updatePhoneNumber',
-  async (phoneNumber) => {
+  async (phoneNumber: string): Promise<any> => {
     const response = await api.put('/api/members/phoneNumber', { phoneNumber });
     return response;
   }
@@ -20,7 +20,7 @@ export const updatePhoneNumber = createAsyncThunk(
 
 export const deletePhoneNumber = createAsyncThunk(
   'user/deletePhoneNumber',
-  async () => {
+  async (): Promise<any> => {
     const response = await api.delete(`/api/members/phoneNumber`);
     return response;
   }

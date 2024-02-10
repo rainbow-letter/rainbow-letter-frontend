@@ -5,7 +5,7 @@ import {
   fetchUserInfo,
   updatePhoneNumber,
   deletePhoneNumber,
-} from './user-actions';
+} from 'store/user-actions';
 
 const initialState = {
   user: { id: null, email: null, phoneNumber: null, role: null },

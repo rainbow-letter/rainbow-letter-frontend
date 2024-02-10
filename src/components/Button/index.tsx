@@ -4,7 +4,8 @@ type Props = {
   className?: string;
   disabled?: boolean;
   children: React.ReactNode;
-  onClick: () => void;
+  // AccountDeletionConfirmationModal 컴포넌트에 쓰이는 버튼에 따라 onClick 선택/필수 바꾸기
+  onClick?: () => void;
   id?: any;
 };
 

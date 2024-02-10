@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 
 import chevronRight from '../../assets/chevronRight.svg';
 
-function MenuItemLink({ to, label }) {
+type Props = {
+  to: string;
+  label: string;
+};
+
+function MenuItemLink({ to, label }: Props) {
   return (
     <Link to={to} className="flex justify-between items-center">
       <div className="p-2.5 text-solo-large">{label}</div>
