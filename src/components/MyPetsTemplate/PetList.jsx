@@ -1,12 +1,11 @@
-/* eslint-disable no-shadow */
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { getPets } from 'api/pets';
-import NoPets from 'components/MyPets/NoPets';
+import NoPets from 'components/MyPetsTemplate/NoPets';
 import PetCard from './PetCard';
 
-export default function FetchPets() {
+export default function PetList() {
   const { state } = useLocation();
   const ref = useRef([]);
   const [pets, setPets] = useState(null);

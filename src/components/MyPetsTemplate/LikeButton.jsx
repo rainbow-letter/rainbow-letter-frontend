@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { useState } from 'react';
 
 import { incrementLikes } from '../../api/favorite';
