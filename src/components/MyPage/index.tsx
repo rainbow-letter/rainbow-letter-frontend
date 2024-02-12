@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch } from 'store';
+import { AppDispatch, RootState } from 'store';
 
 import Divider from 'components/Divider';
 import AdminLinks from 'components/MyPage/AdminLinks';
@@ -12,7 +12,6 @@ import {
   USER_INFO_LABELS,
   USER_ACTIONS,
 } from 'components/MyPage/constants';
-import { State } from 'types/store';
 import { fetchUserInfo } from 'store/user-actions';
 import { removeToken } from 'utils/localStorage';
 import { saveToSessionStorage } from 'utils/sessionStorage';
@@ -20,7 +19,7 @@ import { saveToSessionStorage } from 'utils/sessionStorage';
 function MyPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector((state: State) => state.user);
+  const user = useSelector((state: RootState) => state.user.user);
 
   const isAdmin = user?.role === 'ROLE_ADMIN';
 
