@@ -1,25 +1,11 @@
 /* eslint-disable no-param-reassign */
-/**
- * 세션 스토리지에 데이터 저장하기
- * @param {string} key - 저장할 데이터의 키
- * @param {*} value - 저장할 데이터 값 (객체는 문자열로 변환)
- */
-export function saveToSessionStorage(key: string, value: string | boolean) {
-  if (typeof value === 'object') {
-    // 객체를 문자열로 변환
-    value = JSON.stringify(value);
-  }
 
-  if (typeof value === 'string') {
-    sessionStorage.setItem(key, value);
-  }
+// NOTE: 세션 스토리지에 데이터 저장하기
+export function saveToSessionStorage(key: string, value: string) {
+  sessionStorage.setItem(key, value);
 }
 
-/**
- * 세션 스토리지에서 데이터 가져오기
- * @param {string} key - 가져올 데이터의 키
- * @returns {*|null} - 저장된 데이터 또는 키가 없는 경우 null
- */
+// 세션 스토리지에서 데이터 가져오기
 export function getFromSessionStorage(key: string) {
   const value = sessionStorage.getItem(key);
   try {
