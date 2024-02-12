@@ -6,17 +6,31 @@ import {
   updatePhoneNumber,
   deletePhoneNumber,
 } from 'store/user-actions';
+import { Status, Error } from 'types/store';
+import { User } from 'types/user';
 
-const initialState = {
-  user: { id: null, email: null, phoneNumber: null, role: null },
+type UserState = {
+  user: User;
+  status: Status;
+  error: Error;
+};
+
+const initialState: UserState = {
+  user: { id: '', email: '', phoneNumber: null, role: 'ROLE_USER' },
   status: 'idle',
-  error: '',
+  error: null,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logOut(state) {
+      state.user = initialState.user;
+      state.status = initialState.status;
+      state.error = initialState.error;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserInfo.pending, (state) => {

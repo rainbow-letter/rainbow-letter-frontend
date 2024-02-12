@@ -1,14 +1,3 @@
-import React from 'react';
-
-interface MyPage_Message {
-  [key: string]: string;
-}
-
-interface Account_Message {
-  ID: number;
-  CONTENT: React.ReactNode;
-}
-
 export interface Faqs {
   id: number;
   question: string;
@@ -16,30 +5,6 @@ export interface Faqs {
   link?: string;
   email?: string;
 }
-
-export const PAGE_TITLES: MyPage_Message = {
-  MY_INFO: '내 정보',
-  FAQ: '자주 묻는 질문',
-};
-
-export const USER_INFO_LABELS: MyPage_Message = {
-  EMAIL: '이메일',
-  PHONE: '휴대폰 번호',
-  NO_PHONE: '답장 알림을 문자로 받고 싶다면 등록해보세요',
-};
-
-export const USER_INFO_MESSAGES: MyPage_Message = {
-  ENTER_DIGITS_ONLY: '-를 제외한 숫자만 입력해주세요.',
-  INVALID_PHONE: '번호를 다시 확인해주세요.',
-};
-
-export const USER_ACTIONS: MyPage_Message = {
-  EDIT: '수정',
-  FINISH: '확인',
-  CHANGE_PASSWORD: '비밀번호 변경하기',
-  LEAVE: '탈퇴하기',
-  LOG_OUT: '로그아웃',
-};
 
 export const QUESTION_PREFIX = 'Q. ';
 
@@ -79,39 +44,5 @@ export const FAQS: Faqs[] = [
     question: '문의/제휴하고 싶다면 어디로 연락하나요?',
     answer: '메일 주시면 영업일 기준 1~2일 이내 회신 드릴게요. \n',
     email: 'rainbowletter41@gmail.com',
-  },
-];
-
-export const ACCOUNT_DELETION: MyPage_Message = {
-  GUIDELINES_TITLE: '탈퇴 안내사항',
-  CONFIRM_MESSAGE: '위 내용을 확인하였으며, 탈퇴를 진행합니다.',
-};
-
-export const ACCOUNT_DELETION_GUIDELINES: Account_Message[] = [
-  {
-    ID: 1,
-    CONTENT: ['탈퇴 시 ', <strong>편지는 모두 삭제</strong>, '됩니다.'],
-  },
-  {
-    ID: 2,
-    CONTENT: [
-      '삭제된 데이터(편지, 동물정보 등)은 ',
-      <strong>복구되지 않습니다.</strong>,
-    ],
-  },
-  {
-    ID: 3,
-    CONTENT: [
-      <strong>동일 이메일로 재가입해도</strong>,
-      ' 삭제된 데이터는 복구되지 않습니다.',
-    ],
-  },
-  {
-    ID: 4,
-    CONTENT: [
-      '탈퇴 후 ',
-      <strong>일주일 동안 재가입이 불가</strong>,
-      '합니다.',
-    ],
   },
 ];

@@ -71,7 +71,7 @@ function DateOfDeathSection() {
           />
           <span className="p-[7px] text-caption">{DATE_OF_DEATH.DAY}</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center text-nowrap">
           <Chip
             value={DATE_OF_DEATH.UNKNOWN}
             isSelected={isChipSelected}

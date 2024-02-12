@@ -13,3 +13,6 @@ export interface State {
   adminLetters: any;
   adminLetterUi: any;
 }
+
+export type Status = 'idle' | 'loading' | 'success' | 'failed';
+export type Error = string | null;
