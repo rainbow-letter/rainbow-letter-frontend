@@ -1,5 +1,5 @@
 /* eslint-disable */
-import apiRequest from '.';
+import apiRequest from 'api';
 
 const RESOURCE = '/api/members';
 

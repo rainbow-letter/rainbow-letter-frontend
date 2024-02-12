@@ -1,5 +1,5 @@
 /* eslint-disable */
-import apiRequest from '.';
+import apiRequest from 'api';
 import { formatDateToYMD } from '../utils/date';
 
 const RESOURCE = '/api/letters';
