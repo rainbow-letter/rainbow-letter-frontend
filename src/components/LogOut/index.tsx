@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userActions } from 'store/user-slice';
+import { userActions } from 'store/user/user-slice';
 
 import { removeToken } from 'utils/localStorage';
 import { clearSessionStorage } from 'utils/sessionStorage';

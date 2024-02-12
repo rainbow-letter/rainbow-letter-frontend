@@ -8,7 +8,7 @@ import { MODAL_MESSAGE, Modal } from 'components/Modal/constants';
 import { updatePhoneNumber } from 'api/user';
 import { State } from 'types/store';
 import { validatePhoneNumber } from 'utils/validators';
-import { modalActions } from 'store/modal-slice';
+import { modalActions } from 'store/modal/modal-slice';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
 export default function ModalContents() {

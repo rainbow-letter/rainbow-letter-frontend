@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch } from 'store';
 
-import { updatePhoneNumber, deletePhoneNumber } from 'store/user-actions';
+import { updatePhoneNumber, deletePhoneNumber } from 'store/user/user-actions';
 import {
   USER_INFO_LABELS,
   USER_INFO_MESSAGES,
