@@ -7,7 +7,7 @@ import {
   USER_INFO_LABELS,
   USER_INFO_MESSAGES,
   USER_ACTIONS,
-} from 'components/MyPage/constants';
+} from 'components/MyPageTemplate/constants';
 import { State } from 'types/store';
 import { validatePhoneNumber } from 'utils/validators';
 
