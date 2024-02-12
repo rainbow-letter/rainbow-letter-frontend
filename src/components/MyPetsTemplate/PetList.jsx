@@ -5,7 +5,7 @@ import { getPets } from 'api/pets';
 import NoPets from 'components/MyPetsTemplate/NoPets';
 import PetCard from './PetCard';
 
-export default function PetList() {
+function PetList() {
   const { state } = useLocation();
   const ref = useRef([]);
   const [pets, setPets] = useState(null);
@@ -30,19 +30,19 @@ export default function PetList() {
 
   if (pets !== null && pets.length < 1) return <NoPets />;
   return (
-    <div className="h-full">
-      <ul className="px-1">
-        {pets &&
-          pets.map((pet) => (
-            <PetCard
-              key={pet.id}
-              pet={pet}
-              ref={(el) => {
-                ref.current[pet.id] = el;
-              }}
-            />
-          ))}
-      </ul>
-    </div>
+    <ul className="px-1">
+      {pets &&
+        pets.map((pet) => (
+          <PetCard
+            key={pet.id}
+            pet={pet}
+            ref={(el) => {
+              ref.current[pet.id] = el;
+            }}
+          />
+        ))}
+    </ul>
   );
 }
+
+export default PetList;
