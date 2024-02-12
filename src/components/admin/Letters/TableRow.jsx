@@ -10,7 +10,7 @@ import Editor from './Editor';
 import Viewer from './Viewer';
 
 function TableRow({ no, letter, isChecked }) {
-  const { id, email, createdAt, summary, content, reply } = letter;
+  const { id, email, count, createdAt, summary, content, reply, pet } = letter;
   const dispatch = useDispatch();
   const [isLetterViewerOpen, setIsLetterViewerOpen] = useState(false);
   const [isReplyViewerOpen, setIsReplyViewerOpen] = useState(false);
@@ -54,6 +54,9 @@ function TableRow({ no, letter, isChecked }) {
       </td>
       <td className="border p-2 text-center">{no}</td>
       <td className="border p-2 text-center">{email}</td>
+      <td className="border p-2 text-center">{count}</td>
+      <td className="border p-2 text-center">{pet.species}</td>
+      <td className="border p-2 text-center">{pet.personalities}</td>
       <td className="border p-2 text-center">
         {formatDateToYYDDMMHHMM(createdAt)}
       </td>

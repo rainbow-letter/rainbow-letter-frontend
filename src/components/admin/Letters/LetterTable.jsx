@@ -131,6 +131,9 @@ function LetterTable() {
               <th className="border px-4 py-2 whitespace-nowrap">행 체크</th>
               <th className="border px-4 py-2 whitespace-nowrap">행 NO.</th>
               <th className="border px-4 py-2 whitespace-nowrap">사용자 ID</th>
+              <th className="border px-4 py-2 whitespace-nowrap">보낸 편지</th>
+              <th className="border px-4 py-2 whitespace-nowrap">동물 종류</th>
+              <th className="border px-4 py-2 whitespace-nowrap">동물 성격</th>
               <th className="border px-4 py-2 whitespace-nowrap">
                 편지 등록일
               </th>
