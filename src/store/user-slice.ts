@@ -24,7 +24,13 @@ const initialState: UserState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logOut(state) {
+      state.user = initialState.user;
+      state.status = initialState.status;
+      state.error = initialState.error;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserInfo.pending, (state) => {

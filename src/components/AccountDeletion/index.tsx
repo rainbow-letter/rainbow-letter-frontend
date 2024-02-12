@@ -9,6 +9,7 @@ import {
   ACCOUNT_DELETION_GUIDELINES,
 } from 'components/AccountDeletion/constants';
 import { deleteUser } from 'api/user';
+import { removeToken } from 'utils/localStorage';
 import { clearSessionStorage } from 'utils/sessionStorage';
 import check from '../../assets/check.svg';
 
@@ -20,6 +21,7 @@ function AccountDeletion() {
     try {
       await deleteUser();
       alert('탈퇴가 완료됐어요');
+      removeToken();
       clearSessionStorage();
       navigate('/');
     } catch (error) {
