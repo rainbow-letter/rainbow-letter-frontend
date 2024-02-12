@@ -16,7 +16,7 @@ export const USER_INFO_MESSAGES = {
 
 export const USER_ACTIONS = {
   EDIT: '수정',
-  FINISH: '확인',
+  FINISH: '등록',
   CHANGE_PASSWORD: '비밀번호 변경하기',
   LEAVE: '탈퇴하기',
   LOG_OUT: '로그아웃',
