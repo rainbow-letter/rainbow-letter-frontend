@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getToken } from 'utils/localStorage';
 import LandingItems from 'components/LandingPage/constants';
-import GifImage from 'components/LandingPage/GifImage';
 import Button from 'components/Button';
 
+const GifImage = React.lazy(() => import('components/LandingPage/GifImage'));
 const DEFAULT = 390;
 
 export default function LandingPage() {
@@ -57,7 +57,11 @@ export default function LandingPage() {
           <li key={item.id} className="w-[100vw] px-3">
             <img src={item.imageSrc} alt="landing" className="object-cover" />
             <div className="relative">
-              {item.gifImageSrc && <GifImage src={item.gifImageSrc} />}
+              {item.gifImageSrc && (
+                <Suspense>
+                  <GifImage src={item.gifImageSrc} />
+                </Suspense>
+              )}
               <Button
                 id={buttonId}
                 disabled={false}
