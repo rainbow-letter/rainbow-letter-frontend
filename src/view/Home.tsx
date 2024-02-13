@@ -10,6 +10,7 @@ import PhoneButton from 'components/Home/PhoneButton';
 import Divider from 'components/Divider';
 import HomeFooter from 'components/Home/HomeFooter';
 import NavBar from 'components/NavBar';
+import BottomSheet from 'components/BottomSheet';
 import { getToken } from 'utils/localStorage';
 
 export default function LandingPage() {
@@ -27,6 +28,7 @@ export default function LandingPage() {
       <Divider />
       <HomeFooter />
       <NavBar />
+      <BottomSheet />
     </main>
   );
 }

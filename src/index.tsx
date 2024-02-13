@@ -8,10 +8,10 @@ import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
-if ('serviceWorker' in navigator) {
+if ('service-worker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
-      .register('/serviceWorker.js')
+      .register('./service-worker.js')
       .then((registration) => {
         console.log(
           'Service Worker registered with scope:',

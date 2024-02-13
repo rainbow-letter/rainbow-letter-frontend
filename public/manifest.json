@@ -1,6 +1,7 @@
 {
+  "name": "무지개편지",
   "short_name": "무지개편지",
-  "name": "아이에게 편지를 보내보세요.",
+  "description": "아이에게 편지를 보내보세요.",
   "icons": [
     {
       "src": "favicon.ico",
