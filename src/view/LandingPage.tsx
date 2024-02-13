@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getToken } from 'utils/localStorage';
 import LandingItems from 'components/LandingPage/constants';
 import Button from 'components/Button';
+import { getToken } from 'utils/localStorage';
 
 const GifImage = React.lazy(() => import('components/LandingPage/GifImage'));
 const DEFAULT = 390;
