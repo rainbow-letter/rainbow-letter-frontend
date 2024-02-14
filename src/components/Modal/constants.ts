@@ -40,7 +40,7 @@ export const MODAL_MESSAGE: Modal[] = [
       },
       {
         id: 2,
-        contents: '답장이 도착하며 문자를 보내드려요',
+        contents: '답장이 도착하면 문자를 보내드려요',
       },
     ],
   },
