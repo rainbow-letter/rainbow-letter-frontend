@@ -19,6 +19,7 @@ function TableRow({ no, letter, isChecked }) {
     reply.status === '성공' || reply.status === '실패' || reply.id === null;
   const gptReplySummary =
     reply.chatGptContent && extractFirstTenChars(reply.chatGptContent);
+  const replyStatus = reply.type === 'REPLY' ? '발송' : '대기';
 
   const handleRowCheck = () => {
     dispatch(adminLetterActions.toggleLetterCheck(id));
@@ -110,7 +111,7 @@ function TableRow({ no, letter, isChecked }) {
           reply.status === '실패' && 'text-red-600 text-bold'
         }`}
       >
-        {reply.type === 'CHAT_GPT' ? '대기' : '발송'}
+        {replyStatus}
       </td>
       <td className="border p-2 text-center">
         {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}
