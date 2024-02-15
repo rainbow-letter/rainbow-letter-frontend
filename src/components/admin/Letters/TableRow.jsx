@@ -15,8 +15,7 @@ function TableRow({ no, letter, isChecked }) {
   const [isLetterViewerOpen, setIsLetterViewerOpen] = useState(false);
   const [isReplyViewerOpen, setIsReplyViewerOpen] = useState(false);
   const [isReplyEditorOpen, setIsReplyEditorOpen] = useState(false);
-  const isInspectionDisabled =
-    reply.status === '성공' || reply.status === '실패' || reply.id === null;
+  const isInspectionDisabled = !!reply.timestamp;
   const gptReplySummary =
     reply.chatGptContent && extractFirstTenChars(reply.chatGptContent);
   const replyStatus = reply.type === 'REPLY' ? '발송' : '대기';
