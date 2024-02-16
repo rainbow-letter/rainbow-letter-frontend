@@ -51,7 +51,7 @@ baseInstance.interceptors.request.use(
 );
 
 baseInstance.interceptors.response.use(
-  ({ data }) => data,
+  (response) => response,
   (error) => {
     return Promise.reject(error);
   }

@@ -5,7 +5,7 @@ import {
   fetchUserInfo,
   updatePhoneNumber,
   deletePhoneNumber,
-} from 'store/user-actions';
+} from 'store/user/user-actions';
 import { Status, Error } from 'types/store';
 import { User } from 'types/user';
 

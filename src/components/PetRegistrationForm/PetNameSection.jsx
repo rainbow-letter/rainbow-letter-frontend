@@ -1,19 +1,15 @@
 import React from 'react';
 
 import Input from 'components/Input';
-import InputAlert from 'components/InputAlert';
 import useInputWithAlert from 'hooks/useInputWithAlert';
 import { TITLES, INFO_MESSAGES } from './constants';
 import PetRegistrationSection from './PetRegistrationSection';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
-function PetNameSection({ isEdit }) {
-  const {
-    inputValue: name,
-    isChanged: isNameChanged,
-    handleChange: handleInputChange,
-  } = useInputWithAlert();
+function PetNameSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();
+  const { inputValue: name, handleChange: handleInputChange } =
+    useInputWithAlert({ initialValue: mandatoryData.name });
 
   const handleNameChange = ({ target }) => {
     setMandatoryData({ ...mandatoryData, name: target.value });
@@ -21,27 +17,13 @@ function PetNameSection({ isEdit }) {
 
   return (
     <PetRegistrationSection title={TITLES.PET_NAME}>
-      <div className="flex flex-col">
-        {isEdit ? (
-          <Input
-            className="w-full h-[60px] text-caption"
-            disabled
-            value={mandatoryData.name || ''}
-          />
-        ) : (
-          <Input
-            className="w-full h-[60px] text-caption"
-            placeholder={INFO_MESSAGES.ENTER_NAME}
-            value={name}
-            onChange={handleInputChange}
-            onBlur={handleNameChange}
-          />
-        )}
-        <InputAlert
-          message={INFO_MESSAGES.UNCHANGEABLE_NAME_NOTICE}
-          isVisible={isNameChanged}
-        />
-      </div>
+      <Input
+        className="w-full h-[60px] text-caption"
+        placeholder={INFO_MESSAGES.ENTER_NAME}
+        value={name}
+        onChange={handleInputChange}
+        onBlur={handleNameChange}
+      />
     </PetRegistrationSection>
   );
 }

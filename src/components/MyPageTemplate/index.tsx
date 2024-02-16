@@ -10,7 +10,7 @@ import {
   USER_INFO_LABELS,
   USER_ACTIONS,
 } from 'components/MyPageTemplate/constants';
-import { fetchUserInfo } from 'store/user-actions';
+import { fetchUserInfo } from 'store/user/user-actions';
 import LogOut from 'components/LogOut';
 import { saveToSessionStorage } from 'utils/sessionStorage';
 

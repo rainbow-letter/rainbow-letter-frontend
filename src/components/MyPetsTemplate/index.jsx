@@ -1,19 +1,21 @@
-/* eslint-disable no-shadow */
-import React, { Suspense } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import Spinner from 'components/Spinner';
-import PetRegisterButton from 'components/MyPets/PetRegisterButton';
-
+import { fetchPets } from 'store/pet/pet-action';
+import PetRegisterButton from 'components/MyPetsTemplate/PetRegisterButton';
+import PetList from './PetList';
 import plus from '../../assets/plus.svg';
 
-const FetchPets = React.lazy(() => import('./FetchPets'));
+function MyPetsTemplate() {
+  const dispatch = useDispatch();
 
-function MyPets() {
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
+
   return (
     <div className="h-full">
-      <Suspense fallback={<Spinner />}>
-        <FetchPets />
-      </Suspense>
+      <PetList />
       <PetRegisterButton className="flex items-center justify-center gap-x-2 mt-1 py-5 bg-white border border-dashed border-orange-400 rounded-2xl">
         <img src={plus} alt="add" />
         <span className="text-solo-label-pc text-orange-400 font-semibold">
@@ -24,4 +26,4 @@ function MyPets() {
   );
 }
 
-export default MyPets;
+export default MyPetsTemplate;

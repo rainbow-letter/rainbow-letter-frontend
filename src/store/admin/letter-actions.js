@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -18,7 +17,7 @@ export const fetchLetters = createAsyncThunk(
     });
 
     const response = await api.get(`/api/letters/admin/list?${queryParams}`);
-    return response;
+    return response.data;
   }
 );
 
@@ -61,8 +60,7 @@ export const sendReply = createAsyncThunk(
 
     const failed = results.filter((result) => result.status === 'rejected');
     if (failed.length > 0) {
-      // 여기서 실패 처리를 할 수 있습니다. 예를 들어, 실패한 요청에 대한 정보를 반환할 수 있습니다.
-      // 이 예시에서는 단순히 실패한 요청의 수를 rejectWithValue와 함께 반환합니다.
+      // NOTE: 실패한 요청의 수를 rejectWithValue와 함께 반환
       return rejectWithValue(failed.length);
     }
   }

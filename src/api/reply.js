@@ -1,12 +1,12 @@
 /* eslint-disable */
-import apiRequest from '.';
+import apiRequest from 'api';
 
 const RESOURCE = '/api/replies/read';
 
 export const readReply = async (id) => {
   const response = await apiRequest.post(`${RESOURCE}/${id}`);
 
-  return response;
+  return response.data;
 };
 
 // For Admin
@@ -18,7 +18,7 @@ export const generateReply = async (letterId) => {
     `${RESOURSE_ADMIN}/generate/${letterId}`
   );
 
-  return response;
+  return response.data;
 };
 
 /**
@@ -38,7 +38,7 @@ export const editReply = async (replyId, editedReply) => {
     editedReply
   );
 
-  return response;
+  return response.data;
 };
 
 // 답장 검수
@@ -47,7 +47,7 @@ export const inspectReply = async (replyId) => {
     `${RESOURSE_ADMIN}/inspect/${replyId}`
   );
 
-  return response;
+  return response.data;
 };
 
 /**
@@ -66,5 +66,5 @@ export const sendReply = async (replyId, letterId) => {
     letterId
   );
 
-  return response;
+  return response.data;
 };

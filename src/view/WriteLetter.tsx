@@ -17,7 +17,7 @@ import { updateImageAndGetId } from 'api/images';
 import { Pets } from 'types/pets';
 import { State } from 'types/store';
 import { generateFormData } from 'utils/formData';
-import { modalActions } from 'store/modal-slice';
+import { modalActions } from 'store/modal/modal-slice';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();

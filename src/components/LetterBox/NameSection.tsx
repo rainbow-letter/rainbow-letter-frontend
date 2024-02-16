@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Chip from 'components/Chips/Chip';
-import NoPets from 'components/MyPets/NoPets';
+import NoPets from 'components/MyPetsTemplate/NoPets';
 import { getPets } from 'api/pets';
 import { Pets } from 'types/pets';
 

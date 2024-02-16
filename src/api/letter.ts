@@ -1,5 +1,5 @@
 /* eslint-disable */
-import apiRequest from '.';
+import apiRequest from 'api';
 import { formatDateToYMD } from '../utils/date';
 
 const RESOURCE = '/api/letters';
@@ -7,25 +7,25 @@ const RESOURCE = '/api/letters';
 export const getLetters = async (): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/list`);
 
-  return response;
+  return response.data;
 };
 
 export const getLetter = async (id: any): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/${id}`);
 
-  return response;
+  return response.data;
 };
 
 export const sendLetter = async (id: any, letter: any): Promise<any> => {
   const response = await apiRequest.post(`${RESOURCE}?pet=${id}`, letter);
 
-  return response;
+  return response.data;
 };
 
 export const getShareLetter = async (uuid: any): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/share/${uuid}`);
 
-  return response;
+  return response.data;
 };
 
 // For admin
@@ -41,5 +41,5 @@ export const getLettersForAdmin = async (
     `${RESOURCE}/admin/list?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}`
   );
 
-  return response;
+  return response.data;
 };
