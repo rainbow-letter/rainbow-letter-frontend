@@ -1,81 +1,37 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import LandingItems from 'components/LandingPage/constants';
+import landingItems from 'components/LandingPage/constants';
 import Button from 'components/Button';
 import { getToken } from 'utils/localStorage';
 
-const GifImage = React.lazy(() => import('components/LandingPage/GifImage'));
-const DEFAULT = 390;
-
 export default function LandingPage() {
   const navigate = useNavigate();
-  const landingImageList = useRef<HTMLUListElement>(null);
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [deviceWidth, setDeviceWidth] = useState<number>(0);
-  const [buttonId, setButtonId] = useState<string>('');
   const token = getToken();
 
   useEffect(() => {
     if (token) {
-      return navigate('/home');
-    }
-    if (window.innerWidth < DEFAULT) {
-      return setDeviceWidth(window.innerWidth);
-    }
-
-    return setDeviceWidth(DEFAULT);
-  }, []);
-
-  useEffect(() => {
-    if (landingImageList.current) {
-      landingImageList.current.style.marginLeft = `${
-        -currentSlide * deviceWidth
-      }px`;
-    }
-
-    if (currentSlide === LandingItems.length - 1) {
-      setButtonId('service_start');
-    }
-  }, [currentSlide]);
-
-  const onClickButtonNextButton = (id: number) => {
-    if (id === LandingItems.length - 1) {
       navigate('/home');
     }
+  }, []);
 
-    return setCurrentSlide((prev) => prev + 1);
+  const onNextPageButtonClick = () => {
+    navigate('/home');
   };
 
   return (
-    <main>
-      <ul
-        ref={landingImageList}
-        className="w-[1560px] min-h-screen bg-[#FFFCF7] flex items-center duration-500"
-      >
-        {LandingItems.map((item) => (
-          <li key={item.id} className="w-[100vw] px-3">
-            <img src={item.imageSrc} alt="landing" className="object-cover" />
-            <div className="relative">
-              {item.gifImageSrc && (
-                <Suspense>
-                  <GifImage src={item.gifImageSrc} />
-                </Suspense>
-              )}
-              <Button
-                id={buttonId}
-                disabled={false}
-                onClick={() => onClickButtonNextButton(item.id)}
-                className="absolute inset-x-0 bottom-7 left-1/2 transform -translate-x-1/2"
-              >
-                {item.id === LandingItems.length - 1
-                  ? '편지 쓰러 가기'
-                  : '다음'}
-              </Button>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <main className="min-h-screen bg-[#FFFCF7] ">
+      <img src={landingItems.imageSrc} alt="landing" className="object-cover" />
+      <div className="relative mx-6">
+        <Button
+          id="service_start"
+          disabled={false}
+          onClick={onNextPageButtonClick}
+          className="absolute inset-x-0 bottom-16 left-1/2 transform -translate-x-1/2"
+        >
+          편지쓰러가기
+        </Button>
+      </div>
     </main>
   );
 }
