@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { fetchPets } from 'store/pet/pet-action';
 import PetRegisterButton from 'components/MyPetsTemplate/PetRegisterButton';
 import PetList from './PetList';
 import plus from '../../assets/plus.svg';
 
 function MyPetsTemplate() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
+
   return (
     <div className="h-full">
       <PetList />
