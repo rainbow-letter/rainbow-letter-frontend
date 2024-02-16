@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+
 import { Status, Error } from 'types/store';
+import { fetchPets } from 'store/pet/pet-action';
 
 type PetImage = {
   id: string;
@@ -49,6 +51,22 @@ const petSlice = createSlice({
   name: 'pet',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPets.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchPets.fulfilled, (state, action) => {
+        state.status = 'success';
+        state.pets = action.payload;
+      })
+      .addCase(fetchPets.rejected, (state, action) => {
+        state.status = 'failed';
+        if (action.error.message) {
+          state.error = action.error.message;
+        }
+      });
+  },
 });
 
 export const petActions = petSlice.actions;
