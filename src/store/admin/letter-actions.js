@@ -17,7 +17,7 @@ export const fetchLetters = createAsyncThunk(
     });
 
     const response = await api.get(`/api/letters/admin/list?${queryParams}`);
-    return response;
+    return response.data;
   }
 );
 

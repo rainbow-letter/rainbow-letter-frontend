@@ -14,7 +14,7 @@ export const fetchPets = createAsyncThunk(
   'pet/fetchPets',
   async (): Promise<PetDetail[]> => {
     const response = await api.get(`/api/pets`);
-    return response.data;
+    return response.data.pets;
   }
 );
 
@@ -30,7 +30,7 @@ export const registerPet = createAsyncThunk(
   'pet/registerPet',
   async (data: PetRegistrationData) => {
     const response = await api.post(`/api/pets`, data);
-    return response.data;
+    return response;
   }
 );
 
