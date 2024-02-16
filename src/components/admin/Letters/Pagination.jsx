@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { letterUiActions } from '../../../store/admin/letterUi-slice';
+import { fetchLetters } from '../../../store/admin/letter-actions';
 import doubleArrowLeft from '../../../assets/admin/doubleArrowLeft.svg';
 import doubleArrowRight from '../../../assets/admin/doubleArrowRight.svg';
 
@@ -38,6 +39,11 @@ function Pagination() {
     );
   };
 
+  const handlePageChange = (newPage) => {
+    dispatch(letterUiActions.setFilterOption({ page: newPage }));
+    dispatch(fetchLetters());
+  };
+
   return (
     <div className="flex justify-center items-center space-x-2 pb-7 mt-2.5">
       {totalPages > 10 && (
@@ -60,7 +66,7 @@ function Pagination() {
           key={number}
           type="button"
           onClick={() => {
-            dispatch(letterUiActions.setFilterOption({ page: number }));
+            handlePageChange(number);
           }}
         >
           {number + 1}
