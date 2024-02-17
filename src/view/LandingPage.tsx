@@ -27,7 +27,7 @@ export default function LandingPage() {
           id="service_start"
           disabled={false}
           onClick={onNextPageButtonClick}
-          className="absolute inset-x-0 bottom-16 left-1/2 transform -translate-x-1/2 text-default"
+          className="absolute inset-x-0 bottom-[120px] left-1/2 transform -translate-x-1/2"
         >
           편지 쓰러 가기
         </Button>
