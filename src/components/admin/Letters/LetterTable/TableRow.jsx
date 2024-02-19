@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux';
 
 import { formatDateToYYDDMMHHMM } from 'utils/date';
 import { extractFirstTenChars } from 'utils/string';
-import { inspectReply } from '../../../store/admin/letter-actions';
-import { adminLetterActions } from '../../../store/admin/letter-slice';
-import Editor from './Editor';
-import Viewer from './Viewer';
+import { inspectReply } from '../../../../store/admin/letter-actions';
+import { adminLetterActions } from '../../../../store/admin/letter-slice';
+import Editor from '../LetterDetail/Editor';
+import Viewer from '../LetterDetail/Viewer';
 
 function TableRow({ no, letter, isChecked }) {
   const { id, email, count, createdAt, summary, content, reply, pet } = letter;
@@ -124,6 +124,7 @@ function TableRow({ no, letter, isChecked }) {
       <Viewer
         id={id}
         isOpen={isReplyViewerOpen}
+        isGptReply
         content={reply.chatGptContent}
         onClose={toggleReplyViewer}
       />

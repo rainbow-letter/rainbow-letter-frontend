@@ -10,7 +10,7 @@ import { USER_ACTIONS } from 'components/LetterBox/constants';
 import metaData from 'utils/metaData';
 import { Letter } from 'types/letters';
 import { getLetter } from 'api/letter';
-import { readReply } from '../api/reply';
+import { readReply } from '../../api/reply';
 
 export default function DetailLetter() {
   const params = useParams();

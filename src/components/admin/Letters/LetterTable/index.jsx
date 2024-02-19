@@ -3,8 +3,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchLetters, sendReply } from '../../../store/admin/letter-actions';
-import { letterUiActions } from '../../../store/admin/letterUi-slice';
+import {
+  fetchLetters,
+  sendReply,
+} from '../../../../store/admin/letter-actions';
+import { letterUiActions } from '../../../../store/admin/letterUi-slice';
 import TableRow from './TableRow';
 
 function LetterTable() {
