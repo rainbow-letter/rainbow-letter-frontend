@@ -5,7 +5,6 @@ import LetterDetailForm from './LetterDetailForm';
 
 function Viewer({ isOpen, content, onClose }) {
   if (!isOpen) return null;
-
   return createPortal(
     <LetterDetailForm
       mode="view"

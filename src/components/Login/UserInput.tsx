@@ -2,7 +2,7 @@
 import React from 'react';
 
 const INPUT_STYLE =
-  'w-full rounded-[15px] py-[18px] px-5 bg-gray-2 text-solo-small mb-3 outline-none';
+  'w-full rounded-[15px] py-[18px] px-5 bg-gray-2 text-solo-small mb-3';
 
 type Props = {
   type: string;

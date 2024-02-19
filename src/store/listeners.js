@@ -10,9 +10,9 @@ import {
 export const setupListeners = ({ startListening }) => {
   startListening({
     matcher: (action) =>
-      action.type === sendReply.fulfilled.type ||
       action.type === inspectReply.fulfilled.type ||
-      action.type === regenerateReply.fulfilled.type,
+      action.type === regenerateReply.fulfilled.type ||
+      action.type === sendReply.fulfilled.type,
     effect: async (action, listenerApi) => {
       await listenerApi.dispatch(fetchLetters());
     },

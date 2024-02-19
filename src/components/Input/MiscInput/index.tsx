@@ -25,7 +25,7 @@ const MiscInput = forwardRef(
         </div>
         <input
           ref={ref}
-          className="grow pl-2 bg-transparent text-caption text-gray-1 outline-none"
+          className="grow pl-2 bg-transparent text-caption text-gray-1"
           maxLength={10}
           value={value}
           onChange={onChange}

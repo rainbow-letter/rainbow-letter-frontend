@@ -7,6 +7,11 @@
     @apply text-default;
   }
 
+  input,
+  button {
+    @apply outline-none;
+  }
+
   input::placeholder,
   input::-webkit-input-placeholder {
     font-size: 14px;

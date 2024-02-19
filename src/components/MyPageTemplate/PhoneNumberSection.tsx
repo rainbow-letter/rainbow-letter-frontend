@@ -43,7 +43,7 @@ function PhoneNumberSection() {
         <div className="flex justify-between gap-x-2.5 items-center text-solo-medium text-gray-1">
           {isEditMode ? (
             <input
-              className={`grow bg-gray-2 p-4 rounded-2xl outline-none ${
+              className={`grow bg-gray-2 p-4 rounded-2xl ${
                 isValidPhone ? 'border-none' : 'border border-alarm-red'
               }`}
               type="tel"
