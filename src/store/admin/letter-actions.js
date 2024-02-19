@@ -45,6 +45,14 @@ export const inspectReply = createAsyncThunk(
   }
 );
 
+export const regenerateReply = createAsyncThunk(
+  'adminLetter/regenerateReply',
+  async (letterId) => {
+    const response = await api.post(`/api/replies/admin/generate/${letterId}`);
+    return response;
+  }
+);
+
 export const sendReply = createAsyncThunk(
   'adminLetter/sendReply',
   async (requests, { rejectWithValue }) => {
