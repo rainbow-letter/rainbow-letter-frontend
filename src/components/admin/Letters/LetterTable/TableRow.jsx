@@ -124,6 +124,7 @@ function TableRow({ no, letter, isChecked }) {
       <Viewer
         id={id}
         isOpen={isReplyViewerOpen}
+        isGptReply
         content={reply.chatGptContent}
         onClose={toggleReplyViewer}
       />

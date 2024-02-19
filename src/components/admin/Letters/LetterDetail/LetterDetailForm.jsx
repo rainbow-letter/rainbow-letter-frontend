@@ -1,19 +1,29 @@
 import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { regenerateReply } from 'store/admin/letter-actions';
 import useModalClose from 'hooks/useModalClose';
 
 const MAX_CONTENT_LENGTH = 1000;
-function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
+function LetterDetailForm({
+  id,
+  mode,
+  isOpen,
+  isSent,
+  isGptReply = false,
+  content,
+  onClose,
+  onSave,
+}) {
+  const dispatch = useDispatch();
   const isViewer = mode === 'view';
-  const c = content;
   const modalRef = useRef();
-  const [newContent, setNewContentValue] = useState(c);
+  const [newContent, setNewContentValue] = useState(content);
   const isContentValidAndChanged =
     (content !== newContent && newContent.length <= MAX_CONTENT_LENGTH) ||
     !isSent;
 
   useModalClose(modalRef, onClose);
-
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
@@ -51,6 +61,17 @@ function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
                 onClick={() => onSave(newContent)}
               >
                 저장
+              </button>
+            )}
+            {isGptReply && (
+              <button
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-3 rounded"
+                type="button"
+                onClick={() => {
+                  dispatch(regenerateReply(id)).then(() => onClose());
+                }}
+              >
+                재생성
               </button>
             )}
             <button
