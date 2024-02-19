@@ -5,8 +5,9 @@ import useModalClose from 'hooks/useModalClose';
 const MAX_CONTENT_LENGTH = 1000;
 function LetterDetailForm({ mode, isOpen, isSent, content, onClose, onSave }) {
   const isViewer = mode === 'view';
+  const c = content;
   const modalRef = useRef();
-  const [newContent, setNewContentValue] = useState(content);
+  const [newContent, setNewContentValue] = useState(c);
   const isContentValidAndChanged =
     (content !== newContent && newContent.length <= MAX_CONTENT_LENGTH) ||
     !isSent;
