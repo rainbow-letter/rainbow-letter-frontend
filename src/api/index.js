@@ -34,13 +34,12 @@ baseInstance.interceptors.request.use(
     const token = getToken();
     const newConfig = { ...config };
 
-    if (token && !tokenIsValid(token)) {
-      removeToken();
-      window.location.href = '/login';
-      return Promise.reject(new Error('Invalid token'));
-    }
-
     if (token) {
+      const isValid = await tokenIsValid(token);
+      if (!isValid) {
+        removeToken();
+        window.location.href = '/login';
+      }
       newConfig.headers.Authorization = `Bearer ${token}`;
     }
     return newConfig;
