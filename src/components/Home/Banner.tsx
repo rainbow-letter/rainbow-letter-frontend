@@ -6,12 +6,12 @@ import banner from '../../assets/banner.png';
 
 export default function Banner() {
   return (
-    <section className="px-[25px] mt-[30px]">
+    <section className="px-[1.562rem] mt-[1.875rem]">
       <Link
         to="https://blog.naver.com/rainbowletter/223338521441"
         target="_blank"
         id="ads_consult1"
-        className="flex justify-center items-center gap-6 bg-orange-50 rounded-[15px] shadow-home pt-3 pb-2"
+        className="flex justify-center items-center gap-6 bg-orange-50 rounded-2xl shadow-home pt-3 pb-2"
       >
         <div className="flex flex-col justify-center gap-1">
           <p className="text-solo-label-pc font-bold text-black">

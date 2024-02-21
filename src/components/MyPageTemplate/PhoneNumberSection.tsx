@@ -59,7 +59,7 @@ function PhoneNumberSection() {
             </div>
           )}
           <button
-            className={`px-2.5 py-[9px] text-xs font-semibold leading-3 rounded ${
+            className={`px-2.5 py-[0.562rem] text-xs font-semibold leading-3 rounded ${
               isValidPhone
                 ? 'bg-orange-400 text-white'
                 : 'bg-gray-1 text-gray-1'

@@ -8,7 +8,7 @@ export default function BackgroundSection() {
       <img
         src={background}
         alt="background"
-        className="absolute w-[390px] h-[224px]"
+        className="absolute w-[24.375rem] h-[14rem]"
       />
     </section>
   );

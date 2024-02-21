@@ -19,7 +19,7 @@ export default function CheckBox({ id, label, onChange, checked }: Props) {
           id={id}
           onChange={(e) => onChange(e, label)}
           checked={checked}
-          className="appearance-none w-5 h-5 border border-orange-400 bg-white rounded-[5px] cursor-pointer checked:bg-orange-400"
+          className="appearance-none w-5 h-5 border border-orange-400 bg-white rounded cursor-pointer checked:bg-orange-400"
         />
         <img
           src={check}

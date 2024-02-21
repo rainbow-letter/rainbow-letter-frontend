@@ -32,18 +32,18 @@ function AccountDeletion() {
   };
 
   return (
-    <div className="h-screen flex flex-col gap-[159px] pb-5">
+    <div className="h-screen flex flex-col gap-[10rem] pb-5">
       <section className="p-7 bg-gray-2 rounded-2xl">
         <span className="text-solo-large">
           {ACCOUNT_DELETION.GUIDELINES_TITLE}
         </span>
-        <ul className="p-2.5 list-disc text-body-small text-gray-1 space-y-[6px]">
+        <ul className="p-2.5 list-disc text-body-small text-gray-1 space-y-[0.375rem]">
           {ACCOUNT_DELETION_GUIDELINES.map((guideline) => (
             <li key={guideline.ID}>{guideline.CONTENT}</li>
           ))}
         </ul>
       </section>
-      <section className="flex flex-col gap-[22px]">
+      <section className="flex flex-col gap-[1.375rem]">
         <button
           className="flex gap-2"
           type="button"

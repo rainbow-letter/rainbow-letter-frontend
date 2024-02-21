@@ -12,12 +12,12 @@ export default function ContentsItem() {
         <Link to={contents.url} key={contents.id} target="_blank">
           <article
             id="content_read"
-            className="flex items-center pt-4 pb-[14px] pl-[26px] rounded-[15px] relative text-caption cursor-pointer shadow-home"
+            className="flex items-center pt-4 pb-[0.875rem] pl-[1.625rem] rounded-2xl relative text-caption cursor-pointer shadow-home"
           >
             <div className="w-8 h-8 flex justify-center items-center">
               <img src={contents.image} alt="analytics" />
             </div>
-            <div className="flex flex-col ml-[14px]">
+            <div className="flex flex-col ml-[0.875rem]">
               <h3 className="text-gray-1 font-bold">{contents.title}</h3>
               <p>{contents.description}</p>
             </div>

@@ -99,11 +99,11 @@ export default function Password() {
         <h2 className="text-heading-2 text-center">
           {UPDATE_PASSWORD_MESSAGE.TITLE}
         </h2>
-        <p className="text-solo-medium text-gray-1 text-center mt-[18px]">
+        <p className="text-solo-medium text-gray-1 text-center mt-[1.125rem]">
           {UPDATE_PASSWORD_MESSAGE.DESCRIPTION}
         </p>
       </section>
-      <section className="mt-[58px]">
+      <section className="mt-[3.625rem]">
         <label htmlFor="newPassword" className="block mb-4">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD}
         </label>
@@ -118,7 +118,7 @@ export default function Password() {
           isNotValid={errorData && errorData.type === 'NOT_VALID_PASSWORD'}
           errorMessage={errorData && errorData.message}
         />
-        <label htmlFor="newPasswordCheck" className="block mb-4 mt-[53px]">
+        <label htmlFor="newPasswordCheck" className="block mb-4 mt-[3.313rem]">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD_CONFIRM}
         </label>
         <UserInput
@@ -136,7 +136,7 @@ export default function Password() {
           disabled={isLoading}
           onclick={() => onClickUpdatePasswordButton()}
           value={UPDATE_PASSWORD_MESSAGE.UPDATE}
-          className="w-full rounded-[15px] flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[22px] mt-[55px]"
+          className="w-full rounded-2xl flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[1.375rem] mt-[3.625rem]"
         />
       </section>
     </main>

@@ -90,9 +90,9 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
   return (
     <section className="mt-12">
       <header className="flex justify-between items-center">
-        <div className="border-t w-[84px]" />
+        <div className="border-t w-[5.25rem]" />
         <h3 className="text-solo-small">{describe}</h3>
-        <div className="border-t w-[84px]" />
+        <div className="border-t w-[5.25rem]" />
       </header>
       <form className="mt-6">
         <UserInput
@@ -123,7 +123,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
           disabled={errorData}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
-          } w-full rounded-[15px] flex justify-center items-center text-heading-3 py-[22px] mt-6`}
+          } w-full rounded-2xl flex justify-center items-center text-heading-3 py-[1.375rem] mt-6`}
           value={button.default}
         />
       </form>

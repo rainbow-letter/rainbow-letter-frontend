@@ -47,29 +47,33 @@ function DateOfDeathSection() {
       <div className="flex justify-between">
         <div className="flex items-center">
           <Input
-            className="h-11 w-[65px] py-[15px] px-[15px] text-caption text-center"
+            className="h-11 w-[4.063rem] py-[0.937rem] px-[0.937rem] text-caption text-center"
             type="tel"
             placeholder="YYYY"
             value={date?.year || ''}
             onChange={handleDateValidation('year')}
           />
-          <span className="p-[7px] text-caption">{DATE_OF_DEATH.YEAR}</span>
+          <span className="p-[0.437rem] text-caption">
+            {DATE_OF_DEATH.YEAR}
+          </span>
           <Input
-            className="h-11 w-[55px] py-[15px] px-[15px] text-caption text-center"
+            className="h-11 w-[3.437rem] py-[0.937rem] px-[0.937rem] text-caption text-center"
             type="tel"
             placeholder="MM"
             value={date?.month || ''}
             onChange={handleDateValidation('month')}
           />
-          <span className="p-[7px] text-caption">{DATE_OF_DEATH.MONTH}</span>
+          <span className="p-[0.437rem] text-caption">
+            {DATE_OF_DEATH.MONTH}
+          </span>
           <Input
-            className="h-11 w-[55px] py-[15px] px-[15px] text-caption text-center"
+            className="h-11 w-[3.437rem] py-[0.937rem] px-[0.937rem] text-caption text-center"
             type="tel"
             placeholder="DD"
             value={date?.day || ''}
             onChange={handleDateValidation('day')}
           />
-          <span className="p-[7px] text-caption">{DATE_OF_DEATH.DAY}</span>
+          <span className="p-[0.437rem] text-caption">{DATE_OF_DEATH.DAY}</span>
         </div>
         <div className="flex items-center text-nowrap">
           <Chip

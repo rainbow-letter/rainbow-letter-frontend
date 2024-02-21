@@ -55,9 +55,9 @@ export default function LoginForm({ message: { describe, button } }: Props) {
   return (
     <section className="mt-10">
       <header className="flex justify-between items-center">
-        <div className="border-t w-[84px]" />
+        <div className="border-t w-[5.25rem]" />
         <h3 className="text-solo-small">{describe}</h3>
-        <div className="border-t w-[84px]" />
+        <div className="border-t w-[5.25rem]" />
       </header>
       <form className="mt-6">
         <UserInput
@@ -69,7 +69,7 @@ export default function LoginForm({ message: { describe, button } }: Props) {
           placeholder="이메일을 입력해주세요"
           isNotValid={errorData && emailError(errorData)}
           errorMessage={errorData && emailErrorMessage(errorData)}
-          className="mb-[14px]"
+          className="mb-[0.875rem]"
         />
         <UserInput
           type="password"
@@ -89,7 +89,7 @@ export default function LoginForm({ message: { describe, button } }: Props) {
           disabled={errorData !== null}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
-          } text-heading-3  py-[22px] mt-[18px] w-full rounded-[15px] flex justify-center items-center`}
+          } text-heading-3  py-[1.375rem] mt-[1.125rem] w-full rounded-2xl flex justify-center items-center`}
         />
       </form>
     </section>

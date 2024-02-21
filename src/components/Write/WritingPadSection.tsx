@@ -27,7 +27,7 @@ export default function WritingPadSection({
   date,
   className,
 }: Props) {
-  const style = (image && 'pt-[243px]') || '';
+  const style = (image && 'pt-[15.187rem]') || '';
   const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
   const textarea = useRef<HTMLTextAreaElement>(null);
 
@@ -56,7 +56,7 @@ export default function WritingPadSection({
     <section className={`relative mt-4 ${style}`}>
       <CoverImage image={image} />
       <section
-        className={`${textareaStyle} py-8 px-9 rounded-[15px] text-body-letter font-OwnglyphMinhyeChae relative`}
+        className={`${textareaStyle} py-8 px-9 rounded-2xl text-body-letter font-OwnglyphMinhyeChae relative`}
       >
         <h3>{petName}</h3>
         <textarea

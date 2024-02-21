@@ -36,19 +36,19 @@ export default function PetsListDropDown({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-[18px] rounded-[15px] flex justify-between items-center border bg-orange-50 border-orange-400"
+        className="w-full px-6 py-[1.125rem] rounded-2xl flex justify-between items-center border bg-orange-50 border-orange-400"
       >
         <p>{petName}</p>
         <img src={imgSrc} alt="dropdown" />
       </button>
       <div className="relative">
         {isOpen && (
-          <ul className="absolute w-full mt-[6px] bg-white border border-orange-400 rounded-[15px] z-10">
+          <ul className="absolute w-full mt-[0.375rem] bg-white border border-orange-400 rounded-2xl z-10">
             {petsList.map((pet) => (
               <li
                 key={pet.id}
                 onClick={() => onclick(pet)}
-                className="pl-6 py-[15px] border-b border-[#EFEFEF] last:border-none cursor-pointer"
+                className="pl-6 py-4 border-b border-[#EFEFEF] last:border-none cursor-pointer"
               >
                 {pet.name}
               </li>

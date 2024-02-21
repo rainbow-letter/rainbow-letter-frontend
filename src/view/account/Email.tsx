@@ -31,11 +31,11 @@ export default function Email() {
       <h2 className="text-heading-2 text-center leading-[180%]">
         {FIND_EMAIL_MESSAGE.TITLE}
       </h2>
-      <p className="text-solo-medium text-gray-1 text-center mt-[8px] leading-[166%]">
+      <p className="text-solo-medium text-gray-1 text-center mt-2 leading-[166%]">
         {FIND_EMAIL_MESSAGE.DESCRIPTION}
       </p>
       <UserInput
-        className="mt-[65px]"
+        className="mt-[4.063rem]"
         type="text"
         placeholder="이메일을 입력해주세요"
         value={auth.email}
@@ -47,11 +47,11 @@ export default function Email() {
         type="submit"
         disabled={isLoading}
         onClick={() => onClickFindEmailButton()}
-        className="w-full rounded-[15px] flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[22px] mt-[20px]"
+        className="w-full rounded-2xl flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[1.375rem] mt-5"
       >
         {FIND_EMAIL_MESSAGE.SUBMIT}
       </button>
-      <div className="mt-[27px] text-center text-gray-1 text-body-small">
+      <div className="mt-[1.687rem] text-center text-gray-1 text-body-small">
         <p>{FIND_EMAIL_MESSAGE.ANNOUNCEMENT_1}</p>
         <p>
           <Link

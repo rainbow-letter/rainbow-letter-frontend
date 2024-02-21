@@ -13,7 +13,7 @@ function Letters() {
   }, [dispatch]);
 
   return (
-    <div className="w-full min-w-[600px] text-solo-label">
+    <div className="w-full min-w-[37.5rem] text-solo-label">
       <LetterTable />
       <Pagination />
     </div>

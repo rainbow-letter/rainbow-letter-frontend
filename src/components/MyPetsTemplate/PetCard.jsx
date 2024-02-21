@@ -22,7 +22,7 @@ function PetCard({ pet }, ref) {
   };
 
   return (
-    <li className="relative pt-[243px] mb-4" ref={ref}>
+    <li className="relative pt-[15.187rem] mb-4" ref={ref}>
       <PetCardImage name={pet.name} image={pet.image} />
       <article className="relative bg-white p-4 rounded-2xl shadow-default">
         <header className="flex justify-between items-center mb-5 mt-2.5 ml-3">
@@ -46,7 +46,7 @@ function PetCard({ pet }, ref) {
           </ul>
           <div>{`${PREFIX.OWNER}${pet.owner}`}</div>
         </section>
-        <footer className="h-[62px] flex gap-x-3 text-body-large">
+        <footer className="h-[3.875rem] flex gap-x-3 text-body-large">
           <button
             className="w-full px-5 py-4 flex-1 text-white bg-orange-400 rounded-2xl"
             type="button"

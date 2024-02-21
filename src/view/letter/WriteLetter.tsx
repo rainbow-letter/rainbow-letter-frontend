@@ -113,12 +113,12 @@ export default function WriteLetter() {
           id="letter_submit"
           disabled={letter.content.length < 1 || selectedPet === null}
           onClick={onClickSendButton}
-          className="mt-[58px]"
+          className="mt-[3.625rem]"
         >
           편지 보내기
         </Button>
       ) : (
-        <div className="text-center mt-[58px]">
+        <div className="text-center mt-[3.625rem]">
           <ClipLoader color="#FFB347" />
         </div>
       )}
