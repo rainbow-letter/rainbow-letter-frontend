@@ -1,17 +1,22 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
+import { getToken, removeToken } from 'utils/localStorage';
 import NavBar from 'components/NavBar';
 import AppBar from 'components/AppBar';
-import { getToken } from 'utils/localStorage';
 
 function ProtectedLayout() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const token = getToken();
   const isLoggedIn = !!token;
 
-  if (!isLoggedIn) {
-    return <Navigate to="/sign-up" replace />;
-  }
+  useEffect(() => {
+    if (!isLoggedIn) {
+      removeToken();
+      navigate('/sign-up');
+    }
+  }, [isLoggedIn, location]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-alert */
 import axios from 'axios';
 
 import { getToken, removeToken } from 'utils/localStorage';
@@ -39,6 +39,7 @@ baseInstance.interceptors.request.use(
       if (!isValid) {
         removeToken();
         window.location.href = '/login';
+        return Promise.reject(new Error('Token is expired'));
       }
       newConfig.headers.Authorization = `Bearer ${token}`;
     }
