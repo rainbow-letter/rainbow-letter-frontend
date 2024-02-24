@@ -7,24 +7,34 @@ import {
   sendReply,
 } from './admin/letter-actions';
 
+const isFulfilledAction = (action, types) => types.includes(action.type);
+
+async function handleEditReply(action, listenerApi) {
+  const { inspection } = action.payload;
+  if (inspection) {
+    await listenerApi.dispatch(fetchLetters());
+    return;
+  }
+
+  const { replyId } = action.meta.arg;
+  await listenerApi.dispatch(inspectReply(replyId));
+}
+
 export const setupListeners = ({ startListening }) => {
   startListening({
     matcher: (action) =>
-      action.type === inspectReply.fulfilled.type ||
-      action.type === regenerateReply.fulfilled.type ||
-      action.type === sendReply.fulfilled.type,
+      isFulfilledAction(action, [
+        inspectReply.fulfilled.type,
+        regenerateReply.fulfilled.type,
+        sendReply.fulfilled.type,
+      ]),
     effect: async (action, listenerApi) => {
       await listenerApi.dispatch(fetchLetters());
     },
   });
+
   startListening({
     matcher: (action) => action.type === editReply.fulfilled.type,
-    effect: async (action, listenerApi) => {
-      const { inspection } = action.payload;
-      if (inspection) return;
-
-      const { replyId } = action.meta.arg;
-      await listenerApi.dispatch(inspectReply(replyId));
-    },
+    effect: (action, listenerApi) => handleEditReply(action, listenerApi),
   });
 };
