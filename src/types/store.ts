@@ -8,7 +8,6 @@ export interface State {
   modal: {
     isOpen: boolean;
     type: null | string;
-    canOpenAgain: null | boolean;
   };
   adminLetters: any;
   adminLetterUi: any;
