@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useEffect } from 'react';
 
 import CoverImage from 'components/CoverImage';
@@ -69,6 +70,7 @@ export default function WritingPadSection({
           defaultValue={reply}
           readOnly={!!reply}
           spellCheck="false"
+          autoFocus
           className={`${textareaStyle} whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:1px_3.04rem] leading-[187%] text-clip`}
         />
         <p className="font-sans text-caption text-gray-1 text-right">{date}</p>
