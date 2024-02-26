@@ -5,7 +5,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import WritingPadSection from 'components/Write/WritingPadSection';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import AppBar from 'components/AppBar';
-import NavBar from 'components/NavBar';
 import Button from 'components/Button';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
 import { getShareLetter } from 'api/letter';
@@ -61,11 +60,10 @@ export default function ShareLetter() {
           <Button
             disabled={!letterData.reply.content}
             onClick={onClickReplyButton}
-            className="mt-12"
+            className="mt-12 fixed max-w-[350px]"
           >
             {USER_ACTIONS.GO_TO_REPLY}
           </Button>
-          <NavBar />
         </main>
       )}
     </>

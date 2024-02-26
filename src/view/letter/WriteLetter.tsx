@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 import ResisterButtonSection from 'components/Write/ResisterButtonSection';
@@ -15,14 +15,13 @@ import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
 import { updateImageAndGetId } from 'api/images';
 import { Pets } from 'types/pets';
-import { State } from 'types/store';
 import { generateFormData } from 'utils/formData';
+import { getExpireModal } from 'utils/localStorage';
 import { modalActions } from 'store/modal/modal-slice';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { canOpenAgain } = useSelector((state: State) => state.modal);
   const [petsList, setPetsList] = useState<Pets[]>([]);
   const [selectedPet, setSelectedPet] = useState<Pets | null>(null);
   const [imageFile, setImageFile] = useState<File | string>('');
@@ -63,8 +62,10 @@ export default function WriteLetter() {
 
   const isCheckPhoneNumberModalOpen = async () => {
     const { phoneNumber } = await getUserInfo();
-    if (!phoneNumber && canOpenAgain) {
-      return dispatch(modalActions.openModal('PHONE'));
+    const expire = getExpireModal();
+
+    if (!phoneNumber && Number(expire) < Date.now()) {
+      dispatch(modalActions.openModal('PHONE'));
     }
   };
 

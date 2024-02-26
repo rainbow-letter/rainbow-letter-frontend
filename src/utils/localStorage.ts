@@ -9,3 +9,11 @@ export const getToken = () => {
 export const removeToken = () => {
   localStorage.removeItem('user');
 };
+
+export const setExpireModal = (date: string) => {
+  return localStorage.setItem('expire', date);
+};
+
+export const getExpireModal = () => {
+  return localStorage.getItem('expire');
+};

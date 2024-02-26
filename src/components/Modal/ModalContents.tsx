@@ -8,6 +8,7 @@ import { MODAL_MESSAGE, Modal } from 'components/Modal/constants';
 import { updatePhoneNumber } from 'api/user';
 import { State } from 'types/store';
 import { validatePhoneNumber } from 'utils/validators';
+import { setExpireModal } from 'utils/localStorage';
 import { modalActions } from 'store/modal/modal-slice';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
@@ -34,6 +35,11 @@ export default function ModalContents() {
         console.log(error.message);
       }
     }
+  };
+
+  const closeDuringDate = () => {
+    const date = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    setExpireModal(String(date));
   };
 
   return (
@@ -94,12 +100,12 @@ export default function ModalContents() {
                   <button
                     type="button"
                     onClick={() => {
-                      dispatch(modalActions.doNotOpenAgain());
+                      closeDuringDate();
                       dispatch(modalActions.openModal('COMPLETE'));
                     }}
                     className="underline text-caption text-gray-1 mb-6 block mx-auto"
                   >
-                    다시 보지 않기
+                    7일 동안 보지 않기
                   </button>
                 </div>
                 <button
