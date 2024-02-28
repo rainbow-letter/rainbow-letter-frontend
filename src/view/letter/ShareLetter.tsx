@@ -39,7 +39,7 @@ export default function ShareLetter() {
   return (
     <>
       {letterData && (
-        <main>
+        <main className="pb-40 relative">
           <AppBar />
           {letterData.reply.content && (
             <WritingPadSection
@@ -60,7 +60,7 @@ export default function ShareLetter() {
           <Button
             disabled={!letterData.reply.content}
             onClick={onClickReplyButton}
-            className="mt-12 fixed max-w-[350px]"
+            className="mt-12 fixed max-w-[350px] bottom-10"
             id="sms_reply"
           >
             {USER_ACTIONS.GO_TO_REPLY}
