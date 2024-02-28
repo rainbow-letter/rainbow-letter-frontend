@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 import CoverImage from 'components/CoverImage';
 
@@ -32,12 +31,11 @@ export default function WritingPadSection({
   const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
   const textarea = useRef<HTMLTextAreaElement>(null);
 
-  const handleResizeHeight = () => {
+  const handleResizeHeight = useCallback(() => {
     if (textarea.current) {
-      textarea.current.style.height = 'auto';
       textarea.current.style.height = `${textarea.current.scrollHeight}px`;
     }
-  };
+  }, []);
 
   const handleTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleResizeHeight();
@@ -70,7 +68,6 @@ export default function WritingPadSection({
           defaultValue={reply}
           readOnly={!!reply}
           spellCheck="false"
-          autoFocus
           className={`${textareaStyle} whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:1px_3.04rem] leading-[187%] text-clip`}
         />
         <p className="font-sans text-caption text-gray-1 text-right">{date}</p>
