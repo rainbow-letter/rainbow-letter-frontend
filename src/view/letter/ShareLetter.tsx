@@ -61,6 +61,7 @@ export default function ShareLetter() {
             disabled={!letterData.reply.content}
             onClick={onClickReplyButton}
             className="mt-12 fixed max-w-[350px]"
+            id="sms_reply"
           >
             {USER_ACTIONS.GO_TO_REPLY}
           </Button>
