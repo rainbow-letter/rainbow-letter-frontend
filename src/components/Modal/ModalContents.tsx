@@ -73,7 +73,7 @@ export default function ModalContents() {
           case 'PHONE':
             return (
               <div className="w-full">
-                <header className="mt-[53px] text-center">
+                <header className="mt-[3.313rem] text-center">
                   <h3 className="text-heading-3">{title}</h3>
                 </header>
                 <ul className="mt-6 text-center text-body-medium">
@@ -120,7 +120,7 @@ export default function ModalContents() {
           case 'COMPLETE':
             return (
               <div className="w-full">
-                <header className="mt-[53px] text-center">
+                <header className="mt-[3.313rem] text-center">
                   <h3 className="text-heading-3">{title}</h3>
                 </header>
                 <ul className="mt-6 mb-7 text-center text-body-medium">

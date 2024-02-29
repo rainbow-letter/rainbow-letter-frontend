@@ -27,9 +27,9 @@ export default function BottomSheet() {
   return (
     <div
       ref={BottonSheetRef}
-      className="z-50 fixed inset-x-0 h-[300px] -bottom-[300px] flex justify-center rounded-[15px] ease-in-out delay-30 duration-700 shadow-home  bg-white"
+      className="z-50 fixed inset-x-0 h-[18.75rem] -bottom-[18.75rem] flex justify-center rounded-2xl ease-in-out delay-30 duration-700 shadow-home  bg-white"
     >
-      <div className="w-full max-w-[366px] px-4">
+      <div className="w-full max-w-[22.875rem] px-4">
         <BottomHeader onClick={onBottomSheetCancelClick} />
         <BottomContent />
       </div>

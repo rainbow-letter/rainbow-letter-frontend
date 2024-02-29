@@ -42,13 +42,13 @@ const navItems = [
 
 function NavBar() {
   return (
-    <nav className="h-[100px] fixed inset-x-0 bottom-0 flex justify-center pt-5 pb-6 bg-white z-20">
-      <ul className="flex justify-between w-full text-gray-2 text-xs leading-6 max-w-[366px]">
+    <nav className="h-[6.25rem] fixed inset-x-0 bottom-0 flex justify-center pt-5 pb-6 bg-white z-20">
+      <ul className="flex justify-between w-full text-gray-2 text-xs leading-6 max-w-[21rem]">
         {navItems.map(({ to, label, icon, activeIcon }) => (
           <li key={to} className="flex-1">
             <NavLink
               to={to}
-              className="flex flex-col items-center justify-center space-y-[5px]"
+              className="flex flex-col items-center justify-center space-y-[0.313rem]"
             >
               {({ isActive }) => (
                 <>

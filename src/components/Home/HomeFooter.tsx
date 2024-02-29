@@ -7,10 +7,10 @@ import blog from '../../assets/blog.png';
 export default function HomeFooter() {
   return (
     <footer className="flex flex-col items-center pt-8 pb-40 text-caption text-gray-1">
-      <Link to={`mailto:${FOOTER_MESSAGE.ADDRESS}`} className="mb-[18px]">
+      <Link to={`mailto:${FOOTER_MESSAGE.ADDRESS}`} className="mb-[1.125rem]">
         {FOOTER_MESSAGE.ADDRESS}
       </Link>
-      <div className="text-center mb-[18px]">
+      <div className="text-center mb-[1.125rem]">
         <p>{FOOTER_MESSAGE.COPYRIGHT}</p>
         <p>{FOOTER_MESSAGE.COPYRIGHT_2}</p>
       </div>

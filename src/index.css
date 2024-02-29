@@ -14,7 +14,7 @@
 
   input::placeholder,
   input::-webkit-input-placeholder {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #bdbdbd;
   }
 }

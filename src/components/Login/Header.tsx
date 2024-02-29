@@ -12,7 +12,7 @@ export default function Header({ message: { title, button } }: Props) {
       <a
         href={`${process.env.REACT_APP_API_URL}/api/oauth2/authorization/google`}
         type="button"
-        className="border text-solo-large mt-10 gap-5 py-6 w-full rounded-[15px] flex justify-center items-center"
+        className="border text-solo-large mt-10 gap-5 py-6 w-full rounded-2xl flex justify-center items-center"
       >
         <img src={googleIcon} alt="google icon" />
         {button.google}

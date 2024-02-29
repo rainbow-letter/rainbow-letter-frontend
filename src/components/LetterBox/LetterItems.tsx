@@ -44,7 +44,7 @@ export default function LetterItems({
     <li
       className={`${
         isCheckUnread(readStatus, status) && `bg-orange-50`
-      } border-gray-3 list-none mb-4 border rounded-[15px] cursor-pointer relative `}
+      } border-gray-3 list-none mb-4 border rounded-2xl cursor-pointer relative `}
     >
       <div className="pl-6 pt-6">
         <img
@@ -54,12 +54,12 @@ export default function LetterItems({
             isCheckUnread(readStatus, status) || 'hidden'
           } absolute top-3 right-3 `}
         />
-        <h3 className="text-solo-large mb-[22px]">{petName}</h3>
-        <div className="flex gap-[18px] mb-2.5 text-body-small">
+        <h3 className="text-solo-large mb-[1.375rem]">{petName}</h3>
+        <div className="flex gap-[1.125rem] mb-2.5 text-body-small">
           <span>{INFO_MESSAGES.SENT_LETTER}</span>
-          <p className="text-gray-1 truncate w-[180px]">{summary}</p>
+          <p className="text-gray-1 truncate w-[11.25rem]">{summary}</p>
         </div>
-        <div className="flex gap-[18px] mb-[21px] text-solo-label-pc">
+        <div className="flex gap-[1.125rem] mb-5 text-solo-label-pc">
           <span>{INFO_MESSAGES.RESPONSE_STATUS}</span>
           <p
             className={`${
@@ -75,7 +75,7 @@ export default function LetterItems({
           className="absolute right-5 bottom-1/2"
         />
       </div>
-      <div className="border-t flex justify-end px-5 py-[11px]">
+      <div className="border-t flex justify-end px-5 py-2.5">
         <p className="text-caption text-gray-2">{setDate(createdAt)}</p>
       </div>
     </li>

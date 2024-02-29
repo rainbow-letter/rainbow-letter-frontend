@@ -128,7 +128,7 @@ function LetterTable() {
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[870px] table-auto border-collapse mt-4">
+        <table className="w-full min-w-[54.375rem] table-auto border-collapse mt-4">
           <thead>
             <tr className="bg-gray-200">
               <th className="border px-4 py-2 whitespace-nowrap">행 체크</th>

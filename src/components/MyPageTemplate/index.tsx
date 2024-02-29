@@ -26,7 +26,7 @@ function MyPageTemplate() {
   return (
     <>
       <div className="text-heading-3 p-2.5">{PAGE_TITLES.MY_INFO}</div>
-      <div className="flex flex-col gap-y-[22px]">
+      <div className="flex flex-col gap-y-[1.375rem]">
         <div>
           <div className="text-solo-large p-2.5">{USER_INFO_LABELS.EMAIL}</div>
           <div className="p-2.5 text-solo-medium text-gray-1">

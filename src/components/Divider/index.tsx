@@ -6,7 +6,9 @@ type Props = {
 
 function Divider({ className }: Props) {
   return (
-    <hr className={`border-t border-b-[#EEE] w-[354px] mx-auto ${className}`} />
+    <hr
+      className={`border-t border-b-[#EEE] w-[22.125rem] mx-auto ${className}`}
+    />
   );
 }
 

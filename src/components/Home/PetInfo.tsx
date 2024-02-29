@@ -28,12 +28,12 @@ export default function PetInfo({ pet, letterCount }: Props) {
   return (
     <article
       onClick={handleScroll}
-      className="rounded-[15px] mt-5 py-[13px] pl-5 flex flex-row items-center relative cursor-pointer shadow-home"
+      className="rounded-2xl mt-5 py-[0.813rem] pl-5 flex flex-row items-center relative cursor-pointer shadow-home"
     >
       <img
         src={(pet && pet.image.url) || defaultImage}
         alt="pet"
-        className="h-[88px] w-[88px] rounded-full mr-7"
+        className="h-[5.5rem] w-[5.5rem] rounded-full mr-7"
       />
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-2 mb-2">

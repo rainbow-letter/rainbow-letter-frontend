@@ -7,13 +7,13 @@ import background from '../../assets/Talk_Background.svg';
 
 export default function OpenTalk() {
   return (
-    <section className="px-[25px] mt-[23px] mb-[11px] gap-[10px] relative">
+    <section className="px-6 mt-6 mb-2.5 gap-2.5 relative">
       <Link
         to="https://open.kakao.com/o/s5yBU55f"
         target="_blank"
-        className="w-full py-4 flex justify-center gap-2.5 bg-orange-50 text-solo-label text-orange-400 font-semibold rounded-[15px]"
+        className="w-full py-4 flex justify-center gap-2.5 bg-orange-50 text-solo-label text-orange-400 font-semibold rounded-2xl"
       >
-        <div className="mr-[10px]">
+        <div className="mr-2.5">
           <img
             src={background}
             alt="background"

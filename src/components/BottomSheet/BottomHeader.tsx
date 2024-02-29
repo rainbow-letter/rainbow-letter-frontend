@@ -13,11 +13,7 @@ export default function BottomHeader({ onClick }: any) {
       >
         <img src={CancelImage} alt="cancel" />
       </button>
-      <img
-        src={Logo}
-        alt="logo"
-        className="w-[64px] border rounded-[15px] p-2"
-      />
+      <img src={Logo} alt="logo" className="w-[4rem] border rounded-2xl p-2" />
     </div>
   );
 }

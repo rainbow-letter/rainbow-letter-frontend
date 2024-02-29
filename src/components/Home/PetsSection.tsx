@@ -10,8 +10,8 @@ type Props = {
 
 export default function PetsSection({ isLoggedIn }: Props) {
   return (
-    <section className="bg-white rounded-t-[15px] px-[25px] mt-[207px] z-20 relative">
-      <h3 className="pt-[23px] mb-5 text-solo-large font-semibold">
+    <section className="bg-white rounded-t-2xl px-[1.562rem] mt-[12.3rem] z-20 relative">
+      <h3 className="pt-[1.437rem] mb-5 text-solo-large font-semibold">
         {INFO_MESSAGES.PETS_TITLE}
       </h3>
       {isLoggedIn ? <PetsBox /> : <LoginBox />}

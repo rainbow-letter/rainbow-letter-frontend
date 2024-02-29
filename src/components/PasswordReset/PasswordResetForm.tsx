@@ -22,11 +22,11 @@ function PasswordResetForm({ onClick }: Props) {
         <h2 className="text-heading-2 text-center">
           {UPDATE_PASSWORD_MESSAGE.TITLE}
         </h2>
-        <p className="text-solo-medium text-gray-1 text-center mt-[18px]">
+        <p className="text-solo-medium text-gray-1 text-center mt-[1.125rem]">
           {UPDATE_PASSWORD_MESSAGE.DESCRIPTION}
         </p>
       </section>
-      <section className="mt-[38px]">
+      <section className="mt-[2.375rem]">
         <label htmlFor="newPassword" className="block p-2.5">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD}
         </label>
