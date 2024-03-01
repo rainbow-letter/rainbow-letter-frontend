@@ -7,6 +7,7 @@ function LetterPostButton() {
   return (
     <section className="mx-5 pb-[1.875rem]">
       <Link
+        id="share_letter"
         style={{ boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.15)' }}
         className="w-full h-10 flex justify-center items-center gap-x-1 rounded-2xl"
         to="https://walla.my/survey/25UNmvnL7qWsW4pU2wRl"
