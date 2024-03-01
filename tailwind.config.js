@@ -58,6 +58,10 @@ module.exports = {
           2: '#BDBDBD',
         },
       },
+      backgroundImage: {
+        'nav-gradient':
+          'linear-gradient(235deg, #FFB74D 24.66%, #FD9700 70.61%)',
+      },
       boxShadow: {
         default: '0px 0px 10px 0px rgba(0, 0, 0, 0.15)',
         home: '0px 0px 5px 0px rgba(0, 0, 0, 0.15)',
