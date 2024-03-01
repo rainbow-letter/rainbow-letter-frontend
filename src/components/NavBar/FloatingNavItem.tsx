@@ -10,9 +10,9 @@ type FloatingNavItemProps = {
 
 function FloatingNavItem({ to, label, icon }: FloatingNavItemProps) {
   return (
-    <NavLink to={to} className="-translate-y-1">
+    <NavLink to={to} className="-translate-y-2 mx-1.5">
       {({ isActive }) => (
-        <div className="h-[3.687rem] w-[3.687rem] flex flex-col items-center justify-center space-y-1 bg-nav-gradient rounded-full">
+        <div className="h-[3.687rem] w-[3.687rem] flex flex-col items-center justify-center bg-nav-gradient rounded-full">
           <div className="h-7 w-7 translate-x-0.5">
             <img src={icon} alt={label} width="100%" height="100%" />
           </div>
