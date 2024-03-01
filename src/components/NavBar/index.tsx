@@ -14,7 +14,7 @@ import FloatingNavItem from 'components/NavBar/FloatingNavItem';
 
 function NavBar() {
   return (
-    <nav className="h-[6.25rem] fixed inset-x-0 bottom-0 flex justify-center pt-5 pb-6 bg-white z-20">
+    <nav className="h-[4.437rem] fixed inset-x-0 bottom-0 flex justify-center pb-2 bg-white z-20">
       <ul className="flex justify-between w-full text-gray-2 text-xs leading-6 max-w-[21rem]">
         <NavItem to="/home" label="홈" icon={home} activeIcon={homeActive} />
         <NavItem
