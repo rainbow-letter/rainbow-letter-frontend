@@ -1,8 +1,7 @@
 import React from 'react';
 
 import post from 'assets/post.svg';
-// eslint-disable-next-line import/extensions
-import { SampleLetter } from './index';
+import { SampleLetter } from 'components/LetterShowcase/type';
 
 type LetterItemProps = {
   letter: SampleLetter;
