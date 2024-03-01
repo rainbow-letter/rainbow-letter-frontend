@@ -26,13 +26,13 @@ export default function PetsBox() {
 
   if (petsList.length < 1) return <NoPets />;
   return (
-    <>
+    <section className="flex flex-col gap-y-4">
       <NameSection
         petsNames={petsNames}
         onClick={setSelectedPet}
         selectedPet={selectedPet}
       />
       <PetInfo pet={filteredPet} letterCount={filteredPet?.letterCount} />
-    </>
+    </section>
   );
 }

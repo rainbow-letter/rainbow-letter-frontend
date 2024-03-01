@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { PetDashBoard } from 'types/pets';
 import { calculateDDay } from 'utils/date';
 
-import letter from '../../assets/fa-regular_message_color.svg';
-import heart from '../../assets/fa-regular_heart_color.svg';
-import arrow from '../../assets/ion_chevron-back-home.svg';
-import defaultImage from '../../assets/Logo_256px.png';
+import letter from 'assets/letter.svg';
+import heart from 'assets/fa-regular-heart.svg';
+import arrow from 'assets/ion_chevron-back-home.svg';
+import defaultImage from 'assets/Logo_256px.png';
 
 type Props = {
   pet: PetDashBoard | undefined;
@@ -28,21 +28,21 @@ export default function PetInfo({ pet, letterCount }: Props) {
   return (
     <article
       onClick={handleScroll}
-      className="rounded-2xl mt-5 py-[0.813rem] pl-5 flex flex-row items-center relative cursor-pointer shadow-home"
+      className="relative flex flex-row items-center px-5 py-6 rounded-2xl border cursor-pointer"
     >
       <img
         src={(pet && pet.image.url) || defaultImage}
         alt="pet"
-        className="h-[5.5rem] w-[5.5rem] rounded-full mr-7"
+        className="h-[5.5rem] w-[5.5rem] mr-7 rounded-full"
       />
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center gap-x-2">
         <div className="flex items-center gap-2 mb-2">
-          <h5 className="text-orange-400 text-solo-large">{pet && pet.name}</h5>
-          <span className="text-caption text-gray-2 leading-none ">
+          <h5 className="text-orange-400 font-bold">{pet && pet.name}</h5>
+          <span className="text-caption text-gray-2 leading-none">
             {deathAnniversaryDDay}
           </span>
         </div>
-        <div className="text-gray-1">
+        <div className="flex flex-col gap-y-2.5 text-gray-1 text-solo-small">
           <div className="flex gap-2.5">
             <img src={letter} alt="letter" />
             <p>보낸 편지 {letterCount}회</p>

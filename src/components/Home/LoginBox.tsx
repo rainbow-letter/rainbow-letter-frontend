@@ -5,29 +5,27 @@ import { INFO_MESSAGES, USER_ACTIONS } from 'components/Home/constants';
 
 export default function LoginBox() {
   return (
-    <article className="mt-5 border rounded-2xl border-gray-3 px-[1.063rem] flex flex-col items-center">
-      <h4 className="text-heading-3 mt-[1.875rem] mb-[0.813rem]">
-        {INFO_MESSAGES.LOGIN_ABSENT}
-      </h4>
-      <p>{INFO_MESSAGES.INFOMATION_ABOUT_LETTER_WRITING_METHOD}</p>
-      <div className="flex w-full h-[3.812rem] mt-[1.125rem] mb-4 text-solo-large gap-4">
-        <Link to="/login" className="w-full">
-          <button
-            type="button"
-            className="w-full h-full py-5 px-[1.375rem] bg-orange-400 text-white rounded-2xl"
-          >
-            {USER_ACTIONS.LOGIN}
-          </button>
+    <article className="flex flex-col items-center gap-y-5 py-5 px-[1.063rem] border border-gray-3 rounded-2xl">
+      <header className="flex flex-col items-center gap-y-3">
+        <h4 className="text-heading-3 font-bold">
+          {INFO_MESSAGES.LOGIN_ABSENT}
+        </h4>
+        <p>{INFO_MESSAGES.INFOMATION_ABOUT_LETTER_WRITING_METHOD}</p>
+      </header>
+      <main className="flex gap-x-4 w-full h-[3.812rem] text-solo-large font-bold">
+        <Link
+          to="/login"
+          className="flex items-center justify-center w-full bg-orange-400 text-white rounded-2xl"
+        >
+          {USER_ACTIONS.LOGIN}
         </Link>
-        <Link to="/sign-up" className="w-full">
-          <button
-            type="button"
-            className="w-full h-full py-5 px-[1.375rem] text-orange-400 border-orange-400 border-2 rounded-2xl"
-          >
-            {USER_ACTIONS.SIGH_UP}
-          </button>
+        <Link
+          to="/sign-up"
+          className="flex items-center justify-center w-full text-orange-400 border-orange-400 border-2 rounded-2xl"
+        >
+          {USER_ACTIONS.SIGH_UP}
         </Link>
-      </div>
+      </main>
     </article>
   );
 }

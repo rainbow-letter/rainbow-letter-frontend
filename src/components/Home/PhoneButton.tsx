@@ -4,17 +4,20 @@ import { PHONE_MESSAGE } from 'components/Home/constants';
 import phone from '../../assets/Phone.svg';
 
 export default function PhoneButton() {
-  const onPhoneButtonclick = () => {
+  const handlePhoneButtonClick = () => {
     document.location.href = 'tel:109';
   };
+
   return (
-    <section className="px-[1.562rem] mb-[2.375rem] ">
+    <section className="h-[3.125rem] px-7 mb-8">
       <button
         type="button"
-        onClick={() => onPhoneButtonclick()}
-        className="w-full py-4 flex justify-center gap-2.5 bg-orange-50 text-solo-label text-orange-400 font-semibold rounded-2xl"
+        onClick={() => handlePhoneButtonClick()}
+        className="w-full h-full flex justify-center items-center gap-x-2.5 py-4 bg-orange-50 text-solo-label text-orange-400 font-bold rounded-2xl"
       >
-        <img src={phone} alt="phone" />
+        <div className="h-4 w-4">
+          <img src={phone} alt="phone" width="100%" height="100%" />
+        </div>
         <p>{PHONE_MESSAGE}</p>
       </button>
     </section>
