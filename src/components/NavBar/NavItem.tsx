@@ -12,7 +12,7 @@ function NavItem({ to, label, icon, activeIcon }: NavItemProps) {
   return (
     <NavLink
       to={to}
-      className="flex flex-col items-center justify-center space-y-1.5"
+      className="h-[3.687rem] w-[3.687rem] flex flex-col items-center justify-center space-y-1.5"
     >
       {({ isActive }) => (
         <>

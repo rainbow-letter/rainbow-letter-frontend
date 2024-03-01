@@ -14,8 +14,8 @@ import FloatingNavItem from 'components/NavBar/FloatingNavItem';
 
 function NavBar() {
   return (
-    <nav className="h-[4.437rem] fixed inset-x-0 bottom-0 flex justify-center pb-2 bg-white z-20">
-      <ul className="flex justify-between w-full text-gray-2 text-xs leading-6 max-w-[21rem]">
+    <nav className="fixed inset-x-0 bottom-0 flex justify-center pb-4 pt-1 bg-white z-20">
+      <div className="flex min-w-[22.5rem] gap-x-5 px-7">
         <NavItem to="/home" label="홈" icon={home} activeIcon={homeActive} />
         <NavItem
           to="/letter-box"
@@ -36,7 +36,7 @@ function NavBar() {
           icon={myInfo}
           activeIcon={myInfoActive}
         />
-      </ul>
+      </div>
     </nav>
   );
 }
