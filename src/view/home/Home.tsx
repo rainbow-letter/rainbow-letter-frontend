@@ -13,6 +13,7 @@ import HomeFooter from 'components/Home/HomeFooter';
 import NavBar from 'components/NavBar';
 import BottomSheet from 'components/BottomSheet';
 import { getToken } from 'utils/localStorage';
+import LetterPostButton from 'components/LetterPostButton';
 
 export default function LandingPage() {
   const token = getToken();
@@ -23,6 +24,7 @@ export default function LandingPage() {
       <BackgroundSection />
       <PetsSection isLoggedIn={!!token} />
       <LetterShowcase />
+      <LetterPostButton />
       {/* 추후 광고배너 재삽입 가능. */}
       {/* <Banner /> */}
       <ContentsSection />

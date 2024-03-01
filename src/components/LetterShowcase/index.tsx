@@ -1,6 +1,6 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 
-// eslint-disable-next-line import/extensions
 import LetterItem from './LetterItem';
 
 type LetterType = 'letter' | 'reply';
@@ -45,7 +45,7 @@ function LetterShowcase() {
   return (
     <section className="pt-8 pl-6">
       <span className="py-5 text-solo-large font-bold">무지개에 걸린 편지</span>
-      <div className="flex py-5 gap-x-2.5 overflow-auto">
+      <div className="flex py-5 gap-x-2.5 overflow-auto hide-scrollbar">
         {SAMPLE_LETTERS.map((letter) => (
           <LetterItem key={letter.id} letter={letter} />
         ))}
