@@ -6,7 +6,7 @@ import { INFO_MESSAGES } from 'components/Home/constants';
 
 export default function ContentsSection() {
   return (
-    <section className="px-[1.562rem]">
+    <section className="px-5">
       <h3 className="mt-[1.875rem] text-solo-large font-semibold">
         {INFO_MESSAGES.CONTENTS_TITLE}
       </h3>

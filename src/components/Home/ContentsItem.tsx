@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { CONTENTS_MESSAGE } from 'components/Home/constants';
 
-import arrowIcon from '../../assets/ion_chevron-back-home.svg';
+import arrowIcon from 'assets/chevron_right-gary.svg';
 
 export default function ContentsItem() {
   return (
@@ -12,12 +12,12 @@ export default function ContentsItem() {
         <Link to={contents.url} key={contents.id} target="_blank">
           <article
             id="content_read"
-            className="flex items-center pt-4 pb-[0.875rem] pl-[1.625rem] rounded-2xl relative text-caption cursor-pointer shadow-home"
+            className="flex items-center gap-x-[0.875rem] pt-4 pb-[0.875rem] px-7 rounded-2xl relative text-caption cursor-pointer shadow-home"
           >
             <div className="w-8 h-8 flex justify-center items-center">
               <img src={contents.image} alt="analytics" />
             </div>
-            <div className="flex flex-col ml-[0.875rem]">
+            <div className="flex flex-col gap-y-1">
               <h3 className="text-gray-1 font-bold">{contents.title}</h3>
               <p>{contents.description}</p>
             </div>
