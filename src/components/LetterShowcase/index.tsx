@@ -9,7 +9,7 @@ function LetterShowcase() {
     useDraggableScroll();
 
   return (
-    <section className="pt-8 pl-6">
+    <section className="pt-8 pl-5">
       <span className="py-5 text-solo-large font-bold">무지개에 걸린 편지</span>
       <div
         className="flex py-5 gap-x-2.5 overflow-auto hide-scrollbar"
