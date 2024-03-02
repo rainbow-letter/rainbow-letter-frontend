@@ -1,28 +1,41 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { NavLink } from 'react-router-dom';
 
 type NavItemProps = {
   to: string;
   label: string;
-  icon: string;
-  activeIcon: string;
+  Icon: React.ElementType;
+  useStroke?: boolean;
 };
 
-function NavItem({ to, label, icon, activeIcon }: NavItemProps) {
+type IconWrapperProps = {
+  Icon: React.ElementType;
+  isActive: boolean;
+  useStroke?: boolean;
+};
+
+function IconWrapper({ Icon, isActive, useStroke = true }: IconWrapperProps) {
+  const iconColor = isActive ? '#FFB74D' : '#BDBDBD';
+  const iconProps = useStroke ? { stroke: iconColor } : { fill: iconColor };
+
+  return <Icon {...iconProps} />;
+}
+
+function NavItem({ to, label, Icon, useStroke = true }: NavItemProps) {
   return (
     <NavLink
       to={to}
-      className="h-[3.687rem] w-[3.687rem] flex flex-col items-center justify-center space-y-1.5"
+      className="w-[3.687rem] flex flex-col items-center justify-center space-y-0.5"
     >
       {({ isActive }) => (
         <>
-          <div className="h-[1.625rem] w-[1.625rem]">
-            <img
-              className="h-8 w-8"
-              src={isActive ? activeIcon : icon}
-              alt={label}
-              width="100%"
-              height="100%"
+          <div className="w-[26px] h-[26px]">
+            <IconWrapper
+              Icon={Icon}
+              isActive={isActive}
+              useStroke={useStroke}
             />
           </div>
           <span
