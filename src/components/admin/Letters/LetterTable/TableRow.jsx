@@ -71,7 +71,7 @@ function TableRow({ no, letter, isChecked }) {
       </td>
       <td className="border p-2">
         <button
-          className="w-full text-left"
+          className="w-full h-5 text-left"
           type="button"
           onClick={toggleReplyViewer}
         >
