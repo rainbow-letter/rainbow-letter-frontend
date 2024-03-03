@@ -20,7 +20,7 @@ export default function ContentsItem() {
               <img
                 src={contents.image}
                 alt="analytics"
-                className="rounded-2xl"
+                className="rounded-2xl w-full h-full object-cover"
               />
             </div>
           </article>

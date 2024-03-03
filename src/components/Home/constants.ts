@@ -1,5 +1,5 @@
-import contentsLogo from '../../assets/logo_white.png';
-import contentsLetter from '../../assets/contents_image_2.png';
+import Letter from '../../assets/contents_3.png';
+import Survey from '../../assets/contents_2.jpg';
 import contentsBackground from '../../assets/backgroundImage.png';
 
 interface Content_Message {
@@ -28,22 +28,22 @@ export const USER_ACTIONS = Object.freeze({
 
 export const CONTENTS_MESSAGE: Content_Message[] = [
   {
-    id: 2,
+    id: 0,
     title: '고객 만족도 조사',
     description: '무지개 편지에 의견을 보내주세요!',
-    image: contentsLogo,
+    image: Survey,
     url: 'https://forms.gle/bHsDq3XSqHsMuSh36',
   },
   {
     id: 1,
-    title: '편지 쓰기가 정말 도움이 되나요?',
+    title: '편지 쓰기, 정말 도움이 되나요?',
     description: '펫로스 상담실 ‘안녕’ 원장님 인터뷰',
-    image: contentsLetter,
+    image: Letter,
     url: 'https://blog.naver.com/rainbowletter/223324381170',
   },
   {
-    id: 0,
-    title: '따뜻한 조언',
+    id: 2,
+    title: '잔디 언니의 따듯한 조언',
     description: '무지개마을을 그린 잔디 언니 인터뷰',
     image: contentsBackground,
     url: 'https://blog.naver.com/rainbowletter/223324567774',
