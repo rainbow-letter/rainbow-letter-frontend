@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { BANNER_MESSAGE } from 'components/Home/constants';
-import banner from '../../assets/banner.png';
+import banner from '../../assets/banner.jpg';
 
 export default function Banner() {
   return (
