@@ -36,15 +36,15 @@ export const CONTENTS_MESSAGE: Content_Message[] = [
   },
   {
     id: 1,
-    title: '편지 쓰기, 정말 도움이 되나요?',
-    description: '펫로스 상담실 ‘안녕’ 원장님 인터뷰',
+    title: '편지 쓰기가 도움이 되나요?',
+    description: '펫로스 상담사 인터뷰',
     image: Letter,
     url: 'https://blog.naver.com/rainbowletter/223324381170',
   },
   {
     id: 2,
     title: '잔디 언니의 따듯한 조언',
-    description: '무지개마을을 그린 잔디 언니 인터뷰',
+    description: '무지개마을 그림을 그린 이야기',
     image: contentsBackground,
     url: 'https://blog.naver.com/rainbowletter/223324567774',
   },
