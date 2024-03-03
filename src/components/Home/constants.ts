@@ -50,8 +50,8 @@ export const CONTENTS_MESSAGE: Content_Message[] = [
   },
 ];
 export const BANNER_MESSAGE = Object.freeze({
-  title: '펫로스 증후군 상담 망설이고 있다면?',
-  description: '무료 예술심리상담 참여자 모집 바로가기',
+  title: '무지개마을에서 우리 강아지는',
+  description: '강아지 유형 테스트 하러 가기',
 });
 export const PHONE_MESSAGE = '자살예방 상담전화 109';
 export const OPEN_TALK_MESSAGE = '오류 시 오픈카카오톡 문의하기';
