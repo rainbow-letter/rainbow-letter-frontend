@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Noto Sans KR', 'sans-serif'],
-      OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
+      Gyobomungo2019: ['Gyobomungo2019'],
     },
     extend: {
       width: {
@@ -29,7 +29,7 @@ module.exports = {
         'body-medium-pc': ['1.25rem', { lineHeight: '166%' }],
         'body-small': ['1rem', { lineHeight: '166%' }],
         'body-small-pc': ['0.875rem', { lineHeight: '166%' }],
-        'body-letter': ['1.625rem', { lineHeight: '166%' }],
+        'body-letter': ['1.438rem', { lineHeight: '166%' }],
         'body-letter-pc': ['2.25rem', { lineHeight: '166%' }],
         caption: ['0.875rem', { lineHeight: '166%' }],
         'caption-pc': ['0.75rem', { lineHeight: '166%' }],
