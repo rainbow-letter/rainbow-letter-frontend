@@ -6,22 +6,20 @@ import banner from '../../assets/banner.png';
 
 export default function Banner() {
   return (
-    <section className="px-[1.562rem] mt-[1.875rem]">
+    <section>
       <Link
-        to="https://blog.naver.com/rainbowletter/223338521441"
+        to="https://smore.im/quiz/IEiAubtaOQ"
         target="_blank"
         id="ads_consult1"
-        className="flex justify-center items-center gap-6 bg-orange-50 rounded-2xl shadow-home pt-3 pb-2"
+        className="flex justify-between bg-[#FFF1EB] rounded-2xl shadow-home px-5 py-[0.625rem]"
       >
-        <div className="flex flex-col justify-center gap-1">
-          <p className="text-solo-label-pc font-bold text-black">
-            {BANNER_MESSAGE.title}
-          </p>
+        <div className="flex flex-col justify-center">
+          <p className="font-bold text-black">{BANNER_MESSAGE.title}</p>
           <p className="text-caption text-gray-1">
             {BANNER_MESSAGE.description}
           </p>
         </div>
-        <img src={banner} alt="banner" className="text-right" />
+        <img src={banner} alt="banner" className="rounded-[15px]" />
       </Link>
     </section>
   );

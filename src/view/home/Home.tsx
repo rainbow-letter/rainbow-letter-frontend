@@ -3,7 +3,6 @@ import React from 'react';
 import LogoBar from 'components/Home/LogoBar';
 import BackgroundSection from 'components/Home/BackgroundSection';
 import PetsSection from 'components/Home/PetsSection';
-// import Banner from 'components/Home/Banner';
 import ContentsSection from 'components/Home/ContentsSection';
 import LetterShowcase from 'components/LetterShowcase';
 import OpenTalk from 'components/Home/OpenTalk';
@@ -28,8 +27,6 @@ export default function LandingPage() {
       <LetterShowcase />
       <LetterPostButton />
       <HomeDivider />
-      {/* 추후 광고배너 재삽입 가능. */}
-      {/* <Banner /> */}
       <ContentsSection />
       <OpenTalk />
       <PhoneButton />

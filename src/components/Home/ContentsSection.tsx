@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Banner from 'components/Home/Banner';
 import ContentsItem from 'components/Home/ContentsItem';
 
 import { INFO_MESSAGES } from 'components/Home/constants';
@@ -11,6 +12,7 @@ export default function ContentsSection() {
         {INFO_MESSAGES.CONTENTS_TITLE}
       </h3>
       <div className="mt-5 flex flex-col gap-4">
+        <Banner />
         <ContentsItem />
       </div>
     </section>
