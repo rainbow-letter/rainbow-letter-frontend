@@ -30,6 +30,11 @@
 }
 
 @font-face {
+  font-family: 'OwnglyphMinhyeChae';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Minhye.woff')
+    format('woff');
+}
+@font-face {
   font-family: 'Gyobomungo2019';
   src: url('fonts/KyoboHandwriting2019.otf') format('woff');
 }

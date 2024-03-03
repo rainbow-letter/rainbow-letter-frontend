@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Noto Sans KR', 'sans-serif'],
-      Gyobomungo2019: ['Gyobomungo2019'],
+      OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
+      Gyobomungo: ['Gyobomungo2019'],
     },
     extend: {
       width: {

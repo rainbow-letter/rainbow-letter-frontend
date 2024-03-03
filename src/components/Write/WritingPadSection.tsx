@@ -56,7 +56,7 @@ export default function WritingPadSection({
     <section className={`relative mt-4 ${style}`}>
       <CoverImage image={image} />
       <section
-        className={`${textareaStyle} py-8 px-6 rounded-2xl text-body-letter text-gray-1 font-Gyobomungo2019 relative`}
+        className={`${textareaStyle} py-8 px-6 rounded-2xl text-body-letter text-gray-1 font-Gyobomungo relative`}
       >
         <h3>{petName}</h3>
         <textarea
@@ -70,7 +70,7 @@ export default function WritingPadSection({
           spellCheck="false"
           className={`${textareaStyle} whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:1px_41.87px] leading-[181%] text-clip`}
         />
-        <p className="font-OwnglyphMinhyeChae text-caption text-gray-1 text-right">
+        <p className="font-Gyobomungo text-caption text-gray-1 text-right">
           {date}
         </p>
       </section>

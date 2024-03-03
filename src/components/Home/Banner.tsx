@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { BANNER_MESSAGE } from 'components/Home/constants';
-import banner from '../../assets/banner.png';
+import banner from '../../assets/banner.jpg';
 
 export default function Banner() {
   return (
@@ -19,7 +19,9 @@ export default function Banner() {
             {BANNER_MESSAGE.description}
           </p>
         </div>
-        <img src={banner} alt="banner" className="rounded-[15px]" />
+        <div className="w-[82px] h-[53px]">
+          <img src={banner} alt="banner" className="rounded-[15px]" />
+        </div>
       </Link>
     </section>
   );
