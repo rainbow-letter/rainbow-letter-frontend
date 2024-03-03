@@ -11,7 +11,7 @@ export default function Banner() {
         to="https://smore.im/quiz/IEiAubtaOQ"
         target="_blank"
         id="ads_consult1"
-        className="flex justify-between gap-6 bg-[#FFF1EB] rounded-2xl shadow-home px-5 py-[18px] border-0"
+        className="flex justify-between bg-[#FFF1EB] rounded-2xl shadow-home px-5 py-[0.625rem]"
       >
         <div className="flex flex-col justify-center">
           <p className="font-bold text-black">{BANNER_MESSAGE.title}</p>

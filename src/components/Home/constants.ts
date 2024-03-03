@@ -1,12 +1,12 @@
-import analytics from '../../assets/Analytics Pie.svg';
-import bookmark from '../../assets/Bookmark.svg';
-import coffee from '../../assets/ph_coffee.svg';
+import contentsLogo from '../../assets/logo_white.png';
+import contentsLetter from '../../assets/contents_image_2.png';
+import contentsBackground from '../../assets/backgroundImage.png';
 
 interface Content_Message {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   url: string;
 }
 
@@ -29,23 +29,23 @@ export const USER_ACTIONS = Object.freeze({
 export const CONTENTS_MESSAGE: Content_Message[] = [
   {
     id: 2,
-    title: '설문조사',
+    title: '고객 만족도 조사',
     description: '무지개 편지에 의견을 보내주세요!',
-    image: analytics,
+    image: contentsLogo,
     url: 'https://forms.gle/bHsDq3XSqHsMuSh36',
   },
   {
     id: 1,
-    title: '전문가 인터뷰',
-    description: '편지 쓰기가 정말 도움이 되나요?',
-    image: bookmark,
+    title: '편지 쓰기가 정말 도움이 되나요?',
+    description: '펫로스 상담실 ‘안녕’ 원장님 인터뷰',
+    image: contentsLetter,
     url: 'https://blog.naver.com/rainbowletter/223324381170',
   },
   {
     id: 0,
     title: '따뜻한 조언',
-    description: '무지개 마을을 그린 잔디 언니 인터뷰',
-    image: coffee,
+    description: '무지개마을을 그린 잔디 언니 인터뷰',
+    image: contentsBackground,
     url: 'https://blog.naver.com/rainbowletter/223324567774',
   },
 ];
