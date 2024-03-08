@@ -18,7 +18,7 @@ function LogOut({ children }: LogOutProps) {
     dispatch(userActions.logOut());
     removeToken();
     clearSessionStorage();
-    navigate('/home');
+    navigate('/');
   };
 
   return (

@@ -19,7 +19,7 @@ export default function LandingPage() {
   const token = getToken();
 
   return (
-    <main>
+    <main className="relative">
       <LogoBar />
       <BackgroundSection />
       <PetsSection isLoggedIn={!!token} />

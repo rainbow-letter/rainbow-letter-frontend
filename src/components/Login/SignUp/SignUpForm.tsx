@@ -79,7 +79,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
         saveToken(token);
 
         setErrorData(null);
-        navigate('/home');
+        navigate('/');
       } catch (error) {
         onErrorHandling(error);
       }

@@ -13,7 +13,7 @@ function NavBar() {
   return (
     <nav className="fixed inset-x-0 bottom-0 flex justify-center py-1.5 bg-white z-20">
       <div className="min-w-[22.5rem] w-[390px] flex justify-between gap-x-1.5 px-6">
-        <NavItem to="/home" label="홈" Icon={HomeIcon} />
+        <NavItem to="/" label="홈" Icon={HomeIcon} />
         <NavItem to="/letter-box" label="편지함" Icon={letterBox} />
         <FloatingNavItem to="/write-letter" label="편지쓰기" icon={writing} />
         <NavItem

@@ -42,7 +42,7 @@ export default function LoginForm({ message: { describe, button } }: Props) {
 
         setErrorData(null);
         saveToken(token);
-        navigate('/home');
+        navigate('/');
       } catch (error) {
         if (axios.isAxiosError(error)) {
           setErrorData(error.response?.data);
