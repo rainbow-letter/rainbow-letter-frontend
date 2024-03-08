@@ -9,7 +9,7 @@ type Props = {
 
 export default function PetsSection({ isLoggedIn }: Props) {
   return (
-    <section className="mt-[12.3rem] px-5 pt-9 pb-[1.875rem] bg-white rounded-t-2xl z-20 relative">
+    <section className="mt-[14.063rem] px-5 pt-9 pb-[1.875rem] bg-white rounded-t-2xl z-20 relative">
       {isLoggedIn ? <PetsBox /> : <LoginBox />}
     </section>
   );

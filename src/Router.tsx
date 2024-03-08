@@ -38,8 +38,8 @@ function Router() {
       <ScrollToTop>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Join />} />
             <Route path="/auth/email" element={<Email />} />

@@ -1,35 +1,31 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import landingItems from 'components/LandingPage/constants';
 import Button from 'components/Button';
-import { getToken } from 'utils/localStorage';
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const token = getToken();
-
-  useEffect(() => {
-    if (token) {
-      navigate('/home');
-    }
-  }, []);
 
   const onNextPageButtonClick = () => {
-    navigate('/home');
+    navigate('/');
   };
 
   return (
-    <main className="min-h-screen bg-[#FFFCF7] ">
-      <img src={landingItems.imageSrc} alt="landing" className="object-cover" />
-      <div className="relative mx-6">
+    <main className="min-h-screen ">
+      {landingItems.map((item) => (
+        <img src={item.imageSrc} alt="landing" className="object-cover" />
+      ))}
+      <div className="bg-[#FFF8ED] font-semibold text-heading-2 px-5 py-14">
+        <p className="text-center mb-8">
+          무지개마을에 <br /> 편지를 보내보세요!
+        </p>
         <Button
           id="service_start"
           disabled={false}
           onClick={onNextPageButtonClick}
-          className="absolute inset-x-0 bottom-[7.5rem] left-1/2 transform -translate-x-1/2"
         >
-          편지 쓰러 가기
+          무지개편지 둘러보기
         </Button>
       </div>
     </main>
