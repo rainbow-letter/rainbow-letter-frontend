@@ -14,7 +14,7 @@ export default function BackgroundSection() {
     <button
       type="button"
       onClick={onLandingPageButtonClick}
-      className="bg-[#FFF8ED] flex justify-between w-full pl-7 pr-5 py-12 absolute"
+      className="bg-[#FFF8ED] flex justify-between w-full pl-7 pr-4 py-12 absolute"
     >
       <div className="text-left text-heading-3 pt-[0.625rem]">
         <p className="font-bold">
@@ -29,7 +29,7 @@ export default function BackgroundSection() {
           <img src={vector} alt="arrow" />
         </button>
       </div>
-      <div className="w-[9.875rem] h-[9.875rem] flex justify-center items-center">
+      <div className="w-[9.875rem] h-[9.688rem] flex justify-center items-center">
         <img
           src={card}
           alt="card"
