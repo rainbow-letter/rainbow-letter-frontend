@@ -12,7 +12,7 @@ export default function Auth() {
     if (token) {
       saveToken(token);
     }
-    navigate('/home');
+    navigate('/');
   }, []);
 
   return null;

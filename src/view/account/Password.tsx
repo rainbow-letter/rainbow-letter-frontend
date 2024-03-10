@@ -58,7 +58,7 @@ export default function Password() {
       setErrorData(null);
     }
     removeToken();
-    navigate('/home');
+    navigate('/');
   };
 
   const onErrorHandling = (error: unknown) => {
