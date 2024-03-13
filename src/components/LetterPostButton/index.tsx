@@ -10,7 +10,7 @@ function LetterPostButton() {
         id="share_letter"
         style={{ boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.15)' }}
         className="w-full h-10 flex justify-center items-center gap-x-1 rounded-2xl"
-        to="https://walla.my/survey/25UNmvnL7qWsW4pU2wRl"
+        to="https://walla.my/rainbowletterimage"
         target="_blank"
       >
         <div className="h-[15px] w-[15px]">
