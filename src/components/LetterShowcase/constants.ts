@@ -36,7 +36,7 @@ export const SAMPLE_LETTERS: SampleLetter[] = [
   {
     id: '6',
     type: 'letter',
-    petName: '초코',
+    petName: '비앙',
     content: '비앙아 엄마는 너를 절대 안 잊어. 아니 절대 못 잊어. 평생 사랑해♡',
   },
   {
