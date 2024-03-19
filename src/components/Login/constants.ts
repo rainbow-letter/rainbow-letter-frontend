@@ -1,3 +1,6 @@
+import googleIcon from '../../assets/google_icon_btn.png';
+import naverIcon from '../../assets/naver_icon_btn.png';
+
 export type Message = {
   pathname: string;
   title: string;
@@ -76,3 +79,19 @@ export {
   FIND_EMAIL_MESSAGE,
   UPDATE_PASSWORD_MESSAGE,
 };
+
+// url 입력
+export const SNS_LOGIN = [
+  {
+    id: 0,
+    icon: googleIcon,
+    name: 'google',
+    url: `${process.env.REACT_APP_API_URL}/api/oauth2/authorization/google`,
+  },
+  {
+    id: 1,
+    icon: naverIcon,
+    name: 'naver',
+    url: `${process.env.REACT_APP_API_URL}/api/oauth2/authorization/naver`,
+  },
+];
