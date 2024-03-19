@@ -14,6 +14,7 @@ import BottomSheet from 'components/BottomSheet';
 import { getToken } from 'utils/localStorage';
 import LetterPostButton from 'components/LetterPostButton';
 import HomeDivider from 'components/Home/Divider';
+import Carousel from 'components/Carousel';
 
 export default function LandingPage() {
   const token = getToken();
@@ -21,7 +22,8 @@ export default function LandingPage() {
   return (
     <main className="relative">
       <LogoBar />
-      <BackgroundSection />
+      {/* <BackgroundSection /> */}
+      <Carousel />
       <PetsSection isLoggedIn={!!token} />
       <HomeDivider />
       <LetterShowcase />

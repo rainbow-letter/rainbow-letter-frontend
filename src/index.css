@@ -27,6 +27,13 @@
   .hide-scrollbar {
     scrollbar-width: none;
   }
+
+  .slick-dots li button:before {
+  }
+
+  .slick-dots li.slick-active button:before {
+    color: #ffb347;
+  }
 }
 
 @font-face {
