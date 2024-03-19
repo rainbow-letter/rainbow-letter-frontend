@@ -1,0 +1,54 @@
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+name: Type Coverage Comment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  type-coverage-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18' # 이 부분은 프로젝트에 맞는 Node.js 버전으로 설정하세요.
+      - name: Install Dependencies
+        run: npm install
+      - name: Calculate Type Coverage
+        id: type-coverage
+        run: |
+          COVERAGE=$(npx type-coverage)
+          echo "::set-output name=coverage::$COVERAGE"
+      - name: Comment PR with Type Coverage
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const coverageResult = `${{ steps.type-coverage.outputs.coverage }}`;
+
+            const message = `
+              ## Type Coverage Report 📘
+              ${coverageResult}
+            `;
+
+            // context 객체를 직접 사용하여 PR 번호 확인
+            const prNumber = context.issue.number || context.payload.pull_request?.number;
+            if (!prNumber) {
+              console.log('PR 번호를 찾을 수 없습니다.');
+              return;
+            }
+
+            // PR에 코멘트 추가
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
