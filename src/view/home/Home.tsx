@@ -1,7 +1,6 @@
 import React from 'react';
 
 import LogoBar from 'components/Home/LogoBar';
-import BackgroundSection from 'components/Home/BackgroundSection';
 import PetsSection from 'components/Home/PetsSection';
 import ContentsSection from 'components/Home/ContentsSection';
 import LetterShowcase from 'components/LetterShowcase';
@@ -22,7 +21,6 @@ export default function LandingPage() {
   return (
     <main className="relative">
       <LogoBar />
-      {/* <BackgroundSection /> */}
       <Carousel />
       <PetsSection isLoggedIn={!!token} />
       <HomeDivider />

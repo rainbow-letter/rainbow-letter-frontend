@@ -5,33 +5,39 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import BackgroundSection from 'components/Home/BackgroundSection';
+import Banner from 'components/MainBanner';
+import { BANNER_ITEMS } from 'components/MainBanner/constants';
 
 interface CarouselProps {
   items?: ReactNode[];
 }
 
-const carouselItems = [
-  <BackgroundSection />,
-  <BackgroundSection />,
-  <BackgroundSection />,
-];
+const carouselItems = BANNER_ITEMS.map((item) => (
+  <Banner
+    title={item.title}
+    description={item.description}
+    link={item.link}
+    image={item.image}
+    bgColor={item.bgColor}
+    buttonContent={item.buttonContent}
+  />
+));
 
 function Carousel({ items = carouselItems }: CarouselProps) {
   const itemsLength = items.length;
   const settings = {
     dots: true,
     swipeToSlide: true,
-    infinite: true,
+    Infinity: true,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     appendDots: (dots: ReactNode) => (
       <div
         style={{
           width: '100%',
           position: 'absolute',
-          bottom: '24px',
+          bottom: '17px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -40,21 +46,13 @@ function Carousel({ items = carouselItems }: CarouselProps) {
         <ul>{dots}</ul>
       </div>
     ),
+    dotsClass: 'slick-dots',
   };
 
   if (!itemsLength) return null;
   return (
     <Slider {...settings} key={itemsLength} className="h-10">
-      {/* {items.map((item) => item)} */}
-      <div>
-        <h3>1</h3>
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
+      {items.map((item) => item)}
     </Slider>
   );
 }
