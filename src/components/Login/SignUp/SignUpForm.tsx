@@ -88,7 +88,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
   );
 
   return (
-    <section className="mt-12">
+    <section className="mt-9">
       <header className="flex justify-between items-center">
         <div className="border-t w-[5.25rem]" />
         <h3 className="text-solo-small">{describe}</h3>
