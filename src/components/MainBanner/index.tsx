@@ -35,9 +35,11 @@ export default function Banner({
             {description}
           </p>
         </div>
-        <div className="flex items-center justify-between gap-x-1 px-2.5 py-[5px] bg-orange-400 text-solo-small text-white rounded-full">
-          <p>{buttonContent}</p>
-          <img src={chevronRightWithe} alt="arrow" />
+        <div className="flex">
+          <div className="flex items-center justify-between gap-x-1 px-2.5 py-[5px] bg-orange-400 text-solo-small text-white rounded-full">
+            <p>{buttonContent}</p>
+            <img src={chevronRightWithe} alt="arrow" />
+          </div>
         </div>
       </div>
       <div className="w-[9.875rem] h-[9.875rem] flex justify-center items-center">
