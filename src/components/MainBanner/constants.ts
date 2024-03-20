@@ -8,7 +8,7 @@ export const BANNER_ITEMS = [
   {
     title: `무지개 너머\n답장을 받아보세요`,
     description: '마음껏, 무료로',
-    link: 'https://blog.naver.com/rainbowletter/223383201675',
+    link: '/landing',
     image: bannerLetter,
     buttonContent: '자세히 보기',
     bgColor: 'bg-[#FFF8ED]',
