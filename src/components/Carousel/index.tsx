@@ -31,7 +31,7 @@ function Carousel({ items = carouselItems }: CarouselProps) {
     Infinity: true,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 10000,
     appendDots: (dots: ReactNode) => (
       <div
         style={{
