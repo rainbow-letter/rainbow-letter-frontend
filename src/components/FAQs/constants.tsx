@@ -10,6 +10,13 @@ export const QUESTION_PREFIX = 'Q. ';
 
 export const FAQS: Faqs[] = [
   {
+    id: 0,
+    question:
+      '(간편가입) 네이버 간편가입 했는데 @naver.com으로 로그인이 되지 않아요',
+    answer:
+      '네이버 이용자 정보보호 정책에 따라 고객님의 네이버 계정에 등록된 [연락처 이메일]로 가입이 됩니다. 따라서 @naver.com 으로 가입되지 않을 경우, 네이버ID > 내프로필 > 기본정보의 이메일 주소를 확인해주세요.',
+  },
+  {
     id: 1,
     question: '무지개편지는 어떤 서비스인가요?',
     answer:

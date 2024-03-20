@@ -10,9 +10,9 @@ type Props = {
 function FAQ({ FAQData }: Props) {
   return (
     <div>
-      <header className="p-2.5 text-solo-large">
-        <span className=" text-orange-400">{QUESTION_PREFIX}</span>
-        <span>{FAQData.question}</span>
+      <header className="flex gap-x-1 p-2.5 text-solo-large">
+        <span className="pt-1 text-orange-400">{QUESTION_PREFIX}</span>
+        <span className="leading-7">{FAQData.question}</span>
       </header>
       <main className="m-2.5 p-[1.125rem] bg-gray-2 text-body-small text-gray-1 rounded-2xl">
         {FAQData.answer}
