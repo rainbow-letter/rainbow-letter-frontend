@@ -6,6 +6,7 @@ import bannerCreateLetter from 'assets/banner-createLetter.png';
 
 export const BANNER_ITEMS = [
   {
+    id: 1,
     title: `무지개 너머\n답장을 받아보세요`,
     description: '마음껏, 무료로',
     link: '/landing',
@@ -14,6 +15,7 @@ export const BANNER_ITEMS = [
     bgColor: 'bg-[#FFF8ED]',
   },
   {
+    id: 2,
     title: '아이를 어떻게\n추모하고 있나요?',
     description: '여러분의 경험담을\n모으고 있어요',
     link: 'https://moaform.com/q/ZaL0AH',
@@ -22,6 +24,7 @@ export const BANNER_ITEMS = [
     bgColor: 'bg-[#F8F8F8]',
   },
   {
+    id: 3,
     title: '나는 펫로스\n증후군일까?',
     description: '심리상담이 필요한지\n궁금하다면',
     link: 'https://smore.im/quiz/2re7a9XMt2',
@@ -30,6 +33,7 @@ export const BANNER_ITEMS = [
     bgColor: 'bg-[#FFF1EB]',
   },
   {
+    id: 4,
     title: '편지를 예쁘게\n만들어드려요',
     description: '문장과 사진을 보내면\n1분만에 신청 완료!',
     link: 'https://walla.my/rainbowletterimage',
