@@ -4,6 +4,7 @@ import naverIcon from '../../assets/naver_icon_btn.png';
 export type Message = {
   pathname: string;
   title: string;
+  sns: string;
   describe: string;
   findPassword?: string;
   button: {
@@ -24,6 +25,7 @@ const LOGIN_MESSAGE: Message[] = [
   {
     pathname: '/login',
     title: '다시 와주셨네요!',
+    sns: 'SNS로 간편 로그인하기',
     describe: '또는 이메일로 로그인하기',
     findPassword: '비밀번호 찾기',
     button: {
@@ -38,6 +40,7 @@ const LOGIN_MESSAGE: Message[] = [
   {
     pathname: '/sign-up',
     title: '무료로 편지를 써보세요!',
+    sns: 'SNS로 간편 가입하기',
     describe: '또는 이메일로 가입하기',
     button: {
       google: '구글로 간편 가입하기',

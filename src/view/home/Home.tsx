@@ -1,7 +1,6 @@
 import React from 'react';
 
 import LogoBar from 'components/Home/LogoBar';
-import BackgroundSection from 'components/Home/BackgroundSection';
 import PetsSection from 'components/Home/PetsSection';
 import ContentsSection from 'components/Home/ContentsSection';
 import LetterShowcase from 'components/LetterShowcase';
@@ -14,6 +13,7 @@ import BottomSheet from 'components/BottomSheet';
 import { getToken } from 'utils/localStorage';
 import LetterPostButton from 'components/LetterPostButton';
 import HomeDivider from 'components/Home/Divider';
+import Carousel from 'components/Carousel';
 
 export default function LandingPage() {
   const token = getToken();
@@ -21,7 +21,7 @@ export default function LandingPage() {
   return (
     <main className="relative">
       <LogoBar />
-      <BackgroundSection />
+      <Carousel />
       <PetsSection isLoggedIn={!!token} />
       <HomeDivider />
       <LetterShowcase />
