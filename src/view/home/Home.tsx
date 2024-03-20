@@ -1,6 +1,5 @@
 import React from 'react';
 
-import LogoBar from 'components/Home/LogoBar';
 import PetsSection from 'components/Home/PetsSection';
 import ContentsSection from 'components/Home/ContentsSection';
 import LetterShowcase from 'components/LetterShowcase';
@@ -14,13 +13,14 @@ import { getToken } from 'utils/localStorage';
 import LetterPostButton from 'components/LetterPostButton';
 import HomeDivider from 'components/Home/Divider';
 import Carousel from 'components/Carousel';
+import PWAGuide from 'components/PWAGuide';
 
 export default function LandingPage() {
   const token = getToken();
 
   return (
     <main className="relative">
-      <LogoBar />
+      <PWAGuide />
       <Carousel />
       <PetsSection isLoggedIn={!!token} />
       <HomeDivider />
