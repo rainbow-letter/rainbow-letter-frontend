@@ -26,7 +26,7 @@ export default function Caption({ date, letter }: Props) {
         <p className="font-Gyobomungo2019 text-gray-1">{date}</p>
       ) : (
         <p
-          className={`${isExceeded ? 'text-alarm-red' : 'text-gray-2'} font-sans`}
+          className={`${isExceeded ? 'text-alarm-red' : 'text-gray-2'} font-sans absolute right-6`}
         >
           {`${letter?.length} / 1000`}
         </p>
