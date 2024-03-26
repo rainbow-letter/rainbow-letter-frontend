@@ -24,7 +24,7 @@ function MainBanners() {
     Infinity: true,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 10000,
+    autoplaySpeed: 6000,
     appendDots: (dots: ReactNode) => (
       <div
         style={{

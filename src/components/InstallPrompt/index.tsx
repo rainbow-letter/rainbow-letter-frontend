@@ -2,12 +2,22 @@ import React from 'react';
 
 import Button from 'components/Button';
 import useInstallPrompt from 'hooks/useInstallPrompt';
+import { postData } from 'api/pwa';
 
 function InstallPrompt() {
   const { deferredPrompt, InstallApp } = useInstallPrompt();
 
+  const onInstallButtonClick = async () => {
+    try {
+      InstallApp();
+      await postData({ event: 'pwa' });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return deferredPrompt ? (
-    <Button onClick={InstallApp}>설치없이 앱으로 보기</Button>
+    <Button onClick={onInstallButtonClick}>바로가기 설치하기</Button>
   ) : null;
 }
 

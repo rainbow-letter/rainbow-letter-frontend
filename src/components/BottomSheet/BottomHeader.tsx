@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Logo from '../../assets/Logo_256px.png';
+import Logo from '../../assets/logo_white.png';
 import CancelImage from '../../assets/ph_x-bold.svg';
 
 export default function BottomHeader({ onClick }: any) {
@@ -13,7 +13,7 @@ export default function BottomHeader({ onClick }: any) {
       >
         <img src={CancelImage} alt="cancel" />
       </button>
-      <img src={Logo} alt="logo" className="w-[4rem] border rounded-2xl p-2" />
+      <img src={Logo} alt="logo" />
     </div>
   );
 }
