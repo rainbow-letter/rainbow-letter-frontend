@@ -1,15 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import rainbow from 'assets/rainbow_28*39.svg';
-import { Link } from 'react-router-dom';
 
 function PWAGuide() {
+  const navigate = useNavigate();
+
   return (
     <section>
-      <Link
+      <button
+        type="button"
         className="w-full flex justify-center items-center gap-x-1 py-1.5 bg-gray-2"
-        to="https://blog.naver.com/rainbowletter/223383201675"
-        target="_blank"
+        onClick={() => navigate('/landing')}
       >
         <div>
           <img src={rainbow} alt="logo" />
@@ -19,7 +21,7 @@ function PWAGuide() {
             무지개편지를 앱처럼 사용해보세요!
           </p>
         </div>
-      </Link>
+      </button>
     </section>
   );
 }

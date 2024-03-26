@@ -6,7 +6,7 @@ export default function BottomContent() {
   return (
     <div>
       <h3 className="text-heading-3 text-center mb-5">
-        홈 화면에 무지개편지 앱을 추가하고 <br /> 편하게 이용해보세요!
+        바로가기 설치로 <br /> 무지개편지를 앱처럼 사용해보세요
       </h3>
       <InstallPrompt />
     </div>
