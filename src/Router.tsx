@@ -9,6 +9,7 @@ import Join from 'view/account/Join';
 import Email from 'view/account/Email';
 import Password from 'view/account/Password';
 import LandingPage from 'view/home/LandingPage';
+import PWALanding from 'view/home/PWALanding';
 import Home from 'view/home/Home';
 import Auth from 'view/account/Auth';
 import LetterBox from 'view/letter/LetterBox';
@@ -40,6 +41,7 @@ function Router() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/landing" element={<LandingPage />} />
+            <Route path="/pwa_landing" element={<PWALanding />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Join />} />
             <Route path="/auth/email" element={<Email />} />
