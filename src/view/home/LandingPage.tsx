@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import landingItems from 'components/LandingPage/constants';
+import { landingItems } from 'components/LandingPage/constants';
 import Button from 'components/Button';
-import chevronLeft from '../../assets/chevronLeft.svg';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -12,28 +11,21 @@ export default function LandingPage() {
     navigate('/');
   };
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
   return (
-    <main className="min-h-screen">
-      <section className="flex pl-3">
-        <button type="button" onClick={handleBack}>
-          <img src={chevronLeft} alt="left" />
-        </button>
-        <p className="text-solo-large py-[10px] mx-auto">공지사항</p>
-      </section>
+    <main className="min-h-screen ">
       {landingItems.map((item) => (
-        <img src={item.imageSrc} alt="notice" className="object-cover" />
+        <img src={item.imageSrc} alt="landing" className="object-cover" />
       ))}
-      <div className="px-5 py-14">
+      <div className="bg-[#FFF8ED] font-semibold text-heading-2 px-5 py-14">
+        <p className="text-center mb-8">
+          무지개마을에 <br /> 편지를 보내보세요!
+        </p>
         <Button
           id="service_start"
           disabled={false}
           onClick={onNextPageButtonClick}
         >
-          무지개편지로 돌아가기
+          무지개편지 둘러보기
         </Button>
       </div>
     </main>
