@@ -18,7 +18,7 @@ export const SAMPLE_LETTERS: SampleLetter[] = [
     id: '3',
     type: 'letter',
     petName: '루니',
-    content: '사랑하는 내 강아지 너무 보고싶어하는 내 강아지',
+    content: '사랑하는 내 강아지 너무 보고 싶은 내 강아지',
   },
   {
     id: '4',
