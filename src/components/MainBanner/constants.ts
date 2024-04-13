@@ -1,8 +1,18 @@
 /* eslint-disable import/prefer-default-export */
 import bannerLetter from 'assets/banner-letter.svg';
+import bannerGripTalk from 'assets/banner-grip-talk.svg';
 import bannerCreateLetter from 'assets/banner-createLetter.png';
 
 export const BANNER_ITEMS = [
+  {
+    id: 0,
+    title: `무지개 마을\n케이스&그립톡\n사전 예약 중!`,
+    description: '아이 사진으로\n그립톡 맞춤 제작',
+    link: 'https://forms.gle/zdHQD2gq3EUZtHJZ9',
+    image: bannerGripTalk,
+    buttonContent: '사전 예약하기',
+    bgColor: 'bg-[#F9F9F9]',
+  },
   {
     id: 1,
     title: `무지개 너머\n답장을 받아보세요`,
@@ -30,13 +40,13 @@ export const BANNER_ITEMS = [
   //   buttonContent: '테스트하기',
   //   bgColor: 'bg-[#FFF1EB]',
   // },
-  {
-    id: 4,
-    title: '편지를 예쁘게\n만들어드려요',
-    description: '문장과 사진을 보내면\n1분만에 신청 완료!',
-    link: 'https://walla.my/rainbowletterimage',
-    image: bannerCreateLetter,
-    buttonContent: '설문조사 바로가기',
-    bgColor: 'bg-[#FFF8ED]',
-  },
+  // {
+  //   id: 4,
+  //   title: '편지를 예쁘게\n만들어드려요',
+  //   description: '문장과 사진을 보내면\n1분만에 신청 완료!',
+  //   link: 'https://walla.my/rainbowletterimage',
+  //   image: bannerCreateLetter,
+  //   buttonContent: '설문조사 바로가기',
+  //   bgColor: 'bg-[#FFF8ED]',
+  // },
 ];

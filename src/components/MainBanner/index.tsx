@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import chevronRightWithe from 'assets/chvron-right_white.svg';
 
 type BannerProps = {
+  id: number;
   title: string;
   description: string;
   link: string;
@@ -13,6 +14,7 @@ type BannerProps = {
 };
 
 export default function Banner({
+  id,
   title,
   description,
   link,
@@ -28,10 +30,14 @@ export default function Banner({
     >
       <div className="flex flex-col justify-between py-2.5 text-left">
         <div>
-          <p className="text-heading-3 font-bold whitespace-pre-wrap">
+          <p
+            className={`${id === 0 ? 'text-base leading-5' : 'text-heading-3'} font-bold whitespace-pre-wrap`}
+          >
             {title}
           </p>
-          <p className="text-sm font-light whitespace-pre-wrap">
+          <p
+            className={`${id === 0 ? ' my-2.5' : ''} text-sm font-light whitespace-pre-wrap`}
+          >
             {description}
           </p>
         </div>
