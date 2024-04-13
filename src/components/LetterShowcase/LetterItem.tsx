@@ -22,7 +22,7 @@ function LetterItem({ letter }: LetterItemProps) {
       >
         <p className="pb-2 text-center leading-[130%]">{`${prefix}. ${petName}`}</p>
         <div
-          className={`w-full leading-[160%] text-center whitespace-pre-wrap ${backgroundColor} bg-[repeating-linear-gradient(to_bottom,transparent_0%,transparent_25px,#BDBDBD_25px,#BDBDBD_26px)] bg-size-[100%_26px]`}
+          className={`w-full min-h-[104px] leading-[1.625] text-center whitespace-pre-wrap ${backgroundColor} bg-[repeating-linear-gradient(to_bottom,transparent_0%,transparent_25px,#BDBDBD_25px,#BDBDBD_26px)] bg-size-[100%_26px]`}
         >
           {content}
         </div>
