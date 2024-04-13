@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-import { SampleLetter } from 'components/LetterShowcase/type';
+import { ShowcaseLetter } from 'components/LetterShowcase/type';
 
-export const SAMPLE_LETTERS: SampleLetter[] = [
+export const SAMPLE_LETTERS: ShowcaseLetter[] = [
   {
     id: '1',
     type: 'letter',

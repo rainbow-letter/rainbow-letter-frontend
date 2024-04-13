@@ -1,6 +1,6 @@
 type LetterType = 'letter' | 'reply';
 
-export type SampleLetter = {
+export type ShowcaseLetter = {
   id: string;
   type: LetterType;
   petName: string;

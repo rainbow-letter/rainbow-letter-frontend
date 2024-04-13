@@ -1,10 +1,10 @@
 import React from 'react';
 
 import post from 'assets/post.svg';
-import { SampleLetter } from 'components/LetterShowcase/type';
+import { ShowcaseLetter } from 'components/LetterShowcase/type';
 
 type LetterItemProps = {
-  letter: SampleLetter;
+  letter: ShowcaseLetter;
 };
 
 function LetterItem({ letter }: LetterItemProps) {
