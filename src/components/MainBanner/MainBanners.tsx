@@ -8,7 +8,7 @@ import Banner from 'components/MainBanner';
 const carouselItems = BANNER_ITEMS.map((item) => (
   <Banner
     key={item.id}
-    id={item.id}
+    category={item.category}
     title={item.title}
     description={item.description}
     link={item.link}
