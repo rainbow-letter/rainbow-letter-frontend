@@ -1,13 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 import bannerLetter from 'assets/banner-letter.svg';
 import bannerGripTalk from 'assets/banner-grip-talk.svg';
-import bannerCreateLetter from 'assets/banner-createLetter.png';
+// import bannerCreateLetter from 'assets/banner-createLetter.png';
 
 export const BANNER_ITEMS = [
   {
     id: 0,
-    title: `무지개 마을\n케이스&그립톡\n사전 예약 중!`,
-    description: '아이 사진으로\n그립톡 맞춤 제작',
+    category: 'EVENT',
+    title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
+    description: '',
     link: 'https://forms.gle/zdHQD2gq3EUZtHJZ9',
     image: bannerGripTalk,
     buttonContent: '사전 예약하기',
