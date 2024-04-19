@@ -11,6 +11,8 @@ import { validatePhoneNumber } from 'utils/validators';
 import { setExpireModal } from 'utils/localStorage';
 import { modalActions } from 'store/modal/modal-slice';
 import CancelImage from '../../assets/ph_x-bold.svg';
+import WritingPad from '../../assets/writing_pad.svg';
+import AdPitAPat from '../../assets/ad_pitapat.svg';
 
 export default function ModalContents() {
   const [value, setValue] = useState('');
@@ -40,6 +42,16 @@ export default function ModalContents() {
   const closeDuringDate = () => {
     const date = Date.now() + 7 * 24 * 60 * 60 * 1000;
     setExpireModal(String(date));
+  };
+
+  const handleOpenNewTab = () => {
+    window.open(
+      'https://forms.gle/zdHQD2gq3EUZtHJZ9',
+      '_blank',
+      'noopener, noreferrer'
+    );
+    dispatch(modalActions.closeModal());
+    navigate('/letter-box');
   };
 
   return (
@@ -119,28 +131,34 @@ export default function ModalContents() {
             );
           case 'COMPLETE':
             return (
-              <div className="w-full">
-                <header className="mt-[3.313rem] text-center">
-                  <h3 className="text-heading-3">{title}</h3>
+              <div className="w-full pt-[3.313rem] pb-[2.75rem]">
+                <header className="flex flex-col justify-center items-center py-6 text-center border rounded-[0.938rem]">
+                  <img
+                    src={WritingPad}
+                    alt="편지지"
+                    className="w-[1.625rem] h-[1.125rem]"
+                  />
+                  <h3 className="text-heading-3 mt-2">{title}</h3>
+                  <span className="mt-2">{body[0].contents}</span>
                 </header>
-                <ul className="mt-6 mb-7 text-center text-body-medium">
-                  {body &&
-                    body.map(({ id, prefix, contents }) => (
-                      <li key={id} className="mb-1">
-                        <span className="text-orange-400">{prefix}</span>
-                        {contents}
-                      </li>
-                    ))}
-                </ul>
-                <Button
+                <button
+                  id="add_letter_popup"
+                  type="button"
+                  onClick={handleOpenNewTab}
+                  className="mt-4"
+                >
+                  <img src={AdPitAPat} alt="핏어팻광고" />
+                </button>
+                <button
+                  type="button"
                   onClick={() => {
                     dispatch(modalActions.closeModal());
                     navigate('/letter-box');
                   }}
-                  className="mb-5"
+                  className="absolute top-4 right-4"
                 >
-                  편지함 가기
-                </Button>
+                  <img src={CancelImage} alt="cancel" />
+                </button>
               </div>
             );
           default:

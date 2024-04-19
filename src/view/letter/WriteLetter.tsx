@@ -36,6 +36,7 @@ export default function WriteLetter() {
     (async () => {
       const { pets } = await getPets();
       const { letters } = await getLetters();
+
       setPetsList(pets || []);
       if (letters.length < 1) {
         dispatch(modalActions.openModal('TOPIC'));
