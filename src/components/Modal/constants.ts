@@ -50,7 +50,7 @@ export const MODAL_MESSAGE: Modal[] = [
     body: [
       {
         id: 1,
-        contents: '답장은 1~2일 후에 도착해요',
+        contents: '답장은 다음날 오전 10시에 도착해요',
       },
     ],
   },
