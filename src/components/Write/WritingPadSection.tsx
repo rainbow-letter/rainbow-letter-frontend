@@ -86,7 +86,7 @@ export default function WritingPadSection({
           maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}
           spellCheck="false"
-          className={`${textareaStyle} whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none bg-gradient-to-b from-transparent to-gray-300 from-[97%] to-[3%] bg-[length:1px_2.6rem] leading-[180%] text-clip`}
+          className={`${textareaStyle} whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none leading-[170%] text-clip`}
         />
         <Caption date={date} letter={letter?.content} />
       </section>
