@@ -6,6 +6,7 @@ import { generateFormData } from 'utils/formData';
 import { isFutureDate } from 'utils/date';
 import { Dates } from 'types/date';
 import { PetRegister } from 'types/pets';
+import { isActualDate } from 'utils/validators';
 
 const usePetForm = (
   initialData: PetRegister,
@@ -26,6 +27,11 @@ const usePetForm = (
       (data.deathAnniversary?.year !== '' &&
         data.deathAnniversary?.month !== '' &&
         data.deathAnniversary?.day !== '' &&
+        isActualDate(
+          data.deathAnniversary.year,
+          data.deathAnniversary.month,
+          data.deathAnniversary.day
+        ) &&
         !isFutureDate(data.deathAnniversary));
     const isImageUrlFilled = !!(data.image && data.image.url);
     const isImageFileFilled = !!(

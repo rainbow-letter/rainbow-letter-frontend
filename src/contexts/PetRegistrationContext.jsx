@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { createContext, useState, useContext, useMemo } from 'react';
 
 const PetRegistrationContext = createContext({
