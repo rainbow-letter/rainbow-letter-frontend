@@ -49,9 +49,8 @@ export default function LetterItems({
       } border-gray-3 list-none mb-4 border rounded-2xl cursor-pointer relative`}
     >
       <div className="pl-6 pt-6">
-        <div className="flex flex-col bg-orange-50 absolute items-center px-2.5 py-1 rounded-t-sm rounded-b-lg -top-1 right-7 text-orange-400">
-          <p className="text-[10px]">no</p>
-          <p className="text-solo-large font-bold">
+        <div className="flex flex-col bg-orange-50 absolute items-center px-2.5 pt-2.5 pb-1 rounded-t-sm rounded-b-lg -top-1 right-7 text-orange-400">
+          <p className="text-solo-large font-[350] leading-normal">
             {typeof index === 'number' && index}
           </p>
         </div>
