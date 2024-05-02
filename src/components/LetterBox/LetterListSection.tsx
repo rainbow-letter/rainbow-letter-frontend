@@ -12,19 +12,19 @@ type Props = {
   pet: '전체' | string;
 };
 
-export default function LetterListSection({ pet }: Props): any {
+export default function LetterListSection({ pet }: Props) {
   const [letterList, setLetterList] = useState<Letters[]>([]);
 
   useEffect(() => {
     (async () => {
       const { letters } = await getLetters();
-      letters.forEach((letter: Letters, index: number) => {
+      letters.reverse().forEach((letter: Letters, index: number) => {
         const temp = letter;
         temp.number = index + 1;
 
         return temp;
       });
-      setLetterList(letters || []);
+      setLetterList(letters.reverse() || []);
     })();
   }, []);
 
