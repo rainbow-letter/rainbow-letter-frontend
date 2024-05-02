@@ -77,7 +77,7 @@ export default function WritingPadSection({
         className={`${textareaStyle} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}
       >
         {typeof index === 'number' && (
-          <div className="flex flex-col bg-white items-center px-2.5 pt-2.5 pb-1 rounded-t-sm rounded-b-lg absolute -top-0.5 right-7 text-orange-400 font-sans">
+          <div className="flex flex-col min-w-[30px] bg-white items-center px-2.5 pt-2.5 pb-1 rounded-t-sm rounded-b-lg absolute -top-0.5 right-7 text-orange-400 font-sans">
             <p className="text-solo-large font-[350] leading-normal">
               {typeof index === 'number' && index}
             </p>
