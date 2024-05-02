@@ -5,6 +5,7 @@ export interface Letters {
   petName: string;
   readStatus: string;
   createdAt: string;
+  number?: number;
 }
 
 export interface Letter {

@@ -7,10 +7,12 @@ import ellipseIcon from '../../assets/Ellipse 439.svg';
 
 type Props = {
   letter: Letters;
+  index: number | undefined;
 };
 
 export default function LetterItems({
   letter: { readStatus, petName, summary, status, createdAt },
+  index,
 }: Props) {
   const setDate = (date: string) => {
     const year = date.slice(2, 4);
@@ -44,9 +46,15 @@ export default function LetterItems({
     <li
       className={`${
         isCheckUnread(readStatus, status) && `bg-orange-50`
-      } border-gray-3 list-none mb-4 border rounded-2xl cursor-pointer relative `}
+      } border-gray-3 list-none mb-4 border rounded-2xl cursor-pointer relative`}
     >
       <div className="pl-6 pt-6">
+        <div className="flex flex-col bg-orange-50 absolute items-center px-2.5 py-1 rounded-t-sm rounded-b-lg -top-1 right-7 text-orange-400">
+          <p className="text-[10px]">no</p>
+          <p className="text-solo-large font-bold">
+            {typeof index === 'number' && index}
+          </p>
+        </div>
         <img
           src={ellipseIcon}
           alt="ellipse"

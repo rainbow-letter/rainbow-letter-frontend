@@ -12,12 +12,18 @@ type Props = {
   pet: '전체' | string;
 };
 
-export default function LetterListSection({ pet }: Props) {
+export default function LetterListSection({ pet }: Props): any {
   const [letterList, setLetterList] = useState<Letters[]>([]);
 
   useEffect(() => {
     (async () => {
       const { letters } = await getLetters();
+      letters.forEach((letter: Letters, index: number) => {
+        const temp = letter;
+        temp.number = index + 1;
+
+        return temp;
+      });
       setLetterList(letters || []);
     })();
   }, []);
@@ -35,8 +41,12 @@ export default function LetterListSection({ pet }: Props) {
       <ul>
         {filteredLetter &&
           filteredLetter.map((item) => (
-            <Link to={`/letter-box/${item.id}`} key={item.id}>
-              <LetterItems key={item.id} letter={item} />
+            <Link
+              to={`/letter-box/${item.id}`}
+              key={item.id}
+              state={{ index: item.number }}
+            >
+              <LetterItems key={item.id} letter={item} index={item.number} />
             </Link>
           ))}
       </ul>

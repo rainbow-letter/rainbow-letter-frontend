@@ -66,6 +66,7 @@ module.exports = {
       boxShadow: {
         default: '0px 0px 10px 0px rgba(0, 0, 0, 0.15)',
         home: '0px 0px 5px 0px rgba(0, 0, 0, 0.15)',
+        letter: '2px 2px 5px 0px rgba(0, 0, 0, 0.05)',
       },
     },
   },
