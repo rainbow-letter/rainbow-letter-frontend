@@ -17,6 +17,7 @@ type Props = {
   className?: string;
   onchange?: (letter: any) => void;
   letter?: Letter;
+  index?: number | undefined;
 };
 
 const MAX_LENGTH = 1000;
@@ -29,6 +30,7 @@ export default function WritingPadSection({
   reply,
   date,
   className,
+  index,
 }: Props) {
   const style = (image && 'pt-[15.187rem]') || '';
   const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
@@ -74,6 +76,15 @@ export default function WritingPadSection({
       <section
         className={`${textareaStyle} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}
       >
+        {typeof index === 'number' && (
+          <div className="flex flex-col bg-white items-center px-2.5 py-1 rounded-t-sm rounded-b-lg absolute -top-0.5 right-7 text-orange-400 font-sans shadow-letter">
+            <p className="text-[10px] leading-5">no</p>
+            <p className="text-solo-large font-bold">
+              {typeof index === 'number' && index}
+            </p>
+          </div>
+        )}
+
         <h3>{petName}</h3>
         <textarea
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

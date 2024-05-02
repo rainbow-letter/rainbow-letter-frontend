@@ -1,13 +1,14 @@
 import React, { Suspense, useState } from 'react';
 
 import Spinner from 'components/Spinner';
+import LetterListSection from 'components/LetterBox/LetterListSection';
 
 const NameSection = React.lazy(
   () => import('components/LetterBox/NameSection')
 );
-const LetterListSection = React.lazy(
-  () => import('components/LetterBox/LetterListSection')
-);
+// const LetterListSection = React.lazy(
+//   () => import('components/LetterBox/LetterListSection')
+// );
 
 const DEFAULT = '전체';
 

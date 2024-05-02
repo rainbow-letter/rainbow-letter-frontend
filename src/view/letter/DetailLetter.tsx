@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 import Button from 'components/Button';
 import WritingPadSection from 'components/Write/WritingPadSection';
@@ -13,6 +13,7 @@ import { getLetter } from 'api/letter';
 import { readReply } from '../../api/reply';
 
 export default function DetailLetter() {
+  const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
   const [letterData, setLetterData] = useState<Letter>();
@@ -50,6 +51,7 @@ export default function DetailLetter() {
               petName={`${letterData.pet.name}로부터`}
               reply={letterData.reply.content}
               date={processDate(letterData.reply.timestamp)}
+              index={location.state.index}
             />
           )}
           <WritingPadSection
