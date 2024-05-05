@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Chip from 'components/Chips/Chip';
 import Input from 'components/Input';
 import InputAlert from 'components/InputAlert';
-import { validateDateInput } from 'utils/validators';
+import { validateDateInput, isActualDate } from 'utils/validators';
 import { isFutureDate } from 'utils/date';
 import { TITLES, DATE_OF_DEATH, INFO_MESSAGES } from './constants';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
@@ -13,22 +13,34 @@ function DateOfDeathSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();
   const [date, setDate] = useState(mandatoryData.deathAnniversary);
   const [isDateInFuture, setIsDateInFuture] = useState(false);
+  const [isDateValid, setIsDateValid] = useState(true);
   const isChipSelected = date === null;
 
   const handleInputChange = (field) => (event) => {
     const { value } = event.target;
-    setDate({ ...date, [field]: value });
+    if (!validateDateInput(value, field)) {
+      return;
+    }
+    const updatedDate = { ...date, [field]: value };
+    setDate(updatedDate);
+
+    if (updatedDate.year && updatedDate.month && updatedDate.day) {
+      const isValid = isActualDate(
+        updatedDate.year,
+        updatedDate.month,
+        updatedDate.day
+      );
+      setIsDateValid(isValid);
+      if (isValid) {
+        setIsDateInFuture(isFutureDate(updatedDate));
+      }
+    } else {
+      setIsDateValid(true);
+    }
   };
 
   const handleChipClick = () => {
     setDate(date ? null : { year: '', month: '', day: '' });
-  };
-
-  const handleDateValidation = (field) => (event) => {
-    const { value } = event.target;
-    if (validateDateInput(value, field)) {
-      handleInputChange(field)(event);
-    }
   };
 
   useEffect(() => {
@@ -51,7 +63,7 @@ function DateOfDeathSection() {
             type="tel"
             placeholder="YYYY"
             value={date?.year || ''}
-            onChange={handleDateValidation('year')}
+            onChange={handleInputChange('year')}
           />
           <span className="p-[0.437rem] text-caption">
             {DATE_OF_DEATH.YEAR}
@@ -61,7 +73,7 @@ function DateOfDeathSection() {
             type="tel"
             placeholder="MM"
             value={date?.month || ''}
-            onChange={handleDateValidation('month')}
+            onChange={handleInputChange('month')}
           />
           <span className="p-[0.437rem] text-caption">
             {DATE_OF_DEATH.MONTH}
@@ -71,7 +83,7 @@ function DateOfDeathSection() {
             type="tel"
             placeholder="DD"
             value={date?.day || ''}
-            onChange={handleDateValidation('day')}
+            onChange={handleInputChange('day')}
           />
           <span className="p-[0.437rem] text-caption">{DATE_OF_DEATH.DAY}</span>
         </div>
@@ -85,7 +97,7 @@ function DateOfDeathSection() {
       </div>
       <InputAlert
         message={INFO_MESSAGES.CHECK_DATE_AGAIN}
-        isVisible={isDateInFuture}
+        isVisible={isDateInFuture || !isDateValid}
       />
     </PetRegistrationSection>
   );

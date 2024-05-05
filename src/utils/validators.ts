@@ -15,6 +15,30 @@ function validatePasswordMatch(
   return password === confirmPassword;
 }
 
+export const isActualDate = (
+  year: string,
+  month: string,
+  day: string
+): boolean => {
+  if (!year || !month || !day) {
+    return false; // 입력값이 비어있으면 false 반환
+  }
+
+  const yearInt = parseInt(year, 10);
+  const monthInt = parseInt(month, 10) - 1; // 월은 0부터 시작하므로 1을 빼줍니다.
+  const dayInt = parseInt(day, 10);
+
+  const date = new Date(yearInt, monthInt, dayInt);
+  if (
+    date.getFullYear() === yearInt &&
+    date.getMonth() === monthInt &&
+    date.getDate() === dayInt
+  ) {
+    return true; // 입력한 날짜가 유효하면 true 반환
+  }
+  return false; // 그렇지 않으면 false 반환
+};
+
 function validatePhoneNumber(phoneNumber: string): boolean {
   const regex = /^010[0-9]{8}$/;
   return regex.test(phoneNumber) || phoneNumber === '';
