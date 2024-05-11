@@ -10,9 +10,11 @@ import { State } from 'types/store';
 import { validatePhoneNumber } from 'utils/validators';
 import { setExpireModal } from 'utils/localStorage';
 import { modalActions } from 'store/modal/modal-slice';
+import { setSessionAutoSaveID } from 'utils/sesstionStorage';
 import CancelImage from '../../assets/ph_x-bold.svg';
 import WritingPad from '../../assets/writing_pad.svg';
 import AdPitAPat from '../../assets/ad_pitapat.svg';
+import ErrorIcon from '../../assets/Error_icon.svg';
 
 export default function ModalContents() {
   const [value, setValue] = useState('');
@@ -159,6 +161,42 @@ export default function ModalContents() {
                 >
                   <img src={CancelImage} alt="cancel" />
                 </button>
+              </div>
+            );
+          case 'SAVING':
+            return (
+              <div className="w-full py-10 px-[1.562rem]">
+                <header className="flex flex-col justify-center items-center text-center">
+                  <img src={ErrorIcon} alt="편지지" />
+                  <h3 className="text-heading-3 mt-5 font-bold whitespace-pre-wrap">
+                    {title}
+                  </h3>
+                  <span className="mt-3">{body[0].contents}</span>
+                </header>
+                <div className="gap-3 flex mt-7">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(modalActions.closeModal());
+                      navigate('/');
+                    }}
+                    className="py-2.5 px-7 text-[16px] bg-gray-4 border-none rounded-[8px] text-gray-5 font-bold"
+                  >
+                    홈으로
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(modalActions.closeModal());
+                      const autoSaveID = String(Date.now());
+                      setSessionAutoSaveID(autoSaveID);
+                      window.location.reload();
+                    }}
+                    className="py-2.5 px-7 text-[16px] bg-orange-400 border-none rounded-[8px] text-white font-bold"
+                  >
+                    편지 불러오기
+                  </button>
+                </div>
               </div>
             );
           default:

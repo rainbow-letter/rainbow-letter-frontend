@@ -91,7 +91,7 @@ export default function WritingPadSection({
           }}
           ref={textarea}
           rows={7}
-          defaultValue={reply}
+          defaultValue={reply ? reply : letter?.content}
           readOnly={!!reply}
           maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}

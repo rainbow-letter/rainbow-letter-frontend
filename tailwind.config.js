@@ -41,6 +41,8 @@ module.exports = {
           1: '#BDBDBD',
           2: '#F8F8F8',
           3: '#DFDFDF',
+          4: '#DADADA',
+          5: '#6D6D6D',
         },
         orange: {
           50: '#FFF8ED',
