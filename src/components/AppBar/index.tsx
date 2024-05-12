@@ -43,7 +43,7 @@ function AppBar() {
             <img src={autoSaving} alt="자동 저장 중" />
           ) : (
             <img
-              src={isSuccess ? autoSavingSuccess : autoSavingFail}
+              src={!isSuccess ? autoSavingFail : autoSavingSuccess}
               alt="자동 저장 결과"
             />
           )}
