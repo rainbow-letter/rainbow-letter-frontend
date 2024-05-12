@@ -45,8 +45,6 @@ export default function WriteLetter() {
     image: null,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [isSaving, setIsSaving] = useState<null | boolean>(null);
-  const [isSaveSuccess, setIsSaveSuccess] = useState<boolean>(true);
   const [temp, setTemp] = useState<string | undefined>('');
   const [id, setId] = useState<string>('');
 
@@ -134,7 +132,6 @@ export default function WriteLetter() {
             content: letter?.content,
           });
           dispatch(letterActions.setIsSuccess());
-          setIsSaveSuccess(true);
         }
       } catch (error) {
         if (axios.isAxiosError(error)) {
