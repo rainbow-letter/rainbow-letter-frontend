@@ -55,6 +55,16 @@ export const MODAL_MESSAGE: Modal[] = [
     ],
   },
   {
+    type: 'isExistLetter',
+    title: `작성중인 편지가 있어요`,
+    body: [
+      {
+        id: 1,
+        contents: '여기서 계속 작성할까요?',
+      },
+    ],
+  },
+  {
     type: 'SAVING',
     title: `다른 환경에서\n편지를 작성중이예요`,
     body: [

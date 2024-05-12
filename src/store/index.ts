@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import modalSlice from 'store/modal/modal-slice';
 import userSlice from 'store/user/user-slice';
 import petSlice from 'store/pet/pet-slice';
+import letterSlice from 'store/letter/letter-slice';
 import adminLettersSlice from './admin/letter-slice';
 import adminLetterUiSlice from './admin/letterUi-slice';
 import { setupListeners } from './listeners';
@@ -16,6 +17,7 @@ const store = configureStore({
     modal: modalSlice.reducer,
     user: userSlice.reducer,
     pet: petSlice.reducer,
+    letter: letterSlice.reducer,
     adminLetters: adminLettersSlice.reducer,
     adminLetterUi: adminLetterUiSlice.reducer,
     // 여기에 다른 리듀서들을 추가
