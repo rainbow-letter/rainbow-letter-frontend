@@ -1,12 +1,19 @@
 import React from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 import appBarConfig from 'components/AppBar/constants';
 import normalizePath from 'utils/normalizers';
 import chevronLeft from '../../assets/chevronLeft.svg';
+import autoSaving from '../../assets/autoSaving.svg';
+import autoSavingSuccess from '../../assets/autoSave_success.svg';
+import autoSavingFail from '../../assets/autoSave_fail.svg';
 
 function AppBar() {
   const location = useLocation();
+  const isSaving = useSelector((state: RootState) => state.letter.isSaving);
+  const isSuccess = useSelector((state: RootState) => state.letter.isSuccess);
   const normalizedPath = normalizePath(location.pathname);
   const params = Object.keys(useParams())[0];
   const config = appBarConfig[params] || appBarConfig[normalizedPath];
@@ -30,6 +37,19 @@ function AppBar() {
         </button>
       </section>
       <section className="flex-3 text-center text-solo-large">{title}</section>
+      {normalizedPath === '/write-letter' && (
+        <article className="absolute right-2.5 z-10">
+          {isSaving ? (
+            <img src={autoSaving} alt="자동 저장 중" />
+          ) : (
+            <img
+              src={isSuccess ? autoSavingSuccess : autoSavingFail}
+              alt="자동 저장 결과"
+            />
+          )}
+        </article>
+      )}
+
       <section className="flex flex-1 justify-end" />
     </header>
   );

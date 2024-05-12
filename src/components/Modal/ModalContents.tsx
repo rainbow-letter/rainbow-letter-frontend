@@ -199,6 +199,39 @@ export default function ModalContents() {
                 </div>
               </div>
             );
+          case 'isExistLetter':
+            return (
+              <div className="w-full py-10 px-[1.562rem]">
+                <header className="flex flex-col justify-center items-center text-center">
+                  <img src={ErrorIcon} alt="편지지" />
+                  <h3 className="text-heading-3 mt-5 font-bold whitespace-pre-wrap">
+                    {title}
+                  </h3>
+                  <span className="mt-3">{body[0].contents}</span>
+                </header>
+                <div className="gap-3 flex mt-7">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(modalActions.closeModal());
+                      navigate('/');
+                    }}
+                    className="py-2.5 px-7 text-[16px] bg-gray-4 border-none rounded-[8px] text-gray-5 font-bold"
+                  >
+                    홈으로
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(modalActions.closeModal());
+                    }}
+                    className="py-2.5 px-7 text-[16px] bg-orange-400 border-none rounded-[8px] text-white font-bold"
+                  >
+                    편지 불러오기
+                  </button>
+                </div>
+              </div>
+            );
           default:
             return null;
         }

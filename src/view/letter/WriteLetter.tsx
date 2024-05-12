@@ -31,9 +31,7 @@ import {
   getSessionAutoSaveID,
 } from 'utils/sesstionStorage';
 import { modalActions } from 'store/modal/modal-slice';
-import autoSaving from '../../assets/autoSaving.svg';
-import autoSavingSuccess from '../../assets/autoSave_success.svg';
-import autoSavingFail from '../../assets/autoSave_fail.svg';
+import { letterActions } from 'store/letter/letter-slice';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -71,21 +69,34 @@ export default function WriteLetter() {
       petId: data[0].id,
       content: letter?.content,
     });
+    const { data: savedLetter } = await getSavedLetter();
+    setId(String(savedLetter.id));
     setSessionAutoSaveID(sessionId);
   }, []);
 
+  const loadLetter = useCallback(async (pets: Pets[]) => {
+    const petId = await fetchAutoSaveLetter();
+
+    const finedPet = pets.find((pet: Pets) => pet.id === petId);
+    return setSelectedPet(finedPet || pets[0]);
+  }, []);
+
   const choosePet = useCallback(
-    async (pets: Pets[], isExist: any) => {
+    async (pets: Pets[]) => {
+      const isExist = await isExistCheckSavedLetter();
       if (location.state) {
+        if (isExist) {
+          dispatch(modalActions.openModal('isExistLetter'));
+          return loadLetter(pets);
+        }
+
         const finedPet = pets.find((pet: Pets) => pet.name === location.state);
-        return setSelectedPet(finedPet || pets[0]);
+        setSelectedPet(finedPet || pets[0]);
+        return setAutoSaveLetter(pets);
       }
 
       if (isExist) {
-        const petId = await fetchAutoSaveLetter();
-
-        const finedPet = pets.find((pet: Pets) => pet.id === petId);
-        return setSelectedPet(finedPet || pets[0]);
+        return loadLetter(pets);
       }
 
       await setAutoSaveLetter(pets);
@@ -103,9 +114,7 @@ export default function WriteLetter() {
       if (letters.length < 1) {
         dispatch(modalActions.openModal('TOPIC'));
       }
-
-      const isExist = await isExistCheckSavedLetter();
-      choosePet(pets, isExist);
+      choosePet(pets);
 
       return () => {
         dispatch(modalActions.closeModal());
@@ -124,18 +133,19 @@ export default function WriteLetter() {
             petId: selectedPet?.id,
             content: letter?.content,
           });
+          dispatch(letterActions.setIsSuccess());
           setIsSaveSuccess(true);
         }
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          setIsSaveSuccess(false);
+          dispatch(letterActions.setisFailed());
         }
       }
     };
 
     const autoSaveLetter = setTimeout(() => {
       if (temp === letter?.content) {
-        setIsSaving(false);
+        dispatch(letterActions.setIsSaving(false));
         saveLetterValue();
       }
 
@@ -173,7 +183,7 @@ export default function WriteLetter() {
   // 편지 내용 임시 저장
   useEffect(() => {
     setTemp(letter?.content);
-    setIsSaving(true);
+    dispatch(letterActions.setIsSaving(true));
   }, [letter?.content]);
 
   const uploadImage = async (image: string | File) => {
@@ -214,19 +224,6 @@ export default function WriteLetter() {
 
   return (
     <main className="relative">
-      {temp && (
-        <article className="absolute -top-[2.625rem] right-2.5 z-10">
-          {isSaving ? (
-            <img src={autoSaving} alt="자동 저장 중" />
-          ) : (
-            <img
-              src={isSaveSuccess ? autoSavingSuccess : autoSavingFail}
-              alt="자동 저장 결과"
-            />
-          )}
-        </article>
-      )}
-
       {petsList.length > 0 ? (
         <PetsListDropDown
           petName={selectedPet && selectedPet.name}
