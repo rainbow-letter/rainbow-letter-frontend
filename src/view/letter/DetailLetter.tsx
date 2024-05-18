@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import html2canvas from 'html2canvas';
+import saveAs from 'file-saver';
 
 import Button from 'components/Button';
 import WritingPadSection from 'components/Write/WritingPadSection';
@@ -53,6 +54,7 @@ export default function DetailLetter() {
   };
 
   const handleSaveToImage = useCallback(async (type: string | null) => {
+    let fileDate: string | null | undefined;
     if (sectionRef.current) {
       html2canvas(sectionRef.current, {
         allowTaint: false,
@@ -92,17 +94,26 @@ export default function DetailLetter() {
             div.style.minHeight = '280px';
             textarea.parentElement?.append(div);
             textarea.parentElement?.append(date);
+            const text = date.firstChild;
+            fileDate = text?.textContent;
             logo.style.display = 'block';
           }
         },
       })
         .then((canvas) => {
-          const image = canvas.toDataURL('image/png');
-          const link = document.createElement('a');
-          link.download = 'rainbow-letter.png';
-          link.href = image;
-          link.click();
+          canvas.toBlob((blob) => {
+            if (blob !== null) {
+              saveAs(blob, `${fileDate}_${letterData?.pet.name}_편지.png`);
+            }
+          });
         })
+        // .then((canvas) => {
+        //   const image = canvas.toDataURL('image/png');
+        //   const link = document.createElement('a');
+        //   link.download = 'rainbow-letter.png';
+        //   link.href = image;
+        //   link.click();
+        // })
         .then((_) => {
           dispatch(modalActions.openModal('SAVECOMPLETE'));
         });
