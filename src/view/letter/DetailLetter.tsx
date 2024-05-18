@@ -53,23 +53,8 @@ export default function DetailLetter() {
     return `${year}년 ${month}월 ${day}일`;
   };
 
-  //   const handleDownload = async () => {
-  //   if (!sectionRef.current) return;
-
-  //   try {
-  //     const save = sectionRef.current;
-  //     const canvas = await html2canvas(save, { scale: 4 });
-  //     canvas.toBlob((blob) => {
-  //       if (blob !== null) {
-  //         saveAs(blob, 'result.png');
-  //       }
-  //     });
-  //   } catch (error) {
-  //     console.error('Error converting div to image:', error);
-  //   }
-  // };
-
   const handleSaveToImage = useCallback(async (type: string | null) => {
+    let fileDate: string | null | undefined;
     if (sectionRef.current) {
       html2canvas(sectionRef.current, {
         allowTaint: false,
@@ -109,6 +94,8 @@ export default function DetailLetter() {
             div.style.minHeight = '280px';
             textarea.parentElement?.append(div);
             textarea.parentElement?.append(date);
+            const text = date.firstChild;
+            fileDate = text?.textContent;
             logo.style.display = 'block';
           }
         },
@@ -116,7 +103,7 @@ export default function DetailLetter() {
         .then((canvas) => {
           canvas.toBlob((blob) => {
             if (blob !== null) {
-              saveAs(blob, 'result.png');
+              saveAs(blob, `${fileDate}_${letterData?.pet.name}_편지.png`);
             }
           });
         })
