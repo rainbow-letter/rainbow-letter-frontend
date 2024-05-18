@@ -4,6 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isSaving: false,
   isSuccess: false,
+  letterType: null,
+  isSaveToImage: false,
 };
 
 const letterSlice = createSlice({
@@ -20,6 +22,12 @@ const letterSlice = createSlice({
     setisFailed(state) {
       state.isSaving = false;
       state.isSuccess = false;
+    },
+    selectLetter(state, action) {
+      state.letterType = action.payload;
+    },
+    saveToImage(state, action) {
+      state.isSaveToImage = action.payload;
     },
   },
 });

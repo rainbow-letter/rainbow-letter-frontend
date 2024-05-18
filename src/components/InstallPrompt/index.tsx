@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from 'components/Button';
 import useInstallPrompt from 'hooks/useInstallPrompt';
-import { postData } from 'api/pwa';
+import { postData } from 'api/data';
 
 function InstallPrompt() {
   const { deferredPrompt, InstallApp } = useInstallPrompt();

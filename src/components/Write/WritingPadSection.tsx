@@ -18,11 +18,15 @@ type Props = {
   onchange?: (letter: any) => void;
   letter?: Letter;
   index?: number | undefined;
+  saveType?: {
+    target: 'letter_down' | 'reply_down';
+    unTargetValue: 'letter_value' | 'reply_value';
+    date: 'letter_date' | 'reply_date';
+  };
 };
 
 const MAX_LENGTH = 1000;
-
-export default function WritingPadSection({
+function WritingPadSection({
   petName,
   image,
   onchange,
@@ -31,6 +35,7 @@ export default function WritingPadSection({
   date,
   className,
   index,
+  saveType,
 }: Props) {
   const style = (image && 'pt-[15.187rem]') || '';
   const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
@@ -71,19 +76,18 @@ export default function WritingPadSection({
   }, [reply]);
 
   return (
-    <section className={`relative mt-4 ${style}`}>
+    <section className={`relative ${!saveType?.target && 'mt-4'} ${style}`}>
       <CoverImage image={image} />
       <section
-        className={`${textareaStyle} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}
+        className={`${textareaStyle} ${saveType?.target} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}
       >
         {typeof index === 'number' && (
-          <div className="flex flex-col min-w-[30px] bg-white items-center px-2.5 pt-2.5 pb-1 rounded-t-sm rounded-b-lg absolute -top-0.5 right-7 text-orange-400 font-sans">
+          <div className="flex flex-col min-w-[30px] bg-white items-center px-2.5 pt-2.5 pb-1 rounded-t-sm rounded-b-lg absolute -top-0.5 right-7 text-orange-400 font-sans not-label">
             <p className="text-solo-large font-[350] leading-normal">
               {typeof index === 'number' && index}
             </p>
           </div>
         )}
-
         <h3>{petName}</h3>
         <textarea
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -96,10 +100,16 @@ export default function WritingPadSection({
           maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}
           spellCheck="false"
-          className={`${textareaStyle} whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none leading-[170%] text-clip`}
+          className={`${textareaStyle} ${saveType?.unTargetValue} mt-1 whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none leading-[170%] text-clip`}
         />
-        <Caption date={date} letter={letter?.content} />
+        <Caption
+          date={date}
+          letter={letter?.content}
+          dateType={saveType?.date}
+        />
       </section>
     </section>
   );
 }
+
+export default WritingPadSection;

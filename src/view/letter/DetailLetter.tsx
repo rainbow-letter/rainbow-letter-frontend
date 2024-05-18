@@ -1,22 +1,33 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import html2canvas from 'html2canvas';
 
 import Button from 'components/Button';
 import WritingPadSection from 'components/Write/WritingPadSection';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
 
-import metaData from 'utils/metaData';
+import { RootState, useAppDispatch } from 'store';
 import { Letter } from 'types/letters';
 import { getLetter } from 'api/letter';
+import metaData from 'utils/metaData';
+import { modalActions } from 'store/modal/modal-slice';
+import { letterActions } from 'store/letter/letter-slice';
 import { readReply } from '../../api/reply';
+import saveImg from '../../assets/detailLetter_save.svg';
+import captureLogo from '../../assets/detailLetter_logo.svg';
 
 export default function DetailLetter() {
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
   const [letterData, setLetterData] = useState<Letter>();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isSave = useSelector((state: RootState) => state.letter.isSaveToImage);
+  const letterType = useSelector((state: RootState) => state.letter.letterType);
 
   useEffect(() => {
     (async () => {
@@ -41,10 +52,93 @@ export default function DetailLetter() {
     return `${year}년 ${month}월 ${day}일`;
   };
 
+  const handleSaveToImage = useCallback(async (type: string | null) => {
+    if (sectionRef.current) {
+      html2canvas(sectionRef.current, {
+        allowTaint: false,
+        useCORS: true,
+        scale: 4,
+        onclone: (document) => {
+          const letterBox = document.querySelector('.letterBox') as HTMLElement;
+          const label = document.querySelector('.not-label') as HTMLElement;
+          const button = document.querySelector('.not-btn') as HTMLElement;
+          const saveBtn = document.querySelector('.not-save') as HTMLElement;
+          const sentPhoto = document.querySelector('.not-img') as HTMLElement;
+          const logo = document.querySelector('.logo') as HTMLElement;
+
+          const textarea = document.querySelector(
+            `${type === 'pet' ? '.reply_value' : '.letter_value'}`
+          ) as HTMLTextAreaElement;
+          const unSelectedLetter = document.querySelector(
+            `${type === 'me' ? '.reply_down' : '.letter_down'}`
+          ) as HTMLElement;
+          const date = document.querySelector(
+            `${type === 'pet' ? '.reply_date' : '.letter_date'}`
+          ) as HTMLElement;
+
+          if (letterBox) {
+            letterBox.style.paddingLeft = '20px';
+            letterBox.style.paddingRight = '20px';
+            letterBox.style.paddingTop = '15px';
+            label.style.display = 'none';
+            button.style.display = 'none';
+            sentPhoto.style.display = 'none';
+            unSelectedLetter.style.display = 'none';
+            saveBtn.style.display = 'none';
+
+            const div = document.createElement('div');
+            div.innerText = textarea.value;
+            textarea.style.display = 'none';
+            div.style.minHeight = '280px';
+            textarea.parentElement?.append(div);
+            textarea.parentElement?.append(date);
+            logo.style.display = 'block';
+          }
+        },
+      })
+        .then((canvas) => {
+          const image = canvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          link.download = 'rainbow-letter.png';
+          link.href = image;
+          link.click();
+        })
+        .then((_) => {
+          dispatch(modalActions.openModal('SAVECOMPLETE'));
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isSave) {
+      handleSaveToImage(letterType);
+    }
+
+    return () => {
+      dispatch(letterActions.saveToImage(false));
+    };
+  }, [isSave, letterType]);
+
+  const onClickSaveIcon = useCallback(async () => {
+    dispatch(modalActions.openModal('IMAGE'));
+  }, [dispatch]);
+
+  const isReply = letterData?.reply.type === 'REPLY';
+
   return (
     <>
       {letterData && (
-        <main>
+        <main className="relative letterBox" ref={sectionRef}>
+          {isReply && (
+            <button
+              type="button"
+              onClick={onClickSaveIcon}
+              id="save-button"
+              className="absolute -top-[3rem] right-6 z-10 not-save"
+            >
+              <img src={saveImg} alt="저장" className="fixed" />
+            </button>
+          )}
           {letterData.reply.content && (
             <WritingPadSection
               image={letterData.pet.image.url}
@@ -52,6 +146,11 @@ export default function DetailLetter() {
               reply={letterData.reply.content}
               date={processDate(letterData.reply.timestamp)}
               index={location.state.index}
+              saveType={{
+                target: 'reply_down',
+                unTargetValue: 'reply_value',
+                date: 'reply_date',
+              }}
             />
           )}
           <WritingPadSection
@@ -60,13 +159,19 @@ export default function DetailLetter() {
             reply={letterData.content}
             date={processDate(letterData.createdAt)}
             className="bg-gray-2"
+            saveType={{
+              target: 'letter_down',
+              unTargetValue: 'letter_value',
+              date: 'letter_date',
+            }}
           />
           {letterData.image.id && <SentPhoto letterData={letterData} />}
+          <img src={captureLogo} alt="로고" className="logo hidden" />
           <Button
             id="reply_write"
             disabled={!letterData.reply.content}
             onClick={onClickReplyButton}
-            className="mt-12"
+            className="not-btn mt-12"
           >
             {USER_ACTIONS.GO_TO_REPLY}
           </Button>

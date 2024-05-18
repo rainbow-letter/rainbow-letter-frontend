@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,21 +10,26 @@ import { State } from 'types/store';
 import { validatePhoneNumber } from 'utils/validators';
 import { setExpireModal } from 'utils/localStorage';
 import { modalActions } from 'store/modal/modal-slice';
+import { letterActions } from 'store/letter/letter-slice';
 import { setSessionAutoSaveID } from 'utils/sesstionStorage';
+import { postData } from 'api/data';
+import Radio from 'components/Radio/Radio';
+import RadioGroup from 'components/Radio/RadioGroup';
 import CancelImage from '../../assets/ph_x-bold.svg';
 import WritingPad from '../../assets/writing_pad.svg';
 import AdPitAPat from '../../assets/ad_pitapat.svg';
 import ErrorIcon from '../../assets/Error_icon.svg';
+import SaveComplete from '../../assets/save_complete.svg';
 
 export default function ModalContents() {
   const [value, setValue] = useState('');
+  const [selectRadio, setSelectRadio] = useState<string>('me');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { type } = useSelector((state: State) => state.modal);
   const { title, body } = MODAL_MESSAGE.find(
     (item) => item.type === type
   ) as Modal;
-
   const registerPhoneNumber = async () => {
     try {
       if (!validatePhoneNumber(value)) {
@@ -55,6 +60,18 @@ export default function ModalContents() {
     dispatch(modalActions.closeModal());
     navigate('/letter-box');
   };
+
+  useEffect(() => {
+    dispatch(letterActions.selectLetter(selectRadio));
+  }, [selectRadio]);
+
+  const onClickSaveButton = useCallback(async () => {
+    dispatch(letterActions.saveToImage(true));
+    dispatch(modalActions.closeModal());
+    await postData({
+      event: selectRadio,
+    });
+  }, []);
 
   return (
     <>
@@ -199,7 +216,7 @@ export default function ModalContents() {
                 </div>
               </div>
             );
-          case 'isExistLetter':
+          case 'EXIST':
             return (
               <div className="w-full py-10 px-[1.562rem]">
                 <header className="flex flex-col justify-center items-center text-center">
@@ -228,6 +245,71 @@ export default function ModalContents() {
                     className="py-2.5 px-7 text-[16px] bg-orange-400 border-none rounded-[8px] text-white font-bold"
                   >
                     편지 불러오기
+                  </button>
+                </div>
+              </div>
+            );
+          case 'IMAGE':
+            return (
+              <div className="w-full py-[1.875rem] px-[1.562rem]">
+                <header className="flex flex-col mt-[0.375rem] justify-center text-left">
+                  <h3 className="text-heading-3 whitespace-pre-wrap">
+                    {title}
+                  </h3>
+                  <span className="mt-[0.625rem] text-caption">
+                    {body[0].contents}
+                  </span>
+                </header>
+                <div>
+                  <RadioGroup className="flex flex-col mt-6 mb-5 gap-[1.125rem]">
+                    <Radio
+                      onClick={setSelectRadio}
+                      selectRadio={selectRadio}
+                      name="saveImage"
+                      value="me"
+                      defaultChecked
+                    >
+                      내가 쓴 편지
+                    </Radio>
+                    <Radio
+                      onClick={setSelectRadio}
+                      selectRadio={selectRadio}
+                      name="saveImage"
+                      value="pet"
+                    >
+                      아이가 쓴 편지
+                    </Radio>
+                  </RadioGroup>
+                </div>
+                <div className="grid justify-items-end">
+                  <button
+                    type="button"
+                    onClick={onClickSaveButton}
+                    className="py-2 px-8 text-[0.875rem] bg-orange-400 border-none rounded-[6px] text-white font-bold"
+                  >
+                    저장하기
+                  </button>
+                </div>
+              </div>
+            );
+          case 'SAVECOMPLETE':
+            return (
+              <div className="w-full pt-9 pb-7 px-[1.125rem]">
+                <header className="flex flex-col justify-center items-center text-center">
+                  <img src={SaveComplete} alt="편지지" />
+                  <h3 className="text-heading-3 whitespace-pre-wrap mt-[15px]">
+                    {title}
+                  </h3>
+                </header>
+                <div className="flex mt-6 justify-center">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(modalActions.closeModal());
+                    }}
+                    className="py-1 px-6 text-[16px] bg-orange-400 border-none rounded-[8px] text-white"
+                  >
+                    확인
                   </button>
                 </div>
               </div>

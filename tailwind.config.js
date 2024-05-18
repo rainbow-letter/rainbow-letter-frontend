@@ -59,6 +59,7 @@ module.exports = {
         gray: {
           1: '#616161',
           2: '#BDBDBD',
+          3: '#656565',
         },
       },
       backgroundImage: {
