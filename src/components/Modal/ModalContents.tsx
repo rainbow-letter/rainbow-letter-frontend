@@ -293,6 +293,13 @@ export default function ModalContents() {
                     저장하기
                   </button>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => dispatch(modalActions.closeModal())}
+                  className="absolute top-4 right-4"
+                >
+                  <img src={CancelImage} alt="cancel" />
+                </button>
               </div>
             );
           case 'SAVECOMPLETE':
