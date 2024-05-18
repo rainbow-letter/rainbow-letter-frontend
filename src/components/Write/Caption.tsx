@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 type Props = {
   date?: string;
   letter: string | undefined;
+  dateType: string | undefined;
 };
 
-export default function Caption({ date, letter }: Props) {
+export default function Caption({ date, letter, dateType }: Props) {
   const [isExceeded, setIsExceeded] = useState<boolean>(false);
 
   const isCheckExceeded = () => {
@@ -21,7 +22,7 @@ export default function Caption({ date, letter }: Props) {
   }, [letter]);
 
   return (
-    <article className="text-caption text-right">
+    <article className={`text-caption text-right date ${dateType}`}>
       {date ? (
         <p className="font-Gyobomungo2019 text-gray-1">{date}</p>
       ) : (

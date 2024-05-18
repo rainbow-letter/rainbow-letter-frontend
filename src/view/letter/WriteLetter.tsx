@@ -84,7 +84,7 @@ export default function WriteLetter() {
       const isExist = await isExistCheckSavedLetter();
       if (location.state) {
         if (isExist) {
-          dispatch(modalActions.openModal('isExistLetter'));
+          dispatch(modalActions.openModal('EXIST'));
           return loadLetter(pets);
         }
 
