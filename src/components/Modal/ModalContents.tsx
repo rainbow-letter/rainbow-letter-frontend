@@ -22,14 +22,17 @@ import ErrorIcon from '../../assets/Error_icon.svg';
 import SaveComplete from '../../assets/save_complete.svg';
 
 export default function ModalContents() {
-  const [value, setValue] = useState('');
-  const [selectRadio, setSelectRadio] = useState<string>('me');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { type } = useSelector((state: State) => state.modal);
+
+  const [value, setValue] = useState('');
+  const [selectRadio, setSelectRadio] = useState<string>('me');
+
   const { title, body } = MODAL_MESSAGE.find(
     (item) => item.type === type
   ) as Modal;
+
   const registerPhoneNumber = async () => {
     try {
       if (!validatePhoneNumber(value)) {

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import html2canvas from 'html2canvas';
+import saveAs from 'file-saver';
 
 import Button from 'components/Button';
 import WritingPadSection from 'components/Write/WritingPadSection';
@@ -52,6 +53,22 @@ export default function DetailLetter() {
     return `${year}년 ${month}월 ${day}일`;
   };
 
+  //   const handleDownload = async () => {
+  //   if (!sectionRef.current) return;
+
+  //   try {
+  //     const save = sectionRef.current;
+  //     const canvas = await html2canvas(save, { scale: 4 });
+  //     canvas.toBlob((blob) => {
+  //       if (blob !== null) {
+  //         saveAs(blob, 'result.png');
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error('Error converting div to image:', error);
+  //   }
+  // };
+
   const handleSaveToImage = useCallback(async (type: string | null) => {
     if (sectionRef.current) {
       html2canvas(sectionRef.current, {
@@ -97,12 +114,19 @@ export default function DetailLetter() {
         },
       })
         .then((canvas) => {
-          const image = canvas.toDataURL('image/png');
-          const link = document.createElement('a');
-          link.download = 'rainbow-letter.png';
-          link.href = image;
-          link.click();
+          canvas.toBlob((blob) => {
+            if (blob !== null) {
+              saveAs(blob, 'result.png');
+            }
+          });
         })
+        // .then((canvas) => {
+        //   const image = canvas.toDataURL('image/png');
+        //   const link = document.createElement('a');
+        //   link.download = 'rainbow-letter.png';
+        //   link.href = image;
+        //   link.click();
+        // })
         .then((_) => {
           dispatch(modalActions.openModal('SAVECOMPLETE'));
         });
