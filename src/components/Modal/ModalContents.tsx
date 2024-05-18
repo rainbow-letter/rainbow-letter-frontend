@@ -254,7 +254,7 @@ export default function ModalContents() {
             );
           case 'IMAGE':
             return (
-              <div className="w-full py-[1.875rem] px-[1.562rem]">
+              <div className="w-full py-[1.875rem] px-[1.562rem] top-[10%]">
                 <header className="flex flex-col mt-[0.375rem] justify-center text-left">
                   <h3 className="text-heading-3 whitespace-pre-wrap">
                     {title}
@@ -293,11 +293,18 @@ export default function ModalContents() {
                     저장하기
                   </button>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => dispatch(modalActions.closeModal())}
+                  className="absolute top-4 right-4"
+                >
+                  <img src={CancelImage} alt="cancel" />
+                </button>
               </div>
             );
           case 'SAVECOMPLETE':
             return (
-              <div className="w-full pt-9 pb-7 px-[1.125rem]">
+              <div className="w-full pt-9 pb-7 px-[1.125rem] ">
                 <header className="flex flex-col justify-center items-center text-center">
                   <img src={SaveComplete} alt="편지지" />
                   <h3 className="text-heading-3 whitespace-pre-wrap mt-[15px]">
@@ -310,7 +317,7 @@ export default function ModalContents() {
                     onClick={() => {
                       dispatch(modalActions.closeModal());
                     }}
-                    className="py-1 px-6 text-[16px] bg-orange-400 border-none rounded-[8px] text-white"
+                    className="py-1 px-6 text-[16px] bg-orange-400 border-none rounded-[8px] text-white font-bold"
                   >
                     확인
                   </button>

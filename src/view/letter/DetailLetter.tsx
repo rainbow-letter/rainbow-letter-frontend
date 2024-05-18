@@ -53,72 +53,70 @@ export default function DetailLetter() {
     return `${year}년 ${month}월 ${day}일`;
   };
 
-  const handleSaveToImage = useCallback(async (type: string | null) => {
-    let fileDate: string | null | undefined;
-    if (sectionRef.current) {
-      html2canvas(sectionRef.current, {
-        allowTaint: false,
-        useCORS: true,
-        scale: 4,
-        onclone: (document) => {
-          const letterBox = document.querySelector('.letterBox') as HTMLElement;
-          const label = document.querySelector('.not-label') as HTMLElement;
-          const button = document.querySelector('.not-btn') as HTMLElement;
-          const saveBtn = document.querySelector('.not-save') as HTMLElement;
-          const sentPhoto = document.querySelector('.not-img') as HTMLElement;
-          const logo = document.querySelector('.logo') as HTMLElement;
+  const handleSaveToImage = useCallback(
+    async (type: string | null) => {
+      let fileDate: string | null | undefined;
+      if (sectionRef.current) {
+        html2canvas(sectionRef.current, {
+          allowTaint: false,
+          useCORS: true,
+          scale: 4,
+          onclone: (document) => {
+            const letterBox = document.querySelector(
+              '.letterBox'
+            ) as HTMLElement;
+            const label = document.querySelector('.not-label') as HTMLElement;
+            const button = document.querySelector('.not-btn') as HTMLElement;
+            const saveBtn = document.querySelector('.not-save') as HTMLElement;
+            const sentPhoto = document.querySelector('.not-img') as HTMLElement;
+            const logo = document.querySelector('.logo') as HTMLElement;
 
-          const textarea = document.querySelector(
-            `${type === 'pet' ? '.reply_value' : '.letter_value'}`
-          ) as HTMLTextAreaElement;
-          const unSelectedLetter = document.querySelector(
-            `${type === 'me' ? '.reply_down' : '.letter_down'}`
-          ) as HTMLElement;
-          const date = document.querySelector(
-            `${type === 'pet' ? '.reply_date' : '.letter_date'}`
-          ) as HTMLElement;
+            const textarea = document.querySelector(
+              `${type === 'pet' ? '.reply_value' : '.letter_value'}`
+            ) as HTMLTextAreaElement;
+            const unSelectedLetter = document.querySelector(
+              `${type === 'me' ? '.reply_down' : '.letter_down'}`
+            ) as HTMLElement;
+            const date = document.querySelector(
+              `${type === 'pet' ? '.reply_date' : '.letter_date'}`
+            ) as HTMLElement;
 
-          if (letterBox) {
-            letterBox.style.paddingLeft = '20px';
-            letterBox.style.paddingRight = '20px';
-            letterBox.style.paddingTop = '15px';
-            label.style.display = 'none';
-            button.style.display = 'none';
-            sentPhoto.style.display = 'none';
-            unSelectedLetter.style.display = 'none';
-            saveBtn.style.display = 'none';
+            if (letterBox) {
+              letterBox.style.paddingLeft = '20px';
+              letterBox.style.paddingRight = '20px';
+              letterBox.style.paddingTop = '15px';
+              label.style.display = 'none';
+              button.style.display = 'none';
+              sentPhoto.style.display = 'none';
+              unSelectedLetter.style.display = 'none';
+              saveBtn.style.display = 'none';
 
-            const div = document.createElement('div');
-            div.innerText = textarea.value;
-            textarea.style.display = 'none';
-            div.style.minHeight = '280px';
-            textarea.parentElement?.append(div);
-            textarea.parentElement?.append(date);
-            const text = date.firstChild;
-            fileDate = text?.textContent;
-            logo.style.display = 'block';
-          }
-        },
-      })
-        .then((canvas) => {
-          canvas.toBlob((blob) => {
-            if (blob !== null) {
-              saveAs(blob, `${fileDate}_${letterData?.pet.name}_편지.png`);
+              const div = document.createElement('div');
+              div.innerText = textarea.value;
+              textarea.style.display = 'none';
+              div.style.minHeight = '280px';
+              textarea.parentElement?.append(div);
+              textarea.parentElement?.append(date);
+              const text = date.firstChild;
+              fileDate = text?.textContent;
+              logo.style.display = 'block';
             }
-          });
+          },
         })
-        // .then((canvas) => {
-        //   const image = canvas.toDataURL('image/png');
-        //   const link = document.createElement('a');
-        //   link.download = 'rainbow-letter.png';
-        //   link.href = image;
-        //   link.click();
-        // })
-        .then((_) => {
-          dispatch(modalActions.openModal('SAVECOMPLETE'));
-        });
-    }
-  }, []);
+          .then((canvas) => {
+            const image = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `${fileDate}_${letterData?.pet.name}`;
+            link.href = image;
+            link.click();
+          })
+          .then((_) => {
+            dispatch(modalActions.openModal('SAVECOMPLETE'));
+          });
+      }
+    },
+    [letterData]
+  );
 
   useEffect(() => {
     if (isSave) {
