@@ -104,11 +104,16 @@ export default function DetailLetter() {
           },
         })
           .then((canvas) => {
-            const image = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.download = `${fileDate}_${letterData?.pet.name}`;
-            link.href = image;
-            link.click();
+            canvas.toBlob((blob) => {
+              if (blob !== null) {
+                saveAs(blob, `${fileDate}_${letterData?.pet.name}`);
+              }
+            });
+            // const image = canvas.toDataURL('image/png');
+            // const link = document.createElement('a');
+            // link.download = `${fileDate}_${letterData?.pet.name}`;
+            // link.href = image;
+            // link.click();
           })
           .then((_) => {
             dispatch(modalActions.openModal('SAVECOMPLETE'));
