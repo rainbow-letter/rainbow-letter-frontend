@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import html2canvas from 'html2canvas';
-import saveAs from 'file-saver';
 
 import Button from 'components/Button';
 import WritingPadSection from 'components/Write/WritingPadSection';
@@ -56,6 +55,7 @@ export default function DetailLetter() {
   const handleSaveToImage = useCallback(
     async (type: string | null) => {
       let fileDate: string | null | undefined;
+      let cate: string | null | undefined = '편지';
       if (sectionRef.current) {
         html2canvas(sectionRef.current, {
           allowTaint: false,
@@ -81,6 +81,10 @@ export default function DetailLetter() {
               `${type === 'pet' ? '.reply_date' : '.letter_date'}`
             ) as HTMLElement;
 
+            if (type === 'pet') {
+              cate = '답장';
+            }
+
             if (letterBox) {
               letterBox.style.paddingLeft = '20px';
               letterBox.style.paddingRight = '20px';
@@ -104,16 +108,11 @@ export default function DetailLetter() {
           },
         })
           .then((canvas) => {
-            canvas.toBlob((blob) => {
-              if (blob !== null) {
-                saveAs(blob, `${fileDate}_${letterData?.pet.name}`);
-              }
-            });
-            // const image = canvas.toDataURL('image/png');
-            // const link = document.createElement('a');
-            // link.download = `${fileDate}_${letterData?.pet.name}`;
-            // link.href = image;
-            // link.click();
+            const image = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `${fileDate}_${letterData?.pet.name} ${cate}`;
+            link.href = image;
+            link.click();
           })
           .then((_) => {
             dispatch(modalActions.openModal('SAVECOMPLETE'));

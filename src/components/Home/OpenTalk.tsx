@@ -8,7 +8,7 @@ export default function OpenTalk() {
   return (
     <section className="h-[3.125rem] px-7 mt-9 mb-2.5 gap-2.5">
       <Link
-        to="https://open.kakao.com/o/s5yBU55f"
+        to="http://pf.kakao.com/_MNevG/chat"
         target="_blank"
         className="w-full h-full flex justify-center items-center gap-x-2.5 bg-orange-50 text-solo-label text-orange-400 font-semibold rounded-2xl"
       >
