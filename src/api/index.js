@@ -24,7 +24,7 @@ const tokenIsValid = async (token) => {
     );
     return response.status === 200;
   } catch (error) {
-    alert(`Token validation error: ${error.message}`);
+    alert(`자동 로그인이 풀렸어요\n로그인은 1주만 유지돼요`);
     return false;
   }
 };
