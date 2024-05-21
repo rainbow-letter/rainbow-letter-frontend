@@ -37,7 +37,7 @@ function WritingPadSection({
   index,
   saveType,
 }: Props) {
-  const style = (image && 'pt-[15.187rem]') || '';
+  const style = (image && 'pt-[15.187rem]') || 'mt-4';
   const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
   const textarea = useRef<HTMLTextAreaElement>(null);
 
@@ -76,7 +76,7 @@ function WritingPadSection({
   }, [reply]);
 
   return (
-    <section className={`relative ${!saveType?.target && 'mt-4'} ${style}`}>
+    <section className={`relative ${style}`}>
       <CoverImage image={image} />
       <section
         className={`${textareaStyle} ${saveType?.target} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}
