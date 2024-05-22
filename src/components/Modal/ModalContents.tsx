@@ -17,7 +17,7 @@ import Radio from 'components/Radio/Radio';
 import RadioGroup from 'components/Radio/RadioGroup';
 import CancelImage from '../../assets/ph_x-bold.svg';
 import WritingPad from '../../assets/writing_pad.svg';
-import AdPitAPat from '../../assets/ad_pitapat.svg';
+import AdPitAPat from '../../assets/ad_fitapat_3.svg';
 import ErrorIcon from '../../assets/Error_icon.svg';
 import SaveComplete from '../../assets/save_complete.svg';
 
@@ -56,7 +56,7 @@ export default function ModalContents() {
 
   const handleOpenNewTab = () => {
     window.open(
-      'https://forms.gle/zdHQD2gq3EUZtHJZ9',
+      'https://www.fitapat.com/product/case/91',
       '_blank',
       'noopener, noreferrer'
     );

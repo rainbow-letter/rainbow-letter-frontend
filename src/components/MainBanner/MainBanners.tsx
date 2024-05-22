@@ -15,6 +15,7 @@ const carouselItems = BANNER_ITEMS.map((item) => (
     image={item.image}
     bgColor={item.bgColor}
     buttonContent={item.buttonContent}
+    cover={item.cover}
   />
 ));
 

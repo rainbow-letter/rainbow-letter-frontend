@@ -1,18 +1,30 @@
 /* eslint-disable import/prefer-default-export */
 import bannerLetter from 'assets/banner-letter.svg';
-import bannerGripTalk from 'assets/banner-grip-talk.svg';
+// import bannerGripTalk from 'assets/banner-grip-talk.svg';
 // import bannerCreateLetter from 'assets/banner-createLetter.png';
+import bannerFitaPat from 'assets/ad_fitapat_4.svg';
 
 export const BANNER_ITEMS = [
+  // {
+  //   id: 0,
+  //   category: 'EVENT',
+  //   title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
+  //   description: '',
+  //   link: 'https://forms.gle/zdHQD2gq3EUZtHJZ9',
+  //   image: bannerGripTalk,
+  //   buttonContent: '사전 예약하기',
+  //   bgColor: 'bg-[#F9F9F9]',
+  // },
   {
     id: 0,
     category: 'EVENT',
     title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
     description: '',
-    link: 'https://forms.gle/zdHQD2gq3EUZtHJZ9',
-    image: bannerGripTalk,
+    link: 'https://www.fitapat.com/product/case/91',
+    image: bannerFitaPat,
     buttonContent: '사전 예약하기',
     bgColor: 'bg-[#F9F9F9]',
+    cover: true,
   },
   {
     id: 1,
