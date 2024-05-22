@@ -76,7 +76,7 @@ function WritingPadSection({
   }, [reply]);
 
   return (
-    <section className={`relative ${!saveType?.target && 'mt-4'} ${style}`}>
+    <section className={`relative mt-4 ${style}`}>
       <CoverImage image={image} />
       <section
         className={`${textareaStyle} ${saveType?.target} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}

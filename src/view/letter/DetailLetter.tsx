@@ -147,7 +147,7 @@ export default function DetailLetter() {
               type="button"
               onClick={onClickSaveIcon}
               id="save-button"
-              className="absolute -top-[3rem] right-6 z-10 not-save"
+              className="absolute -top-[3.75rem] right-6 z-10 not-save"
             >
               <img src={saveImg} alt="저장" className="fixed" />
             </button>
