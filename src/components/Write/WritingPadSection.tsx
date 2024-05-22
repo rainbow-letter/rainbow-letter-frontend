@@ -37,7 +37,7 @@ function WritingPadSection({
   index,
   saveType,
 }: Props) {
-  const style = (image && 'pt-[15.187rem]') || '';
+  const style = (image && 'pt-[15.187rem]') || 'mt-4';
   const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
   const textarea = useRef<HTMLTextAreaElement>(null);
 

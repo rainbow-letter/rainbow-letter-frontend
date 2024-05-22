@@ -13,6 +13,7 @@ import { RootState, useAppDispatch } from 'store';
 import { Letter } from 'types/letters';
 import { getLetter } from 'api/letter';
 import metaData from 'utils/metaData';
+import { isiPhone } from 'utils/device';
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import { readReply } from '../../api/reply';
@@ -137,12 +138,13 @@ export default function DetailLetter() {
   }, [dispatch]);
 
   const isReply = letterData?.reply.type === 'REPLY';
+  const isIphone = isiPhone();
 
   return (
     <>
       {letterData && (
         <main className="relative letterBox" ref={sectionRef}>
-          {isReply && (
+          {isReply && !isIphone && (
             <button
               type="button"
               onClick={onClickSaveIcon}
