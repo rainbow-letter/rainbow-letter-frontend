@@ -2,7 +2,8 @@
 import bannerLetter from 'assets/banner-letter.svg';
 // import bannerGripTalk from 'assets/banner-grip-talk.svg';
 // import bannerCreateLetter from 'assets/banner-createLetter.png';
-import bannerFitaPat from 'assets/ad_fitapat_4.svg';
+// import bannerFitaPat from 'assets/ad_fitapat_4.svg';
+import bannerFitaPat from 'assets/ad_fitapat_4.png';
 
 export const BANNER_ITEMS = [
   // {
