@@ -74,16 +74,16 @@ export default function DetailLetter() {
             const logo = document.querySelector('.logo') as HTMLElement;
 
             const textarea = document.querySelector(
-              `${type === 'pet' ? '.reply_value' : '.letter_value'}`
+              `${type === 'image_reply' ? '.reply_value' : '.letter_value'}`
             ) as HTMLTextAreaElement;
             const unSelectedLetter = document.querySelector(
-              `${type === 'me' ? '.reply_down' : '.letter_down'}`
+              `${type === 'image_letter' ? '.reply_down' : '.letter_down'}`
             ) as HTMLElement;
             const date = document.querySelector(
-              `${type === 'pet' ? '.reply_date' : '.letter_date'}`
+              `${type === 'image_reply' ? '.reply_date' : '.letter_date'}`
             ) as HTMLElement;
 
-            if (type === 'pet') {
+            if (type === 'image_reply') {
               cate = '답장';
             }
 
@@ -108,7 +108,7 @@ export default function DetailLetter() {
               if (sentPhoto) {
                 sentPhoto.style.display = 'none';
               }
-              if (type === 'pet') {
+              if (type === 'image_reply') {
                 logo.style.position = 'absolute';
                 logo.style.bottom = '4px';
                 logo.style.left = '0px';
