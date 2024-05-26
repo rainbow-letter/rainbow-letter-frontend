@@ -93,7 +93,6 @@ export default function DetailLetter() {
               letterBox.style.paddingTop = '15px';
               label.style.display = 'none';
               button.style.display = 'none';
-              sentPhoto.style.display = 'none';
               unSelectedLetter.style.display = 'none';
               saveBtn.style.display = 'none';
 
@@ -106,6 +105,9 @@ export default function DetailLetter() {
               const text = date.firstChild;
               fileDate = text?.textContent;
               logo.style.display = 'block';
+              if (sentPhoto) {
+                sentPhoto.style.display = 'none';
+              }
               if (type === 'pet') {
                 logo.style.position = 'absolute';
                 logo.style.bottom = '4px';
@@ -115,7 +117,7 @@ export default function DetailLetter() {
               if (isIphone) {
                 logo.style.position = 'absolute';
                 logo.style.left = '-30px';
-                letterBox.style.paddingBottom = '50px';
+                letterBox.style.paddingBottom = '48px';
               }
             }
           },
