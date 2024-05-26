@@ -116,8 +116,9 @@ export default function DetailLetter() {
               }
               if (isIphone) {
                 logo.style.position = 'absolute';
+                logo.style.bottom = '4px';
                 logo.style.left = '-30px';
-                letterBox.style.paddingBottom = '48px';
+                letterBox.style.paddingBottom = '40px';
               }
             }
           },
