@@ -109,8 +109,11 @@ export default function DetailLetter() {
               if (type === 'pet') {
                 logo.style.position = 'absolute';
                 logo.style.bottom = '4px';
-                logo.style.left = '0px';
+                logo.style.left = '50%';
                 letterBox.style.paddingBottom = '40px';
+              }
+              if (isIphone) {
+                logo.style.left = '50%';
               }
             }
           },
@@ -193,7 +196,9 @@ export default function DetailLetter() {
             }}
           />
           {letterData.image.id && <SentPhoto letterData={letterData} />}
-          <img src={captureLogo} alt="로고" className="logo hidden" />
+          <div className="w-full">
+            <img src={captureLogo} alt="로고" className="logo hidden" />
+          </div>
           <Button
             id="reply_write"
             disabled={!letterData.reply.content}
