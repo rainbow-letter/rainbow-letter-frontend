@@ -27,7 +27,7 @@ export default function ModalContents() {
   const { type } = useSelector((state: State) => state.modal);
 
   const [value, setValue] = useState('');
-  const [selectRadio, setSelectRadio] = useState<string>('me');
+  const [selectRadio, setSelectRadio] = useState<string>('image_letter');
 
   const { title, body } = MODAL_MESSAGE.find(
     (item) => item.type === type
@@ -269,7 +269,7 @@ export default function ModalContents() {
                       onClick={setSelectRadio}
                       selectRadio={selectRadio}
                       name="saveImage"
-                      value="me"
+                      value="image_letter"
                       defaultChecked
                     >
                       내가 쓴 편지
@@ -278,7 +278,7 @@ export default function ModalContents() {
                       onClick={setSelectRadio}
                       selectRadio={selectRadio}
                       name="saveImage"
-                      value="pet"
+                      value="image_letter"
                     >
                       아이가 쓴 편지
                     </Radio>
