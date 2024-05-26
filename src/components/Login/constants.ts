@@ -1,5 +1,6 @@
-import googleIcon from '../../assets/google_icon_btn.png';
-import naverIcon from '../../assets/naver_icon_btn.png';
+import GoogleIcon from '../../assets/google_icon_btn.png';
+import NaverIcon from '../../assets/naver_icon_btn.png';
+import KaKaoIcon from '../../assets/kakao_icon.png';
 
 export type Message = {
   pathname: string;
@@ -87,14 +88,20 @@ export {
 export const SNS_LOGIN = [
   {
     id: 0,
-    icon: googleIcon,
+    icon: GoogleIcon,
     name: 'google',
     url: `${process.env.REACT_APP_API_URL}/api/oauth2/authorization/google`,
   },
   {
     id: 1,
-    icon: naverIcon,
+    icon: NaverIcon,
     name: 'naver',
     url: `${process.env.REACT_APP_API_URL}/api/oauth2/authorization/naver`,
+  },
+  {
+    id: 2,
+    icon: KaKaoIcon,
+    name: 'naver',
+    url: `${process.env.REACT_APP_API_URL}/api/oauth2/authorization/kakao`,
   },
 ];

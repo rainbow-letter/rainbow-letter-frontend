@@ -6,6 +6,7 @@ const initialState = {
   isSuccess: false,
   letterType: null,
   isSaveToImage: false,
+  saveImageUrl: '',
 };
 
 const letterSlice = createSlice({
@@ -28,6 +29,9 @@ const letterSlice = createSlice({
     },
     saveToImage(state, action) {
       state.isSaveToImage = action.payload;
+    },
+    setSaveImageUrl(state, action) {
+      state.saveImageUrl = action.payload;
     },
   },
 });

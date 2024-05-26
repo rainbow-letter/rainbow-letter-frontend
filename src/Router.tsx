@@ -18,6 +18,7 @@ import ShareLetter from 'view/letter/ShareLetter';
 import WriteLetter from 'view/letter/WriteLetter';
 import MyPage from 'view/account/MyPage';
 import MyPets from 'view/pet/MyPets';
+import SavedImage from 'view/letter/SavedImage';
 import Layout from 'components/Layout';
 import ProtectedLayout from 'components/Layout/ProtectedLayout';
 import AdminLayout from 'components/Layout/AdminLayout';
@@ -60,6 +61,7 @@ function Router() {
               <Route path="/write-letter" element={<WriteLetter />} />
               <Route path="/letter-box" element={<LetterBox />} />
               <Route path="/letter-box/:letterId" element={<DetailLetter />} />
+              <Route path="/saved-image" element={<SavedImage />} />
             </Route>
           </Route>
           {/* NOTE: 관리자 권한이 필요한 페이지 */}

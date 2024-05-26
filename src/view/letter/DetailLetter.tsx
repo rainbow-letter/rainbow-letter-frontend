@@ -55,6 +55,7 @@ export default function DetailLetter() {
 
   const handleSaveToImage = useCallback(
     async (type: string | null) => {
+      const isIphone = isiPhone();
       let fileDate: string | null | undefined;
       let cate: string | null | undefined = '편지';
       if (sectionRef.current) {
@@ -110,13 +111,18 @@ export default function DetailLetter() {
         })
           .then((canvas) => {
             const image = canvas.toDataURL('image/png');
+            dispatch(letterActions.setSaveImageUrl(image));
             const link = document.createElement('a');
             link.download = `${fileDate}_${letterData?.pet.name} ${cate}`;
             link.href = image;
             link.click();
           })
           .then((_) => {
-            dispatch(modalActions.openModal('SAVECOMPLETE'));
+            if (isIphone) {
+              return navigate('home');
+            }
+
+            return dispatch(modalActions.openModal('SAVECOMPLETE'));
           });
       }
     },
@@ -138,13 +144,12 @@ export default function DetailLetter() {
   }, [dispatch]);
 
   const isReply = letterData?.reply.type === 'REPLY';
-  const isIphone = isiPhone();
 
   return (
     <>
       {letterData && (
         <main className="relative letterBox" ref={sectionRef}>
-          {/* {isReply && !isIphone && (
+          {isReply && (
             <button
               type="button"
               onClick={onClickSaveIcon}
@@ -153,7 +158,7 @@ export default function DetailLetter() {
             >
               <img src={saveImg} alt="저장" className="fixed" />
             </button>
-          )} */}
+          )}
           {letterData.reply.content && (
             <WritingPadSection
               image={letterData.pet.image.url}

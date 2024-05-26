@@ -29,6 +29,9 @@ const appBarConfig: AppBar = {
   '/letter-box': {
     title: '편지함',
   },
+  '/saved-image': {
+    title: '이미지 저장',
+  },
   '/my-page/register': {
     title: '등록하기',
   },
