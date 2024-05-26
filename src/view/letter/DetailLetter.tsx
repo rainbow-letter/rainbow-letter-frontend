@@ -111,15 +111,16 @@ export default function DetailLetter() {
                 logo.style.bottom = '4px';
                 logo.style.left = '0px';
                 letterBox.style.paddingBottom = '40px';
-              }
-              if (isIphone) {
-                logo.style.left = '-30px';
+                if (isIphone) {
+                  logo.style.left = '-30px';
+                }
               }
             }
           },
         })
           .then((canvas) => {
             const image = canvas.toDataURL('image/png');
+            console.log(image);
             dispatch(letterActions.setSaveImageUrl(image));
             const link = document.createElement('a');
             link.download = `${fileDate}_${letterData?.pet.name} ${cate}`;
