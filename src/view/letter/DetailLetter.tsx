@@ -119,6 +119,9 @@ export default function DetailLetter() {
                 logo.style.bottom = '4px';
                 logo.style.left = '-30px';
                 letterBox.style.paddingBottom = '40px';
+                if (type === 'image_letter') {
+                  letterBox.style.paddingBottom = '50px';
+                }
               }
             }
           },
