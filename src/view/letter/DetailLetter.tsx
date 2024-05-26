@@ -109,11 +109,11 @@ export default function DetailLetter() {
               if (type === 'pet') {
                 logo.style.position = 'absolute';
                 logo.style.bottom = '4px';
-                logo.style.left = '50%';
+                logo.style.left = '0px';
                 letterBox.style.paddingBottom = '40px';
               }
               if (isIphone) {
-                logo.style.left = '50%';
+                logo.style.left = '-30px';
               }
             }
           },
