@@ -114,14 +114,15 @@ export default function DetailLetter() {
             dispatch(letterActions.setSaveImageUrl(image));
             const link = document.createElement('a');
             link.download = `${fileDate}_${letterData?.pet.name} ${cate}`;
-            link.href = image;
-            link.click();
+            if (!isIphone) {
+              link.href = image;
+              link.click();
+            }
           })
           .then((_) => {
             if (isIphone) {
               return navigate('home');
             }
-
             return dispatch(modalActions.openModal('SAVECOMPLETE'));
           });
       }
