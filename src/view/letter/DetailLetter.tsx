@@ -106,6 +106,12 @@ export default function DetailLetter() {
               const text = date.firstChild;
               fileDate = text?.textContent;
               logo.style.display = 'block';
+              if (type === 'pet') {
+                logo.style.position = 'absolute';
+                logo.style.bottom = '4px';
+                logo.style.left = '0px';
+                letterBox.style.paddingBottom = '40px';
+              }
             }
           },
         })
@@ -121,7 +127,7 @@ export default function DetailLetter() {
           })
           .then((_) => {
             if (isIphone) {
-              return navigate('home');
+              return navigate('/saved-image');
             }
             return dispatch(modalActions.openModal('SAVECOMPLETE'));
           });
