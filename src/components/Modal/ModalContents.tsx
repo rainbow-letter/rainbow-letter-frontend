@@ -278,7 +278,7 @@ export default function ModalContents() {
                       onClick={setSelectRadio}
                       selectRadio={selectRadio}
                       name="saveImage"
-                      value="image_letter"
+                      value="image_reply"
                     >
                       아이가 쓴 편지
                     </Radio>
