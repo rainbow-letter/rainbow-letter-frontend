@@ -98,10 +98,10 @@ export const SNS_LOGIN = [
     name: 'naver',
     url: `${process.env.REACT_APP_API_URL}/api/oauth2/authorization/naver`,
   },
-  {
-    id: 2,
-    icon: KaKaoIcon,
-    name: 'naver',
-    url: `https://rainbowletter.co.kr/api/oauth2/authorization/kakao`,
-  },
+  // {
+  //   id: 2,
+  //   icon: KaKaoIcon,
+  //   name: 'kakao',
+  //   url: `https://rainbowletter.co.kr/api/oauth2/authorization/kakao`,
+  // },
 ];
