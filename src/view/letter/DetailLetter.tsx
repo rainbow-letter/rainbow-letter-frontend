@@ -98,6 +98,7 @@ export default function DetailLetter() {
 
               const div = document.createElement('div');
               div.innerText = textarea.value;
+              div.style.fontFamily = 'Gyobomungo2019';
               textarea.style.display = 'none';
               div.style.minHeight = '280px';
               textarea.parentElement?.append(div);
