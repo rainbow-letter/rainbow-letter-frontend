@@ -74,7 +74,7 @@ export default function ModalContents() {
     await postData({
       event: selectRadio,
     });
-  }, []);
+  }, [selectRadio]);
 
   return (
     <>
