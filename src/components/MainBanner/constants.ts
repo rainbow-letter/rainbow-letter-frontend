@@ -4,6 +4,7 @@ import bannerLetter from 'assets/banner-letter.svg';
 // import bannerCreateLetter from 'assets/banner-createLetter.png';
 // import bannerFitaPat from 'assets/ad_fitapat_4.svg';
 import bannerFitaPat from 'assets/ad_fitapat_4.png';
+import bannerSavedImage from 'assets/banner_save.png';
 
 export const BANNER_ITEMS = [
   // {
@@ -29,6 +30,17 @@ export const BANNER_ITEMS = [
   },
   {
     id: 1,
+    category: 'EVENT',
+    title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
+    description: '',
+    link: 'https://blog.naver.com/rainbowletter/223461370330',
+    image: bannerSavedImage,
+    buttonContent: '사전 예약하기',
+    bgColor: 'bg-[#F9F9F9]',
+    cover: true,
+  },
+  {
+    id: 2,
     title: `무지개 너머\n답장을 받아보세요`,
     description: '마음껏, 무료로',
     link: '/landing',
