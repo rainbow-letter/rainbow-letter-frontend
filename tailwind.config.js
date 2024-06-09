@@ -60,6 +60,7 @@ module.exports = {
           1: '#616161',
           2: '#BDBDBD',
           3: '#656565',
+          4: '#5F5F5F',
         },
       },
       backgroundImage: {

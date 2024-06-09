@@ -17,9 +17,10 @@ import Radio from 'components/Radio/Radio';
 import RadioGroup from 'components/Radio/RadioGroup';
 import CancelImage from '../../assets/ph_x-bold.svg';
 import WritingPad from '../../assets/writing_pad.svg';
-import AdPitAPat from '../../assets/ad_fitapat_3.svg';
+import Banner from '../../assets/banner.svg';
 import ErrorIcon from '../../assets/Error_icon.svg';
 import SaveComplete from '../../assets/save_complete.svg';
+import AlarmIcon from '../../assets/ic_Error_icon.svg';
 
 export default function ModalContents() {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ export default function ModalContents() {
 
   const handleOpenNewTab = () => {
     window.open(
-      'https://www.fitapat.com/product/case/91',
+      'https://smartstore.naver.com/rainbowletter/products/10422885853',
       '_blank',
       'noopener, noreferrer'
     );
@@ -125,8 +126,15 @@ export default function ModalContents() {
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setValue(e.target.value)
                   }
-                  className="py-5 w-full my-4"
+                  className="w-full my-4 py-5"
                 />
+                <div className="flex gap-2 justify-center mt-1 mb-5">
+                  <img src={AlarmIcon} alt="알림 아이콘" />
+                  <p className="text-solo-small text-gray-4">
+                    <span className="font-bold">한 번 더</span> 핸드폰 번호를
+                    확인해주세요!
+                  </p>
+                </div>
                 <Button onClick={() => registerPhoneNumber()} className="mb-5">
                   등록하기
                 </Button>
@@ -169,8 +177,9 @@ export default function ModalContents() {
                   onClick={handleOpenNewTab}
                   className="mt-4"
                 >
-                  <img src={AdPitAPat} alt="핏어팻광고" />
+                  <img src={Banner} alt="배너 광고" />
                 </button>
+
                 <button
                   type="button"
                   onClick={() => {
