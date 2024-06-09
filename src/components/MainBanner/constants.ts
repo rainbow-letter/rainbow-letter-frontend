@@ -5,6 +5,7 @@ import bannerLetter from 'assets/banner-letter.svg';
 // import bannerFitaPat from 'assets/ad_fitapat_4.svg';
 import bannerFitaPat from 'assets/ad_fitapat_4.png';
 import bannerSavedImage from 'assets/banner_save.png';
+import mainBanner from 'assets/main-banner.svg';
 
 export const BANNER_ITEMS = [
   // {
@@ -22,6 +23,17 @@ export const BANNER_ITEMS = [
     category: 'EVENT',
     title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
     description: '',
+    link: 'https://smartstore.naver.com/rainbowletter/products/10422885853',
+    image: mainBanner,
+    buttonContent: '사전 예약하기',
+    bgColor: 'bg-[#F9F9F9]',
+    cover: true,
+  },
+  {
+    id: 1,
+    category: 'EVENT',
+    title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
+    description: '',
     link: 'https://www.fitapat.com/product/case/91',
     image: bannerFitaPat,
     buttonContent: '사전 예약하기',
@@ -29,7 +41,7 @@ export const BANNER_ITEMS = [
     cover: true,
   },
   {
-    id: 1,
+    id: 2,
     category: 'EVENT',
     title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
     description: '',
@@ -40,7 +52,7 @@ export const BANNER_ITEMS = [
     cover: true,
   },
   {
-    id: 2,
+    id: 3,
     title: `무지개 너머\n답장을 받아보세요`,
     description: '마음껏, 무료로',
     link: '/landing',

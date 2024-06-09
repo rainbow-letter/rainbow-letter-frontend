@@ -32,15 +32,15 @@ export const MODAL_MESSAGE: Modal[] = [
   },
   {
     type: 'PHONE',
-    title: '문자로 답장 알림을 받아보세요',
+    title: '카톡으로 답장 알림을 받아보세요',
     body: [
       {
         id: 1,
-        contents: '답장은 1~2일 후에 도착해요',
+        contents: '핸드폰번호를 등록하면',
       },
       {
         id: 2,
-        contents: '답장이 도착하면 문자를 보내드려요',
+        contents: '답장 링크를 카톡으로 보내드려요',
       },
     ],
   },
