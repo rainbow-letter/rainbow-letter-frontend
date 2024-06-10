@@ -36,6 +36,13 @@ export default function ShareLetter() {
     navigate('/write-letter', { state: letterData?.pet.name });
   };
 
+  const useragt = navigator.userAgent.toLowerCase();
+  const targetUrl = window.location.href;
+
+  if (useragt.match(/kakaotalk/i)) {
+    window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(targetUrl)}`;
+  }
+
   return (
     <>
       {letterData && (
