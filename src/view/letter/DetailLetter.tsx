@@ -168,7 +168,7 @@ export default function DetailLetter() {
     <>
       {letterData && (
         <main className="relative letterBox" ref={sectionRef}>
-          {isReply && (
+          {/* {isReply && (
             <button
               type="button"
               onClick={onClickSaveIcon}
@@ -177,7 +177,7 @@ export default function DetailLetter() {
             >
               <img src={saveImg} alt="저장" className="fixed" />
             </button>
-          )}
+          )} */}
           {letterData.reply.content && (
             <WritingPadSection
               image={letterData.pet.image.url}
