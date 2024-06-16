@@ -10,10 +10,11 @@ import { fetchLetters } from './letter-actions';
 //   endDate: string;
 //   page: number;
 //   size: number;
+//   email: string;
 // };
 
 // type LetterUi = {
-//   filterOption: FilterOption
+//   filterOption: FilterOption;
 //   totalPages: number;
 //   status: 'idle' | 'loading' | 'success' | 'failed';
 //   error: string | null;
@@ -30,6 +31,7 @@ const initialState = {
     endDate: TODAY,
     page: 0,
     size: DEFAULT_LETTERS_PER_PAGE,
+    email: '',
   },
   totalPages: 1,
   status: 'idle',

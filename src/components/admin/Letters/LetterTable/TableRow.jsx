@@ -1,44 +1,35 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { formatDateToYYDDMMHHMM } from 'utils/date';
-import { extractFirstTenChars } from 'utils/string';
-import { inspectReply } from '../../../../store/admin/letter-actions';
+import { adminUserLetterActions } from 'store/admin/useLetter-slice';
 import { adminLetterActions } from '../../../../store/admin/letter-slice';
-import Editor from '../LetterDetail/Editor';
-import Viewer from '../LetterDetail/Viewer';
+
+export const replyStatusInfo = {
+  검수대기: 'bg-yellow-400',
+  검수완료: 'bg-blue-700',
+  발송완료: 'bg-green-600',
+  발송실패: 'bg-red-700',
+};
 
 function TableRow({ no, letter, isChecked }) {
-  const { id, email, count, createdAt, summary, content, reply, pet } = letter;
+  const { id, email, count, createdAt, summary, reply } = letter;
   const dispatch = useDispatch();
-  const [isLetterViewerOpen, setIsLetterViewerOpen] = useState(false);
-  const [isReplyViewerOpen, setIsReplyViewerOpen] = useState(false);
-  const [isReplyEditorOpen, setIsReplyEditorOpen] = useState(false);
-  const isInspectionDisabled = !!reply.timestamp;
-  const gptReplySummary =
-    reply.chatGptContent && extractFirstTenChars(reply.chatGptContent);
-  const replyStatus = reply.type === 'REPLY' ? '발송' : '대기';
+  const navigate = useNavigate();
 
   const handleRowCheck = () => {
     dispatch(adminLetterActions.toggleLetterCheck(id));
   };
 
-  const handleInspect = async () => {
-    dispatch(inspectReply(reply.id));
+  const handleReplyClick = () => {
+    dispatch(adminUserLetterActions.setFilterOption({ email }));
+    navigate(`/admin/letters/${id}`);
   };
 
-  const toggleLetterViewer = () => {
-    setIsLetterViewerOpen((prev) => !prev);
-  };
-
-  const toggleReplyViewer = () => {
-    setIsReplyViewerOpen((prev) => !prev);
-  };
-
-  const toggleReplyEditor = () => {
-    setIsReplyEditorOpen((prev) => !prev);
-  };
+  const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
   return (
     <tr className="border-b">
@@ -53,90 +44,62 @@ function TableRow({ no, letter, isChecked }) {
         </div>
       </td>
       <td className="border p-2 text-center">{no}</td>
-      <td className="border p-2 text-center">{email}</td>
-      <td className="border p-2 text-center">{count}</td>
-      <td className="border p-2 text-center">{pet.species}</td>
-      <td className="border p-2 text-center">{pet.personalities}</td>
       <td className="border p-2 text-center">
         {formatDateToYYDDMMHHMM(createdAt)}
+      </td>
+      <td className="border p-2 text-center">
+        <div
+          className={`bg-red-100 rounded py-1 text-white ${replyStatusInfo[replyStatus]}`}
+        >
+          {replyStatus}
+        </div>
       </td>
       <td className="border p-2">
         <button
           className="w-full text-left overflow-hidden text-ellipsis whitespace-nowrap"
           type="button"
-          onClick={toggleLetterViewer}
+          onClick={handleReplyClick}
         >
           {summary}
         </button>
       </td>
-      <td className="border p-2">
-        <button
-          className="w-full h-5 text-left"
-          type="button"
-          onClick={toggleReplyViewer}
-        >
-          {gptReplySummary}
-        </button>
-      </td>
-      <td className="border p-2">
-        <button
-          className="w-full text-left"
-          type="button"
-          onClick={toggleReplyEditor}
-        >
-          {reply.summary}
-        </button>
-      </td>
-      <td className="border p-2">
-        <div className="flex justify-center items-center h-full overflow-hidden text-ellipsis whitespace-nowrap">
-          <input
-            className={`form-checkbox h-5 w-5 ${
-              reply.inspection || isInspectionDisabled
-                ? 'appearance-auto accent-red-500'
-                : 'appearance-none border border-red-400 rounded-sm'
-            }`}
-            type="checkbox"
-            disabled={isInspectionDisabled}
-            checked={reply.inspection}
-            onChange={handleInspect}
-          />
-        </div>
-      </td>
       <td className="border p-2 text-center">
         {formatDateToYYDDMMHHMM(reply.inspectionTime)}
-      </td>
-      <td
-        className={`border p-2 text-center ${
-          reply.status === '실패' && 'text-red-600 text-bold'
-        }`}
-      >
-        {replyStatus}
       </td>
       <td className="border p-2 text-center">
         {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}
       </td>
-      <Viewer
-        id={id}
-        isOpen={isLetterViewerOpen}
-        content={content}
-        onClose={toggleLetterViewer}
-      />
-      <Viewer
-        id={id}
-        isOpen={isReplyViewerOpen}
-        isGptReply
-        content={reply.chatGptContent}
-        onClose={toggleReplyViewer}
-      />
-      <Editor
-        id={reply.id}
-        isOpen={isReplyEditorOpen}
-        content={reply.content}
-        isSent={!!reply.timestamp}
-        onClose={toggleReplyEditor}
-      />
+      <td className="border p-2 text-center">{email}</td>
+      <td className="border p-2 text-center">{count}</td>
     </tr>
   );
 }
 
 export default TableRow;
+
+export function getReplyStatus(replyTime, inspectionTime) {
+  const replyDate = replyTime ? new Date(replyTime) : null;
+  const inspectionDate = inspectionTime ? new Date(inspectionTime) : null;
+
+  if (!inspectionDate) {
+    return '검수대기';
+  }
+
+  if (replyDate) {
+    return '발송완료';
+  }
+
+  if (inspectionDate && !replyDate) {
+    const nextDay = new Date(inspectionDate);
+    nextDay.setDate(inspectionDate.getDate() + 1);
+    nextDay.setHours(10, 0, 0, 0);
+
+    if (new Date() > nextDay) {
+      return '발송실패';
+    }
+
+    return '검수완료';
+  }
+
+  return '검수대기';
+}

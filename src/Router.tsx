@@ -27,6 +27,7 @@ import AccountDeletion from 'components/AccountDeletion';
 import FAQs from 'components/FAQs';
 import PasswordReset from 'components/PasswordReset';
 import ScrollToTop from 'hooks/useScrollTop';
+import LetterDetail from 'components/admin/Letters/LetterDetail';
 import PetRegistration from './components/MyPetsTemplate/PetRegistration';
 import PetEdit from './components/MyPetsTemplate/PetEdit';
 
@@ -67,6 +68,7 @@ function Router() {
           {/* NOTE: 관리자 권한이 필요한 페이지 */}
           <Route element={<AdminLayout />}>
             <Route path="/admin/letters" element={<Letters />} />
+            <Route path="/admin/letters/:letterId" element={<LetterDetail />} />
           </Route>
         </Routes>
         {isOpen && <Modal />}

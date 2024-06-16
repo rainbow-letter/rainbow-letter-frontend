@@ -14,6 +14,7 @@ export const fetchLetters = createAsyncThunk(
       endDate: filterOption.endDate,
       page: filterOption.page,
       size: filterOption.size,
+      email: filterOption.email,
     });
 
     const response = await api.get(`/api/letters/admin/list?${queryParams}`);
