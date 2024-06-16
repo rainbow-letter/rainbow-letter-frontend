@@ -32,6 +32,7 @@ export default function ModalContents() {
   const { type } = useSelector((state: State) => state.modal);
 
   const [value, setValue] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [selectRadio, setSelectRadio] = useState<string>('image_letter');
 
   const { title, body } = MODAL_MESSAGE.find(
@@ -41,7 +42,7 @@ export default function ModalContents() {
   const registerPhoneNumber = async () => {
     try {
       if (!validatePhoneNumber(value)) {
-        throw new Error('유효하지 않은 휴대폰 번호 형식입니다.');
+        setErrorMessage('앗, 번호를 잘못 입력했어요');
       }
       await updatePhoneNumber({
         phoneNumber: value,
@@ -57,16 +58,6 @@ export default function ModalContents() {
   const closeDuringDate = () => {
     const date = Date.now() + 7 * 24 * 60 * 60 * 1000;
     setExpireModal(String(date));
-  };
-
-  const handleOpenNewTab = () => {
-    window.open(
-      'https://smartstore.naver.com/rainbowletter/products/10422885853',
-      '_blank',
-      'noopener, noreferrer'
-    );
-    dispatch(modalActions.closeModal());
-    navigate('/letter-box');
   };
 
   useEffect(() => {
@@ -130,8 +121,11 @@ export default function ModalContents() {
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setValue(e.target.value)
                   }
-                  className="w-full my-4 py-5"
+                  className="w-full mt-4 py-5"
                 />
+                <p className="text-caption text-left text-alarm-red px-2.5 mt-1 mb-4">
+                  {errorMessage}
+                </p>
                 <div className="flex gap-2 justify-center mt-1 mb-5">
                   <img src={AlarmIcon} alt="알림 아이콘" />
                   <p className="text-solo-small text-gray-4">
