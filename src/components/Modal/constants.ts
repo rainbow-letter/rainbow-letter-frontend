@@ -1,3 +1,7 @@
+import Kakao from 'assets/im_modal_kakao.png';
+import Book from 'assets/im_modal_book.png';
+import FitaPat from 'assets/im_modal_fitapat.png';
+
 export interface Modal {
   type: string;
   title: string;
@@ -7,6 +11,38 @@ export interface Modal {
     contents: string;
   }[];
 }
+
+export interface Modal_AD {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  url: string;
+}
+
+export const MODAL_AD_CONTENTS_ITEMS: Modal_AD[] = [
+  {
+    id: 0,
+    title: '무지개편지 카톡채널 OPEN',
+    description: '답장 링크 카톡으로 받기',
+    image: Kakao,
+    url: 'https://pf.kakao.com/_MNevG/105645061',
+  },
+  {
+    id: 1,
+    title: '만족도 5점 엽서북 출시',
+    description: '20명 한정판 구매하기',
+    image: Book,
+    url: 'https://smartstore.naver.com/rainbowletter/products/10422885853',
+  },
+  {
+    id: 2,
+    title: 'AI로 만드는 우리 아이 굿즈 ',
+    description: 'FITAPAT 케이스 구매하기',
+    image: FitaPat,
+    url: 'https://www.fitapat.com/product/case/91',
+  },
+];
 
 export const MODAL_MESSAGE: Modal[] = [
   {
