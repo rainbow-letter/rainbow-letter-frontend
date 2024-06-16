@@ -4,7 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
-import { MODAL_MESSAGE, Modal } from 'components/Modal/constants';
+import Radio from 'components/Radio/Radio';
+import RadioGroup from 'components/Radio/RadioGroup';
+import ContentsItem from 'components/Home/ContentsItem';
+import {
+  MODAL_MESSAGE,
+  Modal,
+  MODAL_AD_CONTENTS_ITEMS,
+} from 'components/Modal/constants';
 import { updatePhoneNumber } from 'api/user';
 import { State } from 'types/store';
 import { validatePhoneNumber } from 'utils/validators';
@@ -13,11 +20,8 @@ import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import { setSessionAutoSaveID } from 'utils/sesstionStorage';
 import { postData } from 'api/data';
-import Radio from 'components/Radio/Radio';
-import RadioGroup from 'components/Radio/RadioGroup';
 import CancelImage from '../../assets/ph_x-bold.svg';
 import WritingPad from '../../assets/writing_pad.svg';
-import Banner from '../../assets/banner.svg';
 import ErrorIcon from '../../assets/Error_icon.svg';
 import SaveComplete from '../../assets/save_complete.svg';
 import AlarmIcon from '../../assets/ic_Error_icon.svg';
@@ -162,7 +166,7 @@ export default function ModalContents() {
           case 'COMPLETE':
             return (
               <div className="w-full pt-[3.313rem] pb-[2.75rem]">
-                <header className="flex flex-col justify-center items-center py-6 text-center border rounded-[0.938rem]">
+                <header className="flex flex-col justify-center items-center py-6 text-center rounded-[0.938rem] bg-orange-50">
                   <img
                     src={WritingPad}
                     alt="편지지"
@@ -171,15 +175,15 @@ export default function ModalContents() {
                   <h3 className="text-heading-3 mt-2">{title}</h3>
                   <span className="mt-2">{body[0].contents}</span>
                 </header>
-                <button
-                  id="add_letter_popup"
-                  type="button"
-                  onClick={handleOpenNewTab}
-                  className="mt-4"
-                >
-                  <img src={Banner} alt="배너 광고" />
-                </button>
-
+                <p className="mt-[1.625rem] mb-4 underline text-gray-1">AD</p>
+                <div className="flex flex-col gap-4">
+                  {MODAL_AD_CONTENTS_ITEMS.map((item) => (
+                    <ContentsItem
+                      item={item}
+                      className={`${item.id === 1 ? 'bg-gray-2' : ''} shadow-modal`}
+                    />
+                  ))}
+                </div>
                 <button
                   type="button"
                   onClick={() => {
