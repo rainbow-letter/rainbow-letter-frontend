@@ -24,8 +24,9 @@ function LetterTable() {
     });
   };
 
-  const handleStatusFilterClick = ({ target }) => {
-    dispatch(letterUiActions.setFilterOption({ type: target.value }));
+  const handleStatusFilterClick = (event) => {
+    const { type, inspect } = event.currentTarget.dataset;
+    dispatch(letterUiActions.setFilterOption({ type, inspect }));
     dispatch(fetchLetters());
   };
 
@@ -105,23 +106,35 @@ function LetterTable() {
               <button
                 className={`${filterOption.type === 'ALL' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
                 type="button"
-                value="ALL"
+                data-type="ALL"
+                data-inspect="null"
                 onClick={handleStatusFilterClick}
               >
                 전체
               </button>
               <button
-                className={`${filterOption.type === 'WAIT' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'false' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
                 type="button"
-                value="WAIT"
+                data-type="WAIT"
+                data-inspect="false"
                 onClick={handleStatusFilterClick}
               >
-                대기
+                검수대기
+              </button>
+              <button
+                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'true' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                type="button"
+                data-type="WAIT"
+                data-inspect="true"
+                onClick={handleStatusFilterClick}
+              >
+                검수완료
               </button>
               <button
                 className={`${filterOption.type === 'COMPLETE' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
                 type="button"
-                value="COMPLETE"
+                data-type="COMPLETE"
+                data-inspect="null"
                 onClick={handleStatusFilterClick}
               >
                 발송완료

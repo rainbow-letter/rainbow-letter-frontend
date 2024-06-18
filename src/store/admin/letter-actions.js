@@ -17,6 +17,10 @@ export const fetchLetters = createAsyncThunk(
       email: filterOption.email,
     });
 
+    if (filterOption.inspect !== 'null') {
+      queryParams.append('inspect', filterOption.inspect);
+    }
+
     const response = await api.get(`/api/letters/admin/list?${queryParams}`);
     return response.data;
   }
