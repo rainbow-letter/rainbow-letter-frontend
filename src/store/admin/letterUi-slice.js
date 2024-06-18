@@ -32,7 +32,7 @@ const initialState = {
     page: 0,
     size: DEFAULT_LETTERS_PER_PAGE,
     email: '',
-    inspect: null,
+    inspect: 'null',
   },
   totalPages: 1,
   status: 'idle',
