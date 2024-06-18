@@ -1,7 +1,9 @@
-import React, { forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getImage } from 'api/images';
 import { calculateDDay } from 'utils/date';
+import defaultImage from 'assets/Logo_256px.png';
 import { USER_ACTIONS, PREFIX } from './constants';
 import PetCardImage from './PetCardImage';
 import LikeButton from './LikeButton';
@@ -9,6 +11,7 @@ import pen from '../../assets/pen.svg';
 
 function PetCard({ pet }, ref) {
   const navigate = useNavigate();
+  const [petImage, setPetImage] = useState('');
 
   const deathAnniversaryDDay =
     pet.deathAnniversary && calculateDDay(pet.deathAnniversary);
@@ -21,9 +24,22 @@ function PetCard({ pet }, ref) {
     navigate('/letter-box', { state: pet.id });
   };
 
+  useEffect(() => {
+    const getPetImage = async () => {
+      if (pet?.image.objectKey) {
+        const image = await getImage(pet?.image.objectKey);
+        return setPetImage(image);
+      }
+
+      return setPetImage(defaultImage);
+    };
+
+    getPetImage();
+  }, [pet.id]);
+
   return (
     <li className="relative pt-[15.187rem] mb-4" ref={ref}>
-      <PetCardImage name={pet.name} image={pet.image} />
+      <PetCardImage name={pet.name} image={petImage} />
       <article className="relative bg-white p-4 rounded-2xl shadow-default">
         <header className="flex justify-between items-center mb-5 mt-2.5 ml-3">
           <div className="flex items-center grow gap-5">
