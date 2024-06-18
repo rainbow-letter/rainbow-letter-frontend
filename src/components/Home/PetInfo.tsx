@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { PetDashBoard } from 'types/pets';
 import { calculateDDay } from 'utils/date';
+import { getImage } from 'api/images';
 
 import letter from 'assets/letter.svg';
 import heart from 'assets/fa-regular-heart.svg';
@@ -18,6 +19,7 @@ type Props = {
 
 export default function PetInfo({ pet, letterCount }: Props) {
   const navigate = useNavigate();
+  const [petImage, setPetImage] = useState<string>('');
   const deathAnniversaryDDay =
     pet?.deathAnniversary && calculateDDay(pet?.deathAnniversary);
 
@@ -25,13 +27,26 @@ export default function PetInfo({ pet, letterCount }: Props) {
     navigate('/my-pets', { state: pet?.id });
   };
 
+  useEffect(() => {
+    const getPetImage = async () => {
+      if (pet?.image.objectKey) {
+        const data = await getImage(pet?.image.objectKey);
+        return setPetImage(data.request.responseURL);
+      }
+
+      return setPetImage(defaultImage);
+    };
+
+    getPetImage();
+  }, [pet]);
+
   return (
     <article
       onClick={handleScroll}
       className="relative flex flex-row items-center px-5 py-6 rounded-2xl border cursor-pointer"
     >
       <img
-        src={(pet && pet.image.url) || defaultImage}
+        src={petImage || defaultImage}
         alt="pet"
         className="h-[5.5rem] w-[5.5rem] mr-7 rounded-full"
       />
