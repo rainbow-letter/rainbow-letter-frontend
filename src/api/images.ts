@@ -4,10 +4,14 @@ import { ApiResponse } from 'types/Api';
 
 const RESOURCE = '/api/images';
 
-export const getImage = async (key: string): ApiResponse<string> => {
+interface Image {
+  responseURL: string;
+}
+
+export const getImage = async (key: string): Promise<string> => {
   const response = await apiRequest.get(`${RESOURCE}/resources/${key}`);
 
-  return response;
+  return response.request.responseURL;
 };
 
 export const updateImageAndGetId = async (data: any): Promise<any> => {

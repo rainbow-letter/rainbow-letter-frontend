@@ -30,8 +30,8 @@ export default function PetInfo({ pet, letterCount }: Props) {
   useEffect(() => {
     const getPetImage = async () => {
       if (pet?.image.objectKey) {
-        const data = await getImage(pet?.image.objectKey);
-        return setPetImage(data.request.responseURL);
+        const image = await getImage(pet?.image.objectKey);
+        return setPetImage(image);
       }
 
       return setPetImage(defaultImage);
