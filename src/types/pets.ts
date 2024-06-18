@@ -8,9 +8,9 @@ export interface PetFavorite {
 }
 
 export interface PetImage {
-  id: number;
-  objectKey: string;
-  url: string;
+  id: number | null;
+  objectKey: string | null;
+  url: string | null;
 }
 
 export type PetDashBoard = {

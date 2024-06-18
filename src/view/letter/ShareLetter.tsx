@@ -50,14 +50,14 @@ export default function ShareLetter() {
           <AppBar />
           {letterData.reply.content && (
             <WritingPadSection
-              image={letterData.pet.image.url}
+              image={letterData.pet.image}
               petName={`${letterData.pet.name}로부터`}
               reply={letterData.reply.content}
               date={processDate(letterData.reply.timestamp)}
             />
           )}
           <WritingPadSection
-            image={!letterData.reply.content ? letterData.pet.image.url : null}
+            image={!letterData.reply.content ? letterData.pet.image : null}
             petName={`${letterData.pet.name}에게`}
             reply={letterData.content}
             date={processDate(letterData.createdAt)}

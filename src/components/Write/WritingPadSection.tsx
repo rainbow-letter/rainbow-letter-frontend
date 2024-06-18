@@ -1,8 +1,11 @@
 /* eslint-disable */
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
+import { getImage } from 'api/images';
 import Caption from 'components/Write/Caption';
+import defaultImage from 'assets/Logo_256px.png';
 import CoverImage from 'components/CoverImage';
+import { PetImage } from 'types/pets';
 
 type Letter = {
   summary: string;
@@ -10,8 +13,9 @@ type Letter = {
 };
 
 type Props = {
+  id?: number;
   petName: string | null;
-  image: string | null;
+  image: PetImage | null;
   reply?: string;
   date?: string;
   className?: string;
@@ -27,6 +31,7 @@ type Props = {
 
 const MAX_LENGTH = 1000;
 function WritingPadSection({
+  id,
   petName,
   image,
   onchange,
@@ -40,6 +45,20 @@ function WritingPadSection({
   const style = (image && 'pt-[15.187rem]') || 'mt-4';
   const textareaStyle = className ? 'bg-gray-2' : 'bg-orange-50';
   const textarea = useRef<HTMLTextAreaElement>(null);
+  const [petImage, setPetImage] = useState('');
+
+  useEffect(() => {
+    const getPetImage = async () => {
+      if (image?.objectKey) {
+        const data = await getImage(image.objectKey);
+        return setPetImage(data);
+      }
+
+      return setPetImage(defaultImage);
+    };
+
+    getPetImage();
+  }, [id]);
 
   const onUserGuessInput = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -77,7 +96,7 @@ function WritingPadSection({
 
   return (
     <section className={`relative mt-4 ${style}`}>
-      <CoverImage image={image} />
+      <CoverImage image={petImage} />
       <section
         className={`${textareaStyle} ${saveType?.target} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}
       >
