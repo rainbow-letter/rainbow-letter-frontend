@@ -12,6 +12,8 @@ import {
   formatDateToYYMMDD,
 } from 'utils/date';
 import { extractFirstTenChars } from 'utils/string';
+import { getImage } from 'api/images';
+import defaultImage from 'assets/Logo_256px.png';
 import {
   editReply,
   regenerateReply,
@@ -23,6 +25,7 @@ const MAX_CONTENT_LENGTH = 1000;
 
 function LetterDetail() {
   const [newContent, setNewContentValue] = useState('');
+  const [petImage, setPetImage] = useState('');
 
   const navigate = useNavigate();
   const { letterId } = useParams();
@@ -69,6 +72,19 @@ function LetterDetail() {
   useEffect(() => {
     dispatch(fetchUserLetters());
   }, [dispatch]);
+
+  useEffect(() => {
+    const getPetImage = async () => {
+      if (pet?.image.objectKey) {
+        const image = await getImage(pet?.image.objectKey);
+        return setPetImage(image);
+      }
+
+      return setPetImage(defaultImage);
+    };
+
+    getPetImage();
+  }, [pet.id]);
 
   return (
     <div className="fixed inset-0 w-screen h-screen flex gap-x-4 p-6 bg-white z-20">
@@ -184,7 +200,7 @@ function LetterDetail() {
             <div className="">
               <img
                 className="w-[132px] h-[132px]"
-                src={pet.image.url}
+                src={petImage}
                 alt={pet.name}
               />
             </div>

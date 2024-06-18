@@ -49,7 +49,7 @@ function TableRow({ no, letter, isChecked }) {
       </td>
       <td className="border p-2 text-center">
         <div
-          className={`bg-red-100 rounded py-1 text-white ${replyStatusInfo[replyStatus]}`}
+          className={`rounded py-1 text-white ${replyStatusInfo[replyStatus]}`}
         >
           {replyStatus}
         </div>
