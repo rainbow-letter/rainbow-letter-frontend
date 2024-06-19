@@ -38,6 +38,7 @@ function LetterDetail() {
   );
   const userLetters = useSelector((state) => state.adminUserLetters.letters);
 
+  console.log('🔆 letterData', letterData);
   const { pet, reply } = letterData;
   const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
@@ -192,8 +193,12 @@ function LetterDetail() {
                 <span>{pet.species}</span>
                 <span>{pet.personalities || '-'}</span>
                 <div className="flex gap-x-1">
-                  <span>{pet.deathAnniversary}</span>
-                  <span>({calculateDDay(pet.deathAnniversary)})</span>
+                  {pet.deathAnniversary && (
+                    <>
+                      <span>{pet.deathAnniversary}</span>
+                      <span>({calculateDDay(pet.deathAnniversary)})</span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
