@@ -12,11 +12,12 @@ import autoSavingFail from '../../assets/autoSave_fail.svg';
 
 function AppBar() {
   const location = useLocation();
-  const isSaving = useSelector((state: RootState) => state.letter.isSaving);
-  const isSuccess = useSelector((state: RootState) => state.letter.isSuccess);
   const normalizedPath = normalizePath(location.pathname);
   const params = Object.keys(useParams())[0];
   const config = appBarConfig[params] || appBarConfig[normalizedPath];
+
+  const isSaving = useSelector((state: RootState) => state.letter.isSaving);
+  const isSuccess = useSelector((state: RootState) => state.letter.isSuccess);
 
   if (!config) {
     return null;

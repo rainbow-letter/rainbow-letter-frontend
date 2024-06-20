@@ -26,6 +26,7 @@ const MAX_CONTENT_LENGTH = 1000;
 function LetterDetail() {
   const [newContent, setNewContentValue] = useState('');
   const [petImage, setPetImage] = useState('');
+  const [letterImage, setLetterImage] = useState('');
 
   const navigate = useNavigate();
   const { letterId } = useParams();
@@ -33,70 +34,82 @@ function LetterDetail() {
   const isLoading = useSelector(
     (state) => state.adminLetters.status === 'loading'
   );
-  const letterData = useSelector((state) =>
-    state.adminLetters.letters.find((letter) => letter.id === Number(letterId))
-  );
+
   const userLetters = useSelector((state) => state.adminUserLetters.letters);
-
-  console.log('letterId', letterId);
-  console.log('letterData', letterData);
-
-  const { pet, reply } = letterData;
-  const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchUserLetters());
+  }, [dispatch]);
+
+  const letterData = userLetters.find(
+    (letter) => letter.id === Number(letterId)
+  );
+
+  useEffect(() => {
+    if (letterData) {
+      setNewContentValue(letterData.reply.content);
+    }
+  }, [letterData]);
+
+  useEffect(() => {
+    if (letterData?.pet?.image?.objectKey) {
+      const getPetImage = async () => {
+        const image = await getImage(letterData.pet.image.objectKey);
+        setPetImage(image);
+      };
+      getPetImage();
+    } else {
+      setPetImage(defaultImage);
+    }
+  }, [letterData]);
+
+  useEffect(() => {
+    if (letterData?.image?.objectKey) {
+      const getLetterImage = async () => {
+        const image = await getImage(letterData.image.objectKey);
+        setLetterImage(image);
+      };
+      getLetterImage();
+    }
+  }, [letterData]);
+
   const handleRegenerateClick = () => {
-    if (reply.timestamp) return alert('이미 답장을 보낸 편지입니다.');
+    if (letterData.reply.timestamp)
+      return alert('이미 답장을 보낸 편지입니다.');
     dispatch(regenerateReply(letterData.id));
   };
 
-  const isChanged = newContent !== reply.content;
+  const isChanged = newContent !== letterData?.reply.content;
   const handleSaveClick = () => {
-    if (reply.timestamp) return alert('이미 답장을 보낸 편지입니다.');
+    if (letterData.reply.timestamp)
+      return alert('이미 답장을 보낸 편지입니다.');
 
     const newSummary = extractFirstTenChars(newContent);
     dispatch(
       editReply({
-        replyId: reply.id,
+        replyId: letterData.reply.id,
         editedReply: {
           summary: newSummary,
           content: newContent,
         },
       })
     );
-    navigate(-1);
+    navigate('/admin/letters/');
   };
 
-  useEffect(() => {
-    setNewContentValue(reply.content);
-  }, [dispatch, reply.content]);
+  const handleUserLetterClick = (id) => {
+    navigate(`/admin/letters/${id}`);
+    setLetterImage('');
+  };
 
-  useEffect(() => {
-    dispatch(fetchUserLetters());
-  }, []);
+  if (!letterData) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (pet?.image.objectKey) {
-        const image = await getImage(pet?.image.objectKey);
-        return setPetImage(image);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [pet.id]);
-
-  const [letterImage, setLetterImage] = useState('');
-
-  useEffect(async () => {
-    if (letterData?.image.objectKey) {
-      const image = await getImage(letterData?.image.objectKey);
-      return setLetterImage(image);
-    }
-  }, [letterData.id]);
+  const { pet, reply } = letterData;
+  const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
   return (
     <div className="w-screen h-screen flex gap-x-4 p-6 bg-white overflow-auto z-20">
@@ -157,7 +170,7 @@ function LetterDetail() {
                     <tr
                       key={row.id}
                       className={`cursor-pointer hover:bg-gray-100 ${isSelected && 'text-blue-600 font-semibold'}`}
-                      onClick={() => navigate(`/admin/letters/${row.id}`)}
+                      onClick={() => handleUserLetterClick(row.id)}
                     >
                       <td className="text-center">{row.count}</td>
                       <td className="text-center whitespace-nowrap">
