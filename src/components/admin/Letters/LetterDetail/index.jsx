@@ -87,7 +87,7 @@ function LetterDetail() {
   }, [pet.id]);
 
   return (
-    <div className="fixed inset-0 w-screen h-screen flex gap-x-4 p-6 bg-white z-20">
+    <div className="w-screen h-screen flex gap-x-4 p-6 bg-white overflow-auto z-20">
       {/* 왼쪽 */}
       <section className="flex flex-col gap-y-6 flex-1 bg-white">
         <header>
