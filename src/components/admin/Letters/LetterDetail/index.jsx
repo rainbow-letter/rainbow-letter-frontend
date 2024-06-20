@@ -38,7 +38,9 @@ function LetterDetail() {
   );
   const userLetters = useSelector((state) => state.adminUserLetters.letters);
 
-  console.log('🔆 letterData', letterData);
+  console.log('letterId', letterId);
+  console.log('letterData', letterData);
+
   const { pet, reply } = letterData;
   const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
@@ -72,7 +74,7 @@ function LetterDetail() {
 
   useEffect(() => {
     dispatch(fetchUserLetters());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const getPetImage = async () => {
@@ -86,6 +88,15 @@ function LetterDetail() {
 
     getPetImage();
   }, [pet.id]);
+
+  const [letterImage, setLetterImage] = useState('');
+
+  useEffect(async () => {
+    if (letterData?.image.objectKey) {
+      const image = await getImage(letterData?.image.objectKey);
+      return setLetterImage(image);
+    }
+  }, [letterData.id]);
 
   return (
     <div className="w-screen h-screen flex gap-x-4 p-6 bg-white overflow-auto z-20">
@@ -217,10 +228,11 @@ function LetterDetail() {
               <span className="text-[20px] font-bold">
                 {letterData.count}회차 편지
               </span>
-              {letterData.image.url && (
+              {letterImage && (
                 <Link
                   className="text-primary underline"
-                  to={letterData.image.url}
+                  to={letterImage}
+                  target="_blank"
                 >
                   (사진보기)
                 </Link>
