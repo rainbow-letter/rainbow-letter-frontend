@@ -113,7 +113,7 @@ function LetterDetail() {
   const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
   return (
-    <div className="w-screen h-screen flex gap-x-4 p-6 bg-white overflow-auto z-20">
+    <div className="min-w-[300%] w-screen h-screen flex gap-x-4 p-6 bg-white overflow-auto z-20">
       {/* 왼쪽 */}
       <section className="flex flex-col gap-y-6 flex-1 bg-white">
         <header>
