@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-shadow */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -287,27 +288,34 @@ function LetterDetail() {
             onChange={({ target }) => setNewContentValue(target.value)}
           />
         </main>
-        <footer className="flex justify-end gap-x-2">
-          <button
-            className={`py-2 px-3 font-semibold rounded ${
-              isLoading ? 'cursor-not-allowed' : 'hover:bg-pink-400 bg-pink-300'
-            }`}
-            type="button"
-            disabled={isLoading}
-            onClick={handleRegenerateClick}
-          >
-            GPT 재생성
-          </button>
-          <button
-            className={`py-2 px-3  text-white font-semibold rounded ${
-              isChanged ? 'hover:bg-green-400 bg-green-500' : 'bg-gray-300'
-            }`}
-            disabled={!isChanged}
-            type="button"
-            onClick={handleSaveClick}
-          >
-            저장
-          </button>
+        <footer className="flex justify-between">
+          <div className="text-solo-label text-gray-1 mr-3">
+            {`${newContent.length} / ${MAX_CONTENT_LENGTH}`}
+          </div>
+          <div className="flex gap-x-2">
+            <button
+              className={`py-2 px-3 font-semibold rounded ${
+                isLoading
+                  ? 'cursor-not-allowed'
+                  : 'hover:bg-pink-400 bg-pink-300'
+              }`}
+              type="button"
+              disabled={isLoading}
+              onClick={handleRegenerateClick}
+            >
+              GPT 재생성
+            </button>
+            <button
+              className={`py-2 px-3  text-white font-semibold rounded ${
+                isChanged ? 'hover:bg-green-400 bg-green-500' : 'bg-gray-300'
+              }`}
+              disabled={!isChanged}
+              type="button"
+              onClick={handleSaveClick}
+            >
+              저장
+            </button>
+          </div>
         </footer>
       </section>
     </div>
