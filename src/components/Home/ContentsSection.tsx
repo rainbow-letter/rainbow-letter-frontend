@@ -14,7 +14,7 @@ export default function ContentsSection() {
       <div className="mt-5 flex flex-col gap-4">
         <Banner />
         {CONTENTS_MESSAGE.map((item) => (
-          <ContentsItem item={item} />
+          <ContentsItem key={item.id} item={item} />
         ))}
       </div>
     </section>

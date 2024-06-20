@@ -27,9 +27,9 @@ function LetterShowcase() {
       </span>
       <div className="h-6" />
       <Slider {...SHOWCASE_CAROUSEL_OPTIONS} className="h-52">
-        {SHOWCASE_LETTERS.map((letter) => (
-          <div className="py-5 w-[138px]">
-            <LetterItem key={letter.id} letter={letter} />
+        {SHOWCASE_LETTERS.map((letter, i) => (
+          <div className="py-5 w-[138px]" key={letter.id}>
+            <LetterItem letter={letter} />
           </div>
         ))}
       </Slider>

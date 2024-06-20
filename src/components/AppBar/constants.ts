@@ -44,7 +44,7 @@ const appBarConfig: AppBar = {
   '/admin/letters': {
     title: '편지 리스트 관리',
   },
-  '/admin/petss': {
+  '/admin/pets': {
     title: '반려동물 리스트 관리',
   },
 };
