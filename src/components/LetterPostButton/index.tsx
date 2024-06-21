@@ -9,11 +9,11 @@ function LetterPostButton() {
       <Link
         id="share_letter"
         style={{ boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.15)' }}
-        className="w-full h-10 flex justify-center items-center gap-x-1 rounded-2xl"
+        className="flex h-10 w-full items-center justify-center gap-x-1 rounded-2xl"
         to="https://walla.my/letter2"
         target="_blank"
       >
-        <div className="h-[15px] w-[15px]">
+        <div className="size-[15px]">
           <img src={logo} alt="logo" width="100%" height="100%" />
         </div>
         <span className="text-solo-small">내 편지도 걸어보기</span>

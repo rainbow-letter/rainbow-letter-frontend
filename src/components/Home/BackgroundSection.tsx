@@ -14,26 +14,26 @@ export default function BackgroundSection() {
     <button
       type="button"
       onClick={onLandingPageButtonClick}
-      className="bg-[#FFF8ED] flex justify-between w-full pl-7 pr-4 py-12 absolute"
+      className="absolute flex w-full justify-between bg-[#FFF8ED] py-12 pl-7 pr-4"
     >
-      <div className="text-left text-heading-3 pt-[0.625rem]">
+      <div className="pt-2.5 text-left text-heading-3">
         <p className="font-bold">
           무지개 너머 <br /> 답장을 받아보세요
         </p>
         <p>마음껏, 무료로</p>
         <button
           type="button"
-          className="flex items-center gap-1.5 bg-orange-400 text-white rounded-full mt-[1.125rem] px-[0.625rem] py-[0.313rem] text-body-small-pc"
+          className="mt-[1.125rem] flex items-center gap-1.5 rounded-full bg-orange-400 px-2.5 py-[0.313rem] text-body-small-pc text-white"
         >
           자세히 보기
           <img src={vector} alt="arrow" />
         </button>
       </div>
-      <div className="w-[9.875rem] h-[9.688rem] flex justify-center items-center">
+      <div className="flex h-[9.688rem] w-[9.875rem] items-center justify-center">
         <img
           src={card}
           alt="card"
-          className="rounded-2xl w-full h-full object-cover"
+          className="size-full rounded-2xl object-cover"
         />
       </div>
     </button>

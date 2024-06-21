@@ -38,11 +38,11 @@ function PetCard({ pet }, ref) {
   }, [pet.id]);
 
   return (
-    <li className="relative pt-[15.187rem] mb-4" ref={ref}>
+    <li className="relative mb-4 pt-[15.187rem]" ref={ref}>
       <PetCardImage name={pet.name} image={petImage} />
-      <article className="relative bg-white p-4 rounded-2xl shadow-default">
-        <header className="flex justify-between items-center mb-5 mt-2.5 ml-3">
-          <div className="flex items-center grow gap-5">
+      <article className="relative rounded-2xl bg-white p-4 shadow-default">
+        <header className="mb-5 ml-3 mt-2.5 flex items-center justify-between">
+          <div className="flex grow items-center gap-5">
             <span className="text-heading-2">{pet.name}</span>
             <span className="text-solo-small text-orange-400">
               {deathAnniversaryDDay}
@@ -52,7 +52,7 @@ function PetCard({ pet }, ref) {
             <img src={pen} alt="edit" />
           </button>
         </header>
-        <section className="flex flex-col gap-y-3 mb-6 ml-3 text-solo-medium">
+        <section className="mb-6 ml-3 flex flex-col gap-y-3 text-solo-medium">
           <ul className="flex gap-x-1.5">
             {pet?.personalities.map((personality) => (
               <li
@@ -62,9 +62,9 @@ function PetCard({ pet }, ref) {
           </ul>
           <div>{`${PREFIX.OWNER}${pet.owner}`}</div>
         </section>
-        <footer className="h-[3.875rem] flex gap-x-3 text-body-large">
+        <footer className="flex h-[3.875rem] gap-x-3 text-body-large">
           <button
-            className="w-full px-5 py-4 flex-1 text-white bg-orange-400 rounded-2xl"
+            className="w-full flex-1 rounded-2xl bg-orange-400 px-5 py-4 text-white"
             type="button"
             onClick={handleWriteLetter}
           >

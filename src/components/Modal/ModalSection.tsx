@@ -20,7 +20,7 @@ export default function ModalSection({ children }: Props) {
     <section
       className={`${
         isOpen ? 'block' : 'hidden'
-      } fixed inset-y-0 bg-[#000000]/50 w-[24.375rem] px-6 z-50`}
+      } fixed inset-y-0 z-50 w-[24.375rem] bg-[#000000]/50 px-6`}
     >
       {children}
     </section>

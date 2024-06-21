@@ -17,12 +17,12 @@ function PasswordResetForm({ onClick }: Props) {
   const isMatching = validatePasswordMatch(newPassword, confirmPassword);
 
   return (
-    <main className="flex flex-col justify-center h-screen">
+    <main className="flex h-screen flex-col justify-center">
       <section>
-        <h2 className="text-heading-2 text-center">
+        <h2 className="text-center text-heading-2">
           {UPDATE_PASSWORD_MESSAGE.TITLE}
         </h2>
-        <p className="text-solo-medium text-gray-1 text-center mt-[1.125rem]">
+        <p className="mt-[1.125rem] text-center text-solo-medium text-gray-1">
           {UPDATE_PASSWORD_MESSAGE.DESCRIPTION}
         </p>
       </section>
@@ -43,7 +43,7 @@ function PasswordResetForm({ onClick }: Props) {
             '영어, 숫자 포함 8자리 이상 입력해주세요.'
           }
         />
-        <label htmlFor="newPasswordCheck" className="block p-2.5 mt-2">
+        <label htmlFor="newPasswordCheck" className="mt-2 block p-2.5">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD_CONFIRM}
         </label>
         <UserInput

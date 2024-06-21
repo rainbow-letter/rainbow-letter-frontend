@@ -12,12 +12,12 @@ export default function LandingPage() {
   };
 
   return (
-    <main className="min-h-screen ">
+    <main className="min-h-screen">
       {landingItems.map((item) => (
         <img src={item.imageSrc} alt="landing" className="object-cover" />
       ))}
-      <div className="bg-[#FFF8ED] font-semibold text-heading-2 px-5 py-14">
-        <p className="text-center mb-8">
+      <div className="bg-[#FFF8ED] px-5 py-14 text-heading-2 font-semibold">
+        <p className="mb-8 text-center">
           무지개마을에 <br /> 편지를 보내보세요!
         </p>
         <Button

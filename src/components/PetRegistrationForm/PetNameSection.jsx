@@ -18,7 +18,7 @@ function PetNameSection() {
   return (
     <PetRegistrationSection title={TITLES.PET_NAME}>
       <Input
-        className="w-full h-[3.75rem] text-caption"
+        className="h-[3.75rem] w-full text-caption"
         placeholder={INFO_MESSAGES.ENTER_NAME}
         value={name}
         onChange={handleInputChange}

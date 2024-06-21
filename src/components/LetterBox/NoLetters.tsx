@@ -12,8 +12,8 @@ export default function NoLetters({ pet }: Props) {
   const navigate = useNavigate();
 
   return (
-    <div className="h-[88vh] flex justify-center items-center">
-      <section className="w-full flex flex-col gap-y-12 text-center">
+    <div className="flex h-[88vh] items-center justify-center">
+      <section className="flex w-full flex-col gap-y-12 text-center">
         <div className="flex flex-col">
           <span className="p-2.5 text-heading-3">
             {INFO_MESSAGES.SENT_LETTER_ABSENT}

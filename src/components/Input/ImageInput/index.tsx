@@ -35,7 +35,7 @@ function ImageInput({
       >
         <label
           htmlFor="file-upload"
-          className={`${styles} flex justify-center items-center w-[9.75rem] h-[9.75rem] bg-gray-2 text-white border border-[#616161] border-dashed rounded-2xl overflow-hidden cursor-pointer`}
+          className={`${styles} flex size-[9.75rem] cursor-pointer items-center justify-center overflow-hidden rounded-2xl border border-dashed border-[#616161] bg-gray-2 text-white`}
         >
           <img
             className={`${imgStyles} rounded-2xl`}

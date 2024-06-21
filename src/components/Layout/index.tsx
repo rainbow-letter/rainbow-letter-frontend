@@ -15,11 +15,11 @@ function Layout() {
   }, [pathname]);
 
   return (
-    <div className="w-full h-full min-w-[22.5rem] flex justify-center bg-white">
+    <div className="flex size-full min-w-[22.5rem] justify-center bg-white">
       <div
         className={`${
-          isHomeLayOut ? 'px-0 overflow-hidden' : 'px-5'
-        } max-w-[24.375rem] w-full bg-white`}
+          isHomeLayOut ? 'overflow-hidden px-0' : 'px-5'
+        } w-full max-w-[24.375rem] bg-white`}
       >
         <Outlet />
       </div>

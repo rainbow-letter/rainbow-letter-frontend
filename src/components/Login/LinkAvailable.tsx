@@ -15,7 +15,7 @@ export default function LinkAvailable({
   const style = className || '';
 
   return (
-    <section className="mt-7 text-body-medium ">
+    <section className="mt-7 text-body-medium">
       <article className={`${style} flex justify-center`}>
         {findPassword && (
           <div className="w-full">

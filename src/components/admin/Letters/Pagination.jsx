@@ -45,10 +45,10 @@ function Pagination() {
   };
 
   return (
-    <div className="flex justify-center items-center space-x-2 pb-7 mt-2.5">
+    <div className="mt-2.5 flex items-center justify-center space-x-2 pb-7">
       {totalPages > 10 && (
         <button
-          className="w-7 h-7 rounded"
+          className="h-7 w-7 rounded"
           type="button"
           disabled={currentPage === 0}
           onClick={() => {
@@ -60,7 +60,7 @@ function Pagination() {
       )}
       {getPaginationNumbers().map((number) => (
         <button
-          className={`w-7 h-7 rounded ${
+          className={`h-7 w-7 rounded ${
             currentPage === number ? 'bg-blue-500 text-white' : 'bg-gray-200'
           }`}
           key={number}
@@ -74,7 +74,7 @@ function Pagination() {
       ))}
       {totalPages > 10 && (
         <button
-          className="w-7 h-7 rounded"
+          className="h-7 w-7 rounded"
           type="button"
           disabled={currentPage === totalPages - 1}
           onClick={dispatch(

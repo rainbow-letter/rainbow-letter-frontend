@@ -36,26 +36,26 @@ export default function PetsListDropDown({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-[1.125rem] rounded-2xl flex justify-between items-center border bg-orange-50 border-orange-400"
+        className="flex w-full items-center justify-between rounded-2xl border border-orange-400 bg-orange-50 px-6 py-[1.125rem]"
       >
         <p>{petName}</p>
         <img src={imgSrc} alt="dropdown" />
       </button>
       <div className="relative">
         {isOpen && (
-          <ul className="absolute w-full mt-[0.375rem] bg-white border border-orange-400 rounded-2xl z-10">
+          <ul className="absolute z-10 mt-1.5 w-full rounded-2xl border border-orange-400 bg-white">
             {petsList.map((pet) => (
               <li
                 key={pet.id}
                 onClick={() => onclick(pet)}
-                className="pl-6 py-4 border-b border-[#EFEFEF] last:border-none cursor-pointer"
+                className="cursor-pointer border-b border-[#EFEFEF] py-4 pl-6 last:border-none"
               >
                 {pet.name}
               </li>
             ))}
             <Link
               to="/my-pets/register"
-              className="pl-3 py-3 flex items-center"
+              className="flex items-center py-3 pl-3"
             >
               <img src={plusImg} alt={plusImg} />
               <p>{USER_ACTIONS.ADD}</p>

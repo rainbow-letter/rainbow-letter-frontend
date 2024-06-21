@@ -14,7 +14,7 @@ function ImageDeleteButton({ isHover, icon, onDelete }: Props) {
   return (
     <button
       type="button"
-      className={`${isHover ? 'block' : 'hidden'} absolute -top-2.5 -right-2.5`}
+      className={`${isHover ? 'block' : 'hidden'} absolute -right-2.5 -top-2.5`}
       onClick={handleDelete}
     >
       <img src={icon} alt="delete" />

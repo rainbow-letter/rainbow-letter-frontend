@@ -167,7 +167,7 @@ export default function DetailLetter() {
   return (
     <>
       {letterData && (
-        <main className="relative letterBox" ref={sectionRef}>
+        <main className="letterBox relative" ref={sectionRef}>
           {/* {isReply && (
             <button
               type="button"

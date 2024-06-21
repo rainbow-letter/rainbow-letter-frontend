@@ -9,13 +9,13 @@ export default function PhoneButton() {
   };
 
   return (
-    <section className="h-[3.125rem] px-7 mb-8">
+    <section className="mb-8 h-[3.125rem] px-7">
       <button
         type="button"
         onClick={() => handlePhoneButtonClick()}
-        className="w-full h-full flex justify-center items-center gap-x-2.5 py-4 bg-orange-50 text-solo-label text-orange-400 font-bold rounded-2xl"
+        className="flex size-full items-center justify-center gap-x-2.5 rounded-2xl bg-orange-50 py-4 text-solo-label font-bold text-orange-400"
       >
-        <div className="h-4 w-4">
+        <div className="size-4">
           <img src={phone} alt="phone" width="100%" height="100%" />
         </div>
         <p>{PHONE_MESSAGE}</p>

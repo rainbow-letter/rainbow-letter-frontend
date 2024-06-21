@@ -23,7 +23,7 @@ function LogOut({ children }: LogOutProps) {
 
   return (
     <button
-      className="flex justify-between items-center"
+      className="flex items-center justify-between"
       type="button"
       onClick={() => handleLogout()}
     >

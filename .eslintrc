@@ -3,8 +3,9 @@
     "airbnb",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
   ],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "tailwindcss"],
   "env": {
     "browser": true,
     "es6": true,
@@ -39,6 +40,7 @@
     },
   },
   "rules": {
+    "tailwindcss/no-contradicting-classname": "error",
     "import/no-unresolved": "off",
     "react/require-default-props": "off",
     "import/no-extraneous-dependencies": 0,

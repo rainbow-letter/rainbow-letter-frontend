@@ -20,17 +20,17 @@ export default function ContentsItem({
     <Link to={url} key={id} target="_blank">
       <article
         id="content_read"
-        className={`${className} flex justify-between items-center py-[0.625rem] px-5 rounded-2xl cursor-pointer shadow-home`}
+        className={`${className} flex cursor-pointer items-center justify-between rounded-2xl px-5 py-2.5 shadow-home`}
       >
         <div className="flex flex-col">
           <h3 className="font-bold">{title}</h3>
           <p className="text-caption">{description}</p>
         </div>
-        <div className="w-[5.25rem] h-[3.25rem] flex justify-center items-center">
+        <div className="flex h-[3.25rem] w-[5.25rem] items-center justify-center">
           <img
             src={image}
             alt="analytics"
-            className="rounded-2xl w-full h-full object-fill"
+            className="size-full rounded-2xl object-fill"
           />
         </div>
       </article>

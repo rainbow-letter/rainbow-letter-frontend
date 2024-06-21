@@ -43,21 +43,21 @@ export default function PetInfo({ pet, letterCount }: Props) {
   return (
     <article
       onClick={handleScroll}
-      className="relative flex flex-row items-center px-5 py-6 rounded-2xl border cursor-pointer"
+      className="relative flex cursor-pointer flex-row items-center rounded-2xl border px-5 py-6"
     >
       <img
         src={petImage || defaultImage}
         alt="pet"
-        className="h-[5.5rem] w-[5.5rem] mr-7 rounded-full"
+        className="mr-7 size-[5.5rem] rounded-full"
       />
       <div className="flex flex-col justify-center gap-x-2">
-        <div className="flex items-center gap-2 mb-2">
-          <h5 className="text-orange-400 font-bold">{pet && pet.name}</h5>
-          <span className="text-caption text-gray-2 leading-none">
+        <div className="mb-2 flex items-center gap-2">
+          <h5 className="font-bold text-orange-400">{pet && pet.name}</h5>
+          <span className="text-caption leading-none text-gray-2">
             {deathAnniversaryDDay}
           </span>
         </div>
-        <div className="flex flex-col gap-y-2.5 text-gray-1 text-solo-small">
+        <div className="flex flex-col gap-y-2.5 text-solo-small text-gray-1">
           <div className="flex gap-2.5">
             <img src={letter} alt="letter" />
             <p>보낸 편지 {letterCount}회</p>
@@ -70,7 +70,7 @@ export default function PetInfo({ pet, letterCount }: Props) {
         <img
           src={arrow}
           alt="arrow"
-          className="absolute right-1 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute right-1 top-1/2 -translate-x-1/2 -translate-y-1/2"
         />
       </div>
     </article>

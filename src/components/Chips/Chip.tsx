@@ -12,14 +12,13 @@ function Chip({ className, isSelected, value, onClick }: Props) {
 
   return (
     <button
-      className={`${styles} flex justify-center items-center py-3 px-4 border rounded-full
-      ${isSelected ? 'bg-orange-50 border-orange-400' : 'border-gray-1'}`}
+      className={`${styles} flex items-center justify-center rounded-full border px-4 py-3 ${isSelected ? 'border-orange-400 bg-orange-50' : 'border-gray-1'}`}
       type="button"
       onClick={onClick}
     >
       <span
         className={`text-sm leading-[0.875rem] ${
-          isSelected ? 'text-orange-400 font-bold' : 'text-gray-1'
+          isSelected ? 'font-bold text-orange-400' : 'text-gray-1'
         }`}
       >
         {value}

@@ -26,13 +26,13 @@ function LetterDetailForm({
   useModalClose(modalRef, onClose);
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
+    <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
       <div
-        className="h-3/5 w-4/5 bg-white p-4 rounded-lg shadow-xl flex flex-col justify-between"
+        className="flex h-3/5 w-4/5 flex-col justify-between rounded-lg bg-white p-4 shadow-xl"
         ref={modalRef}
       >
         <textarea
-          className="w-full flex-1 p-5 mt-4 rounded-lg bg-gray-2 resize-none"
+          className="mt-4 w-full flex-1 resize-none rounded-lg bg-gray-2 p-5"
           disabled={isViewer}
           maxLength={MAX_CONTENT_LENGTH}
           value={newContent}
@@ -41,10 +41,10 @@ function LetterDetailForm({
         <div
           className={`flex ${
             isViewer ? 'justify-end' : 'justify-between'
-          } flex-wrap mt-3`}
+          } mt-3 flex-wrap`}
         >
           {isViewer || (
-            <div className="text-solo-label text-gray-1 mr-3">
+            <div className="mr-3 text-solo-label text-gray-1">
               {`${newContent.length} / ${MAX_CONTENT_LENGTH}`}
             </div>
           )}
@@ -55,7 +55,7 @@ function LetterDetailForm({
                   isContentValidAndChanged
                     ? 'bg-green-500 hover:bg-green-700'
                     : 'bg-green-300'
-                } text-white font-bold py-2 px-4 mr-3 rounded`}
+                } mr-3 rounded px-4 py-2 font-bold text-white`}
                 type="button"
                 disabled={!isContentValidAndChanged}
                 onClick={() => onSave(newContent)}
@@ -65,7 +65,7 @@ function LetterDetailForm({
             )}
             {isGptReply && (
               <button
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-3 rounded"
+                className="mr-3 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
                 type="button"
                 onClick={() => {
                   dispatch(regenerateReply(id)).then(() => onClose());
@@ -75,7 +75,7 @@ function LetterDetailForm({
               </button>
             )}
             <button
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              className="rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700"
               type="button"
               onClick={onClose}
             >

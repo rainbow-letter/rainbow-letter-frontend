@@ -34,7 +34,7 @@ export default function UserInput({
         }`}
       />
       {isNotValid && errorMessage && (
-        <p className="text-caption text-left text-alarm-red px-2.5 pb-2">
+        <p className="px-2.5 pb-2 text-left text-caption text-alarm-red">
           {errorMessage}
         </p>
       )}
