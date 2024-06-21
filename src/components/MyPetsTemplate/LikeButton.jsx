@@ -34,7 +34,7 @@ function LikeButton({ favoriteData }) {
   return (
     <button
       id="click_heart"
-      className="flex w-full px-5 py-4 flex-1 items-center justify-between border text-orange-400 border-orange-400 rounded-2xl"
+      className="flex w-full flex-1 items-center justify-between rounded-2xl border border-orange-400 px-5 py-4 text-orange-400"
       disabled={!likeData.canIncrease}
       type="button"
       onClick={handleFavorite}
@@ -45,7 +45,7 @@ function LikeButton({ favoriteData }) {
       onTouchEnd={handleInteractionEnd}
     >
       <span className="grow">{likeData.total}</span>
-      <div className="h-11 w-11 flex items-center justify-center border border-orange-100 rounded-full">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-orange-100">
         <img src={getHeartIconSrc()} alt="heart" />
       </div>
     </button>

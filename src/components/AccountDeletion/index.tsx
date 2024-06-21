@@ -32,12 +32,12 @@ function AccountDeletion() {
   };
 
   return (
-    <div className="h-screen flex flex-col gap-[10rem] pb-5">
-      <section className="p-7 bg-gray-2 rounded-2xl">
+    <div className="flex h-screen flex-col gap-40 pb-5">
+      <section className="rounded-2xl bg-gray-2 p-7">
         <span className="text-solo-large">
           {ACCOUNT_DELETION.GUIDELINES_TITLE}
         </span>
-        <ul className="p-2.5 list-disc text-body-small text-gray-1 space-y-[0.375rem]">
+        <ul className="list-disc space-y-1.5 p-2.5 text-body-small text-gray-1">
           {ACCOUNT_DELETION_GUIDELINES.map((guideline) => (
             <li key={guideline.ID}>{guideline.CONTENT}</li>
           ))}
@@ -52,16 +52,16 @@ function AccountDeletion() {
           }}
         >
           <div
-            className={`w-6 h-6 rounded ${
+            className={`size-6 rounded ${
               isConfirmed
                 ? 'bg-orange-400'
-                : 'bg-white border border-orange-400'
+                : 'border border-orange-400 bg-white'
             }`}
           >
             {isConfirmed && <img src={check} alt="check" />}
           </div>
           <div>
-            <span className="font-semibold text-body-medium text-gray-1">
+            <span className="text-body-medium font-semibold text-gray-1">
               {ACCOUNT_DELETION.CONFIRM_MESSAGE}
             </span>
           </div>

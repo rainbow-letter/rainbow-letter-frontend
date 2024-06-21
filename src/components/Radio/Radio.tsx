@@ -32,9 +32,9 @@ export default function Radio({
       <img
         src={selectRadio === value ? checked : unChecked}
         alt="버튼 이미지"
-        className="mr-2.5 cursor-pointer "
+        className="mr-2.5 cursor-pointer"
       />
-      <span className="text-caption text-gray-3 cursor-pointer ">
+      <span className="cursor-pointer text-caption text-gray-3">
         {children}
       </span>
     </label>

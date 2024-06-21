@@ -59,7 +59,7 @@ function DateOfDeathSection() {
       <div className="flex justify-between">
         <div className="flex items-center">
           <Input
-            className="h-11 w-[4.063rem] py-[0.937rem] px-[0.937rem] text-caption text-center"
+            className="h-11 w-[4.063rem] px-[0.937rem] py-[0.937rem] text-center text-caption"
             type="tel"
             placeholder="YYYY"
             value={date?.year || ''}
@@ -69,7 +69,7 @@ function DateOfDeathSection() {
             {DATE_OF_DEATH.YEAR}
           </span>
           <Input
-            className="h-11 w-[3.437rem] py-[0.937rem] px-[0.937rem] text-caption text-center"
+            className="h-11 w-[3.437rem] px-[0.937rem] py-[0.937rem] text-center text-caption"
             type="tel"
             placeholder="MM"
             value={date?.month || ''}
@@ -79,7 +79,7 @@ function DateOfDeathSection() {
             {DATE_OF_DEATH.MONTH}
           </span>
           <Input
-            className="h-11 w-[3.437rem] py-[0.937rem] px-[0.937rem] text-caption text-center"
+            className="h-11 w-[3.437rem] px-[0.937rem] py-[0.937rem] text-center text-caption"
             type="tel"
             placeholder="DD"
             value={date?.day || ''}

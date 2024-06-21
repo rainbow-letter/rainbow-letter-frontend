@@ -40,10 +40,10 @@ function PhoneNumberSection() {
     <div>
       <div className="p-2.5 text-solo-large">{USER_INFO_LABELS.PHONE}</div>
       <div className="flex flex-col gap-2">
-        <div className="flex justify-between gap-x-2.5 items-center text-solo-medium text-gray-1">
+        <div className="flex items-center justify-between gap-x-2.5 text-solo-medium text-gray-1">
           {isEditMode ? (
             <input
-              className={`grow bg-gray-2 p-4 rounded-2xl ${
+              className={`grow rounded-2xl bg-gray-2 p-4 ${
                 isValidPhone ? 'border-none' : 'border border-alarm-red'
               }`}
               type="tel"
@@ -59,7 +59,7 @@ function PhoneNumberSection() {
             </div>
           )}
           <button
-            className={`px-2.5 py-[0.562rem] text-xs font-semibold leading-3 rounded ${
+            className={`rounded px-2.5 py-[0.562rem] text-xs font-semibold leading-3 ${
               isValidPhone
                 ? 'bg-orange-400 text-white'
                 : 'bg-gray-1 text-gray-1'

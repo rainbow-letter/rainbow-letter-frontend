@@ -14,7 +14,7 @@ function FAQ({ FAQData }: Props) {
         <span className="pt-1 text-orange-400">{QUESTION_PREFIX}</span>
         <span className="leading-7">{FAQData.question}</span>
       </header>
-      <main className="m-2.5 p-[1.125rem] bg-gray-2 text-body-small text-gray-1 rounded-2xl">
+      <main className="m-2.5 rounded-2xl bg-gray-2 p-[1.125rem] text-body-small text-gray-1">
         {FAQData.answer}
         {FAQData.link && (
           <a href={FAQData.link} target="_blank" rel="noopener noreferrer">
@@ -51,7 +51,7 @@ function FAQs() {
   // }, []);
 
   return (
-    <section className="h-full flex flex-col gap-y-8 mt-[1.375rem]">
+    <section className="mt-[1.375rem] flex h-full flex-col gap-y-8">
       {!!FAQS.length && FAQS.map((faq) => <FAQ key={faq.id} FAQData={faq} />)}
     </section>
   );

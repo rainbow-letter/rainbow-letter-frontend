@@ -13,7 +13,7 @@ export default function ArrowLink({ url }: Props) {
       <img
         src={arrow}
         alt="arrow"
-        className="absolute right-4 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        className="absolute right-4 top-1/2 -translate-x-1/2 -translate-y-1/2"
       />
     </Link>
   );

@@ -5,8 +5,8 @@ import { INFO_MESSAGES, USER_ACTIONS } from './constants';
 
 function NoPets() {
   return (
-    <div className="h-[88vh] flex justify-center items-center">
-      <section className="w-full flex flex-col gap-y-12 text-center">
+    <div className="flex h-[88vh] items-center justify-center">
+      <section className="flex w-full flex-col gap-y-12 text-center">
         <div className="flex flex-col">
           <span className="p-2.5 text-heading-3">
             {INFO_MESSAGES.LETTER_RECIPIENT_ABSENT}

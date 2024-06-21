@@ -6,7 +6,7 @@ type Props = {
 
 export default function ModalContainer({ children }: Props) {
   return (
-    <article className="bg-white rounded-2xl relative px-[1.063rem] -translate-y-1/2 top-[50%] flex justify-center">
+    <article className="relative top-[50%] flex -translate-y-1/2 justify-center rounded-2xl bg-white px-[1.063rem]">
       {children}
     </article>
   );

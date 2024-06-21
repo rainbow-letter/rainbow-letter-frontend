@@ -11,7 +11,7 @@ export default function Banner() {
         to="https://smore.im/quiz/IEiAubtaOQ"
         target="_blank"
         id="ads_consult1"
-        className="flex justify-between bg-[#FFF1EB] rounded-2xl shadow-home px-5 py-[0.625rem] tracking-[-0.04rem]"
+        className="flex justify-between rounded-2xl bg-[#FFF1EB] px-5 py-2.5 tracking-[-0.04rem] shadow-home"
       >
         <div className="flex flex-col justify-center">
           <p className="font-bold text-black">{BANNER_MESSAGE.title}</p>
@@ -19,11 +19,11 @@ export default function Banner() {
             {BANNER_MESSAGE.description}
           </p>
         </div>
-        <div className="w-[82px] h-[53px]">
+        <div className="h-[53px] w-[82px]">
           <img
             src={banner}
             alt="banner"
-            className="rounded-[15px] w-full h-full object-cover"
+            className="size-full rounded-[15px] object-cover"
           />
         </div>
       </Link>

@@ -6,13 +6,13 @@ import kakaoLogo from 'assets/kakao-logo.svg';
 
 export default function OpenTalk() {
   return (
-    <section className="h-[3.125rem] px-7 mt-9 mb-2.5 gap-2.5">
+    <section className="mb-2.5 mt-9 h-[3.125rem] gap-2.5 px-7">
       <Link
         to="http://pf.kakao.com/_MNevG/chat"
         target="_blank"
-        className="w-full h-full flex justify-center items-center gap-x-2.5 bg-orange-50 text-solo-label text-orange-400 font-semibold rounded-2xl"
+        className="flex size-full items-center justify-center gap-x-2.5 rounded-2xl bg-orange-50 text-solo-label font-semibold text-orange-400"
       >
-        <div className="w-6 h-6">
+        <div className="size-6">
           <img src={kakaoLogo} alt="kakao" width="100%" height="100%" />
         </div>
         <p className="font-bold">{OPEN_TALK_MESSAGE}</p>

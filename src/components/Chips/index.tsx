@@ -11,7 +11,7 @@ type Props = {
 
 function Chips({ attributes, selectedChips, onChipSelect }: Props) {
   return (
-    <div className="flex flex-wrap gap-3 mb-3">
+    <div className="mb-3 flex flex-wrap gap-3">
       {attributes.map((attribute) => (
         <Chip
           key={attribute.ID}

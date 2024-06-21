@@ -94,17 +94,17 @@ export default function Password() {
   }, [userInfo, errorData]);
 
   return (
-    <main className="flex flex-col justify-center h-screen">
+    <main className="flex h-screen flex-col justify-center">
       <section>
-        <h2 className="text-heading-2 text-center">
+        <h2 className="text-center text-heading-2">
           {UPDATE_PASSWORD_MESSAGE.TITLE}
         </h2>
-        <p className="text-solo-medium text-gray-1 text-center mt-[1.125rem]">
+        <p className="mt-[1.125rem] text-center text-solo-medium text-gray-1">
           {UPDATE_PASSWORD_MESSAGE.DESCRIPTION}
         </p>
       </section>
       <section className="mt-[3.625rem]">
-        <label htmlFor="newPassword" className="block mb-4">
+        <label htmlFor="newPassword" className="mb-4 block">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD}
         </label>
         <UserInput
@@ -118,7 +118,7 @@ export default function Password() {
           isNotValid={errorData && errorData.type === 'NOT_VALID_PASSWORD'}
           errorMessage={errorData && errorData.message}
         />
-        <label htmlFor="newPasswordCheck" className="block mb-4 mt-[3.313rem]">
+        <label htmlFor="newPasswordCheck" className="mb-4 mt-[3.313rem] block">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD_CONFIRM}
         </label>
         <UserInput
@@ -136,7 +136,7 @@ export default function Password() {
           disabled={isLoading}
           onclick={() => onClickUpdatePasswordButton()}
           value={UPDATE_PASSWORD_MESSAGE.UPDATE}
-          className="w-full rounded-2xl flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[1.375rem] mt-[3.625rem]"
+          className="mt-[3.625rem] flex w-full items-center justify-center rounded-2xl bg-orange-400 py-[1.375rem] text-heading-3 text-white"
         />
       </section>
     </main>

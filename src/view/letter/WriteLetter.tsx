@@ -250,7 +250,7 @@ export default function WriteLetter() {
           편지 보내기
         </Button>
       ) : (
-        <div className="text-center mt-[3.625rem]">
+        <div className="mt-[3.625rem] text-center">
           <ClipLoader color="#FFB347" />
         </div>
       )}

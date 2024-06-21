@@ -22,12 +22,12 @@ export default function Caption({ date, letter, dateType }: Props) {
   }, [letter]);
 
   return (
-    <article className={`text-caption text-right date ${dateType}`}>
+    <article className={`date text-right text-caption ${dateType}`}>
       {date ? (
         <p className="font-Gyobomungo2019 text-gray-1">{date}</p>
       ) : (
         <p
-          className={`${isExceeded ? 'text-alarm-red' : 'text-gray-2'} font-sans absolute right-6`}
+          className={`${isExceeded ? 'text-alarm-red' : 'text-gray-2'} absolute right-6 font-sans`}
         >
           {`${letter?.length} / 1000`}
         </p>
