@@ -101,7 +101,7 @@ function LetterDetail() {
   };
 
   const handleUserLetterClick = (id) => {
-    navigate(`/admin/letters/${id}`);
+    navigate(`/admin/letters/${id}`, { replace: true });
     setLetterImage('');
   };
 

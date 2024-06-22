@@ -19,7 +19,7 @@ const appBarConfig: AppBarConfig = {
   },
   letterId: {
     title: '편지 상세 정보',
-    backTo: '/admin/letters',
+    backTo: -1,
   },
 };
 
