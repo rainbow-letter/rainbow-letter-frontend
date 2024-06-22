@@ -27,11 +27,11 @@ export default function Email() {
   };
 
   return (
-    <main className="h-screen flex flex-col justify-center">
-      <h2 className="text-heading-2 text-center leading-[180%]">
+    <main className="flex h-screen flex-col justify-center">
+      <h2 className="text-center text-heading-2 leading-[180%]">
         {FIND_EMAIL_MESSAGE.TITLE}
       </h2>
-      <p className="text-solo-medium text-gray-1 text-center mt-2 leading-[166%]">
+      <p className="mt-2 text-center text-solo-medium leading-[166%] text-gray-1">
         {FIND_EMAIL_MESSAGE.DESCRIPTION}
       </p>
       <UserInput
@@ -47,11 +47,11 @@ export default function Email() {
         type="submit"
         disabled={isLoading}
         onClick={() => onClickFindEmailButton()}
-        className="w-full rounded-2xl flex justify-center items-center bg-orange-400 text-heading-3 text-white py-[1.375rem] mt-5"
+        className="mt-5 flex w-full items-center justify-center rounded-2xl bg-orange-400 py-[1.375rem] text-heading-3 text-white"
       >
         {FIND_EMAIL_MESSAGE.SUBMIT}
       </button>
-      <div className="mt-[1.687rem] text-center text-gray-1 text-body-small">
+      <div className="mt-[1.687rem] text-center text-body-small text-gray-1">
         <p>{FIND_EMAIL_MESSAGE.ANNOUNCEMENT_1}</p>
         <p>
           <Link

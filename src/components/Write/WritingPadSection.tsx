@@ -98,10 +98,10 @@ function WritingPadSection({
     <section className={`relative mt-4 ${style}`}>
       <CoverImage image={petImage} />
       <section
-        className={`${textareaStyle} ${saveType?.target} text-gray-1 py-8 px-6 rounded-2xl text-body-letter font-Gyobomungo2019 relative`}
+        className={`${textareaStyle} ${saveType?.target} relative rounded-2xl px-6 py-8 font-Gyobomungo2019 text-body-letter text-gray-1`}
       >
         {typeof index === 'number' && (
-          <div className="flex flex-col min-w-[30px] bg-white items-center px-2.5 pt-2.5 pb-1 rounded-t-sm rounded-b-lg absolute -top-0.5 right-7 text-orange-400 font-sans not-label">
+          <div className="not-label absolute -top-0.5 right-7 flex min-w-[30px] flex-col items-center rounded-b-lg rounded-t-sm bg-white px-2.5 pb-1 pt-2.5 font-sans text-orange-400">
             <p className="text-solo-large font-[350] leading-normal">
               {typeof index === 'number' && index}
             </p>
@@ -119,7 +119,7 @@ function WritingPadSection({
           maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}
           spellCheck="false"
-          className={`${textareaStyle} ${saveType?.unTargetValue} mt-1 whitespace-pre-wrap pt-1.5 w-full outline-0 resize-none leading-[170%] text-clip`}
+          className={`${textareaStyle} ${saveType?.unTargetValue} mt-1 w-full resize-none text-clip whitespace-pre-wrap pt-1.5 leading-[170%] outline-0`}
         />
         <Caption
           date={date}

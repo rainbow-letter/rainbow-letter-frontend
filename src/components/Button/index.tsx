@@ -18,7 +18,7 @@ function Button({ className, disabled, children, onClick, id }: Props) {
   return (
     <button
       id={id}
-      className={`${styles} ${disabledStyles} w-full h-[4.375rem] text-heading-3 font-semibold rounded-2xl`}
+      className={`${styles} ${disabledStyles} h-[4.375rem] w-full rounded-2xl text-heading-3 font-semibold`}
       type="button"
       disabled={disabled}
       onClick={onClick}

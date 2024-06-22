@@ -36,7 +36,7 @@ export default function ImageUploadSection({ setImageFile }: Props) {
         {INFO_MESSAGES.SUGGEST_SEND_PHOTO}
         <span className="text-gray-2">{INFO_MESSAGES.OPTION}</span>
       </h4>
-      <p className="text-gray-2 text-caption mt-[0.813rem] mb-[1.625rem">
+      <p className="mb-[1.625rem mt-[0.813rem] text-caption text-gray-2">
         {INFO_MESSAGES.POSSIBLE_NUMBER}
       </p>
       <ImageInput

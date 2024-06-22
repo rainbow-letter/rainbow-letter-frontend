@@ -16,7 +16,7 @@ export default function TopicSuggestion() {
         className="flex items-center gap-1"
       >
         <img src={InfoImage} alt="information" />
-        <p className="underline text-caption text-gray-2">
+        <p className="text-caption text-gray-2 underline">
           {INFO_MESSAGES.SUGGEST_TOPIC}
         </p>
       </button>

@@ -16,16 +16,16 @@ const MiscInput = forwardRef(
 
     return (
       <div
-        className={`flex items-center h-10 w-60 bg-orange-50 px-4 border ${borderStyle} rounded-full`}
+        className={`flex h-10 w-60 items-center border bg-orange-50 px-4 ${borderStyle} rounded-full`}
       >
-        <div className="bg-transparent flex-shrink-0">
+        <div className="shrink-0 bg-transparent">
           <span className="bg-transparent text-solo-small font-bold text-orange-400">
             기타 :
           </span>
         </div>
         <input
           ref={ref}
-          className="grow pl-2 bg-transparent text-caption text-gray-1"
+          className="grow bg-transparent pl-2 text-caption text-gray-1"
           maxLength={10}
           value={value}
           onChange={onChange}

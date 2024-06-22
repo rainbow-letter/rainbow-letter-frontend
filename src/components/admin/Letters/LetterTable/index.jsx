@@ -59,17 +59,17 @@ function LetterTable() {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between flex-wrap">
+      <div className="flex flex-wrap justify-between">
         <div className="flex flex-col gap-y-4">
           <div className="flex gap-x-2">
-            <div className="px-4 py-2 font-semibold bg-gray-100">이메일</div>
+            <div className="bg-gray-100 px-4 py-2 font-semibold">이메일</div>
             <input
-              className="border rounded-md py-1 px-2"
+              className="rounded-md border px-2 py-1"
               value={emailValue}
               onChange={({ target }) => setEmailValue(target.value)}
             />
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
               type="button"
               onClick={handleSearchClick}
             >
@@ -78,7 +78,7 @@ function LetterTable() {
           </div>
           <div className="mb-4 flex items-center gap-2">
             <input
-              className="border rounded-md py-1 px-2"
+              className="rounded-md border px-2 py-1"
               type="date"
               value={filterOption.startDate}
               onChange={({ target }) =>
@@ -89,7 +89,7 @@ function LetterTable() {
             />
             <span>부터</span>
             <input
-              className="border rounded-md py-1 px-2"
+              className="rounded-md border px-2 py-1"
               type="date"
               value={filterOption.endDate}
               onChange={({ target }) =>
@@ -102,9 +102,9 @@ function LetterTable() {
           </div>
           <div className="flex items-center gap-x-3">
             <span className="font-bold">상태</span>
-            <div className="flex gap-x-1 bg-gray-300 rounded-md text-white">
+            <div className="flex gap-x-1 rounded-md bg-gray-300 text-white">
               <button
-                className={`${filterOption.type === 'ALL' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                className={`${filterOption.type === 'ALL' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
                 data-type="ALL"
                 data-inspect="null"
@@ -113,7 +113,7 @@ function LetterTable() {
                 전체
               </button>
               <button
-                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'false' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'false' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
                 data-type="WAIT"
                 data-inspect="false"
@@ -122,7 +122,7 @@ function LetterTable() {
                 검수대기
               </button>
               <button
-                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'true' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'true' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
                 data-type="WAIT"
                 data-inspect="true"
@@ -131,7 +131,7 @@ function LetterTable() {
                 검수완료
               </button>
               <button
-                className={`${filterOption.type === 'COMPLETE' ? 'bg-blue-500' : 'bg-gray-300'} py-2 px-4 font-bold rounded-md`}
+                className={`${filterOption.type === 'COMPLETE' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
                 data-type="COMPLETE"
                 data-inspect="null"
@@ -148,7 +148,7 @@ function LetterTable() {
               !validateLetters(letters)
                 ? 'bg-gray-400'
                 : 'bg-green-500 hover:bg-green-700'
-            } text-white font-bold py-2 px-4 items-end rounded`}
+            } items-end rounded px-4 py-2 font-bold text-white`}
             type="button"
             disabled={!validateLetters(letters)}
             onClick={handleSendRepliesClick}

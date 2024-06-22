@@ -22,7 +22,7 @@ export default function PWALanding() {
         <button type="button" onClick={handleBack}>
           <img src={chevronLeft} alt="left" />
         </button>
-        <p className="text-solo-large py-[10px] mx-auto">공지사항</p>
+        <p className="mx-auto py-[10px] text-solo-large">공지사항</p>
       </section>
       {NoticeItems.map((item) => (
         <img src={item.imageSrc} alt="notice" className="object-cover" />

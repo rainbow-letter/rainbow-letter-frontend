@@ -21,14 +21,14 @@ const SHOWCASE_CAROUSEL_OPTIONS = {
 
 function LetterShowcase() {
   return (
-    <section className="pt-8 pl-5">
-      <span className="pt-5 pb-8 text-solo-large font-bold">
+    <section className="pl-5 pt-8">
+      <span className="pb-8 pt-5 text-solo-large font-bold">
         무지개에 걸린 편지
       </span>
       <div className="h-6" />
       <Slider {...SHOWCASE_CAROUSEL_OPTIONS} className="h-52">
         {SHOWCASE_LETTERS.map((letter, i) => (
-          <div className="py-5 w-[138px]" key={letter.id}>
+          <div className="w-[138px] py-5" key={letter.id}>
             <LetterItem letter={letter} />
           </div>
         ))}

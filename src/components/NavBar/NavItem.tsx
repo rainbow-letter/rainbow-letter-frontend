@@ -27,11 +27,11 @@ function NavItem({ to, label, Icon, useStroke = true }: NavItemProps) {
   return (
     <NavLink
       to={to}
-      className="w-[3.687rem] flex flex-col items-center justify-center space-y-0.5"
+      className="flex w-[3.687rem] flex-col items-center justify-center space-y-0.5"
     >
       {({ isActive }) => (
         <>
-          <div className="w-[26px] h-[26px]">
+          <div className="size-[26px]">
             <IconWrapper
               Icon={Icon}
               isActive={isActive}

@@ -9,7 +9,7 @@ export default function BottomHeader({ onClick }: any) {
       <button
         type="button"
         onClick={onClick}
-        className="absolute top-4 right-4"
+        className="absolute right-4 top-4"
       >
         <img src={CancelImage} alt="cancel" />
       </button>

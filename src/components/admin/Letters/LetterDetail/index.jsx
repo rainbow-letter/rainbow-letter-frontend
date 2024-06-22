@@ -113,9 +113,9 @@ function LetterDetail() {
   const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
   return (
-    <div className="max-w-screen h-screen sm:min-h-0 min-h-[250%] flex flex-col sm:flex-row sm:gap-x-4 gap-6 px-2 bg-white overflow-auto">
+    <div className="max-w-screen flex h-screen min-h-[250%] flex-col gap-6 overflow-auto bg-white px-2 sm:min-h-0 sm:flex-row sm:gap-x-4">
       {/* 왼쪽 */}
-      <section className="flex flex-col gap-y-6 flex-1 bg-white">
+      <section className="flex flex-1 flex-col gap-y-6 bg-white">
         <header>
           <div className="bg-gray-100 p-2">
             <span>회원 정보</span>
@@ -170,22 +170,22 @@ function LetterDetail() {
                   return (
                     <tr
                       key={row.id}
-                      className={`cursor-pointer hover:bg-gray-100 ${isSelected && 'text-blue-600 font-semibold'}`}
+                      className={`cursor-pointer hover:bg-gray-100 ${isSelected && 'font-semibold text-blue-600'}`}
                       onClick={() => handleUserLetterClick(row.id)}
                     >
                       <td className="text-center">{row.count}</td>
-                      <td className="text-center whitespace-nowrap">
+                      <td className="whitespace-nowrap text-center">
                         {row.pet.name}
                       </td>
-                      <td className="text-center whitespace-nowrap truncate">
+                      <td className="truncate whitespace-nowrap text-center">
                         {row.summary}
                       </td>
                       <td
-                        className={`text-center text-white whitespace-nowrap ${replyStatusInfo[replyStatus]}`}
+                        className={`whitespace-nowrap text-center text-white ${replyStatusInfo[replyStatus]}`}
                       >
                         {replyStatus}
                       </td>
-                      <td className="text-center whitespace-nowrap">
+                      <td className="whitespace-nowrap text-center">
                         {formatDateToYYMMDD(row.createdAt)}
                       </td>
                     </tr>
@@ -198,7 +198,7 @@ function LetterDetail() {
       </section>
 
       {/* 가운데 */}
-      <section className="flex flex-col flex-[2] gap-y-5 bg-white">
+      <section className="flex flex-[2] flex-col gap-y-5 bg-white">
         <header>
           <div className="bg-gray-100 p-2">
             <span>반려동물 정보</span>
@@ -229,14 +229,14 @@ function LetterDetail() {
             </div>
             <div className="">
               <img
-                className="w-[132px] h-[132px]"
+                className="h-[132px] w-[132px]"
                 src={petImage}
                 alt={pet.name}
               />
             </div>
           </div>
         </header>
-        <main className="flex flex-col flex-grow gap-y-3 sm:p-2">
+        <main className="flex flex-grow flex-col gap-y-3 sm:p-2">
           <div className="flex justify-between">
             <div className="flex items-center gap-x-2">
               <span className="text-[20px] font-bold">
@@ -254,19 +254,19 @@ function LetterDetail() {
             </div>
             <span>등록일 {formatDateToYYMMDDHHSS(letterData.createdAt)}</span>
           </div>
-          <div className="flex flex-grow bg-gray-100 p-3 rounded">
+          <div className="flex flex-grow rounded bg-gray-100 p-3">
             {letterData.content}
           </div>
         </main>
       </section>
 
       {/* 오른쪽 */}
-      <section className="flex flex-col gap-y-2 flex-[2] h-full">
-        <header className="w-full flex justify-between">
-          <div className="flex gap-x-2 items-center">
+      <section className="flex h-full flex-[2] flex-col gap-y-2">
+        <header className="flex w-full justify-between">
+          <div className="flex items-center gap-x-2">
             <span className="text-[20px] font-bold">답장 작성</span>
             <div
-              className={`flex items-center text-white px-1 rounded ${replyStatusInfo[replyStatus]}`}
+              className={`flex items-center rounded px-1 text-white ${replyStatusInfo[replyStatus]}`}
             >
               <span>{replyStatus}</span>
             </div>
@@ -282,22 +282,22 @@ function LetterDetail() {
         </header>
         <main className="flex flex-grow">
           <textarea
-            className="w-full p-5 rounded-lg bg-gray-100 resize-none"
+            className="w-full resize-none rounded-lg bg-gray-100 p-5"
             maxLength={MAX_CONTENT_LENGTH}
             value={newContent}
             onChange={({ target }) => setNewContentValue(target.value)}
           />
         </main>
         <footer className="flex justify-between">
-          <div className="text-solo-label text-gray-1 mr-3">
+          <div className="mr-3 text-solo-label text-gray-1">
             {`${newContent.length} / ${MAX_CONTENT_LENGTH}`}
           </div>
           <div className="flex gap-x-2">
             <button
-              className={`py-2 px-3 font-semibold rounded ${
+              className={`rounded px-3 py-2 font-semibold ${
                 isLoading
                   ? 'cursor-not-allowed'
-                  : 'hover:bg-pink-400 bg-pink-300'
+                  : 'bg-pink-300 hover:bg-pink-400'
               }`}
               type="button"
               disabled={isLoading}
@@ -306,8 +306,8 @@ function LetterDetail() {
               GPT 재생성
             </button>
             <button
-              className={`py-2 px-3  text-white font-semibold rounded ${
-                isChanged ? 'hover:bg-green-400 bg-green-500' : 'bg-gray-300'
+              className={`rounded px-3 py-2 font-semibold text-white ${
+                isChanged ? 'bg-green-500 hover:bg-green-400' : 'bg-gray-300'
               }`}
               disabled={!isChanged}
               type="button"

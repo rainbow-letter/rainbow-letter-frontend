@@ -15,7 +15,7 @@ export default function Join() {
   ) as Message;
 
   return (
-    <main className="h-screen flex flex-col justify-center text-center">
+    <main className="flex h-screen flex-col justify-center text-center">
       <Header message={message} />
       <SignUpForm message={message} />
       <LinkAvailable message={message} />

@@ -6,7 +6,7 @@ type Props = {
 
 export default function ModalLayOut({ children }: Props) {
   return (
-    <main className="w-full h-full min-w-[22.5rem] pb-10 flex justify-center bg-white">
+    <main className="flex size-full min-w-[22.5rem] justify-center bg-white pb-10">
       {children}
     </main>
   );

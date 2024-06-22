@@ -16,9 +16,9 @@ function MyPetsTemplate() {
   return (
     <div className="h-full">
       <PetList />
-      <PetRegisterButton className="flex items-center justify-center gap-x-2 mt-1 py-5 bg-white border border-dashed border-orange-400 rounded-2xl">
+      <PetRegisterButton className="mt-1 flex items-center justify-center gap-x-2 rounded-2xl border border-dashed border-orange-400 bg-white py-5">
         <img src={plus} alt="add" />
-        <span className="text-solo-label-pc text-orange-400 font-semibold">
+        <span className="text-solo-label-pc font-semibold text-orange-400">
           추가하기
         </span>
       </PetRegisterButton>
