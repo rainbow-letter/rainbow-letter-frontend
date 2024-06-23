@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch } from 'store';
+import { AppDispatch, RootState } from 'store';
 
 import { updatePhoneNumber, deletePhoneNumber } from 'store/user/user-actions';
 import {
@@ -8,17 +8,16 @@ import {
   USER_INFO_MESSAGES,
   USER_ACTIONS,
 } from 'components/MyPageTemplate/constants';
-import { State } from 'types/store';
 import { validatePhoneNumber } from 'utils/validators';
 
 function PhoneNumberSection() {
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector((state: State) => state.user);
+  const user = useSelector((state: RootState) => state.user);
   const [newPhoneNumber, setNewPhoneNumber] = useState('');
   const [isValidPhone, setIsValidPhone] = useState(true);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const phoneValue = user?.phoneNumber || USER_INFO_LABELS.NO_PHONE;
+  const phoneValue = user?.user.phoneNumber || USER_INFO_LABELS.NO_PHONE;
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPhoneNumber(e.target.value);
