@@ -2,8 +2,7 @@
 import bannerLetter from 'assets/banner-letter.svg';
 import bannerFitaPat from 'assets/ad_fitapat_4.png';
 import bannerSavedImage from 'assets/banner_save.png';
-import mainBanner from 'assets/main-banner.svg';
-import mainBook from 'assets/im_home_books.svg';
+import mainBook from 'assets/banner_book_0623.svg';
 
 export const BANNER_ITEMS = [
   {
