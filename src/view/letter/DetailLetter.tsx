@@ -8,14 +8,17 @@ import Button from 'components/Button';
 import WritingPadSection from 'components/Write/WritingPadSection';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
+import CoverImage from 'components/CoverImage';
 
 import { RootState, useAppDispatch } from 'store';
 import { Letter } from 'types/letters';
 import { getLetter } from 'api/letter';
 import metaData from 'utils/metaData';
 import { isiPhone } from 'utils/device';
+import defaultImage from 'assets/Logo_256px.png';
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
+import { getImage } from 'api/images';
 import { readReply } from '../../api/reply';
 import saveImg from '../../assets/detailLetter_save.svg';
 import captureLogo from '../../assets/detailLetter_logo.svg';
@@ -26,6 +29,8 @@ export default function DetailLetter() {
   const params = useParams();
   const navigate = useNavigate();
   const [letterData, setLetterData] = useState<Letter>();
+  const [petImage, setPetImage] = useState('');
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const isSave = useSelector((state: RootState) => state.letter.isSaveToImage);
   const letterType = useSelector((state: RootState) => state.letter.letterType);
@@ -40,6 +45,19 @@ export default function DetailLetter() {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    const getPetImage = async () => {
+      if (letterData?.pet.image.objectKey) {
+        const data = await getImage(letterData?.pet.image.objectKey);
+        return setPetImage(data);
+      }
+
+      return setPetImage(defaultImage);
+    };
+
+    getPetImage();
+  }, [letterData]);
 
   const onClickReplyButton = () => {
     navigate('/write-letter', { state: letterData?.pet.name });
@@ -168,30 +186,34 @@ export default function DetailLetter() {
     <>
       {letterData && (
         <main className="letterBox relative" ref={sectionRef}>
-          {/* {isReply && (
+          {isReply && (
             <button
               type="button"
               onClick={onClickSaveIcon}
               id="save-button"
-              className="absolute -top-[3.75rem] right-6 z-10 not-save"
+              className="not-save absolute -top-[3.75rem] right-6 z-10"
             >
               <img src={saveImg} alt="저장" className="fixed" />
             </button>
-          )} */}
-          {letterData.reply.content && (
-            <WritingPadSection
-              image={letterData.pet.image}
-              petName={`${letterData.pet.name}로부터`}
-              reply={letterData.reply.content}
-              date={processDate(letterData.reply.timestamp)}
-              index={location.state.index}
-              saveType={{
-                target: 'reply_down',
-                unTargetValue: 'reply_value',
-                date: 'reply_date',
-              }}
-            />
           )}
+          {letterData.reply.content && (
+            <section className="relative">
+              <CoverImage image={petImage} />
+              <WritingPadSection
+                image={letterData.pet.image}
+                petName={`${letterData.pet.name}로부터`}
+                reply={letterData.reply.content}
+                date={processDate(letterData.reply.timestamp)}
+                index={location.state.index}
+                saveType={{
+                  target: 'reply_down',
+                  unTargetValue: 'reply_value',
+                  date: 'reply_date',
+                }}
+              />
+            </section>
+          )}
+          {!letterData.reply.content && <CoverImage image={petImage} />}
           <WritingPadSection
             image={!letterData.reply.content ? letterData.pet.image : null}
             petName={`${letterData.pet.name}에게`}

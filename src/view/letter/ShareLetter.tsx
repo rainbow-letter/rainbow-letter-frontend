@@ -10,9 +10,13 @@ import { USER_ACTIONS } from 'components/LetterBox/constants';
 import { getShareLetter } from 'api/letter';
 import { Letter } from 'types/letters';
 import metaData from 'utils/metaData';
+import CoverImage from 'components/CoverImage';
+import { getImage } from 'api/images';
+import defaultImage from 'assets/Logo_256px.png';
 
 export default function ShareLetter() {
   const [letterData, setLetterData] = useState<Letter>();
+  const [petImage, setPetImage] = useState('');
   const navigate = useNavigate();
   const params = useParams();
 
@@ -23,6 +27,19 @@ export default function ShareLetter() {
       setLetterData(data);
     })();
   }, []);
+
+  useEffect(() => {
+    const getPetImage = async () => {
+      if (letterData?.pet.image.objectKey) {
+        const data = await getImage(letterData?.pet.image.objectKey);
+        return setPetImage(data);
+      }
+
+      return setPetImage(defaultImage);
+    };
+
+    getPetImage();
+  }, [letterData]);
 
   const processDate = (date: string) => {
     const year = date.slice(0, 4);
@@ -48,14 +65,15 @@ export default function ShareLetter() {
       {letterData && (
         <main className="relative pb-10">
           <AppBar />
-          {letterData.reply.content && (
+          <section className="relative">
+            <CoverImage image={petImage} />
             <WritingPadSection
               image={letterData.pet.image}
               petName={`${letterData.pet.name}로부터`}
               reply={letterData.reply.content}
               date={processDate(letterData.reply.timestamp)}
             />
-          )}
+          </section>
           <WritingPadSection
             image={!letterData.reply.content ? letterData.pet.image : null}
             petName={`${letterData.pet.name}에게`}

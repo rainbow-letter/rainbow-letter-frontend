@@ -5,3 +5,13 @@ Disallow: /admin/
 Disallow: /saved-image/
 Disallow: /oauth/success
 Disallow: /share/
+Disallow: /landing/
+Disallow: /pwa_landing/
+Disallow: /login/
+Disallow: /sign-up/
+Disallow: /auth/
+Disallow: /members/
+Disallow: /my-page/
+Disallow: /my-pets/
+Disallow: /write-letter/
+Disallow: /letter-box/

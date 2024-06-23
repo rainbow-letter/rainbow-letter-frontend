@@ -14,7 +14,7 @@ import Button from 'components/Button';
 import { sendLetter, getLetters } from 'api/letter';
 import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
-import { updateImageAndGetId } from 'api/images';
+import { getImage, updateImageAndGetId } from 'api/images';
 import {
   isExistCheckSavedLetter,
   getSavedLetter,
@@ -32,6 +32,8 @@ import {
 } from 'utils/sesstionStorage';
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
+import CoverImage from 'components/CoverImage';
+import defaultImage from 'assets/Logo_256px.png';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -45,6 +47,7 @@ export default function WriteLetter() {
     image: null,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [petImage, setPetImage] = useState('');
   const [temp, setTemp] = useState<string | undefined>('');
   const [id, setId] = useState<string>('');
 
@@ -119,6 +122,20 @@ export default function WriteLetter() {
       };
     })();
   }, []);
+
+  // 아이 이미지 불러오기
+  useEffect(() => {
+    const getPetImage = async () => {
+      if (selectedPet?.image.objectKey) {
+        const data = await getImage(selectedPet.image.objectKey);
+        return setPetImage(data);
+      }
+
+      return setPetImage(defaultImage);
+    };
+
+    getPetImage();
+  }, [selectedPet]);
 
   // 편지 서버에 저장
   useEffect(() => {
@@ -230,13 +247,16 @@ export default function WriteLetter() {
       ) : (
         <ResisterButtonSection />
       )}
-      <WritingPadSection
-        id={selectedPet?.id}
-        petName={selectedPet && `${selectedPet.name}에게`}
-        image={selectedPet && selectedPet.image}
-        onchange={setLetter}
-        letter={letter}
-      />
+      <section className="relative">
+        <CoverImage image={petImage} />
+        <WritingPadSection
+          id={selectedPet?.id}
+          petName={selectedPet && `${selectedPet.name}에게`}
+          image={selectedPet && selectedPet.image}
+          onchange={setLetter}
+          letter={letter}
+        />
+      </section>
       <TopicSuggestion />
       <ImageUploadSection setImageFile={setImageFile} />
 
