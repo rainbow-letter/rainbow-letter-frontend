@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
