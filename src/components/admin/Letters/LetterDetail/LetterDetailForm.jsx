@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import {
   calculateDDay,
@@ -24,13 +24,12 @@ import { fetchUserLetters } from '../../../../store/admin/userLetter-actions';
 
 const MAX_CONTENT_LENGTH = 1000;
 
-function LetterDetail() {
+function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
   const [newContent, setNewContentValue] = useState('');
   const [petImage, setPetImage] = useState('');
   const [letterImage, setLetterImage] = useState('');
 
   const navigate = useNavigate();
-  const { letterId } = useParams();
 
   const isLoading = useSelector(
     (state) => state.adminLetters.status === 'loading'
@@ -52,7 +51,7 @@ function LetterDetail() {
     if (letterData) {
       setNewContentValue(letterData.reply.content);
     }
-  }, [letterData]);
+  }, [letterData.reply.content]);
 
   useEffect(() => {
     if (letterData?.pet?.image?.objectKey) {
@@ -101,8 +100,7 @@ function LetterDetail() {
   };
 
   const handleUserLetterClick = (id) => {
-    navigate(`/admin/letters/${id}`, { replace: true });
-    setLetterImage('');
+    onLetterClick(id);
   };
 
   if (!letterData) {
@@ -113,7 +111,9 @@ function LetterDetail() {
   const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
 
   return (
-    <div className="max-w-screen flex h-screen min-h-[250%] flex-col gap-6 overflow-auto bg-white px-2 sm:min-h-0 sm:flex-row sm:gap-x-4">
+    <div
+      className={`flex h-screen min-h-[250%] flex-col gap-6 overflow-auto bg-white px-2 pb-10 sm:min-h-0 sm:flex-row sm:gap-x-4 ${isModal && 'pt-10'}`}
+    >
       {/* 왼쪽 */}
       <section className="flex flex-1 flex-col gap-y-6 bg-white">
         <header>
@@ -228,15 +228,11 @@ function LetterDetail() {
               </div>
             </div>
             <div className="">
-              <img
-                className="h-[132px] w-[132px]"
-                src={petImage}
-                alt={pet.name}
-              />
+              <img className="size-[132px]" src={petImage} alt={pet.name} />
             </div>
           </div>
         </header>
-        <main className="flex flex-grow flex-col gap-y-3 sm:p-2">
+        <main className="flex grow flex-col gap-y-3 sm:p-2">
           <div className="flex justify-between">
             <div className="flex items-center gap-x-2">
               <span className="text-[20px] font-bold">
@@ -254,7 +250,7 @@ function LetterDetail() {
             </div>
             <span>등록일 {formatDateToYYMMDDHHSS(letterData.createdAt)}</span>
           </div>
-          <div className="flex flex-grow rounded bg-gray-100 p-3">
+          <div className="flex grow rounded bg-gray-100 p-3">
             {letterData.content}
           </div>
         </main>
@@ -280,7 +276,7 @@ function LetterDetail() {
             )}
           </div>
         </header>
-        <main className="flex flex-grow">
+        <main className="flex h-[80vh] grow">
           <textarea
             className="w-full resize-none rounded-lg bg-gray-100 p-5"
             maxLength={MAX_CONTENT_LENGTH}
@@ -292,34 +288,44 @@ function LetterDetail() {
           <div className="mr-3 text-solo-label text-gray-1">
             {`${newContent.length} / ${MAX_CONTENT_LENGTH}`}
           </div>
-          <div className="flex gap-x-2">
+          {isModal ? (
             <button
-              className={`rounded px-3 py-2 font-semibold ${
-                isLoading
-                  ? 'cursor-not-allowed'
-                  : 'bg-pink-300 hover:bg-pink-400'
-              }`}
+              className="rounded bg-gray-300 px-5 py-2 font-semibold text-white"
               type="button"
-              disabled={isLoading}
-              onClick={handleRegenerateClick}
+              onClick={() => onLetterClick(0)}
             >
-              GPT 재생성
+              닫기
             </button>
-            <button
-              className={`rounded px-3 py-2 font-semibold text-white ${
-                isChanged ? 'bg-green-500 hover:bg-green-400' : 'bg-gray-300'
-              }`}
-              disabled={!isChanged}
-              type="button"
-              onClick={handleSaveClick}
-            >
-              저장
-            </button>
-          </div>
+          ) : (
+            <div className="flex gap-x-2">
+              <button
+                className={`rounded px-3 py-2 font-semibold ${
+                  isLoading
+                    ? 'cursor-not-allowed'
+                    : 'bg-pink-300 hover:bg-pink-400'
+                }`}
+                type="button"
+                disabled={isLoading}
+                onClick={handleRegenerateClick}
+              >
+                GPT 재생성
+              </button>
+              <button
+                className={`rounded px-3 py-2 font-semibold text-white ${
+                  isChanged ? 'bg-green-500 hover:bg-green-400' : 'bg-gray-300'
+                }`}
+                disabled={!isChanged}
+                type="button"
+                onClick={handleSaveClick}
+              >
+                저장
+              </button>
+            </div>
+          )}
         </footer>
       </section>
     </div>
   );
 }
 
-export default LetterDetail;
+export default LetterDetailForm;
