@@ -31,9 +31,9 @@ function TableRow({ no, letter, isChecked }) {
   return (
     <tr className="border-b">
       <td className="border p-2">
-        <div className="flex h-full items-center justify-center overflow-hidden text-ellipsis whitespace-nowrap">
+        <div className="flex h-full items-center justify-center truncate">
           <input
-            className="form-checkbox h-5 w-5"
+            className="form-checkbox size-5"
             type="checkbox"
             checked={isChecked}
             onChange={handleRowCheck}
@@ -53,7 +53,7 @@ function TableRow({ no, letter, isChecked }) {
       </td>
       <td className="border p-2">
         <button
-          className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-left"
+          className="w-full truncate text-left"
           type="button"
           onClick={handleReplyClick}
         >

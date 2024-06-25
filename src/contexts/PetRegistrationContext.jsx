@@ -3,8 +3,8 @@ import { createContext, useState, useContext, useMemo } from 'react';
 const PetRegistrationContext = createContext({
   mandatoryData: {},
   optionalData: {},
-  setMandatoryData: () => {},
-  setOptionalData: () => {},
+  setMandatoryData: () => null,
+  setOptionalData: () => null,
 });
 
 export const usePetRegistration = () => useContext(PetRegistrationContext);
