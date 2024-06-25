@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';

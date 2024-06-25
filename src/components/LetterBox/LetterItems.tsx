@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { INFO_MESSAGES } from 'components/LetterBox/constants';
 import { Letters } from 'types/letters';
 import arrowIcon from '../../assets/ion_chevron-back_1.svg';

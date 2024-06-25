@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { incrementLikes } from '../../api/favorite';
 import heart from '../../assets/heart.svg';

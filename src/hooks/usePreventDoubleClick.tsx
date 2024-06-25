@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import { useState } from 'react';
 
 const usePreventDoubleClick = () => {

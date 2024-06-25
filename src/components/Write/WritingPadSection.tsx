@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, ChangeEvent } from 'react';
 
 import Caption from 'components/Write/Caption';
 import { PetImage } from 'types/pets';
@@ -43,8 +42,8 @@ function WritingPadSection({
   const textarea = useRef<HTMLTextAreaElement>(null);
 
   const onUserGuessInput = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const maxLengthCheck = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      const maxLengthCheck = (e: ChangeEvent<HTMLTextAreaElement>) => {
         if (e.target.value.length > e.target.maxLength) {
           e.target.value = e.target.value.slice(0, e.target.maxLength);
         }
@@ -61,7 +60,7 @@ function WritingPadSection({
     }
   }, []);
 
-  const handleTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     handleResizeHeight();
     if (onchange) {
       onchange({
@@ -90,7 +89,7 @@ function WritingPadSection({
         )}
         <h3>{petName}</h3>
         <textarea
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
             handleTextarea(e);
           }}
           ref={textarea}

@@ -1,7 +1,7 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function ModalLayOut({ children }: Props) {

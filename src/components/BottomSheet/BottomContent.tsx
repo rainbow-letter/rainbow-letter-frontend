@@ -1,5 +1,3 @@
-import React from 'react';
-
 import InstallPrompt from 'components/InstallPrompt';
 
 export default function BottomContent() {

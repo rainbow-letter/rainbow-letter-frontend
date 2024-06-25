@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import axios from 'axios';
 
 import { getToken, removeToken } from 'utils/localStorage';

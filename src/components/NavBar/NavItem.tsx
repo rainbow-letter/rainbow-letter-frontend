@@ -1,17 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
+import { ElementType } from 'react';
 import { NavLink } from 'react-router-dom';
 
 type NavItemProps = {
   to: string;
   label: string;
-  Icon: React.ElementType;
+  Icon: ElementType;
   useStroke?: boolean;
 };
 
 type IconWrapperProps = {
-  Icon: React.ElementType;
+  Icon: ElementType;
   isActive: boolean;
   useStroke?: boolean;
 };

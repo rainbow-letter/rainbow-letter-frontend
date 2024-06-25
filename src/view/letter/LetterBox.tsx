@@ -1,11 +1,9 @@
-import React, { Suspense, useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 
 import Spinner from 'components/Spinner';
 
-const NameSection = React.lazy(
-  () => import('components/LetterBox/NameSection')
-);
-const LetterListSection = React.lazy(
+const NameSection = lazy(() => import('components/LetterBox/NameSection'));
+const LetterListSection = lazy(
   () => import('components/LetterBox/LetterListSection')
 );
 

@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import html2canvas from 'html2canvas';
@@ -155,7 +154,7 @@ export default function DetailLetter() {
               link.click();
             }
           })
-          .then((_) => {
+          .then(() => {
             if (isIphone) {
               return navigate('/saved-image');
             }

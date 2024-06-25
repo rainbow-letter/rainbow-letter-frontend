@@ -1,8 +1,8 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 type Props = {
   className: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function RadioGroup({ className, children }: Props) {

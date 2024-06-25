@@ -1,4 +1,3 @@
-/* eslint-disable */
 import apiRequest from 'api';
 
 const RESOURCE = '/api/data';

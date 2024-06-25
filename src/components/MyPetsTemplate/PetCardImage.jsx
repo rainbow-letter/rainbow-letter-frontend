@@ -1,5 +1,3 @@
-import React from 'react';
-
 import defaultImage from '../../assets/Logo_256px.png';
 
 function PetCardImage({ name, image }) {

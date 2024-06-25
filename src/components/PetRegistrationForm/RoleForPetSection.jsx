@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Chips from 'components/Chips';
 import Chip from 'components/Chips/Chip';

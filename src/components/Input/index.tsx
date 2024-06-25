@@ -1,11 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import { ChangeEvent } from 'react';
 
 type Props = {
   className: string;
   placeholder: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 function Input({ className, ...props }: Props) {

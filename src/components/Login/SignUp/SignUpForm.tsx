@@ -1,5 +1,10 @@
-/* eslint-disable consistent-return */
-import React, { useState, useEffect, useCallback } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  MouseEvent,
+  ChangeEvent,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -67,7 +72,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
   };
 
   const onClickSignUpButton = useCallback(
-    async (e: React.MouseEvent<HTMLButtonElement>) => {
+    async (e: MouseEvent<HTMLButtonElement>) => {
       try {
         e.preventDefault();
         isCheckProperForm();
@@ -98,7 +103,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
         <UserInput
           type="text"
           value={profile.email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfile({ ...profile, email: e.target.value })
           }
           placeholder="이메일을 입력해주세요"
@@ -108,7 +113,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
         <UserInput
           type="password"
           value={profile.password}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfile({ ...profile, password: e.target.value })
           }
           placeholder="비밀번호를 입력해주세요"
@@ -117,9 +122,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
         />
         <Agree setIsChecked={setIsChecked} />
         <SubmitButton
-          onclick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            onClickSignUpButton(e)
-          }
+          onclick={(e: MouseEvent<HTMLButtonElement>) => onClickSignUpButton(e)}
           disabled={errorData}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'

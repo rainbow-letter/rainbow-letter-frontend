@@ -1,5 +1,3 @@
-import React from 'react';
-
 import PetsSection from 'components/Home/PetsSection';
 import ContentsSection from 'components/Home/ContentsSection';
 import LetterShowcase from 'components/LetterShowcase';

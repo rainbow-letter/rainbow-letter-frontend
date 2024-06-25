@@ -1,4 +1,4 @@
-import React, { createPortal } from 'react-dom';
+import { createPortal } from 'react-dom';
 import LetterDetailForm from './LetterDetailForm';
 
 const LetterDetailModal = ({ letterId, onLetterClick }) => {

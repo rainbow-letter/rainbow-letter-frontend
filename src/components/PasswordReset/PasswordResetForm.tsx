@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import UserInput from 'components/Login/UserInput';
 import Button from 'components/Button';

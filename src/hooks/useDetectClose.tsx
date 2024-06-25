@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 
 export default function useDetectClose(
-  ref: React.RefObject<HTMLDivElement>,
+  ref: RefObject<HTMLDivElement>,
   initialState: boolean
 ) {
   const [isOpen, setIsOpen] = useState<boolean>(initialState);

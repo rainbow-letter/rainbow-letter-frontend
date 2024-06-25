@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from 'store';
 
@@ -19,7 +19,7 @@ function PhoneNumberSection() {
 
   const phoneValue = user?.user.phoneNumber || USER_INFO_LABELS.NO_PHONE;
 
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewPhoneNumber(e.target.value);
     setIsValidPhone(validatePhoneNumber(e.target.value));
   };

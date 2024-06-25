@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { getImage } from 'api/images';
 import defaultImage from 'assets/Logo_256px.png';

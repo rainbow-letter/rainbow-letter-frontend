@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ImageInput from 'components/Input/ImageInput';
 import { TITLES } from './constants';

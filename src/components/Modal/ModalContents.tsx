@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -118,7 +118,7 @@ export default function ModalContents() {
                 <Input
                   placeholder="예) 01012341234"
                   value={value}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setValue(e.target.value)
                   }
                   className="mt-4 w-full py-5"

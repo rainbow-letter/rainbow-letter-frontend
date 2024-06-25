@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable consistent-return */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from '../../api';

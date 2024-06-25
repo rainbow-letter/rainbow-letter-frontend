@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Chips from 'components/Chips';
 import { PET_PERSONALITIES } from 'components/Chips/constants';
 import { TITLES } from './constants';

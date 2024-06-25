@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { FOOTER_MESSAGE } from 'components/Home/constants';

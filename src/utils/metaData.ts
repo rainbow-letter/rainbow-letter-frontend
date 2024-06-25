@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default function metaData(pathname: string) {
   if (!metaDataConfig[pathname]) return;
 

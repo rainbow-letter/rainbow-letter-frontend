@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { PetDashBoard } from 'types/pets';
 import { getDashboard } from 'api/pets';

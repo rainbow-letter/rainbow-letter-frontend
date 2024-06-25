@@ -1,5 +1,4 @@
-/* eslint-disable consistent-return */
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
