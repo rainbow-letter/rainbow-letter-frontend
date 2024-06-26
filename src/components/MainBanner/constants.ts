@@ -5,17 +5,17 @@ import bannerSavedImage from 'assets/banner_save.png';
 import mainBook from 'assets/banner_book_0623.svg';
 
 export const BANNER_ITEMS = [
-  {
-    id: 0,
-    category: 'EVENT',
-    title: `엽서북`,
-    description: '엽서북',
-    link: 'https://smartstore.naver.com/rainbowletter/products/10422885853',
-    image: mainBook,
-    buttonContent: '사전 예약하기',
-    bgColor: 'bg-[#F9F9F9]',
-    cover: true,
-  },
+  // {
+  //   id: 0,
+  //   category: 'EVENT',
+  //   title: `엽서북`,
+  //   description: '엽서북',
+  //   link: 'https://smartstore.naver.com/rainbowletter/products/10422885853',
+  //   image: mainBook,
+  //   buttonContent: '사전 예약하기',
+  //   bgColor: 'bg-[#F9F9F9]',
+  //   cover: true,
+  // },
   {
     id: 1,
     category: 'EVENT',
