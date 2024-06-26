@@ -6,6 +6,7 @@ import {
   regenerateReply,
   sendReply,
 } from './admin/letter-actions';
+import { fetchUserLetters } from './admin/userLetter-actions';
 
 const isFulfilledAction = (action, types) => types.includes(action.type);
 
@@ -25,7 +26,6 @@ export const setupListeners = ({ startListening }) => {
     matcher: (action) =>
       isFulfilledAction(action, [
         inspectReply.fulfilled.type,
-        regenerateReply.fulfilled.type,
         sendReply.fulfilled.type,
       ]),
     effect: async (action, listenerApi) => {
