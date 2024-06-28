@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import WritingPadSection from 'components/Write/WritingPadSection';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import AppBar from 'components/AppBar';
 import Button from 'components/Button';

@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux';
 import html2canvas from 'html2canvas';
 
 import Button from 'components/Button';
-import WritingPadSection from 'components/Write/WritingPadSection';
 import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
 import CoverImage from 'components/CoverImage';
+import DownLoadButton from 'components/Write/DownLoadButton';
 
 import { RootState, useAppDispatch } from 'store';
 import { Letter } from 'types/letters';
@@ -23,7 +23,6 @@ import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import { getImage } from 'api/images';
 import { readReply } from '../../api/reply';
-import saveImg from '../../assets/detailLetter_save.svg';
 import captureLogo from '../../assets/detailLetter_logo.svg';
 
 export default function DetailLetter() {
@@ -181,16 +180,7 @@ export default function DetailLetter() {
     <>
       {letterData && (
         <main className="letterBox relative" ref={sectionRef}>
-          {isExistReply && (
-            <button
-              type="button"
-              onClick={onClickSaveIcon}
-              id="save-button"
-              className="not-save absolute -top-[3.75rem] right-6 z-10"
-            >
-              <img src={saveImg} alt="저장" className="fixed" />
-            </button>
-          )}
+          {isExistReply && <DownLoadButton onClick={onClickSaveIcon} />}
           <LetterPaperWithImage>
             <CoverImage image={petImage} />
             {isExistReply && (
