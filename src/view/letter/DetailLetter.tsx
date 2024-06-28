@@ -6,6 +6,8 @@ import html2canvas from 'html2canvas';
 
 import Button from 'components/Button';
 import WritingPadSection from 'components/Write/WritingPadSection';
+import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
+import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
 import CoverImage from 'components/CoverImage';
@@ -14,6 +16,7 @@ import { RootState, useAppDispatch } from 'store';
 import { Letter } from 'types/letters';
 import { getLetter } from 'api/letter';
 import metaData from 'utils/metaData';
+import { formatDateIncludingHangul } from 'utils/date';
 import { isiPhone } from 'utils/device';
 import defaultImage from 'assets/Logo_256px.png';
 import { modalActions } from 'store/modal/modal-slice';
@@ -61,14 +64,6 @@ export default function DetailLetter() {
 
   const onClickReplyButton = () => {
     navigate('/write-letter', { state: letterData?.pet.name });
-  };
-
-  const processDate = (date: string) => {
-    const year = date.slice(0, 4);
-    const month = date.slice(5, 7);
-    const day = date.slice(8, 10);
-
-    return `${year}년 ${month}월 ${day}일`;
   };
 
   const handleSaveToImage = useCallback(
@@ -180,13 +175,13 @@ export default function DetailLetter() {
     dispatch(modalActions.openModal('IMAGE'));
   }, [dispatch]);
 
-  const isReply = letterData?.reply.type === 'REPLY';
+  const isExistReply = !!letterData?.reply.content;
 
   return (
     <>
       {letterData && (
         <main className="letterBox relative" ref={sectionRef}>
-          {isReply && (
+          {isExistReply && (
             <button
               type="button"
               onClick={onClickSaveIcon}
@@ -196,14 +191,15 @@ export default function DetailLetter() {
               <img src={saveImg} alt="저장" className="fixed" />
             </button>
           )}
-          {letterData.reply.content && (
-            <section className="relative">
-              <CoverImage image={petImage} />
-              <WritingPadSection
-                image={letterData.pet.image}
+          <LetterPaperWithImage>
+            <CoverImage image={petImage} />
+            {isExistReply && (
+              <WrittenLetterPaper
                 petName={`${letterData.pet.name}로부터`}
-                reply={letterData.reply.content}
-                date={processDate(letterData.reply.timestamp)}
+                content={letterData.reply.content}
+                className="pt-[15.187rem]"
+                letterPaperColor="bg-orange-50"
+                date={formatDateIncludingHangul(letterData.reply.timestamp)}
                 index={location.state.index}
                 saveType={{
                   target: 'reply_down',
@@ -211,21 +207,24 @@ export default function DetailLetter() {
                   date: 'reply_date',
                 }}
               />
-            </section>
-          )}
-          {!letterData.reply.content && <CoverImage image={petImage} />}
-          <WritingPadSection
-            image={!letterData.reply.content ? letterData.pet.image : null}
-            petName={`${letterData.pet.name}에게`}
-            reply={letterData.content}
-            date={processDate(letterData.createdAt)}
-            className="bg-gray-2"
-            saveType={{
-              target: 'letter_down',
-              unTargetValue: 'letter_value',
-              date: 'letter_date',
-            }}
-          />
+            )}
+            <WrittenLetterPaper
+              petName={`${letterData.pet.name}에게`}
+              content={letterData.content}
+              className={isExistReply ? 'mt-4' : 'pt-[15.187rem]'}
+              letterPaperColor="bg-gray-2"
+              date={
+                isExistReply
+                  ? formatDateIncludingHangul(letterData.reply.timestamp)
+                  : ''
+              }
+              saveType={{
+                target: 'letter_down',
+                unTargetValue: 'letter_value',
+                date: 'letter_date',
+              }}
+            />
+          </LetterPaperWithImage>
           {letterData.image.id && <SentPhoto letterData={letterData} />}
           <div className="w-full">
             <img src={captureLogo} alt="로고" className="logo hidden" />
