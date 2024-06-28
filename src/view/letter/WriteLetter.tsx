@@ -10,6 +10,8 @@ import PetsListDropDown from 'components/Write/PetsListDropDown';
 import WritingPadSection from 'components/Write/WritingPadSection';
 import TopicSuggestion from 'components/Write/TopicSuggestion';
 import ImageUploadSection from 'components/Write/ImageUploadSection';
+import WritableLetterPaper from 'components/Write/WritableLetterPaper';
+import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import Button from 'components/Button';
 import { sendLetter, getLetters } from 'api/letter';
 import { getUserInfo } from 'api/user';
@@ -247,16 +249,14 @@ export default function WriteLetter() {
       ) : (
         <ResisterButtonSection />
       )}
-      <section className="relative">
+      <LetterPaperWithImage>
         <CoverImage image={petImage} />
-        <WritingPadSection
-          id={selectedPet?.id}
-          petName={selectedPet && `${selectedPet.name}에게`}
-          image={selectedPet && selectedPet.image}
+        <WritableLetterPaper
+          petName={selectedPet?.name}
           onchange={setLetter}
           letter={letter}
         />
-      </section>
+      </LetterPaperWithImage>
       <TopicSuggestion />
       <ImageUploadSection setImageFile={setImageFile} />
 
