@@ -8,6 +8,7 @@ import AppBar from 'components/AppBar';
 import Button from 'components/Button';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
+import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
 import CoverImage from 'components/CoverImage';
 import { getShareLetter } from 'api/letter';
 import { getImage } from 'api/images';
@@ -61,20 +62,21 @@ export default function ShareLetter() {
           <AppBar />
           <LetterPaperWithImage>
             <CoverImage image={petImage} />
-            <WritingPadSection
-              image={letterData.pet.image}
+            <WrittenLetterPaper
               petName={`${letterData.pet.name}로부터`}
-              reply={letterData.reply.content}
+              content={letterData.reply.content}
+              className="pt-[15.187rem]"
+              letterPaperColor="bg-orange-50"
+              date={formatDateIncludingHangul(letterData.reply.timestamp)}
+            />
+            <WrittenLetterPaper
+              petName={`${letterData.pet.name}에게`}
+              content={letterData.content}
+              className="mt-4"
+              letterPaperColor="bg-gray-2"
               date={formatDateIncludingHangul(letterData.reply.timestamp)}
             />
           </LetterPaperWithImage>
-          <WritingPadSection
-            image={!letterData.reply.content ? letterData.pet.image : null}
-            petName={`${letterData.pet.name}에게`}
-            reply={letterData.content}
-            date={formatDateIncludingHangul(letterData.createdAt)}
-            className="bg-gray-2"
-          />
           {letterData.image.id && <SentPhoto letterData={letterData} />}
           <Button
             disabled={!letterData.reply.content}
