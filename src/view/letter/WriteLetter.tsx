@@ -7,7 +7,6 @@ import axios from 'axios';
 
 import ResisterButtonSection from 'components/Write/ResisterButtonSection';
 import PetsListDropDown from 'components/Write/PetsListDropDown';
-import WritingPadSection from 'components/Write/WritingPadSection';
 import TopicSuggestion from 'components/Write/TopicSuggestion';
 import ImageUploadSection from 'components/Write/ImageUploadSection';
 import WritableLetterPaper from 'components/Write/WritableLetterPaper';
@@ -31,7 +30,7 @@ import { getExpireModal } from 'utils/localStorage';
 import {
   setSessionAutoSaveID,
   getSessionAutoSaveID,
-} from 'utils/sesstionStorage';
+} from 'utils/sessionStorage';
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import CoverImage from 'components/CoverImage';

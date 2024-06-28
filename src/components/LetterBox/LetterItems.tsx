@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { INFO_MESSAGES } from 'components/LetterBox/constants';
+import { formatDateWithSlash } from 'utils/date';
+import { letterReplyStatus, isCheckUnread } from 'utils/replyStatus';
 import { Letters } from 'types/letters';
 import arrowIcon from '../../assets/ion_chevron-back_1.svg';
 import ellipseIcon from '../../assets/Ellipse 439.svg';
@@ -14,34 +16,6 @@ export default function LetterItems({
   letter: { readStatus, petName, summary, status, createdAt },
   index,
 }: Props) {
-  const setDate = (date: string) => {
-    const year = date.slice(2, 4);
-    const month = date.slice(5, 7);
-    const day = date.slice(8, 10);
-    const week = ['일', '월', '화', '수', '목', '금', '토'];
-    const dayOfWeek = week[new Date(date).getDay()];
-
-    return `${year}/${month}/${day}(${dayOfWeek})`;
-  };
-
-  const setStatus = (reply: string) => {
-    switch (reply) {
-      case 'REQUEST':
-        return `${INFO_MESSAGES.STILL_WRITING}`;
-      case 'RESPONSE':
-        return `${INFO_MESSAGES.REPLY_ARRIVED}`;
-      default:
-        return null;
-    }
-  };
-
-  const isCheckUnread = (isRead: string, reply: string): boolean => {
-    if (reply === 'REQUEST') return false;
-    if (isRead === 'READ') return false;
-
-    return true;
-  };
-
   return (
     <li
       className={`${
@@ -73,7 +47,7 @@ export default function LetterItems({
               isCheckUnread(readStatus, status) && `text-alarm-red`
             }`}
           >
-            {setStatus(status)}
+            {letterReplyStatus(status)}
           </p>
         </div>
         <img
@@ -83,7 +57,9 @@ export default function LetterItems({
         />
       </div>
       <div className="flex justify-end border-t px-5 py-2.5">
-        <p className="text-caption text-gray-2">{setDate(createdAt)}</p>
+        <p className="text-caption text-gray-2">
+          {formatDateWithSlash(createdAt)}
+        </p>
       </div>
     </li>
   );
