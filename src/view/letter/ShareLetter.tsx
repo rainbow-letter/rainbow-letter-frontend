@@ -28,7 +28,7 @@ export default function ShareLetter() {
   useEffect(() => {
     (async () => {
       if (isKakaoTalk()) {
-        window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(targetUrl)}`;
+        return (window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(targetUrl)}`);
       }
 
       metaData(Object.keys(params)[0]);
