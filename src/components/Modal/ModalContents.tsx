@@ -18,7 +18,7 @@ import { validatePhoneNumber } from 'utils/validators';
 import { setExpireModal } from 'utils/localStorage';
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
-import { setSessionAutoSaveID } from 'utils/sesstionStorage';
+import { setSessionAutoSaveID } from 'utils/sessionStorage';
 import { postData } from 'api/data';
 import CancelImage from '../../assets/ph_x-bold.svg';
 import WritingPad from '../../assets/writing_pad.svg';

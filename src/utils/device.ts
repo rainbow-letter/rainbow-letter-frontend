@@ -17,3 +17,9 @@ export const isiPad = () => {
 export const isMobile = () => {
   return isAndroid() || isiOS();
 };
+
+export const isKakaoTalk = () => {
+  const useragt = navigator.userAgent.toLowerCase();
+
+  return useragt.match(/kakaotalk/i);
+};
