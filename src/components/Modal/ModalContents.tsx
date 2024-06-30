@@ -7,6 +7,7 @@ import Input from 'components/Input';
 import Radio from 'components/Radio/Radio';
 import RadioGroup from 'components/Radio/RadioGroup';
 import ContentsItem from 'components/Home/ContentsItem';
+import DonateContentsItem from 'components/Donate/AppBar';
 import {
   MODAL_MESSAGE,
   Modal,
@@ -171,11 +172,9 @@ export default function ModalContents() {
                 </header>
                 <p className="mb-4 mt-[1.625rem] text-gray-1 underline">AD</p>
                 <div className="flex flex-col gap-4">
+                  <DonateContentsItem />
                   {MODAL_AD_CONTENTS_ITEMS.map((item) => (
-                    <ContentsItem
-                      item={item}
-                      className={`${item.id === 1 ? 'bg-gray-2' : ''} shadow-modal`}
-                    />
+                    <ContentsItem item={item} />
                   ))}
                 </div>
                 <button

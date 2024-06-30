@@ -107,4 +107,11 @@ const metaDataConfig: MetaData = {
     title: '무지개편지 : 아이 정보 수정',
     description: '아이의 정보를 수정할 수 있어요.',
   },
+  '/donate': {
+    title: '무지개편지 - 후원하기',
+    description:
+      '사별한 반려동물에게 마음을 담아 편지를 보내보세요. ai가 반려동물 입장에서 쓴 답장을 보내줄 거예요.',
+    'og:title': '무지개편지 : 먼저 간 반려동물에게 보내는 편지',
+    'og:description': '무지개편지 : 편지를 보내고 아이의 답장을 받아보세요.',
+  },
 };
