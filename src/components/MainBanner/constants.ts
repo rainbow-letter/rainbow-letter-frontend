@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import bannerLetter from 'assets/banner-letter.svg';
-import bannerFitaPat from 'assets/ad_fitapat_4.png';
+import FitaPat from 'assets/ad_fitapat_4.png';
 import bannerSavedImage from 'assets/banner_save.png';
 import mainBook from 'assets/banner_book_0623.svg';
+import Donate from 'assets/im_main_donate.svg';
 
 export const BANNER_ITEMS = [
   // {
@@ -19,12 +20,14 @@ export const BANNER_ITEMS = [
   {
     id: 1,
     category: 'EVENT',
-    title: `무지개 마을\n케이스&그립톡\n사전 예약 중`,
-    description: '',
+    link: '/donate',
+    image: Donate,
+    cover: true,
+  },
+  {
+    id: 2,
     link: 'https://www.fitapat.com/product/case/91',
-    image: bannerFitaPat,
-    buttonContent: '사전 예약하기',
-    bgColor: 'bg-[#F9F9F9]',
+    image: FitaPat,
     cover: true,
   },
   // {

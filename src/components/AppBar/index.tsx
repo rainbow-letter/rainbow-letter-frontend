@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
 import appBarConfig from 'components/AppBar/constants';
+import DonateAppBar from 'components/Donate/AppBar';
 import normalizePath from 'utils/normalizers';
 import chevronLeft from '../../assets/chevronLeft.svg';
 import autoSaving from '../../assets/autoSaving.svg';
@@ -30,29 +31,37 @@ function AppBar() {
     navigate(-1);
   };
 
-  return (
-    <header className="sticky top-0 z-10 flex items-center justify-between bg-white py-6">
-      <section className="flex flex-1 justify-start">
-        <button type="button" onClick={handleBack}>
-          <img src={chevronLeft} alt="left" />
-        </button>
-      </section>
-      <section className="flex-3 text-center text-solo-large">{title}</section>
-      {normalizedPath === '/write-letter' && (
-        <article className="absolute right-2.5 z-10">
-          {isSaving ? (
-            <img src={autoSaving} alt="자동 저장 중" />
-          ) : (
-            <img
-              src={!isSuccess ? autoSavingFail : autoSavingSuccess}
-              alt="자동 저장 결과"
-            />
-          )}
-        </article>
-      )}
+  const isShowSavingIcon = normalizedPath === '/write-letter';
+  const isShowDonateAppBar =
+    normalizedPath === '/write-letter' || normalizedPath === '/letter-box';
 
-      <section className="flex flex-1 justify-end" />
-    </header>
+  return (
+    <section className="sticky top-0 z-10 flex flex-col">
+      {isShowDonateAppBar && <DonateAppBar />}
+      <header className="flex items-center justify-between bg-white py-6">
+        <section className="flex flex-1 justify-start">
+          <button type="button" onClick={handleBack}>
+            <img src={chevronLeft} alt="left" />
+          </button>
+        </section>
+        <section className="flex-3 text-center text-solo-large">
+          {title}
+        </section>
+        {isShowSavingIcon && (
+          <article className="absolute right-2.5 z-10">
+            {isSaving ? (
+              <img src={autoSaving} alt="자동 저장 중" />
+            ) : (
+              <img
+                src={isSuccess ? autoSavingSuccess : autoSavingFail}
+                alt="자동 저장 결과"
+              />
+            )}
+          </article>
+        )}
+        <section className="flex flex-1 justify-end" />
+      </header>
+    </section>
   );
 }
 
