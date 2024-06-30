@@ -15,14 +15,14 @@ export default function Account() {
   return (
     <section>
       <article className="rounded-[15px] bg-white py-[30px] text-center">
-        <h2 className="my-3 text-heading-3-pc font-bold">후원계좌</h2>
-        <p className="font-Pretendard text-[18px] tracking-[0.05rem]">
+        <h2 className="my-3 text-[1.375rem] font-bold">후원계좌</h2>
+        <p className="font-Pretendard text-[1.125rem] tracking-[0.05rem]">
           토스뱅크 1001-2185-2735 이지영
         </p>
         <button
           type="button"
           onClick={handleCopyClipBoard}
-          className="mt-10 rounded-[2.25rem] bg-orange-400 px-[2.125rem] py-2.5 text-[1.25rem] font-bold text-white"
+          className="mt-10 rounded-[2.25rem] bg-orange-400 px-[2.125rem] py-2.5 text-[1.125rem] font-bold text-white"
         >
           계좌 복사하기
         </button>

@@ -15,9 +15,9 @@ export default function Contact() {
         <div className="size-6">
           <img src={kakaoLogo} alt="kakao" width="100%" height="100%" />
         </div>
-        <p className="font-bold">카카오톡 후원 문의하기</p>
+        <p className="text-caption font-bold">카카오톡 후원 문의하기</p>
       </Link>
-      <p className="mt-4 text-caption-pc text-gray-1">
+      <p className="mt-4 text-center text-caption-pc text-gray-1">
         *현금 영수증 발행은 카카오톡으로 문의 부탁드립니다.
       </p>
     </section>

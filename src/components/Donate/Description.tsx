@@ -6,7 +6,9 @@ export default function Description() {
     <>
       <section className="mt-6 rounded-[15px] bg-white px-5 py-8">
         {DONATE_DESCRIPTION_CONTENTS.map(({ ID, CONTENT }) => (
-          <p key={`donate-description-${ID}`}>{CONTENT}</p>
+          <p key={`donate-description-${ID}`} className="text-caption">
+            {CONTENT}
+          </p>
         ))}
       </section>
       <div className="mx-3 border-b-2 border-dotted" />

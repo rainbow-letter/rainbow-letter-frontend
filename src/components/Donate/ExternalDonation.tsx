@@ -5,7 +5,7 @@ import Donation from 'assets/im_donate_donation.svg';
 export default function ExternalDonation() {
   return (
     <section className="mt-[3.75rem] px-8 text-center">
-      <h3 className="text-heading-3-pc font-bold leading-[150%]">
+      <h3 className="text-[1.375rem] font-bold leading-[150%]">
         목표 후원금 50만원 <br />
         초과 달성 시 외부 후원
       </h3>
