@@ -7,10 +7,11 @@ import Example from 'components/Donate/Example';
 import UsageHistory from 'components/Donate/UsageHistory';
 import ExternalDonation from 'components/Donate/ExternalDonation';
 import Contact from 'components/Donate/Contact';
+import NavBar from 'components/NavBar';
 
 export default function Donate() {
   return (
-    <main className="bg-[#F9F9F9] px-[1.563rem] pb-32">
+    <main className="bg-[#F9F9F9] px-[1.563rem] pb-40">
       <Welcome />
       <Description />
       <Account />
@@ -18,6 +19,7 @@ export default function Donate() {
       <UsageHistory />
       <ExternalDonation />
       <Contact />
+      <NavBar />
     </main>
   );
 }

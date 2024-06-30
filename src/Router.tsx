@@ -43,8 +43,8 @@ function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/landing" element={<LandingPage />} />
             <Route path="/donate" element={<Donate />} />
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/pwa_landing" element={<PWALanding />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Join />} />
