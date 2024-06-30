@@ -1,0 +1,41 @@
+import React from 'react';
+
+import { DONATE_USAGE_CONTENTS } from 'components/Donate/constants';
+
+const COUNT = Math.ceil(220 / 12);
+
+const CircleList = Array.from({ length: COUNT }).map(() => (
+  <div className="h-[9px] w-[12px] rounded-full bg-[#F9F9F9]" />
+));
+
+export default function UsageHistory() {
+  return (
+    <section className="mt-14 px-2.5">
+      <h2 className="text-center text-heading-3-pc font-bold">
+        후원금은 이렇게 쓰여요
+      </h2>
+      <article className="relative mt-8 h-[280px]">
+        <div className="relative h-[8px] rounded-[21px] border-y-4 border-[#424242]">
+          <div className="absolute inset-x-[10px] top-0 bg-white px-5 pb-9 pt-4">
+            <h3 className="border-y border-dashed border-black py-3 text-center text-heading-3-pc">
+              무지개편지 운영비용
+            </h3>
+            {DONATE_USAGE_CONTENTS.map(({ id, title, price }) => (
+              <div
+                key={`donate-usage-${id}`}
+                className="mt-[1.875rem] flex justify-between"
+              >
+                <p>{title}</p>
+                <p className="font-bold">{price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="absolute bottom-px left-2 flex gap-1">{CircleList}</div>
+      </article>
+      <p className="mt-8 tracking-tighter">
+        * 무지개편지 카카오톡 채널에서 사용 내역 공개
+      </p>
+    </section>
+  );
+}
