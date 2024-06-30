@@ -15,3 +15,4 @@ Disallow: /my-page/
 Disallow: /my-pets/
 Disallow: /write-letter/
 Disallow: /letter-box/
+Disallow: /donate
