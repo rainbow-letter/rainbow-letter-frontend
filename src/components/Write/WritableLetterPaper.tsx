@@ -58,6 +58,7 @@ export default function WritableLetterPaper({
           maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}
           spellCheck="false"
+          value={letter.content}
           className="mt-1 w-full resize-none text-clip whitespace-pre-wrap bg-orange-50 pt-1.5 leading-[170%] outline-0"
         />
         <LetterLengthCaption letter={letter?.content} />
