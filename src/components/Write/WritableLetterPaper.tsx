@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import LetterLengthCaption from 'components/Write/LetterLengthCaption';
 
@@ -44,6 +44,10 @@ export default function WritableLetterPaper({
       });
     }
   };
+
+  useEffect(() => {
+    handleResizeHeight();
+  }, [letter.content]);
 
   return (
     <section className="relative mt-4 pt-[15.187rem]">
