@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import LetterLengthCaption from 'components/Write/LetterLengthCaption';
 
@@ -45,6 +45,10 @@ export default function WritableLetterPaper({
     }
   };
 
+  useEffect(() => {
+    handleResizeHeight();
+  }, [letter.content]);
+
   return (
     <section className="relative mt-4 pt-[15.187rem]">
       <section className="rounded-2xl bg-orange-50 px-6 py-8 font-Gyobomungo2019 text-body-letter text-gray-1">
@@ -58,6 +62,7 @@ export default function WritableLetterPaper({
           maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}
           spellCheck="false"
+          value={letter.content}
           className="mt-1 w-full resize-none text-clip whitespace-pre-wrap bg-orange-50 pt-1.5 leading-[170%] outline-0"
         />
         <LetterLengthCaption letter={letter?.content} />
