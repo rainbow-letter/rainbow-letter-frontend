@@ -16,7 +16,7 @@ export default function LandingPage() {
       {landingItems.map((item) => (
         <img src={item.imageSrc} alt="landing" className="object-cover" />
       ))}
-      <div className="bg-[#FFF8ED] px-5 py-14 text-heading-2 font-semibold">
+      <div className="bg-orange-50 px-5 py-14 text-heading-2 font-semibold">
         <p className="mb-8 text-center">
           무지개마을에 <br /> 편지를 보내보세요!
         </p>

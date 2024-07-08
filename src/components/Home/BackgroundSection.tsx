@@ -14,7 +14,7 @@ export default function BackgroundSection() {
     <button
       type="button"
       onClick={onLandingPageButtonClick}
-      className="absolute flex w-full justify-between bg-[#FFF8ED] py-12 pl-7 pr-4"
+      className="absolute flex w-full justify-between bg-orange-50 py-12 pl-7 pr-4"
     >
       <div className="pt-2.5 text-left text-heading-3">
         <p className="font-bold">

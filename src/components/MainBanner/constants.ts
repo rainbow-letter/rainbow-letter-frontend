@@ -2,7 +2,7 @@
 import bannerLetter from 'assets/banner-letter.svg';
 import FitaPat from 'assets/ad_fitapat_4.png';
 import SaveImage from 'assets/banner_save.png';
-import Donate from 'assets/im_main_donate.svg';
+import Donate from 'assets/banner_support.svg';
 
 export const BANNER_ITEMS = [
   {
@@ -31,6 +31,6 @@ export const BANNER_ITEMS = [
     link: '/landing',
     image: bannerLetter,
     buttonContent: '자세히 보기',
-    bgColor: 'bg-[#FFF8ED]',
+    bgColor: 'bg-orange-50',
   },
 ];
