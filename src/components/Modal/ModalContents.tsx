@@ -174,7 +174,7 @@ export default function ModalContents() {
                 <div className="flex flex-col gap-4">
                   <DonateContentsItem />
                   {MODAL_AD_CONTENTS_ITEMS.map((item) => (
-                    <ContentsItem item={item} />
+                    <ContentsItem item={item} className={item?.className} />
                   ))}
                 </div>
                 <button

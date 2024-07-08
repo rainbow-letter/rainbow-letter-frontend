@@ -1,5 +1,7 @@
 import Kakao from 'assets/im_modal_kakao.png';
 import FitaPat from 'assets/im_modal_fitapat.png';
+import forest from 'assets/forest.svg';
+import woman from 'assets/im_donate_woman.svg';
 
 export interface Modal {
   type: string;
@@ -22,11 +24,19 @@ export interface Modal_AD {
 
 export const MODAL_AD_CONTENTS_ITEMS: Modal_AD[] = [
   {
-    id: 1,
-    title: '무지개편지 카톡채널 OPEN',
-    description: '답장 링크 카톡으로 받기',
-    image: Kakao,
-    url: 'https://pf.kakao.com/_MNevG/105645061',
+    id: 3,
+    title: '펫로스 숲치유 무료 참가 이벤트',
+    description: '국립 양평 치유의숲과 함께해요',
+    image: forest,
+    url: 'https://pf.kakao.com/_MNevG/105908916',
+    className: 'bg-[#E7EBD8]',
+  },
+  {
+    id: 4,
+    title: '무지개편지를 도와주세요!',
+    description: '지금 후원하러 가기',
+    image: woman,
+    url: '/donate',
   },
   {
     id: 2,
@@ -34,6 +44,13 @@ export const MODAL_AD_CONTENTS_ITEMS: Modal_AD[] = [
     description: 'FITAPAT 케이스 구매하기',
     image: FitaPat,
     url: 'https://www.fitapat.com/product/case/91',
+  },
+  {
+    id: 1,
+    title: '무지개편지 카톡채널 OPEN',
+    description: '답장 링크 카톡으로 받기',
+    image: Kakao,
+    url: 'https://pf.kakao.com/_MNevG/105645061',
   },
 ];
 

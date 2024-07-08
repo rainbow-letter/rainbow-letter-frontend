@@ -3,6 +3,7 @@ import bannerLetter from 'assets/banner-letter.svg';
 import FitaPat from 'assets/ad_fitapat_4.png';
 import SaveImage from 'assets/banner_save.png';
 import Donate from 'assets/banner_support.svg';
+import PetLoss from 'assets/banner_petloss.svg';
 
 export const BANNER_ITEMS = [
   {
@@ -10,6 +11,13 @@ export const BANNER_ITEMS = [
     category: 'EVENT',
     link: '/donate',
     image: Donate,
+    cover: true,
+  },
+  {
+    id: 5,
+    category: 'EVENT',
+    link: 'http://pf.kakao.com/_MNevG/105908916',
+    image: PetLoss,
     cover: true,
   },
   {
