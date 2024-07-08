@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { DONATE_USAGE_CONTENTS } from 'components/Donate/constants';
+import { Link } from 'react-router-dom';
 
 const COUNT = Math.ceil(220 / 12);
 
@@ -33,9 +34,15 @@ export default function UsageHistory() {
         </div>
         <div className="absolute bottom-px left-2 flex gap-1">{CircleList}</div>
       </article>
-      <p className="mt-8 text-center text-caption">
-        * 무지개편지 카카오톡 채널에서 사용 내역 공개
-      </p>
+      <div className="flex justify-center">
+        <Link
+          to="https://pf.kakao.com/_MNevG/105841865"
+          target="_blank"
+          className="mt-8 rounded-full bg-primary px-6 py-2 text-center text-caption text-white"
+        >
+          사용내역 확인하기
+        </Link>
+      </div>
     </section>
   );
 }
