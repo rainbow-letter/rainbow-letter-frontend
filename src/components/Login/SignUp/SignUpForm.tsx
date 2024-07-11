@@ -10,7 +10,7 @@ import { ERROR_MESSAGE, Message } from 'components/Login/constants';
 import { ErrorData } from 'components/Login/LoginForm';
 import { trySignUp, tryLogin } from 'api/user';
 import { emailError, emailErrorMessage, passwordError } from 'utils/errorData';
-import { saveToken } from 'utils/localStorage';
+import { saveToken, setExpireToken } from 'utils/localStorage';
 import { validateEmail, validatePassword } from 'utils/validators';
 
 type Props = {
@@ -66,6 +66,12 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
     }
   };
 
+  const setLocalTokenDate = (token: string) => {
+    saveToken(token);
+    const date = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    setExpireToken(String(date));
+  };
+
   const onClickSignUpButton = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       try {
@@ -76,7 +82,7 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
         }
         await trySignUp(profile);
         const { token } = await tryLogin(profile);
-        saveToken(token);
+        setLocalTokenDate(token);
 
         setErrorData(null);
         navigate('/');
