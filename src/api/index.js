@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getToken, removeToken } from 'utils/localStorage';
+import { getToken, removeToken, getExpireToken } from 'utils/localStorage';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -28,13 +28,23 @@ const tokenIsValid = async (token) => {
   }
 };
 
+const localTokenIsValid = async (token) => {
+  const expire = getExpireToken();
+
+  if (Number(expire) < Date.now()) {
+    return tokenIsValid(token);
+  }
+
+  return true;
+};
+
 baseInstance.interceptors.request.use(
   async (config) => {
     const token = getToken();
     const newConfig = { ...config };
 
     if (token) {
-      const isValid = await tokenIsValid(token);
+      const isValid = localTokenIsValid(token);
       if (!isValid) {
         removeToken();
         window.location.href = '/login';

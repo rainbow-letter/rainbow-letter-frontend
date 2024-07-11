@@ -10,6 +10,7 @@ import Password from 'view/account/Password';
 import LandingPage from 'view/home/LandingPage';
 import PWALanding from 'view/home/PWALanding';
 import Home from 'view/home/Home';
+import Donate from 'view/home/Donate';
 import Auth from 'view/account/Auth';
 import LetterBox from 'view/letter/LetterBox';
 import DetailLetter from 'view/letter/DetailLetter';
@@ -41,6 +42,7 @@ function Router() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/donate" element={<Donate />} />
             <Route path="/landing" element={<LandingPage />} />
             <Route path="/pwa_landing" element={<PWALanding />} />
             <Route path="/login" element={<Login />} />

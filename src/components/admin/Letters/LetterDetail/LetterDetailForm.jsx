@@ -26,7 +26,7 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
 
   const navigate = useNavigate();
 
-  const isLoading = useSelector(
+  const isPageLoading = useSelector(
     (state) => state.adminLetters.status === 'loading'
   );
 
@@ -35,6 +35,7 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (isModal) return;
     dispatch(fetchUserLetters());
   }, [dispatch]);
 
@@ -46,7 +47,7 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
     if (letterData) {
       setNewContentValue(letterData.reply.content);
     }
-  }, [letterData.reply.content]);
+  }, [letterData?.reply?.content]);
 
   useEffect(() => {
     if (letterData?.pet?.image?.objectKey) {
@@ -295,12 +296,12 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
             <div className="flex gap-x-2">
               <button
                 className={`rounded px-3 py-2 font-semibold ${
-                  isLoading
+                  isPageLoading
                     ? 'cursor-not-allowed'
                     : 'bg-pink-300 hover:bg-pink-400'
                 }`}
                 type="button"
-                disabled={isLoading}
+                disabled={isPageLoading}
                 onClick={handleRegenerateClick}
               >
                 GPT 재생성

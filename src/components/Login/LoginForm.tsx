@@ -13,7 +13,7 @@ import SubmitButton from 'components/Login/SubmitButton';
 import { Message } from 'components/Login/constants';
 import { tryLogin } from 'api/user';
 import { emailError, emailErrorMessage, passwordError } from 'utils/errorData';
-import { saveToken } from 'utils/localStorage';
+import { saveToken, setExpireToken } from 'utils/localStorage';
 
 type Props = {
   message: Message;
@@ -39,6 +39,12 @@ export default function LoginForm({ message: { describe, button } }: Props) {
     setErrorData(null);
   }, [profile]);
 
+  const setLocalTokenDate = (token: string) => {
+    saveToken(token);
+    const date = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    setExpireToken(String(date));
+  };
+
   const onClickLoginButton = useCallback(
     async (e: MouseEvent<HTMLButtonElement>) => {
       try {
@@ -46,7 +52,7 @@ export default function LoginForm({ message: { describe, button } }: Props) {
         const { token } = await tryLogin(profile);
 
         setErrorData(null);
-        saveToken(token);
+        setLocalTokenDate(token);
         navigate('/');
       } catch (error) {
         if (axios.isAxiosError(error)) {

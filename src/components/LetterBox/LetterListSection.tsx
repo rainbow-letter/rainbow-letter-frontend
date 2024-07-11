@@ -9,7 +9,7 @@ import { Letters } from 'types/letters';
 const DEFAULT = '전체';
 
 type Props = {
-  pet: '전체' | string;
+  pet: typeof DEFAULT | string;
 };
 
 export default function LetterListSection({ pet }: Props) {

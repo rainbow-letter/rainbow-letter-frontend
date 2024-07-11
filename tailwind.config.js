@@ -6,6 +6,7 @@ module.exports = {
       sans: ['Noto Sans KR', 'sans-serif'],
       OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
       Gyobomungo2019: ['Gyobomungo2019'],
+      Pretendard: ['Pretendard'],
     },
     extend: {
       width: {

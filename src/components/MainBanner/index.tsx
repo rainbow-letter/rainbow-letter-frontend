@@ -4,12 +4,12 @@ import chevronRightWithe from 'assets/chvron-right_white.svg';
 
 type BannerProps = {
   category?: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   link: string;
   image: string;
-  bgColor: string;
-  buttonContent: string;
+  bgColor?: string;
+  buttonContent?: string;
   cover?: boolean;
 };
 
