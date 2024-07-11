@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { getImage } from 'api/images';
 import defaultImage from 'assets/Logo_256px.png';
-import CoverImage from 'components/CoverImage';
+import CoverImage from 'components/Common/CoverImage';
 import { Letter } from 'types/letters';
 
 type Props = {

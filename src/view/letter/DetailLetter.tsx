@@ -9,7 +9,7 @@ import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
-import CoverImage from 'components/CoverImage';
+import CoverImage from 'components/Common/CoverImage';
 import DownLoadButton from 'components/Write/DownLoadButton';
 
 import { RootState, useAppDispatch } from 'store';
