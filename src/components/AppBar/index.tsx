@@ -38,7 +38,7 @@ function AppBar() {
   return (
     <section className="sticky top-0 z-10 flex flex-col">
       {isShowDonateAppBar && <DonateAppBar />}
-      <header className="flex items-center justify-between bg-white py-6">
+      <header className="flex items-center justify-between bg-white py-6 pl-5">
         <section className="flex flex-1 justify-start">
           <button type="button" onClick={handleBack}>
             <img src={chevronLeft} alt="left" />

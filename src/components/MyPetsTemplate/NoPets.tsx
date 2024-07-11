@@ -2,12 +2,18 @@ import React from 'react';
 
 import PetRegisterButton from 'components/MyPetsTemplate/PetRegisterButton';
 import { INFO_MESSAGES, USER_ACTIONS } from './constants';
+import PetHouse from '../../assets/ic_petsHouse.png';
 
 function NoPets() {
   return (
     <div className="flex h-[88vh] items-center justify-center">
       <section className="flex w-full flex-col gap-y-12 text-center">
         <div className="flex flex-col">
+          <img
+            src={PetHouse}
+            alt="동물 집 이미지"
+            className="mx-auto mb-2.5 size-[140px]"
+          />
           <span className="p-2.5 text-heading-3">
             {INFO_MESSAGES.LETTER_RECIPIENT_ABSENT}
           </span>

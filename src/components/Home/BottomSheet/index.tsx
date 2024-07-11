@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-import BottomHeader from 'components/BottomSheet/BottomHeader';
-import BottomContent from 'components/BottomSheet/BottomContent';
+import BottomHeader from 'components/Home/BottomSheet/BottomHeader';
+import BottomContent from 'components/Home/BottomSheet/BottomContent';
 
 export default function BottomSheet() {
   const BottonSheetRef = useRef<HTMLDivElement>(null);
