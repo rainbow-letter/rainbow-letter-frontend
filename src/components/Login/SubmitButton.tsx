@@ -1,8 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import { MouseEvent } from 'react';
 
 type Props = {
-  onclick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onclick: (e: MouseEvent<HTMLButtonElement>) => void;
   value: string;
   disabled: any;
   className: string;

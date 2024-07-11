@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Banner from 'components/Home/Banner';
 import ContentsItem from 'components/Home/ContentsItem';
 

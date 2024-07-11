@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, MouseEvent } from 'react';
 
 function useDraggableScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -6,13 +6,13 @@ function useDraggableScroll() {
   const [startX, setStartX] = useState<number>(0);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
 
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onMouseDown = (e: MouseEvent<HTMLDivElement>) => {
     setIsDragging(true);
     setStartX(e.pageX - (containerRef.current?.offsetLeft ?? 0));
     setScrollLeft(containerRef.current?.scrollLeft ?? 0);
   };
 
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!isDragging || !containerRef.current) return;
     e.preventDefault();
     const x = e.pageX - containerRef.current.offsetLeft;

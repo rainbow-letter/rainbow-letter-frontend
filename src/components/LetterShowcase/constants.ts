@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { ShowcaseLetter } from 'components/LetterShowcase/type';
 
 export const SHOWCASE_LETTERS: ShowcaseLetter[] = [

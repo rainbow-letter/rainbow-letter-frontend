@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { QUESTION_PREFIX, FAQS, Faqs } from 'components/FAQs/constants';
 // import { getFaqs } from '../../api/faqs';
 

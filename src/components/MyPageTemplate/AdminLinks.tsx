@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Divider from 'components/Divider';
 import MenuItemLink from 'components/MyPageTemplate/MenuItemLink';
 import { useSelector } from 'react-redux';

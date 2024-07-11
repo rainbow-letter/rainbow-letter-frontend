@@ -1,4 +1,3 @@
-/* eslint-disable */
 const cacheName = 'my-app-cache-v1';
 const cacheFiles = ['/', '/index.html'];
 

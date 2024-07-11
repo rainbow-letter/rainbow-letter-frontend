@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const USER_ACTIONS = {
   LEAVE: '탈퇴하기',
 };

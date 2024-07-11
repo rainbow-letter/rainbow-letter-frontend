@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { INFO_MESSAGES } from 'components/LetterBox/constants';
 import { formatDateWithSlash } from 'utils/date';
 import { letterReplyStatus, isCheckUnread } from 'utils/replyStatus';

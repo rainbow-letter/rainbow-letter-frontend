@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Message, SNS_LOGIN } from 'components/Login/constants';
 
 type Props = { message: Message };

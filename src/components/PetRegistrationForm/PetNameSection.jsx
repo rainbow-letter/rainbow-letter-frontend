@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Input from 'components/Input';
 import useInputWithAlert from 'hooks/useInputWithAlert';
 import { TITLES, INFO_MESSAGES } from './constants';

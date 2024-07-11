@@ -1,4 +1,3 @@
-/* eslint-disable */
 import apiRequest from 'api';
 import { formatDateToYMD } from '../utils/date';
 

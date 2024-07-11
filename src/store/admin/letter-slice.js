@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-shadow */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { fetchLetters } from './letter-actions';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import PetRegisterButton from 'components/MyPetsTemplate/PetRegisterButton';
 import { INFO_MESSAGES, USER_ACTIONS } from './constants';
 

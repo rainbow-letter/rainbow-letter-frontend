@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { PHONE_MESSAGE } from 'components/Home/constants';
 import phone from '../../assets/Phone.svg';
 

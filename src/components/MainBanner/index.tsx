@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import chevronRightWithe from 'assets/chvron-right_white.svg';

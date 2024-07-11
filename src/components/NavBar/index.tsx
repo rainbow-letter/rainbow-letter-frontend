@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ReactComponent as letterBox } from 'assets/nav-letterBox.svg';
 import { ReactComponent as HomeIcon } from 'assets/nav-home.svg';
 import writing from 'assets/nav-writingLetter.svg';

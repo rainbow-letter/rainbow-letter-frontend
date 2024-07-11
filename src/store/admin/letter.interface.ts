@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 export interface ApiResponse {
   content: Content[];
   pageable: Pageable;

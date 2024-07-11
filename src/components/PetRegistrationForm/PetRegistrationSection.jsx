@@ -1,5 +1,3 @@
-import React from 'react';
-
 function PetRegistrationSection({ title, subTitle, children }) {
   return (
     <section>

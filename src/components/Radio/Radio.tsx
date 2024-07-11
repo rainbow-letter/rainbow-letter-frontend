@@ -1,9 +1,9 @@
-import React from 'react';
 import unChecked from '../../assets/unchecked_radio.svg';
 import checked from '../../assets/check_radio.svg';
+import { ReactNode } from 'react';
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   selectRadio: string;
   onClick: (value: string) => void;
   value: string;

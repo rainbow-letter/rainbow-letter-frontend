@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { regenerateReply } from 'store/admin/letter-actions';

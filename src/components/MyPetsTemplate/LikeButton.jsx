@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { incrementLikes } from '../../api/favorite';
 import heart from '../../assets/heart.svg';
@@ -45,7 +45,7 @@ function LikeButton({ favoriteData }) {
       onTouchEnd={handleInteractionEnd}
     >
       <span className="grow">{likeData.total}</span>
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-orange-100">
+      <div className="flex size-11 items-center justify-center rounded-full border border-orange-100">
         <img src={getHeartIconSrc()} alt="heart" />
       </div>
     </button>

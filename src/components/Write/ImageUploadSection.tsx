@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import { INFO_MESSAGES } from 'components/Write/constants';
 import ImageInput from 'components/Input/ImageInput';
@@ -12,7 +12,7 @@ type Props = {
 export default function ImageUploadSection({ setImageFile }: Props) {
   const [previewUrl, setPreviewUrl] = useState<string>('');
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
 
