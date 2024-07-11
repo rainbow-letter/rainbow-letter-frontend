@@ -41,35 +41,35 @@ function Router() {
       <ScrollToTop>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="/landing" element={<LandingPage />} />
-            <Route path="/pwa_landing" element={<PWALanding />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<Join />} />
-            <Route path="/auth/email" element={<Email />} />
-            <Route path="/members/password/reset" element={<Password />} />
-            <Route path="/oauth/success" element={<Auth />} />
-            <Route path="/share/:shareLink" element={<ShareLetter />} />
+            <Route element={<Home />} path="/" />
+            <Route element={<Donate />} path="/donate" />
+            <Route element={<LandingPage />} path="/landing" />
+            <Route element={<PWALanding />} path="/pwa_landing" />
+            <Route element={<Login />} path="/login" />
+            <Route element={<Join />} path="/sign-up" />
+            <Route element={<Email />} path="/auth/email" />
+            <Route element={<Password />} path="/members/password/reset" />
+            <Route element={<Auth />} path="/oauth/success" />
+            <Route element={<ShareLetter />} path="/share/:shareLink" />
             <Route element={<ProtectedLayout />}>
               {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
-              <Route path="/my-page" element={<MyPage />} />
-              <Route path="/my-page/faqs" element={<FAQs />} />
-              <Route path="/my-page/password" element={<PasswordReset />} />
-              <Route path="/my-page/leave" element={<AccountDeletion />} />
-              <Route path="/my-pets" element={<MyPets />} />
-              <Route path="/my-pets/register" element={<PetRegistration />} />
-              <Route path="/my-pets/edit" element={<PetEdit />} />
-              <Route path="/write-letter" element={<WriteLetter />} />
-              <Route path="/letter-box" element={<LetterBox />} />
-              <Route path="/letter-box/:letterId" element={<DetailLetter />} />
-              <Route path="/saved-image" element={<SavedImage />} />
+              <Route element={<MyPage />} path="/my-page" />
+              <Route element={<FAQs />} path="/my-page/faqs" />
+              <Route element={<PasswordReset />} path="/my-page/password" />
+              <Route element={<AccountDeletion />} path="/my-page/leave" />
+              <Route element={<MyPets />} path="/my-pets" />
+              <Route element={<PetRegistration />} path="/my-pets/register" />
+              <Route element={<PetEdit />} path="/my-pets/edit" />
+              <Route element={<WriteLetter />} path="/write-letter" />
+              <Route element={<LetterBox />} path="/letter-box" />
+              <Route element={<DetailLetter />} path="/letter-box/:letterId" />
+              <Route element={<SavedImage />} path="/saved-image" />
             </Route>
           </Route>
           {/* NOTE: 관리자 권한이 필요한 페이지 */}
           <Route element={<AdminLayout />}>
-            <Route path="/admin/letters" element={<Letters />} />
-            <Route path="/admin/letters/:letterId" element={<LetterDetail />} />
+            <Route element={<Letters />} path="/admin/letters" />
+            <Route element={<LetterDetail />} path="/admin/letters/:letterId" />
           </Route>
         </Routes>
         {isOpen && <Modal />}

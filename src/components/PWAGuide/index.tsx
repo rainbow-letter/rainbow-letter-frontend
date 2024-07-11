@@ -8,12 +8,12 @@ function PWAGuide() {
   return (
     <section>
       <button
-        type="button"
         className="flex w-full items-center justify-center gap-x-1 bg-gray-2 py-1.5"
         onClick={() => navigate('/pwa_landing')}
+        type="button"
       >
         <div>
-          <img src={rainbow} alt="logo" />
+          <img alt="logo" src={rainbow} />
         </div>
         <div>
           <p className="text-solo-small font-normal">

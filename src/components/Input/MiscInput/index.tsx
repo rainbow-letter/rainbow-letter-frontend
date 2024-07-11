@@ -26,8 +26,8 @@ const MiscInput = forwardRef(
           ref={ref}
           className="grow bg-transparent pl-2 text-caption text-gray-1"
           maxLength={10}
-          value={value}
           onChange={onChange}
+          value={value}
           {...props}
         />
       </div>
@@ -35,4 +35,5 @@ const MiscInput = forwardRef(
   }
 );
 
+MiscInput.displayName = 'MiscInput';
 export default MiscInput;

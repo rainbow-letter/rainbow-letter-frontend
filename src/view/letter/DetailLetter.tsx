@@ -178,18 +178,18 @@ export default function DetailLetter() {
   return (
     <>
       {letterData && (
-        <main className="letterBox relative" ref={sectionRef}>
+        <main ref={sectionRef} className="letterBox relative">
           {isExistReply && <DownLoadButton onClick={onClickSaveIcon} />}
           <LetterPaperWithImage>
             <CoverImage image={petImage} />
             {isExistReply && (
               <WrittenLetterPaper
-                petName={`${letterData.pet.name}로부터`}
-                content={letterData.reply.content}
                 className="pt-[15.187rem]"
-                letterPaperColor="bg-orange-50"
+                content={letterData.reply.content}
                 date={formatDateIncludingHangul(letterData.reply.timestamp)}
                 index={location.state.index}
+                letterPaperColor="bg-orange-50"
+                petName={`${letterData.pet.name}로부터`}
                 saveType={{
                   target: 'reply_down',
                   unTargetValue: 'reply_value',
@@ -198,15 +198,15 @@ export default function DetailLetter() {
               />
             )}
             <WrittenLetterPaper
-              petName={`${letterData.pet.name}에게`}
-              content={letterData.content}
               className={isExistReply ? 'mt-4' : 'pt-[15.187rem]'}
-              letterPaperColor="bg-gray-2"
+              content={letterData.content}
               date={
                 isExistReply
                   ? formatDateIncludingHangul(letterData.reply.timestamp)
                   : ''
               }
+              letterPaperColor="bg-gray-2"
+              petName={`${letterData.pet.name}에게`}
               saveType={{
                 target: 'letter_down',
                 unTargetValue: 'letter_value',
@@ -216,13 +216,13 @@ export default function DetailLetter() {
           </LetterPaperWithImage>
           {letterData.image.id && <SentPhoto letterData={letterData} />}
           <div className="w-full">
-            <img src={captureLogo} alt="로고" className="logo hidden" />
+            <img alt="로고" className="logo hidden" src={captureLogo} />
           </div>
           <Button
-            id="reply_write"
-            disabled={!letterData.reply.content}
-            onClick={onClickReplyButton}
             className="not-btn mt-12"
+            disabled={!letterData.reply.content}
+            id="reply_write"
+            onClick={onClickReplyButton}
           >
             {USER_ACTIONS.GO_TO_REPLY}
           </Button>

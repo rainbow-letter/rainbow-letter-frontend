@@ -13,9 +13,9 @@ function Chips({ attributes, selectedChips, onChipSelect }: Props) {
       {attributes.map((attribute) => (
         <Chip
           key={attribute.ID}
-          value={attribute.NAME}
           isSelected={selectedChips?.includes(attribute.NAME)}
           onClick={() => onChipSelect(attribute.NAME)}
+          value={attribute.NAME}
         />
       ))}
     </div>

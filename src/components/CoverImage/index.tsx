@@ -13,11 +13,11 @@ export default function CoverImage({ image, className }: Props) {
   return (
     <div className={`${style} absolute inset-x-0 top-0 h-[22.125rem] w-full`}>
       <img
-        src={imageWithTimestamp}
         alt="cover"
+        className="h-[22.125rem] w-full rounded-2xl object-cover"
         crossOrigin="anonymous"
         loading="lazy"
-        className="h-[22.125rem] w-full rounded-2xl object-cover"
+        src={imageWithTimestamp}
       />
     </div>
   );

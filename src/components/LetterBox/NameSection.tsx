@@ -40,9 +40,9 @@ export default function NameSection({ onChange, selectedPet }: Props) {
           petsList.map((name) => (
             <Chip
               key={name}
-              value={name}
               isSelected={name === selectedPet}
               onClick={() => onChange(name)}
+              value={name}
             />
           ))}
       </ul>

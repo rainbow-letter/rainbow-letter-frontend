@@ -26,40 +26,40 @@ function PasswordResetForm({ onClick }: Props) {
         </p>
       </section>
       <section className="mt-[2.375rem]">
-        <label htmlFor="newPassword" className="block p-2.5">
+        <label className="block p-2.5" htmlFor="newPassword">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD}
         </label>
         <UserInput
-          placeholder="비밀번호를 입력해주세요"
-          type="password"
-          id="newPassword"
-          value={newPassword}
-          onChange={({ target }) => setNewPassword(target.value)}
-          isNotValid={newPassword.length > 0 && !isValidPassword}
           errorMessage={
             newPassword.length > 0 &&
             !isValidPassword &&
             '영어, 숫자 포함 8자리 이상 입력해주세요.'
           }
+          id="newPassword"
+          isNotValid={newPassword.length > 0 && !isValidPassword}
+          onChange={({ target }) => setNewPassword(target.value)}
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          value={newPassword}
         />
-        <label htmlFor="newPasswordCheck" className="mt-2 block p-2.5">
+        <label className="mt-2 block p-2.5" htmlFor="newPasswordCheck">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD_CONFIRM}
         </label>
         <UserInput
-          placeholder="비밀번호를 입력해주세요"
-          type="password"
-          id="newPasswordCheck"
-          value={confirmPassword}
-          onChange={({ target }) => setConfirmPassword(target.value)}
-          isNotValid={
-            confirmPassword.length > 0 && newPassword.length > 0 && !isMatching
-          }
           errorMessage={
             confirmPassword.length > 0 &&
             newPassword.length > 0 &&
             !isMatching &&
             '비밀번호를 다시 확인해주세요.'
           }
+          id="newPasswordCheck"
+          isNotValid={
+            confirmPassword.length > 0 && newPassword.length > 0 && !isMatching
+          }
+          onChange={({ target }) => setConfirmPassword(target.value)}
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          value={confirmPassword}
         />
         <Button
           className="mt-5"

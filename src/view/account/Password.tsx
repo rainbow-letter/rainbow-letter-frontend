@@ -103,39 +103,39 @@ export default function Password() {
         </p>
       </section>
       <section className="mt-[3.625rem]">
-        <label htmlFor="newPassword" className="mb-4 block">
+        <label className="mb-4 block" htmlFor="newPassword">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD}
         </label>
         <UserInput
-          placeholder="비밀번호를 입력해주세요"
-          type="password"
+          errorMessage={errorData && errorData.message}
           id="newPassword"
-          value={userInfo.password || ''}
+          isNotValid={errorData && errorData.type === 'NOT_VALID_PASSWORD'}
           onChange={(e) =>
             setUserInfo({ ...userInfo, password: e.target.value })
           }
-          isNotValid={errorData && errorData.type === 'NOT_VALID_PASSWORD'}
-          errorMessage={errorData && errorData.message}
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          value={userInfo.password || ''}
         />
-        <label htmlFor="newPasswordCheck" className="mb-4 mt-[3.313rem] block">
+        <label className="mb-4 mt-[3.313rem] block" htmlFor="newPasswordCheck">
           {UPDATE_PASSWORD_MESSAGE.NEW_PASSWORD_CONFIRM}
         </label>
         <UserInput
-          placeholder="비밀번호를 입력해주세요"
-          type="password"
+          errorMessage={errorData && errorData.message}
           id="newPasswordCheck"
-          value={userInfo.newPassword || ''}
+          isNotValid={errorData && errorData.type === 'NOT_MATCH'}
           onChange={(e) =>
             setUserInfo({ ...userInfo, newPassword: e.target.value })
           }
-          isNotValid={errorData && errorData.type === 'NOT_MATCH'}
-          errorMessage={errorData && errorData.message}
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          value={userInfo.newPassword || ''}
         />
         <SubmitButton
+          className="mt-[3.625rem] flex w-full items-center justify-center rounded-2xl bg-orange-400 py-[1.375rem] text-heading-3 text-white"
           disabled={isLoading}
           onclick={() => onClickUpdatePasswordButton()}
           value={UPDATE_PASSWORD_MESSAGE.UPDATE}
-          className="mt-[3.625rem] flex w-full items-center justify-center rounded-2xl bg-orange-400 py-[1.375rem] text-heading-3 text-white"
         />
       </section>
     </main>

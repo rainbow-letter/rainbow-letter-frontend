@@ -24,8 +24,8 @@ function IconWrapper({ Icon, isActive, useStroke = true }: IconWrapperProps) {
 function NavItem({ to, label, Icon, useStroke = true }: NavItemProps) {
   return (
     <NavLink
-      to={to}
       className="flex w-[3.687rem] flex-col items-center justify-center space-y-0.5"
+      to={to}
     >
       {({ isActive }) => (
         <>

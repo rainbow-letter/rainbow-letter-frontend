@@ -4,6 +4,7 @@
     "plugin:tailwindcss/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
     "eslint:recommended",
   ],
   "plugins": ["react", "prettier", "tailwindcss"],
@@ -41,6 +42,16 @@
     },
   },
   "rules": {
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": false,
+        "shorthandFirst": false,
+        "shorthandLast": false,
+        "noSortAlphabetically": false,
+        "reservedFirst": true,
+      },
+    ],
     "tailwindcss/no-contradicting-classname": "error",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/enforces-negative-arbitrary-values": "off",
@@ -48,30 +59,6 @@
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "no-unused-vars": "off",
-    // "import/no-unresolved": "off",
-    // "react/require-default-props": "off",
-    // "import/no-extraneous-dependencies": 0,
-    // "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    // "react/prop-types": "off",
-    // "jsx-a11y/label-has-associated-control": [
-    //   2,
-    //   {
-    //     "some": ["nesting", "id"],
-    //   },
-    // ],
-    // "react/jsx-filename-extension": [
-    //   1,
-    //   { "extensions": [".js", ".jsx", ".ts", ".tsx"] },
-    // ],
-    // "import/extensions": [
-    //   "error",
-    //   "ignorePackages",
-    //   {
-    //     "js": "never",
-    //     "jsx": "never",
-    //     "ts": "never",
-    //     "tsx": "never",
-    //   },
-    // ],
+    "react/react-in-jsx-scope": "off",
   },
 }

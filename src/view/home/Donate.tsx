@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Welcome from 'components/Donate/Welcome';
 import Description from 'components/Donate/Description';
 import Account from 'components/Donate/Account';

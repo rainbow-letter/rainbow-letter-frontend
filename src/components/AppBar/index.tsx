@@ -39,8 +39,8 @@ function AppBar() {
       {isShowDonateAppBar && <DonateAppBar />}
       <header className="flex items-center justify-between bg-white py-6">
         <section className="flex flex-1 justify-start">
-          <button type="button" onClick={handleBack}>
-            <img src={chevronLeft} alt="left" />
+          <button onClick={handleBack} type="button">
+            <img alt="left" src={chevronLeft} />
           </button>
         </section>
         <section className="flex-3 text-center text-solo-large">
@@ -49,11 +49,11 @@ function AppBar() {
         {isShowSavingIcon && (
           <article className="absolute right-2.5 z-10">
             {isSaving ? (
-              <img src={autoSaving} alt="자동 저장 중" />
+              <img alt="자동 저장 중" src={autoSaving} />
             ) : (
               <img
-                src={isSuccess ? autoSavingSuccess : autoSavingFail}
                 alt="자동 저장 결과"
+                src={isSuccess ? autoSavingSuccess : autoSavingFail}
               />
             )}
           </article>

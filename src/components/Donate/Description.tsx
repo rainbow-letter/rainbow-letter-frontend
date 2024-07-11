@@ -1,4 +1,3 @@
-import React from 'react';
 import { DONATE_DESCRIPTION_CONTENTS } from 'components/Donate/constants';
 
 export default function Description() {

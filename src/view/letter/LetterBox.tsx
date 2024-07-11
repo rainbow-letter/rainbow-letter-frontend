@@ -15,7 +15,7 @@ export default function LetterBox() {
   return (
     <Suspense fallback={<Spinner />}>
       <main>
-        <NameSection selectedPet={selectedPet} onChange={setSelectedPet} />
+        <NameSection onChange={setSelectedPet} selectedPet={selectedPet} />
         <LetterListSection pet={selectedPet} />
       </main>
     </Suspense>

@@ -27,32 +27,32 @@ function ImageInput({
     <>
       <div
         className="relative inline-block"
-        onMouseOver={() => setIsHover(true)}
+        onBlur={() => setIsHover(false)}
         onFocus={() => setIsHover(true)}
         onMouseOut={() => setIsHover(false)}
-        onBlur={() => setIsHover(false)}
+        onMouseOver={() => setIsHover(true)}
       >
         <label
-          htmlFor="file-upload"
           className={`${styles} flex size-[9.75rem] cursor-pointer items-center justify-center overflow-hidden rounded-2xl border border-dashed border-[#616161] bg-gray-2 text-white`}
+          htmlFor="file-upload"
         >
           <img
+            alt="Uploaded"
             className={`${imgStyles} rounded-2xl`}
             src={src}
-            alt="Uploaded"
           />
         </label>
         <input
-          id="file-upload"
-          type="file"
           accept="image/*"
           className="hidden"
+          id="file-upload"
           onChange={(e) => onChange(e)}
+          type="file"
         />
         {imageSrc && (
           <ImageDeleteButton
-            isHover={isHover}
             icon={deleteIcon}
+            isHover={isHover}
             onDelete={onDelete}
           />
         )}

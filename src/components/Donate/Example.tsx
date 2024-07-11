@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { DONATE_EXAMPLE_CONTENTS } from 'components/Donate/constants';
 
 export default function Example() {
@@ -19,7 +17,7 @@ export default function Example() {
               {price}
             </p>
           </div>
-          <img src={image} alt={`${title} 이미지`} />
+          <img alt={`${title} 이미지`} src={image} />
         </article>
       ))}
     </section>

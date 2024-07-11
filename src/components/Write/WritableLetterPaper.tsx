@@ -54,16 +54,16 @@ export default function WritableLetterPaper({
       <section className="rounded-2xl bg-orange-50 px-6 py-8 font-Gyobomungo2019 text-body-letter text-gray-1">
         <h3>{petName}에게</h3>
         <textarea
+          ref={textarea}
+          className="mt-1 w-full resize-none text-clip whitespace-pre-wrap bg-orange-50 pt-1.5 leading-[170%] outline-0"
+          maxLength={MAX_LENGTH}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
             handleTextarea(e);
           }}
-          ref={textarea}
-          rows={7}
-          maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}
+          rows={7}
           spellCheck="false"
           value={letter.content}
-          className="mt-1 w-full resize-none text-clip whitespace-pre-wrap bg-orange-50 pt-1.5 leading-[170%] outline-0"
         />
         <LetterLengthCaption letter={letter?.content} />
       </section>

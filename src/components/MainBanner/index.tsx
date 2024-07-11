@@ -27,9 +27,9 @@ export default function Banner({
     <>
       {!cover ? (
         <Link
-          to={link}
-          target="_blank"
           className={`${bgColor} flex h-[268px] w-full justify-between pb-16 pl-[30px] pr-5 pt-[46px]`}
+          target="_blank"
+          to={link}
         >
           <div className="flex flex-col justify-between pb-2.5 text-left">
             <div>
@@ -51,26 +51,26 @@ export default function Banner({
             <div className="flex">
               <div className="flex items-center justify-between gap-x-1 rounded-full bg-orange-400 px-2.5 py-[5px] text-solo-small text-white">
                 <p>{buttonContent}</p>
-                <img src={chevronRightWithe} alt="arrow" />
+                <img alt="arrow" src={chevronRightWithe} />
               </div>
             </div>
           </div>
           <div className="flex size-[9.875rem] items-center justify-center">
             <img
+              alt="card"
               className="size-full rounded-2xl object-cover"
               src={image}
-              alt="card"
             />
           </div>
         </Link>
       ) : (
         <Link
-          to={link}
-          target="_blank"
           className={`${bgColor} flex size-full justify-between`}
+          target="_blank"
+          to={link}
         >
           <div className="flex items-center justify-center">
-            <img className="object-fill" src={image} alt="card" />
+            <img alt="card" className="object-fill" src={image} />
           </div>
         </Link>
       )}

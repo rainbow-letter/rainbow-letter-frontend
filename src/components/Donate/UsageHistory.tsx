@@ -1,12 +1,10 @@
-import React from 'react';
-
 import { DONATE_USAGE_CONTENTS } from 'components/Donate/constants';
 import { Link } from 'react-router-dom';
 
 const COUNT = Math.ceil(220 / 12);
 
-const CircleList = Array.from({ length: COUNT }).map(() => (
-  <div className="h-[9px] w-[12px] rounded-full bg-[#F9F9F9]" />
+const CircleList = Array.from({ length: COUNT }).map((_, index) => (
+  <div key={index} className="h-[9px] w-[12px] rounded-full bg-[#F9F9F9]" />
 ));
 
 export default function UsageHistory() {
@@ -36,9 +34,9 @@ export default function UsageHistory() {
       </article>
       <div className="flex justify-center">
         <Link
-          to="https://pf.kakao.com/_MNevG/105841865"
-          target="_blank"
           className="mt-8 rounded-full bg-primary px-6 py-2 text-center text-caption text-white"
+          target="_blank"
+          to="https://pf.kakao.com/_MNevG/105841865"
         >
           사용내역 확인하기
         </Link>

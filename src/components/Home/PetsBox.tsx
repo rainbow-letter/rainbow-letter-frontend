@@ -28,11 +28,11 @@ export default function PetsBox() {
   return (
     <section className="flex flex-col gap-y-4">
       <NameSection
-        petsNames={petsNames}
         onClick={setSelectedPet}
+        petsNames={petsNames}
         selectedPet={selectedPet}
       />
-      <PetInfo pet={filteredPet} letterCount={filteredPet?.letterCount} />
+      <PetInfo letterCount={filteredPet?.letterCount} pet={filteredPet} />
     </section>
   );
 }

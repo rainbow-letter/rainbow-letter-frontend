@@ -13,14 +13,14 @@ export default function LoginBox() {
       </header>
       <main className="flex h-[3.812rem] w-full gap-x-4 text-solo-large font-bold">
         <Link
-          to="/login"
           className="flex w-full items-center justify-center rounded-2xl bg-orange-400 text-white"
+          to="/login"
         >
           {USER_ACTIONS.LOGIN}
         </Link>
         <Link
-          to="/sign-up"
           className="flex w-full items-center justify-center rounded-2xl border-2 border-orange-400 text-orange-400"
+          to="/sign-up"
         >
           {USER_ACTIONS.SIGH_UP}
         </Link>

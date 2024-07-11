@@ -107,32 +107,32 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
       </header>
       <form className="mt-6">
         <UserInput
-          type="text"
-          value={profile.email}
+          errorMessage={errorData && emailErrorMessage(errorData)}
+          isNotValid={errorData && emailError(errorData)}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfile({ ...profile, email: e.target.value })
           }
           placeholder="이메일을 입력해주세요"
-          isNotValid={errorData && emailError(errorData)}
-          errorMessage={errorData && emailErrorMessage(errorData)}
+          type="text"
+          value={profile.email}
         />
         <UserInput
-          type="password"
-          value={profile.password}
+          errorMessage={errorData && errorData?.message}
+          isNotValid={errorData && passwordError(errorData)}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfile({ ...profile, password: e.target.value })
           }
           placeholder="비밀번호를 입력해주세요"
-          isNotValid={errorData && passwordError(errorData)}
-          errorMessage={errorData && errorData?.message}
+          type="password"
+          value={profile.password}
         />
         <Agree setIsChecked={setIsChecked} />
         <SubmitButton
-          onclick={(e: MouseEvent<HTMLButtonElement>) => onClickSignUpButton(e)}
-          disabled={errorData}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
           } mt-6 flex w-full items-center justify-center rounded-2xl py-[1.375rem] text-heading-3`}
+          disabled={errorData}
+          onclick={(e: MouseEvent<HTMLButtonElement>) => onClickSignUpButton(e)}
           value={button.default}
         />
       </form>

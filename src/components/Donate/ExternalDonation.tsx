@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Donation from 'assets/im_donate_donation.svg';
 
 export default function ExternalDonation() {
@@ -12,7 +10,7 @@ export default function ExternalDonation() {
       <p className="mt-3 text-caption">
         다음 달 운영비 일부 제외 동물단체 후원
       </p>
-      <img src={Donation} alt="후원하기 이미지" className="mb-14 mt-5" />
+      <img alt="후원하기 이미지" className="mb-14 mt-5" src={Donation} />
     </section>
   );
 }

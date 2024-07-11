@@ -21,9 +21,9 @@ export default function SavedImage() {
         아래 편지를 꾹 눌러 저장해보세요!
       </p>
       <div className="rounded-xl border-2 border-orange-400 p-1">
-        <img src={savedImageUrl} alt="사진 저장" style={{ maxWidth: '100%' }} />
+        <img alt="사진 저장" src={savedImageUrl} style={{ maxWidth: '100%' }} />
       </div>
-      <Button onClick={onClickGoToHome} className="mt-12">
+      <Button className="mt-12" onClick={onClickGoToHome}>
         홈으로 가기
       </Button>
     </div>

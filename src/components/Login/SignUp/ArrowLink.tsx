@@ -8,11 +8,11 @@ type Props = {
 
 export default function ArrowLink({ url }: Props) {
   return (
-    <Link to={url} target="_blank">
+    <Link target="_blank" to={url}>
       <img
-        src={arrow}
         alt="arrow"
         className="absolute right-4 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        src={arrow}
       />
     </Link>
   );

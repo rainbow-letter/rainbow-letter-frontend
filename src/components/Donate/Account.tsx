@@ -1,4 +1,3 @@
-import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,9 +19,9 @@ export default function Account() {
           토스뱅크 1001-2185-2735 이지영
         </p>
         <button
-          type="button"
-          onClick={handleCopyClipBoard}
           className="mt-10 rounded-[2.25rem] bg-orange-400 px-[2.125rem] py-2.5 text-[1.125rem] font-bold text-white"
+          onClick={handleCopyClipBoard}
+          type="button"
         >
           계좌 복사하기
         </button>
@@ -32,16 +31,16 @@ export default function Account() {
         <p className="font-Pretendard">상호 무지개편지 / 대표자 이지영</p>
       </div>
       <ToastContainer
-        position="bottom-center"
         autoClose={2000}
-        hideProgressBar
-        rtl={false}
+        bodyClassName={() => 'flex font-normal'}
         closeButton={false}
+        hideProgressBar
+        limit={1}
+        position="bottom-center"
+        rtl={false}
         toastClassName={() =>
           'bg-white text-gray-1 border border-orange-400 rounded-[8px] flex items-center justify-center py-[14px] mb-16'
         }
-        bodyClassName={() => 'flex font-normal'}
-        limit={1}
       />
     </section>
   );

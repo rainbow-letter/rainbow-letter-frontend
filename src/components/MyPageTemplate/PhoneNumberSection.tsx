@@ -45,12 +45,12 @@ function PhoneNumberSection() {
               className={`grow rounded-2xl bg-gray-2 p-4 ${
                 isValidPhone ? 'border-none' : 'border border-alarm-red'
               }`}
-              type="tel"
-              pattern="\d*"
               maxLength={11}
-              value={newPhoneNumber}
-              placeholder={USER_INFO_MESSAGES.ENTER_DIGITS_ONLY}
               onChange={handlePhoneNumberChange}
+              pattern="\d*"
+              placeholder={USER_INFO_MESSAGES.ENTER_DIGITS_ONLY}
+              type="tel"
+              value={newPhoneNumber}
             />
           ) : (
             <div className="grow p-2.5 text-caption">
@@ -63,11 +63,11 @@ function PhoneNumberSection() {
                 ? 'bg-orange-400 text-white'
                 : 'bg-gray-1 text-gray-1'
             }`}
-            type="button"
             disabled={!isValidPhone}
             onClick={
               isEditMode ? handleUpdatePhoneNumber : togglePhoneNumberEditMode
             }
+            type="button"
           >
             {isEditMode ? USER_ACTIONS.FINISH : USER_ACTIONS.EDIT}
           </button>

@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -240,9 +241,9 @@ export default function WriteLetter() {
     <main className="relative">
       {petsList.length > 0 ? (
         <PetsListDropDown
+          onclick={setSelectedPet}
           petName={selectedPet && selectedPet.name}
           petsList={petsList}
-          onclick={setSelectedPet}
         />
       ) : (
         <ResisterButtonSection />
@@ -250,9 +251,9 @@ export default function WriteLetter() {
       <LetterPaperWithImage>
         <CoverImage image={petImage} />
         <WritableLetterPaper
-          petName={selectedPet?.name}
-          onchange={setLetter}
           letter={letter}
+          onchange={setLetter}
+          petName={selectedPet?.name}
         />
       </LetterPaperWithImage>
       <TopicSuggestion />
@@ -260,10 +261,10 @@ export default function WriteLetter() {
 
       {!isLoading ? (
         <Button
-          id="letter_submit"
-          disabled={letter.content.length < 1 || selectedPet === null}
-          onClick={onClickSendButton}
           className="mt-[3.625rem]"
+          disabled={letter.content.length < 1 || selectedPet === null}
+          id="letter_submit"
+          onClick={onClickSendButton}
         >
           편지 보내기
         </Button>

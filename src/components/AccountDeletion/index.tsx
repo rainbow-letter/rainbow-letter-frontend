@@ -45,10 +45,10 @@ function AccountDeletion() {
       <section className="flex flex-col gap-[1.375rem]">
         <button
           className="flex gap-2"
-          type="button"
           onClick={() => {
             setIsConfirmed(!isConfirmed);
           }}
+          type="button"
         >
           <div
             className={`size-6 rounded ${
@@ -57,7 +57,7 @@ function AccountDeletion() {
                 : 'border border-orange-400 bg-white'
             }`}
           >
-            {isConfirmed && <img src={check} alt="check" />}
+            {isConfirmed && <img alt="check" src={check} />}
           </div>
           <div>
             <span className="text-body-medium font-semibold text-gray-1">

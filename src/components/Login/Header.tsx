@@ -9,8 +9,8 @@ export default function Header({ message: { title, sns } }: Props) {
       <h3 className="mt-[2.188rem]">{sns}</h3>
       <div className="mt-3.5 flex justify-center gap-5">
         {SNS_LOGIN.map(({ icon, name, url }) => (
-          <a href={url} type="button">
-            <img src={icon} width={55} height={55} alt={name} />
+          <a key={name} href={url} type="button">
+            <img alt={name} height={55} src={icon} width={55} />
           </a>
         ))}
       </div>

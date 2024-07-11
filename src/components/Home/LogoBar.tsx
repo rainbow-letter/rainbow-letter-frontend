@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png';
 export default function LogoBar() {
   return (
     <header>
-      <img src={logo} width={100} height={50} alt="logo" className="mx-auto" />
+      <img alt="logo" className="mx-auto" height={50} src={logo} width={100} />
     </header>
   );
 }

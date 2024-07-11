@@ -5,13 +5,13 @@ export default function BottomHeader({ onClick }: any) {
   return (
     <div className="flex justify-center py-8">
       <button
-        type="button"
-        onClick={onClick}
         className="absolute right-4 top-4"
+        onClick={onClick}
+        type="button"
       >
-        <img src={CancelImage} alt="cancel" />
+        <img alt="cancel" src={CancelImage} />
       </button>
-      <img src={Logo} alt="logo" />
+      <img alt="logo" src={Logo} />
     </div>
   );
 }

@@ -25,7 +25,7 @@ function LetterShowcase() {
       <div className="h-6" />
       <Slider {...SHOWCASE_CAROUSEL_OPTIONS} className="h-52">
         {SHOWCASE_LETTERS.map((letter, i) => (
-          <div className="w-[138px] py-5" key={letter.id}>
+          <div key={letter.id} className="w-[138px] py-5">
             <LetterItem letter={letter} />
           </div>
         ))}

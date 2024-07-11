@@ -15,7 +15,7 @@ function FAQ({ FAQData }: Props) {
       <main className="m-2.5 rounded-2xl bg-gray-2 p-[1.125rem] text-body-small text-gray-1">
         {FAQData.answer}
         {FAQData.link && (
-          <a href={FAQData.link} target="_blank" rel="noopener noreferrer">
+          <a href={FAQData.link} rel="noopener noreferrer" target="_blank">
             {FAQData.link}
           </a>
         )}

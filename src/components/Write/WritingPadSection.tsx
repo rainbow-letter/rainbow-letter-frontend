@@ -89,22 +89,22 @@ function WritingPadSection({
         )}
         <h3>{petName}</h3>
         <textarea
+          ref={textarea}
+          className={`${textareaStyle} ${saveType?.unTargetValue} mt-1 w-full resize-none text-clip whitespace-pre-wrap pt-1.5 leading-[170%] outline-0`}
+          defaultValue={reply ? reply : letter?.content}
+          maxLength={MAX_LENGTH}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
             handleTextarea(e);
           }}
-          ref={textarea}
-          rows={7}
-          defaultValue={reply ? reply : letter?.content}
-          readOnly={!!reply}
-          maxLength={MAX_LENGTH}
           onInput={onUserGuessInput}
+          readOnly={!!reply}
+          rows={7}
           spellCheck="false"
-          className={`${textareaStyle} ${saveType?.unTargetValue} mt-1 w-full resize-none text-clip whitespace-pre-wrap pt-1.5 leading-[170%] outline-0`}
         />
         <Caption
           date={date}
-          letter={letter?.content}
           dateType={saveType?.date}
+          letter={letter?.content}
         />
       </section>
     </section>

@@ -61,26 +61,26 @@ export default function ShareLetter() {
           <LetterPaperWithImage>
             <CoverImage image={petImage} />
             <WrittenLetterPaper
-              petName={`${letterData.pet.name}로부터`}
-              content={letterData.reply.content}
               className="pt-[15.187rem]"
-              letterPaperColor="bg-orange-50"
+              content={letterData.reply.content}
               date={formatDateIncludingHangul(letterData.reply.timestamp)}
+              letterPaperColor="bg-orange-50"
+              petName={`${letterData.pet.name}로부터`}
             />
             <WrittenLetterPaper
-              petName={`${letterData.pet.name}에게`}
-              content={letterData.content}
               className="mt-4"
-              letterPaperColor="bg-gray-2"
+              content={letterData.content}
               date={formatDateIncludingHangul(letterData.reply.timestamp)}
+              letterPaperColor="bg-gray-2"
+              petName={`${letterData.pet.name}에게`}
             />
           </LetterPaperWithImage>
           {letterData.image.id && <SentPhoto letterData={letterData} />}
           <Button
-            disabled={!letterData.reply.content}
-            onClick={onClickReplyButton}
             className="sticky bottom-10 mt-12 max-w-[350px]"
+            disabled={!letterData.reply.content}
             id="sms_reply"
+            onClick={onClickReplyButton}
           >
             {USER_ACTIONS.GO_TO_REPLY}
           </Button>

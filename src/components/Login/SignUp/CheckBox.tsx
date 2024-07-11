@@ -12,22 +12,22 @@ export default function CheckBox({ id, label, onChange, checked }: Props) {
     <>
       <div className="flex">
         <input
-          type="checkbox"
-          id={id}
-          onChange={(e) => onChange(e, label)}
           checked={checked}
           className="size-5 cursor-pointer appearance-none rounded border border-orange-400 bg-white checked:bg-orange-400"
+          id={id}
+          onChange={(e) => onChange(e, label)}
+          type="checkbox"
         />
         <img
-          src={check}
           alt="check"
-          onClick={(e) => onChange(e, label)}
           className={`${
             checked ? 'block' : 'hidden'
           } absolute size-5 cursor-pointer`}
+          onClick={(e) => onChange(e, label)}
+          src={check}
         />
       </div>
-      <label htmlFor={id} className="w-full cursor-pointer font-medium">
+      <label className="w-full cursor-pointer font-medium" htmlFor={id}>
         {label}
       </label>
     </>

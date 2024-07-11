@@ -10,11 +10,11 @@ export default function TopicSuggestion() {
   return (
     <article className="mt-2.5">
       <button
-        type="button"
-        onClick={() => dispatch(modalActions.openModal('TOPIC'))}
         className="flex items-center gap-1"
+        onClick={() => dispatch(modalActions.openModal('TOPIC'))}
+        type="button"
       >
-        <img src={InfoImage} alt="information" />
+        <img alt="information" src={InfoImage} />
         <p className="text-caption text-gray-2 underline">
           {INFO_MESSAGES.SUGGEST_TOPIC}
         </p>

@@ -9,10 +9,10 @@ type Props = {
 
 function MenuItemLink({ to, label }: Props) {
   return (
-    <Link to={to} className="flex items-center justify-between">
+    <Link className="flex items-center justify-between" to={to}>
       <div className="p-2.5 text-solo-large">{label}</div>
       <div>
-        <img src={chevronRight} alt="chevronRight" />
+        <img alt="chevronRight" src={chevronRight} />
       </div>
     </Link>
   );

@@ -13,15 +13,20 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen">
       {landingItems.map((item) => (
-        <img src={item.imageSrc} alt="landing" className="object-cover" />
+        <img
+          key={item.id}
+          alt="landing"
+          className="object-cover"
+          src={item.imageSrc}
+        />
       ))}
       <div className="bg-orange-50 px-5 py-14 text-heading-2 font-semibold">
         <p className="mb-8 text-center">
           무지개마을에 <br /> 편지를 보내보세요!
         </p>
         <Button
-          id="service_start"
           disabled={false}
+          id="service_start"
           onClick={onNextPageButtonClick}
         >
           무지개편지 둘러보기

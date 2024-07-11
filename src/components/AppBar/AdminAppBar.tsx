@@ -42,8 +42,8 @@ function AdminAppBar() {
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between bg-white py-6">
       <section className="flex flex-1 justify-start">
-        <button type="button" onClick={() => handleNavigate()}>
-          <img src={chevronLeft} alt="left" />
+        <button onClick={() => handleNavigate()} type="button">
+          <img alt="left" src={chevronLeft} />
         </button>
       </section>
       <section className="flex-3 text-center text-solo-large">{title}</section>

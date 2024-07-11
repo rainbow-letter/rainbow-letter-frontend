@@ -18,9 +18,9 @@ export default function NameSection({
           petsNames.map((name) => (
             <Chip
               key={name}
-              value={name}
               isSelected={name === selectedPet}
               onClick={() => onClick(name)}
+              value={name}
             />
           ))}
       </ul>

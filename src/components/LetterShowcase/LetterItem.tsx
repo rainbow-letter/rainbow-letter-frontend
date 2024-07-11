@@ -13,7 +13,7 @@ function LetterItem({ letter }: LetterItemProps) {
   return (
     <section className="relative flex justify-center">
       <div className="absolute -top-2.5 h-5 w-2.5">
-        <img className="" src={post} alt="pin" width="100%" height="100%" />
+        <img alt="pin" className="" height="100%" src={post} width="100%" />
       </div>
       <section
         className={`h-[10.562rem] w-[8.625rem] rounded-2xl p-3.5 pb-5 font-Gyobomungo2019 ${backgroundColor}`}

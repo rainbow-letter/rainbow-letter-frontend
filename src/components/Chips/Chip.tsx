@@ -11,8 +11,8 @@ function Chip({ className, isSelected, value, onClick }: Props) {
   return (
     <button
       className={`${styles} flex items-center justify-center rounded-full border px-4 py-3 ${isSelected ? 'border-orange-400 bg-orange-50' : 'border-gray-1'}`}
-      type="button"
       onClick={onClick}
+      type="button"
     >
       <span
         className={`text-sm leading-[0.875rem] ${

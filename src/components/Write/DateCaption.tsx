@@ -1,5 +1,3 @@
-import React from 'react';
-
 type Props = {
   date: string | undefined;
   dateType: string | undefined;

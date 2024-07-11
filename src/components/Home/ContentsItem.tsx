@@ -16,10 +16,10 @@ export default function ContentsItem({
   className,
 }: Props) {
   return (
-    <Link to={url} key={id} target="_blank">
+    <Link key={id} target="_blank" to={url}>
       <article
-        id="content_read"
         className={`${className} flex cursor-pointer items-center justify-between rounded-2xl px-5 py-2.5 shadow-home`}
+        id="content_read"
       >
         <div className="flex flex-col">
           <h3 className="font-bold">{title}</h3>
@@ -27,9 +27,9 @@ export default function ContentsItem({
         </div>
         <div className="flex h-[3.25rem] w-[5.25rem] items-center justify-center">
           <img
-            src={image}
             alt="analytics"
             className="size-full rounded-2xl object-fill"
+            src={image}
           />
         </div>
       </article>

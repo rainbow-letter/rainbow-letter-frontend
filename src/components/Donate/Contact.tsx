@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import kakaoLogo from 'assets/kakao-logo.svg';
@@ -8,12 +7,12 @@ export default function Contact() {
     <section className="mb-2.5 mt-9 h-[3.125rem] px-4">
       <div className="border-b border-gray-1" />
       <Link
-        to="http://pf.kakao.com/_MNevG"
-        target="_blank"
         className="mt-9 flex size-full items-center justify-center gap-x-2.5 rounded-2xl bg-white text-solo-label font-semibold text-orange-400"
+        target="_blank"
+        to="http://pf.kakao.com/_MNevG"
       >
         <div className="size-6">
-          <img src={kakaoLogo} alt="kakao" width="100%" height="100%" />
+          <img alt="kakao" height="100%" src={kakaoLogo} width="100%" />
         </div>
         <p className="text-caption font-bold">카카오톡 후원 문의하기</p>
       </Link>

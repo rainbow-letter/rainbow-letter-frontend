@@ -24,8 +24,8 @@ function LogOut({ children }: LogOutProps) {
   return (
     <button
       className="flex items-center justify-between"
-      type="button"
       onClick={() => handleLogout()}
+      type="button"
     >
       {children}
     </button>

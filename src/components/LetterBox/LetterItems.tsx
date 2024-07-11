@@ -27,11 +27,11 @@ export default function LetterItems({
           </p>
         </div>
         <img
-          src={ellipseIcon}
           alt="ellipse"
           className={`${
             isCheckUnread(readStatus, status) || 'hidden'
           } absolute right-3 top-3`}
+          src={ellipseIcon}
         />
         <h3 className="mb-[1.375rem] text-solo-large">{petName}</h3>
         <div className="mb-2.5 flex gap-[1.125rem] text-body-small">
@@ -49,9 +49,9 @@ export default function LetterItems({
           </p>
         </div>
         <img
-          src={arrowIcon}
           alt="arrow"
           className="absolute bottom-1/2 right-5"
+          src={arrowIcon}
         />
       </div>
       <div className="flex justify-end border-t px-5 py-2.5">

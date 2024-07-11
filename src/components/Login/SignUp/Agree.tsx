@@ -46,27 +46,27 @@ export default function Agree({ setIsChecked }: Props) {
     <section className="mt-7 text-left text-caption">
       <article className="mb-3 flex items-center gap-3 rounded-2xl bg-gray-2 py-[0.813rem] pl-[1.375rem]">
         <CheckBox
+          checked={CHECK_LIST.length === checkItems.length}
           id="all-checkBox"
           label="전체 동의"
           onChange={handleAllCheck}
-          checked={CHECK_LIST.length === checkItems.length}
         />
       </article>
       <article className="relative mb-[0.813rem] flex gap-3 pl-[1.375rem] pr-6">
         <CheckBox
+          checked={checkItems.includes('서비스 이용약관 동의')}
           id="service-checkbox"
           label="서비스 이용약관 동의"
           onChange={handleSingleCheck}
-          checked={checkItems.includes('서비스 이용약관 동의')}
         />
         <ArrowLink url="https://drive.google.com/file/d/1Q92p6wHlIETZh9P_8Van4m4oJN7FGCV3/view" />
       </article>
       <article className="relative flex gap-3 pl-[1.375rem] pr-6">
         <CheckBox
+          checked={checkItems.includes('개인정보 처리방침 동의')}
           id="infomation-checkbox"
           label="개인정보 처리방침 동의"
           onChange={handleSingleCheck}
-          checked={checkItems.includes('개인정보 처리방침 동의')}
         />
         <ArrowLink url="https://drive.google.com/file/d/1M1wWAB0IaKC4s_wTSVCl98tnibgxuet9/view" />
       </article>

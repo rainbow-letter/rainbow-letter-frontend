@@ -35,12 +35,12 @@ function MyPageTemplate() {
         </div>
         <PhoneNumberSection />
         <MenuItemLink
-          to="/my-page/password"
           label={USER_ACTIONS.CHANGE_PASSWORD}
+          to="/my-page/password"
         />
         <Divider />
-        <MenuItemLink to="faqs" label={PAGE_TITLES.FAQ} />
-        <MenuItemLink to="leave" label={USER_ACTIONS.LEAVE} />
+        <MenuItemLink label={PAGE_TITLES.FAQ} to="faqs" />
+        <MenuItemLink label={USER_ACTIONS.LEAVE} to="leave" />
         <LogOut>
           <div className="p-2.5 text-solo-large text-alarm-red">
             {USER_ACTIONS.LOG_OUT}

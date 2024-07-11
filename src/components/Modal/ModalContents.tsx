@@ -93,11 +93,11 @@ export default function ModalContents() {
                     ))}
                 </ul>
                 <button
-                  type="button"
-                  onClick={() => dispatch(modalActions.closeModal())}
                   className="absolute right-4 top-4"
+                  onClick={() => dispatch(modalActions.closeModal())}
+                  type="button"
                 >
-                  <img src={CancelImage} alt="cancel" />
+                  <img alt="cancel" src={CancelImage} />
                 </button>
               </div>
             );
@@ -117,44 +117,44 @@ export default function ModalContents() {
                     ))}
                 </ul>
                 <Input
-                  placeholder="예) 01012341234"
-                  value={value}
+                  className="mt-4 w-full py-5"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setValue(e.target.value)
                   }
-                  className="mt-4 w-full py-5"
+                  placeholder="예) 01012341234"
+                  value={value}
                 />
                 <p className="mb-4 mt-1 px-2.5 text-left text-caption text-alarm-red">
                   {errorMessage}
                 </p>
                 <div className="mb-5 mt-1 flex justify-center gap-2">
-                  <img src={AlarmIcon} alt="알림 아이콘" />
+                  <img alt="알림 아이콘" src={AlarmIcon} />
                   <p className="text-solo-small text-gray-4">
                     <span className="font-bold">한 번 더</span> 핸드폰 번호를
                     확인해주세요!
                   </p>
                 </div>
-                <Button onClick={() => registerPhoneNumber()} className="mb-5">
+                <Button className="mb-5" onClick={() => registerPhoneNumber()}>
                   등록하기
                 </Button>
                 <div className="w-full">
                   <button
-                    type="button"
+                    className="mx-auto mb-6 block text-caption text-gray-1 underline"
                     onClick={() => {
                       closeDuringDate();
                       dispatch(modalActions.openModal('COMPLETE'));
                     }}
-                    className="mx-auto mb-6 block text-caption text-gray-1 underline"
+                    type="button"
                   >
                     7일 동안 보지 않기
                   </button>
                 </div>
                 <button
-                  type="button"
-                  onClick={() => dispatch(modalActions.openModal('COMPLETE'))}
                   className="absolute right-4 top-4"
+                  onClick={() => dispatch(modalActions.openModal('COMPLETE'))}
+                  type="button"
                 >
-                  <img src={CancelImage} alt="cancel" />
+                  <img alt="cancel" src={CancelImage} />
                 </button>
               </div>
             );
@@ -163,9 +163,9 @@ export default function ModalContents() {
               <div className="w-full pb-11 pt-[3.313rem]">
                 <header className="flex flex-col items-center justify-center rounded-[0.938rem] bg-orange-50 py-6 text-center">
                   <img
-                    src={WritingPad}
                     alt="편지지"
                     className="h-[1.125rem] w-[1.625rem]"
+                    src={WritingPad}
                   />
                   <h3 className="mt-2 text-heading-3">{title}</h3>
                   <span className="mt-2">{body[0].contents}</span>
@@ -174,18 +174,22 @@ export default function ModalContents() {
                 <div className="flex flex-col gap-4">
                   <DonateContentsItem />
                   {MODAL_AD_CONTENTS_ITEMS.map((item) => (
-                    <ContentsItem item={item} className={item?.className} />
+                    <ContentsItem
+                      key={item.id}
+                      className={item?.className}
+                      item={item}
+                    />
                   ))}
                 </div>
                 <button
-                  type="button"
+                  className="absolute right-4 top-4"
                   onClick={() => {
                     dispatch(modalActions.closeModal());
                     navigate('/letter-box');
                   }}
-                  className="absolute right-4 top-4"
+                  type="button"
                 >
-                  <img src={CancelImage} alt="cancel" />
+                  <img alt="cancel" src={CancelImage} />
                 </button>
               </div>
             );
@@ -193,7 +197,7 @@ export default function ModalContents() {
             return (
               <div className="w-full px-[1.562rem] py-10">
                 <header className="flex flex-col items-center justify-center text-center">
-                  <img src={ErrorIcon} alt="편지지" />
+                  <img alt="편지지" src={ErrorIcon} />
                   <h3 className="mt-5 whitespace-pre-wrap text-heading-3 font-bold">
                     {title}
                   </h3>
@@ -201,24 +205,24 @@ export default function ModalContents() {
                 </header>
                 <div className="mt-7 flex gap-3">
                   <button
-                    type="button"
+                    className="rounded-[8px] border-none bg-gray-4 px-7 py-2.5 text-[16px] font-bold text-gray-5"
                     onClick={() => {
                       dispatch(modalActions.closeModal());
                       navigate('/');
                     }}
-                    className="rounded-[8px] border-none bg-gray-4 px-7 py-2.5 text-[16px] font-bold text-gray-5"
+                    type="button"
                   >
                     홈으로
                   </button>
                   <button
-                    type="button"
+                    className="rounded-[8px] border-none bg-orange-400 px-7 py-2.5 text-[16px] font-bold text-white"
                     onClick={() => {
                       dispatch(modalActions.closeModal());
                       const autoSaveID = String(Date.now());
                       setSessionAutoSaveID(autoSaveID);
                       window.location.reload();
                     }}
-                    className="rounded-[8px] border-none bg-orange-400 px-7 py-2.5 text-[16px] font-bold text-white"
+                    type="button"
                   >
                     편지 불러오기
                   </button>
@@ -229,7 +233,7 @@ export default function ModalContents() {
             return (
               <div className="w-full px-[1.562rem] py-10">
                 <header className="flex flex-col items-center justify-center text-center">
-                  <img src={ErrorIcon} alt="편지지" />
+                  <img alt="편지지" src={ErrorIcon} />
                   <h3 className="mt-5 whitespace-pre-wrap text-heading-3 font-bold">
                     {title}
                   </h3>
@@ -237,21 +241,21 @@ export default function ModalContents() {
                 </header>
                 <div className="mt-7 flex gap-3">
                   <button
-                    type="button"
+                    className="rounded-[8px] border-none bg-gray-4 px-7 py-2.5 text-[16px] font-bold text-gray-5"
                     onClick={() => {
                       dispatch(modalActions.closeModal());
                       navigate('/');
                     }}
-                    className="rounded-[8px] border-none bg-gray-4 px-7 py-2.5 text-[16px] font-bold text-gray-5"
+                    type="button"
                   >
                     홈으로
                   </button>
                   <button
-                    type="button"
+                    className="rounded-[8px] border-none bg-orange-400 px-7 py-2.5 text-[16px] font-bold text-white"
                     onClick={() => {
                       dispatch(modalActions.closeModal());
                     }}
-                    className="rounded-[8px] border-none bg-orange-400 px-7 py-2.5 text-[16px] font-bold text-white"
+                    type="button"
                   >
                     편지 불러오기
                   </button>
@@ -272,18 +276,18 @@ export default function ModalContents() {
                 <div>
                   <RadioGroup className="mb-5 mt-6 flex flex-col gap-[1.125rem]">
                     <Radio
+                      defaultChecked
+                      name="saveImage"
                       onClick={setSelectRadio}
                       selectRadio={selectRadio}
-                      name="saveImage"
                       value="image_letter"
-                      defaultChecked
                     >
                       내가 쓴 편지
                     </Radio>
                     <Radio
+                      name="saveImage"
                       onClick={setSelectRadio}
                       selectRadio={selectRadio}
-                      name="saveImage"
                       value="image_reply"
                     >
                       아이가 쓴 편지
@@ -292,19 +296,19 @@ export default function ModalContents() {
                 </div>
                 <div className="grid justify-items-end">
                   <button
-                    type="button"
-                    onClick={onClickSaveButton}
                     className="rounded-[6px] border-none bg-orange-400 px-8 py-2 text-[0.875rem] font-bold text-white"
+                    onClick={onClickSaveButton}
+                    type="button"
                   >
                     저장하기
                   </button>
                 </div>
                 <button
-                  type="button"
-                  onClick={() => dispatch(modalActions.closeModal())}
                   className="absolute right-4 top-4"
+                  onClick={() => dispatch(modalActions.closeModal())}
+                  type="button"
                 >
-                  <img src={CancelImage} alt="cancel" />
+                  <img alt="cancel" src={CancelImage} />
                 </button>
               </div>
             );
@@ -312,18 +316,18 @@ export default function ModalContents() {
             return (
               <div className="w-full px-[1.125rem] pb-7 pt-9">
                 <header className="flex flex-col items-center justify-center text-center">
-                  <img src={SaveComplete} alt="편지지" />
+                  <img alt="편지지" src={SaveComplete} />
                   <h3 className="mt-[15px] whitespace-pre-wrap text-heading-3">
                     {title}
                   </h3>
                 </header>
                 <div className="mt-6 flex justify-center">
                   <button
-                    type="button"
+                    className="rounded-[8px] border-none bg-orange-400 px-6 py-1 text-[16px] font-bold text-white"
                     onClick={() => {
                       dispatch(modalActions.closeModal());
                     }}
-                    className="rounded-[8px] border-none bg-orange-400 px-6 py-1 text-[16px] font-bold text-white"
+                    type="button"
                   >
                     확인
                   </button>

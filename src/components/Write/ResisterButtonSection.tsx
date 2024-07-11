@@ -7,10 +7,10 @@ export default function ResisterButtonSection() {
   return (
     <section className="mt-5">
       <Link
-        to="/my-pets/register"
         className="flex cursor-pointer items-center justify-center gap-1.5 rounded-2xl border border-dashed border-orange-400 py-5 text-solo-medium text-orange-400"
+        to="/my-pets/register"
       >
-        <img src={thinPlus} alt="thin plus icon" />
+        <img alt="thin plus icon" src={thinPlus} />
         <p>{USER_ACTIONS.RESISTER_PET}</p>
       </Link>
     </section>

@@ -17,11 +17,11 @@ function Button({ className, disabled, children, onClick, id }: Props) {
 
   return (
     <button
-      id={id}
       className={`${styles} ${disabledStyles} h-[4.375rem] w-full rounded-2xl text-heading-3 font-semibold`}
-      type="button"
       disabled={disabled}
+      id={id}
       onClick={onClick}
+      type="button"
     >
       {children}
     </button>

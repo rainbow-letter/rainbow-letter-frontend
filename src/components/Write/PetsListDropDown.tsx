@@ -32,12 +32,12 @@ export default function PetsListDropDown({
   return (
     <section ref={dropdown} className="text-solo-medium">
       <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-center justify-between rounded-2xl border border-orange-400 bg-orange-50 px-6 py-[1.125rem]"
+        onClick={() => setIsOpen(!isOpen)}
+        type="button"
       >
         <p>{petName}</p>
-        <img src={imgSrc} alt="dropdown" />
+        <img alt="dropdown" src={imgSrc} />
       </button>
       <div className="relative">
         {isOpen && (
@@ -45,17 +45,17 @@ export default function PetsListDropDown({
             {petsList.map((pet) => (
               <li
                 key={pet.id}
-                onClick={() => onclick(pet)}
                 className="cursor-pointer border-b border-[#EFEFEF] py-4 pl-6 last:border-none"
+                onClick={() => onclick(pet)}
               >
                 {pet.name}
               </li>
             ))}
             <Link
-              to="/my-pets/register"
               className="flex items-center py-3 pl-3"
+              to="/my-pets/register"
             >
-              <img src={plusImg} alt={plusImg} />
+              <img alt={plusImg} src={plusImg} />
               <p>{USER_ACTIONS.ADD}</p>
             </Link>
           </ul>

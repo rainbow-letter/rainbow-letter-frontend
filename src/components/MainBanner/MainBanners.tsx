@@ -7,14 +7,14 @@ import Banner from 'components/MainBanner';
 const carouselItems = BANNER_ITEMS.map((item) => (
   <Banner
     key={item.id}
-    category={item.category}
-    title={item.title}
-    description={item.description}
-    link={item.link}
-    image={item.image}
     bgColor={item.bgColor}
     buttonContent={item.buttonContent}
+    category={item.category}
     cover={item.cover}
+    description={item.description}
+    image={item.image}
+    link={item.link}
+    title={item.title}
   />
 ));
 
@@ -43,7 +43,7 @@ function MainBanners() {
     dotsClass: 'slick-dots',
   };
 
-  return <Carousel settings={settings} items={carouselItems} />;
+  return <Carousel items={carouselItems} settings={settings} />;
 }
 
 export default MainBanners;

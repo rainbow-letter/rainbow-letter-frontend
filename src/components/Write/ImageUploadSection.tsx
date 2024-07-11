@@ -40,11 +40,11 @@ export default function ImageUploadSection({ setImageFile }: Props) {
         {INFO_MESSAGES.POSSIBLE_NUMBER}
       </p>
       <ImageInput
-        imageSrc={previewUrl}
+        className=""
         deleteIcon={roundX}
+        imageSrc={previewUrl}
         onChange={handleImageChange}
         onDelete={handleImageDelete}
-        className=""
       />
     </section>
   );

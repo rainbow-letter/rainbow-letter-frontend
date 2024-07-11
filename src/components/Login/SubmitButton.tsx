@@ -17,8 +17,8 @@ export default function SubmitButton({
     <button
       {...props}
       disabled={disabled}
-      type="submit"
       onClick={(e) => onclick(e)}
+      type="submit"
     >
       {value}
     </button>

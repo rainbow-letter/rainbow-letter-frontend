@@ -11,9 +11,9 @@ export default function BackgroundSection() {
 
   return (
     <button
-      type="button"
-      onClick={onLandingPageButtonClick}
       className="absolute flex w-full justify-between bg-orange-50 py-12 pl-7 pr-4"
+      onClick={onLandingPageButtonClick}
+      type="button"
     >
       <div className="pt-2.5 text-left text-heading-3">
         <p className="font-bold">
@@ -21,18 +21,18 @@ export default function BackgroundSection() {
         </p>
         <p>마음껏, 무료로</p>
         <button
-          type="button"
           className="mt-[1.125rem] flex items-center gap-1.5 rounded-full bg-orange-400 px-2.5 py-[0.313rem] text-body-small-pc text-white"
+          type="button"
         >
           자세히 보기
-          <img src={vector} alt="arrow" />
+          <img alt="arrow" src={vector} />
         </button>
       </div>
       <div className="flex h-[9.688rem] w-[9.875rem] items-center justify-center">
         <img
-          src={card}
           alt="card"
           className="size-full rounded-2xl object-cover"
+          src={card}
         />
       </div>
     </button>

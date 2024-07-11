@@ -42,11 +42,11 @@ export default function LetterListSection({ pet }: Props) {
         {filteredLetter &&
           filteredLetter.map((item) => (
             <Link
-              to={`/letter-box/${item.id}`}
               key={item.id}
               state={{ index: item.number }}
+              to={`/letter-box/${item.id}`}
             >
-              <LetterItems key={item.id} letter={item} index={item.number} />
+              <LetterItems key={item.id} index={item.number} letter={item} />
             </Link>
           ))}
       </ul>

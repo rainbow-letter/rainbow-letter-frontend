@@ -36,18 +36,18 @@ export default function Email() {
       </p>
       <UserInput
         className="mt-[4.063rem]"
-        type="text"
-        placeholder="이메일을 입력해주세요"
-        value={auth.email}
-        onChange={(e) => setAuth({ ...auth, email: e.target.value })}
-        isNotValid={!!errorData}
         errorMessage={errorData && errorData.message}
+        isNotValid={!!errorData}
+        onChange={(e) => setAuth({ ...auth, email: e.target.value })}
+        placeholder="이메일을 입력해주세요"
+        type="text"
+        value={auth.email}
       />
       <button
-        type="submit"
+        className="mt-5 flex w-full items-center justify-center rounded-2xl bg-orange-400 py-[1.375rem] text-heading-3 text-white"
         disabled={isLoading}
         onClick={() => onClickFindEmailButton()}
-        className="mt-5 flex w-full items-center justify-center rounded-2xl bg-orange-400 py-[1.375rem] text-heading-3 text-white"
+        type="submit"
       >
         {FIND_EMAIL_MESSAGE.SUBMIT}
       </button>
@@ -55,8 +55,8 @@ export default function Email() {
         <p>{FIND_EMAIL_MESSAGE.ANNOUNCEMENT_1}</p>
         <p>
           <Link
-            to="https://blog.naver.com/rainbowletter/223328951209"
             target="_blank"
+            to="https://blog.naver.com/rainbowletter/223328951209"
           >
             <span className="underline">{FIND_EMAIL_MESSAGE.ANNOUNCEMENT}</span>
           </Link>

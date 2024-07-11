@@ -72,33 +72,33 @@ export default function LoginForm({ message: { describe, button } }: Props) {
       </header>
       <form className="mt-6">
         <UserInput
-          type="text"
-          value={profile.email}
+          className="mb-3.5"
+          errorMessage={errorData && emailErrorMessage(errorData)}
+          isNotValid={errorData && emailError(errorData)}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfile({ ...profile, email: e.target.value })
           }
           placeholder="이메일을 입력해주세요"
-          isNotValid={errorData && emailError(errorData)}
-          errorMessage={errorData && emailErrorMessage(errorData)}
-          className="mb-3.5"
+          type="text"
+          value={profile.email}
         />
         <UserInput
-          type="password"
-          value={profile.password}
+          errorMessage={errorData && errorData.message}
+          isNotValid={errorData && passwordError(errorData)}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfile({ ...profile, password: e.target.value })
           }
           placeholder="비밀번호를 입력해주세요"
-          isNotValid={errorData && passwordError(errorData)}
-          errorMessage={errorData && errorData.message}
+          type="password"
+          value={profile.password}
         />
         <SubmitButton
-          onclick={(e: MouseEvent<HTMLButtonElement>) => onClickLoginButton(e)}
-          value={button.default}
-          disabled={errorData !== null}
           className={`${
             errorData ? 'bg-gray-1 text-gray-1' : 'bg-orange-400 text-white'
           } mt-[1.125rem] flex w-full items-center justify-center rounded-2xl py-[1.375rem] text-heading-3`}
+          disabled={errorData !== null}
+          onclick={(e: MouseEvent<HTMLButtonElement>) => onClickLoginButton(e)}
+          value={button.default}
         />
       </form>
     </section>
