@@ -6,7 +6,7 @@ import { RootState } from 'store';
 import useCalendar from 'hooks/useCalendar';
 import letterSlice from 'store/letter/letter-slice';
 import Divider from 'components/Home/Divider';
-import MonthCalendar from 'components/LetterBox/MonthCalendarTest';
+import MonthCalendar from 'components/LetterBox/MonthCalendar';
 import Left from '../../assets/ic_letterBox_left.svg';
 import Right from '../../assets/ic_letterBox_right.svg';
 import DropDown from '../../assets/ic_letterBox_dropdown.svg';
