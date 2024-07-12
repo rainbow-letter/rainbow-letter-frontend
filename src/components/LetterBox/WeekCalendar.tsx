@@ -6,7 +6,6 @@ import Divider from 'components/Home/Divider';
 import Left from '../../assets/ic_letterBox_left.svg';
 import Right from '../../assets/ic_letterBox_right.svg';
 import DropDown from '../../assets/ic_letterBox_dropdown.svg';
-import TestLogo from '../../assets/logo.png';
 import Stamp from '../../assets/ic_letterBox_stamp.svg';
 
 const DAY_OF_THE_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
@@ -75,7 +74,7 @@ export default function WeekCalendar({
   const isToday = useCallback((date: number) => {
     const today = format(new Date(), 'yyyy-MM-dd');
 
-    return today === String(date) ? 'bg-[#FFB74D]' : 'bg-gray-2';
+    return today === String(date) ? 'bg-orange-400' : 'bg-gray-2';
   }, []);
 
   return (
@@ -85,19 +84,19 @@ export default function WeekCalendar({
           <button
             type="button"
             onClick={onClickPrevWeek}
-            className="flex items-center gap-[6px]"
+            className="flex items-center gap-1.5"
           >
             <img src={Left} alt="왼쪽 화살표 아이콘" />
             <span className="mt-px text-[10px]">이전 주</span>
           </button>
           <button type="button" className="flex items-center">
-            <p className="text-[18px] font-bold">{yearAndMonth}</p>
+            <p className="text-[1.125rem] font-bold">{yearAndMonth}</p>
             <img src={DropDown} alt="드롭다운 아이콘" />
           </button>
           <button
             type="button"
             onClick={onClickNextWeek}
-            className="flex items-center gap-[6px]"
+            className="flex items-center gap-1.5"
           >
             <span className="mt-px text-[10px]">다음 주</span>
             <img src={Right} alt="오른쪽 화살표 아이콘" />
@@ -106,15 +105,12 @@ export default function WeekCalendar({
         <article className="mt-5">
           <ul className="flex justify-around">
             {DAY_OF_THE_WEEK.map((day: string) => (
-              <li
-                key={`letterBox-day-${day}`}
-                className="text-xs text-[#989898]"
-              >
+              <li key={`letterBox-day-${day}`} className="text-xs text-gray-5">
                 {day}
               </li>
             ))}
           </ul>
-          <ul className="mt-[6px] flex justify-around">
+          <ul className="mt-1.5 flex justify-around">
             {weekCalendar.map((day: number) => (
               <li
                 key={`letterBox-calendar-${day}`}
@@ -123,14 +119,14 @@ export default function WeekCalendar({
                 <button
                   type="button"
                   onClick={() => onClickDateButton(day)}
-                  className={`${isExistWrittenLetter(day) ? 'bg-[#FFF8ED]' : isToday(day)} mb-[6px] h-[50px] w-[44px] rounded-[8px]`}
+                  className={`${isExistWrittenLetter(day) ? 'bg-orange-50' : isToday(day)} mb-1.5 h-[3.125rem] w-11 rounded-lg`}
                 >
                   {isExistWrittenLetter(day) && (
                     <img src={Stamp} alt="썸네일" />
                   )}
                 </button>
                 <p
-                  className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-[#989898]'} h-[14px] w-[30px] rounded-[10px] text-center text-xs`}
+                  className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} h-3.5 w-[1.875rem] rounded-[10px] text-center text-xs`}
                 >
                   {format(day, 'dd')}
                 </p>

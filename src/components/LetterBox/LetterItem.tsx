@@ -15,7 +15,7 @@ export default function LetterItem({
   return (
     <li
       className={`${
-        isCheckUnread(readStatus, status) ? 'bg-[#FEF9ED]' : 'bg-[#F9F9F9]'
+        isCheckUnread(readStatus, status) ? 'bg-yellow-50' : 'bg-gray-6'
       } relative mb-4 cursor-pointer rounded-xl p-[1.125rem]`}
     >
       <LetterStatus status={status} readStatus={readStatus} />

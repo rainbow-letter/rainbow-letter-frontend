@@ -16,7 +16,7 @@ type Props = {
 
 export default function PetInfoCard({ onChange, selectedPet }: Props) {
   const [petsList, setPetsList] = useState<Pets[]>([]);
-  const [petImage, setPetImage] = useState('');
+  const [petImage, setPetImage] = useState<string>('');
 
   useEffect(() => {
     (async () => {

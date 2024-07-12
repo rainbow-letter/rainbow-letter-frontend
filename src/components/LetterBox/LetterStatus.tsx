@@ -15,22 +15,22 @@ export default function LetterStatus({ status, readStatus }: Props) {
   const isCompleteResponse = status === 'RESPONSE';
   const Icon = isCheckUnread(readStatus, status) ? Check : GrayCheck;
   const TextColor = isCheckUnread(readStatus, status)
-    ? 'text-[#61BA84]'
-    : 'text-[#989898]';
+    ? 'text-green-100'
+    : 'text-gray-5';
   const bgColor = isCheckUnread(readStatus, status)
-    ? 'bg-[#DDFFEB]'
-    : 'bg-[#F0F0F0]';
+    ? 'bg-green-50'
+    : 'bg-gray-7';
 
   return (
     <div
-      className={`${isCompleteResponse ? bgColor : 'bg-[#FFDABF]'} flex max-w-[80px] items-center justify-center gap-1 rounded-[15px] bg-red-50 py-1`}
+      className={`${isCompleteResponse ? bgColor : 'bg-alarm-50'} flex h-[1.375rem] max-w-20 items-center justify-center gap-1 rounded-[15px] py-1`}
     >
       <img
         src={isCompleteResponse ? Icon : LetterIcon}
         alt="답장 상태 아이콘"
       />
       <span
-        className={`${isCompleteResponse ? TextColor : 'text-[#FF7C1E]'} text-caption-pc font-bold`}
+        className={`${isCompleteResponse ? TextColor : 'text-alarm-50'} text-caption-pc font-bold`}
       >
         {letterStatus}
       </span>
