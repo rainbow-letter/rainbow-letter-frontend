@@ -10,7 +10,6 @@ const useCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const totalMonthDays = getDaysInMonth(currentDate);
 
-  //
   const firstDayOfMonth = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth(),
@@ -22,18 +21,6 @@ const useCalendar = () => {
 
   const nextDaysCount =
     (WEEK_CALENDAR_LENGTH - totalMonthDays - prevDaysCount) % DAY_OF_WEEK;
-
-  // const prevDayListForWeeks = Array.from({ length: prevDaysCount }).map(
-  //   (_, i) => prevMonthLastDay - prevDaysCount + i + 1
-  // );
-
-  // const currentDayListForWeeks = Array.from({ length: totalMonthDays }).map(
-  //   (_, i) => i + 1
-  // );
-
-  // const nextDayListForWeeks = Array.from({ length: nextDaysCount }).map(
-  //   (_, i) => i + 1
-  // );
 
   const prevDayListForWeeks = Array.from({ length: prevDaysCount }).map(
     (_, i) =>
@@ -81,7 +68,6 @@ const useCalendar = () => {
     []
   );
 
-  //
   const prevDayList = Array.from({
     length: Math.max(
       0,
