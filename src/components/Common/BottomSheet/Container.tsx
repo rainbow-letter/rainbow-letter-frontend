@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 type Props = {
   children?: React.ReactNode;
@@ -6,13 +6,6 @@ type Props = {
 };
 
 export default function Container({ children, isShow }: Props) {
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
-
   return (
     <section
       className={`${
