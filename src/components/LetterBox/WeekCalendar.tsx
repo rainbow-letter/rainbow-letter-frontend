@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { addDays, subDays } from 'date-fns';
+import { format, addDays, subDays } from 'date-fns';
 
 import useCalendar from 'hooks/useCalendar';
 import Divider from 'components/Home/Divider';
@@ -7,26 +7,29 @@ import Left from '../../assets/ic_letterBox_left.svg';
 import Right from '../../assets/ic_letterBox_right.svg';
 import DropDown from '../../assets/ic_letterBox_dropdown.svg';
 import TestLogo from '../../assets/logo.png';
+import Stamp from '../../assets/ic_letterBox_stamp.svg';
 
 const DAY_OF_THE_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 
 type Props = {
   setDate: (date: Date) => void;
-  date: Date;
+  selectedDate: Date;
   letterList: string[];
 };
 
-export default function WeekCalendar({ setDate, date, letterList }: Props) {
+export default function WeekCalendar({
+  setDate,
+  selectedDate,
+  letterList,
+}: Props) {
   const {
     currentDate,
     setCurrentDate,
     weekCalendarListForWeeks,
     weekCalendarList,
   } = useCalendar();
-
-  const yearAndMonth = `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
+  const yearAndMonth = `${selectedDate.getFullYear()}년 ${selectedDate.getMonth() + 1}월`;
   const [weekCalendar, setWeekCalendar] = useState<number[]>([]);
-  const [activeWeek, setActiveWeek] = useState<number[]>([]);
 
   useEffect(() => {
     const findIndex = weekCalendarList.findIndex((weeks: number[]) =>
@@ -38,47 +41,42 @@ export default function WeekCalendar({ setDate, date, letterList }: Props) {
 
   const onClickNextWeek = useCallback(() => {
     setCurrentDate(addDays(currentDate, 7));
-    setActiveWeek([]);
   }, [currentDate]);
 
   const onClickPrevWeek = useCallback(() => {
     setCurrentDate(subDays(currentDate, 7));
-    setActiveWeek([]);
   }, [currentDate]);
 
   const onClickDateButton = useCallback(
-    (day: number) => {
-      const currentIndex = weekCalendar.findIndex(
-        (value) => value === currentDate.getDate()
-      );
-      const selectedIndex = weekCalendar.findIndex((value) => value === day);
-      const differenceDay = currentIndex - selectedIndex;
-
-      setDate(subDays(currentDate, differenceDay));
-      setActiveWeek(weekCalendar);
+    (date: number) => {
+      setDate(new Date(date));
     },
     [currentDate, weekCalendar]
   );
 
-  const isActiveDate = (day: number, index: number) => {
-    const isCorrectYearAndMonth =
-      date.getFullYear() === currentDate.getFullYear() &&
-      date.getMonth() === currentDate.getMonth();
+  const isActiveDate = useCallback(
+    (date: number) => {
+      if (format(selectedDate, 'yyyy-MM-dd') === String(date)) {
+        return true;
+      }
 
-    const findIndexOfActiveWeek = activeWeek.findIndex(
-      (item) => item === date.getDate()
-    );
+      return false;
+    },
+    [selectedDate]
+  );
 
-    if (date.getDate() === day && isCorrectYearAndMonth) {
-      return true;
-    }
+  const isExistWrittenLetter = useCallback(
+    (date: number) => {
+      return letterList.includes(String(date));
+    },
+    [letterList]
+  );
 
-    if (findIndexOfActiveWeek === index) {
-      return true;
-    }
+  const isToday = useCallback((date: number) => {
+    const today = format(new Date(), 'yyyy-MM-dd');
 
-    return false;
-  };
+    return today === String(date) ? 'bg-[#FFB74D]' : 'bg-gray-2';
+  }, []);
 
   return (
     <>
@@ -117,7 +115,7 @@ export default function WeekCalendar({ setDate, date, letterList }: Props) {
             ))}
           </ul>
           <ul className="mt-[6px] flex justify-around">
-            {weekCalendar.map((day: number, index: number) => (
+            {weekCalendar.map((day: number) => (
               <li
                 key={`letterBox-calendar-${day}`}
                 className="flex flex-col items-center"
@@ -125,14 +123,16 @@ export default function WeekCalendar({ setDate, date, letterList }: Props) {
                 <button
                   type="button"
                   onClick={() => onClickDateButton(day)}
-                  className="mb-[6px] h-[50px] w-[44px] rounded-[8px] bg-gray-2"
+                  className={`${isExistWrittenLetter(day) ? 'bg-[#FFF8ED]' : isToday(day)} mb-[6px] h-[50px] w-[44px] rounded-[8px]`}
                 >
-                  <img src={TestLogo} alt="썸네일" />
+                  {isExistWrittenLetter(day) && (
+                    <img src={Stamp} alt="썸네일" />
+                  )}
                 </button>
                 <p
-                  className={`${isActiveDate(day, index) ? 'bg-orange-400 text-white' : 'text-[#989898]'} h-[14px] w-[30px] rounded-[10px] text-center text-xs`}
+                  className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-[#989898]'} h-[14px] w-[30px] rounded-[10px] text-center text-xs`}
                 >
-                  {day}
+                  {format(day, 'dd')}
                 </p>
               </li>
             ))}

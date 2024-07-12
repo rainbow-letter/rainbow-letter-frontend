@@ -27,6 +27,7 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
 
       return temp;
     });
+
     setFilteredLetterLisByPet(filteredListByPet.reverse() || []);
   }, [selectedPet, letterList]);
 

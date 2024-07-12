@@ -19,7 +19,6 @@ export default function LetterItem({
       } relative mb-4 cursor-pointer rounded-xl p-[1.125rem]`}
     >
       <LetterStatus status={status} readStatus={readStatus} />
-
       <p className="mt-3 text-caption">{summary}</p>
       <p className="mt-5 text-caption text-gray-3">{index}번째 편지</p>
       <img

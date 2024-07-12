@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { subDays, getDaysInMonth } from 'date-fns';
+import { format, subDays, getDaysInMonth } from 'date-fns';
 
 const CALENDER_LENGTH = 35;
 const WEEK_CALENDAR_LENGTH = 42;
@@ -23,16 +23,44 @@ const useCalendar = () => {
   const nextDaysCount =
     (WEEK_CALENDAR_LENGTH - totalMonthDays - prevDaysCount) % DAY_OF_WEEK;
 
+  // const prevDayListForWeeks = Array.from({ length: prevDaysCount }).map(
+  //   (_, i) => prevMonthLastDay - prevDaysCount + i + 1
+  // );
+
+  // const currentDayListForWeeks = Array.from({ length: totalMonthDays }).map(
+  //   (_, i) => i + 1
+  // );
+
+  // const nextDayListForWeeks = Array.from({ length: nextDaysCount }).map(
+  //   (_, i) => i + 1
+  // );
+
   const prevDayListForWeeks = Array.from({ length: prevDaysCount }).map(
-    (_, i) => prevMonthLastDay - prevDaysCount + i + 1
+    (_, i) =>
+      format(
+        new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth() - 1,
+          prevMonthLastDay - prevDaysCount + i + 1
+        ),
+        'yyyy-MM-dd'
+      )
   );
 
   const currentDayListForWeeks = Array.from({ length: totalMonthDays }).map(
-    (_, i) => i + 1
+    (_, i) =>
+      format(
+        new Date(currentDate.getFullYear(), currentDate.getMonth(), i + 1),
+        'yyyy-MM-dd'
+      )
   );
 
   const nextDayListForWeeks = Array.from({ length: nextDaysCount }).map(
-    (_, i) => i + 1
+    (_, i) =>
+      format(
+        new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, i + 1),
+        'yyyy-MM-dd'
+      )
   );
 
   const currentCalendarListForWeeks = prevDayListForWeeks.concat(

@@ -36,7 +36,7 @@ export default function LetterBoxRenew() {
       <main className="relative">
         <PetInfoCard selectedPet={selectedPet} onChange={setSelectedPet} />
         <WeekCalendar
-          date={date}
+          selectedDate={date}
           setDate={setDate}
           letterList={mappedLetterListByDate}
         />
