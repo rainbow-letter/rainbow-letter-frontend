@@ -6,6 +6,8 @@ import { Letters } from 'types/letters';
 import { Pets } from 'types/pets';
 import { formatDay } from 'utils/date';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 type Props = {
   date: Date;
@@ -13,6 +15,7 @@ type Props = {
   letterList: Letters[];
 };
 export default function LetterList({ date, selectedPet, letterList }: Props) {
+  const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
   const [filteredLetterListByPet, setFilteredLetterLisByPet] = useState<
     Letters[]
   >([]);
@@ -29,7 +32,13 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
     });
 
     setFilteredLetterLisByPet(filteredListByPet.reverse() || []);
-  }, [selectedPet, letterList]);
+  }, [selectedPet, letterList, isCalendarOpen]);
+
+  useEffect(() => {
+    if (isCalendarOpen) {
+      setFilteredLetterLisByPet([]);
+    }
+  }, [isCalendarOpen]);
 
   const filteredListByDate = filteredLetterListByPet.filter(
     (letter) =>

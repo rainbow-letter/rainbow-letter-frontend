@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { format, addDays, subDays } from 'date-fns';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { RootState } from 'store';
 import useCalendar from 'hooks/useCalendar';
+import letterSlice from 'store/letter/letter-slice';
 import Divider from 'components/Home/Divider';
+import MonthCalendar from 'components/LetterBox/MonthCalendarTest';
 import Left from '../../assets/ic_letterBox_left.svg';
 import Right from '../../assets/ic_letterBox_right.svg';
 import DropDown from '../../assets/ic_letterBox_dropdown.svg';
@@ -21,18 +25,20 @@ export default function WeekCalendar({
   selectedDate,
   letterList,
 }: Props) {
+  const dispatch = useDispatch();
   const {
     currentDate,
     setCurrentDate,
     weekCalendarListForWeeks,
     weekCalendarList,
   } = useCalendar();
+  const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
   const yearAndMonth = `${selectedDate.getFullYear()}년 ${selectedDate.getMonth() + 1}월`;
   const [weekCalendar, setWeekCalendar] = useState<number[]>([]);
 
   useEffect(() => {
-    const findIndex = weekCalendarList.findIndex((weeks: number[]) =>
-      weeks.includes(currentDate.getDate())
+    const findIndex = weekCalendarList.findIndex((weeks: string[]) =>
+      weeks.includes(format(currentDate, 'yyyy-MM-dd'))
     );
 
     setWeekCalendar(weekCalendarListForWeeks[findIndex]);
@@ -46,12 +52,14 @@ export default function WeekCalendar({
     setCurrentDate(subDays(currentDate, 7));
   }, [currentDate]);
 
-  const onClickDateButton = useCallback(
-    (date: number) => {
-      setDate(new Date(date));
-    },
-    [currentDate, weekCalendar]
-  );
+  const onClickDateButton = useCallback((date: number) => {
+    setDate(new Date(date));
+  }, []);
+
+  const onClickMonthCalendar = useCallback(() => {
+    const action = letterSlice.actions.setCalendarOpen();
+    dispatch(action);
+  }, [dispatch]);
 
   const isActiveDate = useCallback(
     (date: number) => {
@@ -89,7 +97,11 @@ export default function WeekCalendar({
             <img src={Left} alt="왼쪽 화살표 아이콘" />
             <span className="mt-px text-[10px]">이전 주</span>
           </button>
-          <button type="button" className="flex items-center">
+          <button
+            type="button"
+            onClick={onClickMonthCalendar}
+            className="flex items-center"
+          >
             <p className="text-[1.125rem] font-bold">{yearAndMonth}</p>
             <img src={DropDown} alt="드롭다운 아이콘" />
           </button>
@@ -111,30 +123,41 @@ export default function WeekCalendar({
             ))}
           </ul>
           <ul className="mt-1.5 flex justify-around">
-            {weekCalendar.map((day: number) => (
-              <li
-                key={`letterBox-calendar-${day}`}
-                className="flex flex-col items-center"
-              >
-                <button
-                  type="button"
-                  onClick={() => onClickDateButton(day)}
-                  className={`${isExistWrittenLetter(day) ? 'bg-orange-50' : isToday(day)} mb-1.5 h-[3.125rem] w-11 rounded-lg`}
+            {weekCalendar &&
+              weekCalendar.map((day: number) => (
+                <li
+                  key={`letterBox-calendar-${day}`}
+                  className="flex flex-col items-center"
                 >
-                  {isExistWrittenLetter(day) && (
-                    <img src={Stamp} alt="썸네일" />
-                  )}
-                </button>
-                <p
-                  className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} h-3.5 w-[1.875rem] rounded-[10px] text-center text-xs`}
-                >
-                  {format(day, 'dd')}
-                </p>
-              </li>
-            ))}
+                  <button
+                    type="button"
+                    onClick={() => onClickDateButton(day)}
+                    className={`${isExistWrittenLetter(day) ? 'bg-orange-50' : isToday(day)} mb-1.5 h-[3.125rem] w-11 rounded-lg`}
+                  >
+                    {isExistWrittenLetter(day) && (
+                      <img src={Stamp} alt="썸네일" />
+                    )}
+                  </button>
+                  <p
+                    className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} h-3.5 w-[1.875rem] rounded-[10px] text-center text-xs`}
+                  >
+                    {format(day, 'dd')}
+                  </p>
+                </li>
+              ))}
           </ul>
         </article>
       </section>
+      {isCalendarOpen && (
+        <MonthCalendar
+          weekCalendarList={weekCalendarList}
+          letterList={letterList}
+          setDate={setDate}
+          selectedDate={selectedDate}
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
+        />
+      )}
       <Divider />
     </>
   );

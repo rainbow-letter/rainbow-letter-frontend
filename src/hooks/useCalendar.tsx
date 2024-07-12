@@ -3,7 +3,7 @@ import { format, subDays, getDaysInMonth } from 'date-fns';
 
 const CALENDER_LENGTH = 35;
 const WEEK_CALENDAR_LENGTH = 42;
-const DEFAULT_TRASH_VALUE = 0;
+const DEFAULT_TRASH_VALUE = '0';
 const DAY_OF_WEEK = 7;
 
 const useCalendar = () => {
@@ -75,15 +75,22 @@ const useCalendar = () => {
     ),
   }).map(() => DEFAULT_TRASH_VALUE);
 
-  const currentDayList = Array.from({ length: totalMonthDays }).map(
-    (_, i) => i + 1
+  const currentDayList = Array.from({ length: totalMonthDays }).map((_, i) =>
+    format(
+      new Date(currentDate.getFullYear(), currentDate.getMonth(), i + 1),
+      'yyyy-MM-dd'
+    )
   );
 
   const nextDayList = Array.from({
     length: CALENDER_LENGTH - currentDayList.length - prevDayList.length,
   }).map(() => DEFAULT_TRASH_VALUE);
 
-  const currentCalendarList = prevDayList.concat(currentDayList, nextDayList);
+  const currentCalendarList = [
+    ...prevDayList,
+    ...currentDayList,
+    ...nextDayList,
+  ];
 
   const weekCalendarList = currentCalendarList.reduce((acc: any, cur, idx) => {
     const chunkIndex = Math.floor(idx / DAY_OF_WEEK);
