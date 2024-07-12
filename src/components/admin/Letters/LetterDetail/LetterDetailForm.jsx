@@ -287,7 +287,7 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
         </main>
         <footer className="flex justify-between">
           <div className="mr-3 text-solo-label text-gray-1">
-            {`${newContent.length} / ${MAX_CONTENT_LENGTH}`}
+            {`${newContent?.length} / ${MAX_CONTENT_LENGTH}`}
           </div>
           {isModal ? (
             <button
