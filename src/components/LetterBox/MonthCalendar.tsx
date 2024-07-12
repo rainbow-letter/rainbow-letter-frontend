@@ -78,11 +78,9 @@ export default function MonthCalendar({
     return today === date ? 'bg-orange-400' : 'bg-gray-2';
   }, []);
 
-  console.log(weekCalendarList);
-
   return (
     <>
-      <section className="absolute inset-0 -top-[60px] z-10 h-auto border-t bg-white px-[1.125rem] pt-[4.125rem]">
+      <section className="absolute inset-0 -top-[60px] z-10 flex h-auto flex-col items-center border-t bg-white px-[1.125rem] pt-[4.125rem]">
         <button
           type="button"
           onClick={onClickCalendarClose}
@@ -90,7 +88,7 @@ export default function MonthCalendar({
         >
           <img src={Cancel} alt="취소 버튼" />
         </button>
-        <header className="flex justify-between">
+        <header className="flex w-full justify-between">
           <button
             type="button"
             onClick={onClickPrevMonth}
@@ -116,13 +114,17 @@ export default function MonthCalendar({
             <img src={Right} alt="오른쪽 화살표 아이콘" />
           </button>
         </header>
-        <ul className="mt-[30px]">
+        <ul className="mt-[30px] w-[354px]">
           {weekCalendarList &&
             weekCalendarList.map((dayArr: string[]) => (
               <li className="flex flex-row justify-around gap-2.5">
                 {dayArr.map((day) =>
                   day === '0' ? (
-                    <div className="size-[42px] bg-white" />
+                    <div className="mb-[14px]">
+                      <button type="button" className="mb-1 size-[42px]">
+                        {day === '0'}
+                      </button>
+                    </div>
                   ) : (
                     <div className="mb-[14px]">
                       <button
