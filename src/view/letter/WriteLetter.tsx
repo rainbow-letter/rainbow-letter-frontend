@@ -225,8 +225,8 @@ export default function WriteLetter() {
         const imageId = await uploadImage(imageFile);
         newLetter.image = imageId;
       }
-      await deleteSavedLetter(id);
       await sendLetter(selectedPet?.id, newLetter);
+      await deleteSavedLetter(id);
 
       isCheckPhoneNumberModalOpen();
       return dispatch(modalActions.openModal('COMPLETE'));
