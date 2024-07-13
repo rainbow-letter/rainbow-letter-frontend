@@ -7,7 +7,6 @@ type Props = {
   petName: string | null;
   content: string;
   date?: string;
-  index?: number | undefined;
   saveType?: {
     target: 'letter_down' | 'reply_down';
     unTargetValue: 'letter_value' | 'reply_value';
@@ -21,7 +20,6 @@ export default function WrittenLetterPaper({
   petName,
   content,
   date,
-  index,
   saveType,
   className,
   letterPaperColor,
@@ -43,13 +41,6 @@ export default function WrittenLetterPaper({
       <section
         className={`${saveType?.target} ${letterPaperColor} relative rounded-2xl px-6 py-8 font-Gyobomungo2019 text-body-letter text-gray-1`}
       >
-        {typeof index === 'number' && (
-          <div className="not-label absolute -top-0.5 right-7 flex min-w-[30px] flex-col items-center rounded-b-lg rounded-t-sm bg-white px-2.5 pb-1 pt-2.5 font-sans text-orange-400">
-            <p className="text-solo-large font-[350] leading-normal">
-              {typeof index === 'number' && index}
-            </p>
-          </div>
-        )}
         <h3>{petName}</h3>
         <textarea
           ref={textarea}

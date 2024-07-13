@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
-import BottomSheetContents from 'components/LetterBox/BottomSheetContents';
+import BottomSheetContents from 'components/LetterBox/SelectPets';
 import BottomSheet from 'components/Common/BottomSheet';
 import { Pets } from 'types/pets';
 import Arrow from '../../assets/ic_toggle_arrow.svg';

@@ -47,6 +47,7 @@ export default function MonthCalendar({
 
   const onClickDateButton = useCallback((date: string) => {
     setDate(new Date(date));
+    setCurrentDate(new Date(date));
   }, []);
 
   const onClickCalendarClose = useCallback(() => {
@@ -117,7 +118,7 @@ export default function MonthCalendar({
         <ul className="mt-[30px] w-[354px]">
           {weekCalendarList &&
             weekCalendarList.map((dayArr: string[]) => (
-              <li className="flex flex-row justify-around gap-2.5">
+              <li className="flex flex-row justify-start gap-2.5">
                 {dayArr.map((day) =>
                   day === '0' ? (
                     <div className="mb-[14px]">

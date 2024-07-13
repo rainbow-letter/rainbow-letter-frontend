@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import html2canvas from 'html2canvas';
 
@@ -27,7 +27,6 @@ import captureLogo from '../../assets/detailLetter_logo.svg';
 
 export default function DetailLetter() {
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
   const [letterData, setLetterData] = useState<Letter>();
@@ -79,7 +78,6 @@ export default function DetailLetter() {
             const letterBox = document.querySelector(
               '.letterBox'
             ) as HTMLElement;
-            const label = document.querySelector('.not-label') as HTMLElement;
             const button = document.querySelector('.not-btn') as HTMLElement;
             const saveBtn = document.querySelector('.not-save') as HTMLElement;
             const sentPhoto = document.querySelector('.not-img') as HTMLElement;
@@ -103,7 +101,6 @@ export default function DetailLetter() {
               letterBox.style.paddingLeft = '20px';
               letterBox.style.paddingRight = '20px';
               letterBox.style.paddingTop = '15px';
-              label.style.display = 'none';
               button.style.display = 'none';
               unSelectedLetter.style.display = 'none';
               saveBtn.style.display = 'none';
@@ -190,7 +187,6 @@ export default function DetailLetter() {
                 className="pt-[15.187rem]"
                 letterPaperColor="bg-orange-50"
                 date={formatDateIncludingHangul(letterData.reply.timestamp)}
-                index={location.state.index}
                 saveType={{
                   target: 'reply_down',
                   unTargetValue: 'reply_value',
