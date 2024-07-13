@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { format, subMonths } from 'date-fns';
 import { useDispatch } from 'react-redux';
 
@@ -30,6 +30,10 @@ export default function MonthCalendar({
 }: Props) {
   const dispatch = useDispatch();
   const [isShow, setIsShow] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handlePetsListShow = useCallback(() => {
     setIsShow((prev) => !prev);
