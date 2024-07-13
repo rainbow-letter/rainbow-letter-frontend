@@ -6,7 +6,7 @@ import PetHouse from '../../assets/ic_petsHouse.png';
 
 function NoPets() {
   return (
-    <div className="flex h-[88vh] items-center justify-center">
+    <div className="flex h-[72vh] items-center justify-center">
       <section className="flex w-full flex-col gap-y-12 text-center">
         <div className="flex flex-col">
           <img

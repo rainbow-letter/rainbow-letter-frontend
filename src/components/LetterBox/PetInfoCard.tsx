@@ -11,18 +11,21 @@ import defaultImage from 'assets/Logo_256px.png';
 
 type Props = {
   onChange: (pet: Pets) => void;
+  petsList: Pets[];
   selectedPet: null | Pets;
 };
 
-export default function PetInfoCard({ onChange, selectedPet }: Props) {
-  const [petsList, setPetsList] = useState<Pets[]>([]);
+export default function PetInfoCard({
+  onChange,
+  petsList,
+  selectedPet,
+}: Props) {
   const [petImage, setPetImage] = useState<string>('');
 
   useEffect(() => {
     (async () => {
       const { pets } = await getPets();
 
-      setPetsList(pets || []);
       onChange(pets[0]);
     })();
   }, []);
