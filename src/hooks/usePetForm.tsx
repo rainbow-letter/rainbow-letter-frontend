@@ -39,6 +39,15 @@ const usePetForm = (
       (data.image.file || data.image.id)
     );
 
+    if (isEdit) {
+      return (
+        isNameFilled &&
+        isSpeciesFilled &&
+        isOwnerFilled &&
+        isDeathAnniversaryFilled
+      );
+    }
+
     return (
       isNameFilled &&
       isSpeciesFilled &&

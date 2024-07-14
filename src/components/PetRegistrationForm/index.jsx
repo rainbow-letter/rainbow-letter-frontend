@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -17,6 +17,7 @@ import {
 } from '../../contexts/PetRegistrationContext';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
+  const [isEmptyImage, setIsEmptyImage] = useState(true);
   const { pathname } = useLocation();
   const { setMandatoryData, setOptionalData } = usePetRegistration();
   const isEdit = pathname.includes('edit');
@@ -55,11 +56,11 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
       <PetTypeSection />
       <RoleForPetSection />
       <PetPersonalitiesSection />
-      <PetImageSection />
+      <PetImageSection petData={petData} setIsEmptyImage={setIsEmptyImage} />
       <section className="pt-6">
         {!isSubmitting ? (
           <Button
-            disabled={!isDisabled || isSubmitting}
+            disabled={!isDisabled || isSubmitting || isEmptyImage}
             onClick={handleButtonClick(handleSubmit)}
           >
             <span>등록하기</span>
