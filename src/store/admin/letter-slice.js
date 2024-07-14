@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchLetters } from './letter-actions';
+import { fetchLetters } from './letter-actions.js';
 
 // type Letter = {
 //   id: Number,

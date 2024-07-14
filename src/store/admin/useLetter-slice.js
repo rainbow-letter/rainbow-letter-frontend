@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { formatDateToYMD } from 'utils/date';
-import { fetchUserLetters } from './userLetter-actions';
+import { fetchUserLetters } from './userLetter-actions.js';
 
 // type Letter = {
 //   id: Number,

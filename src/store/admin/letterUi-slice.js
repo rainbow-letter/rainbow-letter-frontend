@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { formatDateToYMD, getPastDate } from 'utils/date';
-import { fetchLetters } from './letter-actions';
+import { fetchLetters } from './letter-actions.js';
 
 // type FilterOption = {
 //   type: 'ALL' | 'WAIT' | 'COMPLETE';

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchPets } from './pet-actions';
+import { fetchPets } from './pet-actions.js';
 
 const initialState = {
   pets: [],
