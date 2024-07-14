@@ -65,17 +65,6 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
   return (
     <section className="px-[1.125rem] pt-5">
       <h3 className="text-solo-large font-bold">{dateAndDay}</h3>
-      {isToday && filteredListByDate.length <= 0 && (
-        <Button
-          onClick={onClickWriteLetterButton}
-          className="mt-5 flex h-auto items-center justify-center gap-x-2 rounded-2xl border border-dashed border-orange-400 bg-white py-5"
-        >
-          <img src={Plus} alt="add" />
-          <span className="text-[16px] font-bold leading-none text-orange-400">
-            편지쓰기
-          </span>
-        </Button>
-      )}
       <ul className="mt-5">
         {filteredListByDate.map((letter) => (
           <Link
@@ -87,6 +76,17 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
           </Link>
         ))}
       </ul>
+      {isToday && (
+        <Button
+          onClick={onClickWriteLetterButton}
+          className="mt-5 flex h-auto items-center justify-center gap-x-2 rounded-2xl border border-dashed border-orange-400 bg-white py-5"
+        >
+          <img src={Plus} alt="add" />
+          <span className="text-[16px] font-bold leading-none text-orange-400">
+            편지쓰기
+          </span>
+        </Button>
+      )}
     </section>
   );
 }

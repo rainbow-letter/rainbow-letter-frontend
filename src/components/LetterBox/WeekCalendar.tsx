@@ -33,7 +33,7 @@ export default function WeekCalendar({
     weekCalendarList,
   } = useCalendar();
   const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
-  const yearAndMonth = `${selectedDate.getFullYear()}년 ${selectedDate.getMonth() + 1}월`;
+  const yearAndMonth = `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
   const [weekCalendar, setWeekCalendar] = useState<number[]>([]);
 
   useEffect(() => {
@@ -46,13 +46,16 @@ export default function WeekCalendar({
 
   const onClickNextWeek = useCallback(() => {
     setCurrentDate(addDays(currentDate, 7));
+    setDate(addDays(currentDate, 7));
   }, [currentDate]);
 
   const onClickPrevWeek = useCallback(() => {
     setCurrentDate(subDays(currentDate, 7));
+    setDate(subDays(currentDate, 7));
   }, [currentDate]);
 
   const onClickDateButton = useCallback((date: number) => {
+    setCurrentDate(new Date(date));
     setDate(new Date(date));
   }, []);
 
@@ -63,13 +66,13 @@ export default function WeekCalendar({
 
   const isActiveDate = useCallback(
     (date: number) => {
-      if (format(selectedDate, 'yyyy-MM-dd') === String(date)) {
+      if (format(currentDate, 'yyyy-MM-dd') === String(date)) {
         return true;
       }
 
       return false;
     },
-    [selectedDate]
+    [currentDate]
   );
 
   const isExistWrittenLetter = useCallback(

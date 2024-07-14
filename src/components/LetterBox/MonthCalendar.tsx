@@ -43,10 +43,12 @@ export default function MonthCalendar({
 
   const onClickNextMonth = useCallback(() => {
     setCurrentDate(subMonths(currentDate, -1));
+    setDate(subMonths(currentDate, -1));
   }, [currentDate]);
 
   const onClickPrevMonth = useCallback(() => {
     setCurrentDate(subMonths(currentDate, 1));
+    setDate(subMonths(currentDate, 1));
   }, [currentDate]);
 
   const onClickDateButton = useCallback((date: string) => {
@@ -61,13 +63,13 @@ export default function MonthCalendar({
 
   const isActiveDate = useCallback(
     (date: string) => {
-      if (format(selectedDate, 'yyyy-MM-dd') === date) {
+      if (format(currentDate, 'yyyy-MM-dd') === date) {
         return true;
       }
 
       return false;
     },
-    [selectedDate]
+    [currentDate]
   );
 
   const isExistWrittenLetter = useCallback(
