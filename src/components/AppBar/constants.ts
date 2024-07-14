@@ -29,6 +29,10 @@ const appBarConfig: AppBar = {
   '/letter-box': {
     title: '편지함',
   },
+  // TODO: 변경
+  '/letter-box-renew': {
+    title: '편지함',
+  },
   '/saved-image': {
     title: '이미지 저장',
   },

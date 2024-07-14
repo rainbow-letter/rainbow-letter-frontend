@@ -6,7 +6,7 @@ import PhoneButton from 'components/Home/PhoneButton';
 import Divider from 'components/Divider';
 import HomeFooter from 'components/Home/HomeFooter';
 import NavBar from 'components/NavBar';
-import BottomSheet from 'components/BottomSheet';
+import BottomSheet from 'components/Home/BottomSheet';
 import { getToken } from 'utils/localStorage';
 import LetterPostButton from 'components/LetterPostButton';
 import HomeDivider from 'components/Home/Divider';

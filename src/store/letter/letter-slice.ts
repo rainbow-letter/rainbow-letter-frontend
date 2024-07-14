@@ -6,6 +6,7 @@ const initialState = {
   letterType: null,
   isSaveToImage: false,
   saveImageUrl: '',
+  isCalendarOpen: false,
 };
 
 const letterSlice = createSlice({
@@ -31,6 +32,12 @@ const letterSlice = createSlice({
     },
     setSaveImageUrl(state, action) {
       state.saveImageUrl = action.payload;
+    },
+    setCalendarOpen(state) {
+      state.isCalendarOpen = true;
+    },
+    setCalendarClose(state) {
+      state.isCalendarOpen = false;
     },
   },
 });

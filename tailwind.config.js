@@ -44,6 +44,8 @@ module.exports = {
           3: '#DFDFDF',
           4: '#DADADA',
           5: '#6D6D6D',
+          6: '#F9F9F9',
+          7: '#F0F0F0',
         },
         orange: {
           50: '#FFF8ED',
@@ -53,6 +55,13 @@ module.exports = {
         alarm: {
           red: '#FB5660',
           blue: '#553FFE',
+          50: '#FFDABF',
+        },
+        yellow: {
+          50: '#FEF9ED',
+        },
+        green: {
+          50: '#DDFFEB',
         },
       },
       textColor: {
@@ -62,6 +71,13 @@ module.exports = {
           2: '#BDBDBD',
           3: '#656565',
           4: '#5F5F5F',
+          5: '#989898',
+        },
+        green: {
+          100: '#61BA84',
+        },
+        alarm: {
+          50: '#FF7C1E',
         },
       },
       backgroundImage: {

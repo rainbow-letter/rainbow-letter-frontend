@@ -32,7 +32,7 @@ import {
 } from 'utils/sessionStorage';
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
-import CoverImage from 'components/CoverImage';
+import CoverImage from 'components/Common/CoverImage';
 import defaultImage from 'assets/Logo_256px.png';
 
 export default function WriteLetter() {

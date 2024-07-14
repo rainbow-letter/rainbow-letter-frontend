@@ -1,10 +1,12 @@
 export interface Letters {
   id: number;
   summary: string;
-  status: string;
+  status: 'REQUEST' | 'RESPONSE';
   petName: string;
   readStatus: string;
   createdAt: string;
+  index?: number;
+  // TODO: 추후 삭제
   number?: number;
 }
 

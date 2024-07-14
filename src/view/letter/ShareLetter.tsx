@@ -7,7 +7,7 @@ import Button from 'components/Button';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
-import CoverImage from 'components/CoverImage';
+import CoverImage from 'components/Common/CoverImage';
 import { getShareLetter } from 'api/letter';
 import { getImage } from 'api/images';
 import metaData from 'utils/metaData';
