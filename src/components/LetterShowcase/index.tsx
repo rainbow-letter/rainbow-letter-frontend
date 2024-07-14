@@ -1,6 +1,7 @@
 import LetterItem from 'components/LetterShowcase/LetterItem';
-import { SHOWCASE_LETTERS } from 'components/LetterShowcase/constants';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
+import { ShowcaseLetter } from './type';
 
 const SHOWCASE_CAROUSEL_OPTIONS = {
   swipeToSlide: true,
@@ -17,6 +18,18 @@ const SHOWCASE_CAROUSEL_OPTIONS = {
 } as const;
 
 function LetterShowcase() {
+  const [letters, setLetters] = useState<ShowcaseLetter[]>();
+
+  useEffect(() => {
+    fetch('/showcaseLetters.json')
+      .then((response) => response.json())
+      .then((data) => {
+        const filteredData = data.slice(1);
+        setLetters(filteredData);
+      })
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+
   return (
     <section className="pl-5 pt-8">
       <span className="pb-8 pt-5 text-solo-large font-bold">
@@ -24,7 +37,7 @@ function LetterShowcase() {
       </span>
       <div className="h-6" />
       <Slider {...SHOWCASE_CAROUSEL_OPTIONS} className="h-52">
-        {SHOWCASE_LETTERS.map((letter, i) => (
+        {letters?.map((letter) => (
           <div className="w-[138px] py-5" key={letter.id}>
             <LetterItem letter={letter} />
           </div>
