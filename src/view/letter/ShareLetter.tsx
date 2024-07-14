@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import SentPhoto from 'components/LetterBox/SentPhoto';

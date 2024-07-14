@@ -1,5 +1,3 @@
-import React from 'react';
-
 import post from 'assets/post.svg';
 import { ShowcaseLetter } from 'components/LetterShowcase/type';
 

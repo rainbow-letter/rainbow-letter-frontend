@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 
 import CheckBox from 'components/Login/SignUp/CheckBox';
 import ArrowLink from 'components/Login/SignUp/ArrowLink';
@@ -23,7 +23,7 @@ export default function Agree({ setIsChecked }: Props) {
     return setIsChecked(false);
   }, [checkItems]);
 
-  const handleAllCheck = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAllCheck = ({ target }: ChangeEvent<HTMLInputElement>) => {
     if (target.checked) {
       return setCheckItems(CHECK_LIST.map((item) => item.name));
     }
@@ -32,7 +32,7 @@ export default function Agree({ setIsChecked }: Props) {
   };
 
   const handleSingleCheck = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: ChangeEvent<HTMLInputElement>,
     name: string
   ) => {
     if (e.target.checked) {

@@ -1,7 +1,7 @@
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import Spinner from 'components/Spinner';
 
-const MyPetsTemplate = React.lazy(() => import('components/MyPetsTemplate'));
+const MyPetsTemplate = lazy(() => import('components/MyPetsTemplate'));
 
 function MyPets() {
   return (

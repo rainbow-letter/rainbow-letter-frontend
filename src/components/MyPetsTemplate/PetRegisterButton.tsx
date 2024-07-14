@@ -1,11 +1,11 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 import Button from 'components/Button';
 
 type Props = {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function PetRegisterButton({ className, children }: Props) {

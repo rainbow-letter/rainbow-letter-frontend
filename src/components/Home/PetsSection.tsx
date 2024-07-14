@@ -1,5 +1,3 @@
-import React from 'react';
-
 import LoginBox from 'components/Home/LoginBox';
 import PetsBox from 'components/Home/PetsBox';
 

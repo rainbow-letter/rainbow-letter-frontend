@@ -1,7 +1,5 @@
-import React from 'react';
-
-import Logo from '../../../assets/logo_white.png';
-import CancelImage from '../../../assets/ph_x-bold.svg';
+import Logo from '../../assets/logo_white.png';
+import CancelImage from '../../assets/ph_x-bold.svg';
 
 export default function BottomHeader({ onClick }: any) {
   return (

@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 // NOTE: 세션 스토리지에 데이터 저장하기
 export function saveToSessionStorage(key: string, value: string) {
   sessionStorage.setItem(key, value);

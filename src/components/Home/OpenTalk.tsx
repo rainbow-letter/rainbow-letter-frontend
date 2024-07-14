@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { OPEN_TALK_MESSAGE } from 'components/Home/constants';

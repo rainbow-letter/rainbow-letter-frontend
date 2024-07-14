@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-
 import LetterItem from 'components/LetterShowcase/LetterItem';
 import { SHOWCASE_LETTERS } from 'components/LetterShowcase/constants';
 import Slider from 'react-slick';

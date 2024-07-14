@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import bannerLetter from 'assets/banner-letter.svg';
 import FitaPat from 'assets/ad_fitapat_4.png';
 import SaveImage from 'assets/banner_save.png';

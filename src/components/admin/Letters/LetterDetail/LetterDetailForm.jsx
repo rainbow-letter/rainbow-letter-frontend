@@ -1,9 +1,4 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-shadow */
-/* eslint-disable consistent-return */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 

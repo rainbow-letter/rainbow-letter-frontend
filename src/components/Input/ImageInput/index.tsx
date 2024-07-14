@@ -1,5 +1,4 @@
-/* eslint-disable react/no-unknown-property */
-import React, { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import ImageDeleteButton from 'components/Input/ImageInput/ImageDeleteButton';
 import thinPlus from '../../../assets/thinPlus.svg';
@@ -8,7 +7,7 @@ type Props = {
   className: string;
   imageSrc: string;
   deleteIcon: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onDelete: () => void;
 };
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Chip from 'components/Chips/Chip';
 import { ChipValue } from 'components/Chips/constants';
 

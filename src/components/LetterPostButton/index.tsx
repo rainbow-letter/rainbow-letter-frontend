@@ -1,5 +1,3 @@
-import React from 'react';
-
 import logo from 'assets/Logo_256px.png';
 import { Link } from 'react-router-dom';
 

@@ -1,5 +1,4 @@
-/* eslint-disable react/no-unstable-nested-components */
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { BANNER_ITEMS } from 'components/MainBanner/constants';
 import Carousel from 'components/Carousel';

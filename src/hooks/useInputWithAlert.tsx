@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 
 const useInputWithAlert = ({ initialValue = '' }) => {
   const [inputValue, setInputValue] = useState('');
   const [isChanged, setIsChanged] = useState(false);
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value } = target;
 
     setInputValue(value);

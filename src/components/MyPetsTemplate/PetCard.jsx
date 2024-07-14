@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getImage } from 'api/images';

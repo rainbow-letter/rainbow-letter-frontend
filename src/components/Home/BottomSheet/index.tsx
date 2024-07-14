@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import BottomHeader from 'components/Home/BottomSheet/BottomHeader';
 import BottomContent from 'components/Home/BottomSheet/BottomContent';

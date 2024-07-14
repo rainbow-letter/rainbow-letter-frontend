@@ -1,6 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable consistent-return */
-import React from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 

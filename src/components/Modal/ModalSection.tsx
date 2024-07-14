@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { State } from 'types/store';
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function ModalSection({ children }: Props) {

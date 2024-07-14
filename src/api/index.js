@@ -1,7 +1,11 @@
-/* eslint-disable no-alert */
 import axios from 'axios';
 
-import { getToken, removeToken, getExpireToken } from 'utils/localStorage';
+import {
+  getToken,
+  removeToken,
+  removeExpireToken,
+  getExpireToken,
+} from 'utils/localStorage';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -35,6 +39,11 @@ const localTokenIsValid = async (token) => {
   if (Number(expire) < Date.now()) {
     return tokenIsValid(token);
   }
+  if (!expire) {
+    removeToken();
+    removeExpireToken();
+    window.location.href = '/login';
+  }
 
   return true;
 };
@@ -48,6 +57,7 @@ baseInstance.interceptors.request.use(
       const isValid = localTokenIsValid(token);
       if (!isValid) {
         removeToken();
+        removeExpireToken();
         window.location.href = '/login';
         return Promise.reject(new Error('Token is expired'));
       }

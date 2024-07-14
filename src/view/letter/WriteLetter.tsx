@@ -1,5 +1,4 @@
-/* eslint-disable consistent-return */
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -225,8 +224,8 @@ export default function WriteLetter() {
         const imageId = await uploadImage(imageFile);
         newLetter.image = imageId;
       }
-      await deleteSavedLetter(id);
       await sendLetter(selectedPet?.id, newLetter);
+      await deleteSavedLetter(id);
 
       isCheckPhoneNumberModalOpen();
       return dispatch(modalActions.openModal('COMPLETE'));

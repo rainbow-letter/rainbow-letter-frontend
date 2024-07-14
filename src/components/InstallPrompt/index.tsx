@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Button from 'components/Button';
 import useInstallPrompt from 'hooks/useInstallPrompt';
 import { postData } from 'api/data';

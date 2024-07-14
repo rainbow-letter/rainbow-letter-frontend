@@ -1,4 +1,3 @@
-import React from 'react';
 import Chip from 'components/Chips/Chip';
 
 type Props = {

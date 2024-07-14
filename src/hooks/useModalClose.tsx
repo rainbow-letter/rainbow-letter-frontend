@@ -1,9 +1,6 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
-function useModalClose(
-  ref: React.RefObject<HTMLDivElement>,
-  onClose: () => void
-) {
+function useModalClose(ref: RefObject<HTMLDivElement>, onClose: () => void) {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLDivElement;
