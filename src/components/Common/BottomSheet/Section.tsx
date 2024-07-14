@@ -44,7 +44,7 @@ export default function Section({
   return (
     <div
       ref={BottonSheetRef}
-      className="delay-30 fixed -bottom-[15.625rem] z-50 flex h-[15.625rem] min-w-[24.375rem] justify-center rounded-t-2xl bg-white shadow-home duration-700 ease-in-out"
+      className="delay-30 fixed -bottom-[15.625rem] z-50 flex h-[15.625rem] w-full max-w-[390px] justify-center rounded-t-2xl bg-white shadow-home duration-700 ease-in-out"
     >
       {children}
       <button
