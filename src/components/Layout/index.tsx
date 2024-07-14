@@ -8,7 +8,8 @@ function Layout() {
   const isHomeLayOut =
     pathname === '/' ||
     pathname === '/donate' ||
-    pathname === '/letter-box' ||
+    // TODO: '/letter-box로 변경'
+    pathname === '/letter-box-renew' ||
     false;
 
   useEffect(() => {

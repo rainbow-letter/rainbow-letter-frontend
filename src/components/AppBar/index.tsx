@@ -33,7 +33,9 @@ function AppBar() {
 
   const isShowSavingIcon = normalizedPath === '/write-letter';
   const isShowDonateAppBar =
-    normalizedPath === '/write-letter' || normalizedPath === '/letter-box';
+    normalizedPath === '/write-letter' ||
+    normalizedPath === '/letter-box' ||
+    normalizedPath === '/letter-box-renew';
 
   return (
     <section className="sticky top-0 z-10 flex flex-col">
