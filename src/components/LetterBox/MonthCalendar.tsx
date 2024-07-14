@@ -163,6 +163,7 @@ export default function MonthCalendar({
             currentDate={currentDate}
             setCurrentDate={setCurrentDate}
             handlePetsListShow={handlePetsListShow}
+            setDate={setDate}
           />
         }
       />

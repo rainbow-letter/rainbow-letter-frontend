@@ -7,12 +7,14 @@ type Props = {
   currentDate: Date;
   setCurrentDate: (date: Date) => void;
   handlePetsListShow: (state: boolean) => void;
+  setDate: (date: Date) => void;
 };
 
 export default function CalendarController({
   currentDate,
   setCurrentDate,
   handlePetsListShow,
+  setDate,
 }: Props) {
   const [year, setYear] = useState(currentDate.getFullYear());
   const [month, setMonth] = useState(currentDate.getMonth());
@@ -49,6 +51,7 @@ export default function CalendarController({
 
   const onClickConfirmButton = useCallback(() => {
     setCurrentDate(new Date(year, month, currentDate.getDate()));
+    setDate(new Date(year, month, currentDate.getDate()));
     handlePetsListShow(false);
   }, [year, month]);
 
