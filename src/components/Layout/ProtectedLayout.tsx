@@ -14,7 +14,7 @@ function ProtectedLayout() {
   useEffect(() => {
     if (!isLoggedIn) {
       removeToken();
-      navigate('/sign-up');
+      navigate('/sign-up', { replace: true });
     }
   }, [isLoggedIn, location]);
 
