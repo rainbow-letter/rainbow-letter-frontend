@@ -1,14 +1,10 @@
 import axios from 'axios';
 
-import {
-  getToken,
-  removeToken,
-  removeLoginTimestamp,
-  getLoginTimestamp,
-} from 'utils/localStorage';
+import { getToken, removeToken } from 'utils/localStorage';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
+const authInstance = axios.create({ baseURL });
 const baseInstance = axios.create({
   baseURL,
   headers: {
@@ -16,32 +12,34 @@ const baseInstance = axios.create({
   },
 });
 
-const isExpireToken = (timestamp) => {
-  if (isNaN(timestamp)) {
-    return logout();
+const tokenIsValid = async (token) => {
+  try {
+    const response = await authInstance.post(
+      '/api/members/verify',
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.status === 200;
+  } catch (error) {
+    alert(`자동 로그인이 풀렸어요\n로그인은 1주만 유지돼요`);
+    return false;
   }
-  return Number(timestamp) < Date.now();
-};
-
-const logout = () => {
-  removeToken();
-  removeLoginTimestamp();
-  alert(`자동 로그인이 풀렸어요\n로그인은 1주만 유지돼요`);
-  window.location.href = '/login';
-  Promise.reject(new Error('Token is expired'));
 };
 
 baseInstance.interceptors.request.use(
   async (config) => {
     const token = getToken();
-    const loginTimestamp = getLoginTimestamp();
     const newConfig = { ...config };
 
     if (token) {
-      const isExpired = isExpireToken(loginTimestamp);
-
-      if (isExpired) return logout();
-
+      const isValid = await tokenIsValid(token);
+      if (!isValid) {
+        removeToken();
+        window.location.href = '/login';
+        return Promise.reject(new Error('Token is expired'));
+      }
       newConfig.headers.Authorization = `Bearer ${token}`;
     }
     return newConfig;
