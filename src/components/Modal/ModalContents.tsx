@@ -330,47 +330,6 @@ export default function ModalContents() {
                 </div>
               </div>
             );
-          case 'NOTICE':
-            return (
-              <div className="w-full pb-11 pt-[3.313rem]">
-                <header className="flex flex-col items-center justify-center rounded-[0.938rem] py-6 text-center">
-                  <h3 className="mt-2 text-heading-3 font-bold">{title}</h3>
-                </header>
-                <div className="flex flex-col items-center">
-                  <p>예상치 못한 트래픽 증가로 인해</p>
-                  <p>서버 점검을 긴급히 진행하게 되었습니다.</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <p className="my-7 text-[18px] font-bold">
-                    점검 일시 : 2024년 7월 19일(금) 21:00 ~
-                  </p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <p>점검 기간 동안 서비스 이용이 일시적으로</p>
-                  <p>중단될 수 있음을 양해 부탁드립니다.</p>
-                  <p>최대한 신속하게 점검을 마치고 안정적인</p>
-                  <p>서비스로 돌아오겠습니다.</p>
-                  <p>불편을 끼쳐 드려 죄송합니다.</p>
-                </div>
-                <div className="mt-5 flex flex-col items-center">
-                  <p className="font-bold">모든 편지들은 잘 저장되어 있으며</p>
-                  <p>서버 점검 이후에 다시 확인하실 수 있으니</p>
-                  <p>너무 걱정하지 마세요!</p>
-                </div>
-                <div className="mt-5 flex flex-col items-center">
-                  <p>무지개편지 팀 드림</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    dispatch(modalActions.closeModal());
-                  }}
-                  className="absolute right-4 top-4"
-                >
-                  <img src={CancelImage} alt="cancel" />
-                </button>
-              </div>
-            );
           default:
             return null;
         }
