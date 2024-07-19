@@ -135,16 +135,6 @@ export const MODAL_MESSAGE: Modal[] = [
     title: `편지가 갤러리에 저장되었어요`,
     body: [],
   },
-  {
-    type: 'NOTICE',
-    title: `긴급 서버 점검 안내`,
-    body: [
-      {
-        id: 1,
-        contents: '이미지로 저장하시고 싶은 편지를 선택해주세요',
-      },
-    ],
-  },
 ];
 
 export default MODAL_MESSAGE;
