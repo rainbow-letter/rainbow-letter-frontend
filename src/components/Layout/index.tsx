@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
+import { modalActions } from 'store/modal/modal-slice';
 
 import metaData from 'utils/metaData';
 
 function Layout() {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const isHomeLayOut =
     pathname === '/' ||
@@ -14,6 +17,7 @@ function Layout() {
 
   useEffect(() => {
     metaData(pathname);
+    dispatch(modalActions.openModal('NOTICE'));
     return () => {
       metaData('default');
     };
