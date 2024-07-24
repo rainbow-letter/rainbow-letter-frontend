@@ -11,6 +11,8 @@ function ProtectedLayout() {
   const token = getToken();
   const isLoggedIn = !!token;
 
+  const isShowAppBar = location.pathname !== '/my-page/password';
+
   useEffect(() => {
     if (!isLoggedIn) {
       removeToken();
@@ -20,7 +22,7 @@ function ProtectedLayout() {
 
   return (
     <>
-      <AppBar />
+      {isShowAppBar && <AppBar />}
       <div className="pb-28">
         <Outlet />
       </div>

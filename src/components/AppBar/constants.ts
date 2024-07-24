@@ -23,6 +23,9 @@ const appBarConfig: AppBar = {
   '/my-pets/edit': {
     title: '수정하기',
   },
+  '/my-page/password': {
+    title: '비밀번호 변경하기',
+  },
   '/write-letter': {
     title: '편지쓰기',
   },
