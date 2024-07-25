@@ -33,12 +33,20 @@ function AppBar() {
   const isShowSavingIcon = normalizedPath === '/write-letter';
   const isShowDonateAppBar =
     normalizedPath === '/write-letter' ||
-    normalizedPath === '/letter-box' ||
     normalizedPath === '/letter-box-renew';
+
+  const isShowCoupangBanner = normalizedPath === '/letter-box';
 
   return (
     <section className="sticky top-0 z-10 flex flex-col">
       {isShowDonateAppBar && <DonateAppBar />}
+      {isShowCoupangBanner && (
+        <iframe
+          src="https://ads-partners.coupang.com/widgets.html?id=794420&template=carousel&trackingCode=AF8807113&subId=&width=390&height=100&tsource="
+          width="360"
+          height="100"
+        />
+      )}
       <header className="flex items-center justify-between bg-white py-6 pl-5">
         <section className="flex flex-1 justify-start">
           <button type="button" onClick={handleBack}>
