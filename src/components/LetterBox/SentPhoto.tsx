@@ -27,7 +27,7 @@ export default function SentPhoto({ letterData }: Props) {
 
   return (
     <section className="not-img mt-16">
-      <h3 className="text-solo-large">아이에게 보낸 편지</h3>
+      <h3 className="text-solo-large">아이에게 보낸 사진</h3>
       <CoverImage image={petImage} className="relative mt-8" />
     </section>
   );
