@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from 'store/user/user-slice';
 
-import { removeToken, removeLoginTimestamp } from 'utils/localStorage';
+import { removeToken } from 'utils/localStorage';
 import { clearSessionStorage } from 'utils/sessionStorage';
 
 type LogOutProps = {
@@ -17,7 +17,6 @@ function LogOut({ children }: LogOutProps) {
   const handleLogout = () => {
     dispatch(userActions.logOut());
     removeToken();
-    removeLoginTimestamp();
     clearSessionStorage();
     navigate('/');
   };
