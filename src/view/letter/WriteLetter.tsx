@@ -151,9 +151,7 @@ export default function WriteLetter() {
           dispatch(letterActions.setIsSuccess());
         }
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          dispatch(letterActions.setisFailed());
-        }
+        dispatch(letterActions.setisFailed());
       }
     };
 
