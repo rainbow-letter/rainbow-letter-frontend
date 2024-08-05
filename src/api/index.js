@@ -4,7 +4,6 @@ import { getToken, removeToken } from 'utils/localStorage';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
-const authInstance = axios.create({ baseURL });
 const baseInstance = axios.create({
   baseURL,
   headers: {
@@ -12,20 +11,11 @@ const baseInstance = axios.create({
   },
 });
 
-const tokenIsValid = async (token) => {
-  try {
-    const response = await authInstance.post(
-      '/api/members/verify',
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    return response.status === 200;
-  } catch (error) {
-    alert(`자동 로그인이 풀렸어요\n로그인은 1주만 유지돼요`);
-    return false;
-  }
+const logout = () => {
+  removeToken();
+  alert(`자동 로그인이 풀렸어요\n로그인은 1주만 유지돼요`);
+  window.location.href = '/login';
+  Promise.reject(new Error('Token is expired'));
 };
 
 baseInstance.interceptors.request.use(
@@ -34,14 +24,9 @@ baseInstance.interceptors.request.use(
     const newConfig = { ...config };
 
     if (token) {
-      const isValid = await tokenIsValid(token);
-      if (!isValid) {
-        removeToken();
-        window.location.href = '/login';
-        return Promise.reject(new Error('Token is expired'));
-      }
       newConfig.headers.Authorization = `Bearer ${token}`;
     }
+
     return newConfig;
   },
   (error) => {
@@ -52,6 +37,10 @@ baseInstance.interceptors.request.use(
 baseInstance.interceptors.response.use(
   (response) => response,
   (error) => {
+    if (error.response.status === 401) {
+      return logout();
+    }
+
     return Promise.reject(error);
   }
 );

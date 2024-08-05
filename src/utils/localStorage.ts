@@ -10,10 +10,6 @@ export const removeToken = () => {
   localStorage.removeItem('user');
 };
 
-export const removeLoginTimestamp = () => {
-  localStorage.removeItem('expireToken');
-};
-
 export const setExpireModal = (date: string) => {
   return localStorage.setItem('expire', date);
 };
@@ -24,8 +20,4 @@ export const getExpireModal = () => {
 
 export const setExpireToken = (date: string) => {
   return localStorage.setItem('expireToken', date);
-};
-
-export const getLoginTimestamp = () => {
-  return localStorage.getItem('expireToken');
 };
