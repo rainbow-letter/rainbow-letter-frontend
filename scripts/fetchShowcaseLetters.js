@@ -24,8 +24,9 @@ const fetchShowcaseLetters = async () => {
     });
 
     const rows = response.data.values;
-    if (rows.length) {
-      const processedData = rows.map((row) => ({
+    const filteredRow = rows.filter((item) => item.length >= 4);
+    if (filteredRow.length) {
+      const processedData = filteredRow.map((row) => ({
         id: row[0],
         type: row[1],
         petName: row[2],
