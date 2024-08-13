@@ -8,19 +8,18 @@ import { USER_ACTIONS } from 'components/LetterBox/constants';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
 import CoverImage from 'components/Common/CoverImage';
+import useGetImage from 'hooks/useGetImage';
 import { getShareLetter } from 'api/letter';
-import { getImage } from 'api/images';
 import metaData from 'utils/metaData';
 import { formatDateIncludingHangul } from 'utils/date';
 import { isKakaoTalk } from 'utils/device';
 import { Letter } from 'types/letters';
-import defaultImage from 'assets/Logo_256px.png';
 
 const targetUrl = window.location.href;
 
 export default function ShareLetter() {
-  const [letterData, setLetterData] = useState<Letter>();
-  const [petImage, setPetImage] = useState<string>('');
+  const [letterData, setLetterData] = useState<any>();
+  const { petImage } = useGetImage(letterData?.pet);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -35,19 +34,6 @@ export default function ShareLetter() {
       setLetterData(data);
     })();
   }, []);
-
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (letterData?.pet.image.objectKey) {
-        const data = await getImage(letterData?.pet.image.objectKey);
-        return setPetImage(data);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [letterData]);
 
   const onClickReplyButton = () => {
     navigate('/write-letter', { state: letterData?.pet.name });

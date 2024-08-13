@@ -14,7 +14,7 @@ import Button from 'components/Button';
 import { sendLetter, getLetters } from 'api/letter';
 import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
-import { getImage, resisterImage } from 'api/images';
+import { resisterImage } from 'api/images';
 import {
   isExistCheckSavedLetter,
   getSavedLetter,
@@ -33,7 +33,7 @@ import {
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import CoverImage from 'components/Common/CoverImage';
-import defaultImage from 'assets/Logo_256px.png';
+import useGetImage from 'hooks/useGetImage';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -47,9 +47,9 @@ export default function WriteLetter() {
     image: '',
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [petImage, setPetImage] = useState('');
   const [temp, setTemp] = useState<string | undefined>('');
   const [id, setId] = useState<string>('');
+  const { petImage } = useGetImage(selectedPet);
 
   const fetchAutoSaveLetter = useCallback(async () => {
     const { data: savedLetter } = await getSavedLetter();
@@ -124,20 +124,6 @@ export default function WriteLetter() {
       };
     })();
   }, []);
-
-  // 아이 이미지 불러오기
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (selectedPet?.image) {
-        const data = await getImage(selectedPet.image);
-        return setPetImage(data);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [selectedPet]);
 
   // 편지 서버에 저장
   useEffect(() => {

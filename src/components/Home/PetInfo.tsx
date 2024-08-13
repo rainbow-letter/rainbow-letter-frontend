@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { PetResponse } from 'types/pets';
 import { calculateDDay } from 'utils/date';
-import { getImage } from 'api/images';
-
+import useGetImage from 'hooks/useGetImage';
 import letter from 'assets/letter.svg';
 import heart from 'assets/fa-regular-heart.svg';
 import arrow from 'assets/ion_chevron-back-home.svg';
-import defaultImage from 'assets/Logo_256px.png';
 
 type Props = {
   pet: PetResponse | undefined;
@@ -17,7 +14,7 @@ type Props = {
 
 export default function PetInfo({ pet, letterCount }: Props) {
   const navigate = useNavigate();
-  const [petImage, setPetImage] = useState<string>('');
+  const { petImage } = useGetImage(pet);
   const deathAnniversaryDDay =
     pet?.deathAnniversary && calculateDDay(pet?.deathAnniversary);
 
@@ -25,28 +22,13 @@ export default function PetInfo({ pet, letterCount }: Props) {
     navigate('/my-pets', { state: pet?.id });
   };
 
-  useEffect(() => {
-    const getPetImage = async () => {
-      console.log(pet?.image);
-      if (pet?.image) {
-        const image = await getImage(pet?.image);
-        console.log('image', image);
-        return setPetImage(image);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [pet]);
-
   return (
     <article
       onClick={handleScroll}
       className="relative flex cursor-pointer flex-row items-center rounded-2xl border px-5 py-6"
     >
       <img
-        src={petImage || defaultImage}
+        src={petImage}
         alt="pet"
         className="mr-7 size-[5.5rem] rounded-full"
       />

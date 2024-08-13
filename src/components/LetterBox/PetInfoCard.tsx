@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import { getPets } from 'api/pets';
 import { PetResponse } from 'types/pets';
-import { getImage } from 'api/images';
 import CoverImage from 'components/Common/CoverImage';
 import InfoBox from 'components/LetterBox/InfoBox';
 import PetsToggle from 'components/LetterBox/PetsToggle';
 import Divider from 'components/Home/Divider';
-import defaultImage from 'assets/Logo_256px.png';
+import useGetImage from 'hooks/useGetImage';
 
 type Props = {
   onChange: (pet: PetResponse) => void;
@@ -20,7 +19,7 @@ export default function PetInfoCard({
   petsList,
   selectedPet,
 }: Props) {
-  const [petImage, setPetImage] = useState<string>('');
+  const { petImage } = useGetImage(selectedPet);
 
   useEffect(() => {
     (async () => {
@@ -29,19 +28,6 @@ export default function PetInfoCard({
       onChange(data.pets[0]);
     })();
   }, []);
-
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (selectedPet?.image) {
-        const image = await getImage(selectedPet?.image);
-        return setPetImage(image);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [selectedPet?.id]);
 
   return (
     <section>

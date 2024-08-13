@@ -12,28 +12,26 @@ import CoverImage from 'components/Common/CoverImage';
 import DownLoadButton from 'components/Write/DownLoadButton';
 
 import { RootState, useAppDispatch } from 'store';
-import { Letter } from 'types/letters';
 import { getLetter } from 'api/letter';
 import metaData from 'utils/metaData';
 import { formatDateIncludingHangul } from 'utils/date';
 import { isiPhone } from 'utils/device';
-import defaultImage from 'assets/Logo_256px.png';
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
-import { getImage } from 'api/images';
 import { readReply } from '../../api/reply';
 import captureLogo from '../../assets/detailLetter_logo.svg';
+import useGetImage from 'hooks/useGetImage';
 
 export default function DetailLetter() {
   const dispatch = useAppDispatch();
   const params = useParams();
   const navigate = useNavigate();
-  const [letterData, setLetterData] = useState<Letter>();
-  const [petImage, setPetImage] = useState('');
+  const [letterData, setLetterData] = useState<any>();
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const isSave = useSelector((state: RootState) => state.letter.isSaveToImage);
   const letterType = useSelector((state: RootState) => state.letter.letterType);
+  const { petImage } = useGetImage(letterData?.pet);
 
   useEffect(() => {
     (async () => {
@@ -45,19 +43,6 @@ export default function DetailLetter() {
       }
     })();
   }, []);
-
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (letterData?.pet.image.objectKey) {
-        const data = await getImage(letterData?.pet.image.objectKey);
-        return setPetImage(data);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [letterData]);
 
   const onClickReplyButton = () => {
     navigate('/write-letter', { state: letterData?.pet.name });

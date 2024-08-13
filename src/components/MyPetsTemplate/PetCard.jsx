@@ -1,17 +1,16 @@
-import { useState, useEffect, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getImage } from 'api/images';
 import { calculateDDay } from 'utils/date';
-import defaultImage from 'assets/Logo_256px.png';
 import { USER_ACTIONS, PREFIX } from './constants';
 import PetCardImage from './PetCardImage';
 import LikeButton from './LikeButton';
 import pen from '../../assets/pen.svg';
+import useGetImage from 'hooks/useGetImage';
 
 function PetCard({ pet }, ref) {
   const navigate = useNavigate();
-  const [petImage, setPetImage] = useState('');
+  const { petImage } = useGetImage(pet);
 
   const deathAnniversaryDDay =
     pet.deathAnniversary && calculateDDay(pet.deathAnniversary);
@@ -23,19 +22,6 @@ function PetCard({ pet }, ref) {
   const handleWriteLetter = () => {
     navigate('/letter-box', { state: pet.id });
   };
-
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (pet?.image.objectKey) {
-        const image = await getImage(pet?.image.objectKey);
-        return setPetImage(image);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [pet.id]);
 
   return (
     <li className="relative mb-4 pt-[15.187rem]" ref={ref}>
