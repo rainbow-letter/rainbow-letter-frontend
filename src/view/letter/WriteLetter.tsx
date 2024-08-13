@@ -206,10 +206,10 @@ export default function WriteLetter() {
   };
 
   const isCheckPhoneNumberModalOpen = async () => {
-    const { phoneNumber } = await getUserInfo();
+    const { data } = await getUserInfo();
     const expire = getExpireModal();
 
-    if (!phoneNumber && Number(expire) < Date.now()) {
+    if (!data.phoneNumber && Number(expire) < Date.now()) {
       dispatch(modalActions.openModal('PHONE'));
     }
   };

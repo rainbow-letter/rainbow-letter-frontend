@@ -12,20 +12,13 @@ import UserInput from 'components/Login/UserInput';
 import SubmitButton from 'components/Login/SubmitButton';
 import { Message } from 'components/Login/constants';
 import { tryLogin } from 'api/user';
-import { emailError, emailErrorMessage, passwordError } from 'utils/errorData';
-import { saveToken, setExpireToken } from 'utils/localStorage';
+import { passwordError, emailError, emailErrorMessage } from 'utils/errorData';
+import { saveToken } from 'utils/localStorage';
+import { ErrorData } from 'types/user';
 
 type Props = {
   message: Message;
 };
-
-export interface ErrorData {
-  code: string;
-  message: string;
-  name: string;
-  status: string;
-  timestamp: Date;
-}
 
 export default function LoginForm({ message: { describe, button } }: Props) {
   const navigate = useNavigate();
@@ -33,7 +26,7 @@ export default function LoginForm({ message: { describe, button } }: Props) {
     email: '',
     password: '',
   });
-  const [errorData, setErrorData] = useState<ErrorData | null>();
+  const [errorData, setErrorData] = useState<ErrorData | null>(null);
 
   useEffect(() => {
     setErrorData(null);
@@ -43,15 +36,15 @@ export default function LoginForm({ message: { describe, button } }: Props) {
     async (e: MouseEvent<HTMLButtonElement>) => {
       try {
         e.preventDefault();
-        const { token } = await tryLogin(profile);
+        const { data } = await tryLogin(profile);
 
         setErrorData(null);
-        saveToken(token);
+        saveToken(data.token);
 
         navigate('/');
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          setErrorData(error.response?.data);
+          return setErrorData(error.response && error.response.data);
         }
       }
     },

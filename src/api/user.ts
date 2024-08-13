@@ -1,59 +1,63 @@
 import apiRequest from 'api';
 
-const RESOURCE = '/api/members';
+import { ApiResponse } from 'types/Api';
+import {
+  UserRequestData,
+  LoginRequest,
+  PasswordRequest,
+  TokenResponse,
+  PhoneNumberRequest,
+  UserInfoResponse,
+} from 'types/user';
 
-type UserRequestData = {
-  email: string;
+const RESOURCE = '/api/users';
+
+export const trySignUp = async (data: LoginRequest) => {
+  const response = await apiRequest.post(`${RESOURCE}/create`, data);
+
+  return response;
 };
 
-type LoginRequestData = UserRequestData & {
-  password: string;
-};
-
-export const trySignUp = async (data: UserRequestData): Promise<any> => {
-  const response = await apiRequest.post(`${RESOURCE}`, data);
-
-  return response.data;
-};
-
-export const tryLogin = async (data: LoginRequestData): Promise<any> => {
+export const tryLogin = async (
+  data: LoginRequest
+): ApiResponse<TokenResponse> => {
   const response = await apiRequest.post(`${RESOURCE}/login`, data);
 
-  return response.data;
+  return response;
 };
 
 export const authEmail = async (email: UserRequestData) => {
-  const response = await apiRequest.post(`${RESOURCE}/password/find`, email);
+  const response = await apiRequest.post(`${RESOURCE}/find-password`, email);
 
-  return response.data;
+  return response;
 };
 
-export const updatePassword = async (data: any): Promise<any> => {
-  const response = await apiRequest.put(`${RESOURCE}/password/reset`, data);
+export const updatePassword = async (data: PasswordRequest) => {
+  const response = await apiRequest.put(`${RESOURCE}/reset-password`, data);
 
-  return response.data;
+  return response;
 };
 
-export const updatePhoneNumber = async (data: any): Promise<any> => {
-  const response = await apiRequest.put(`${RESOURCE}/phoneNumber`, data);
+export const updatePhoneNumber = async (data: PhoneNumberRequest) => {
+  const response = await apiRequest.put(`${RESOURCE}/phone-number`, data);
 
-  return response.data;
+  return response;
 };
 
-export const deletePhoneNumber = async (): Promise<any> => {
-  const response = await apiRequest.delete(`${RESOURCE}/phoneNumber`);
+export const deletePhoneNumber = async () => {
+  const response = await apiRequest.delete(`${RESOURCE}/phone-number`);
 
-  return response.data;
+  return response;
 };
 
-export const getUserInfo = async (): Promise<any> => {
+export const getUserInfo = async (): ApiResponse<UserInfoResponse> => {
   const response = await apiRequest.get(`${RESOURCE}/info`);
 
-  return response.data;
+  return response;
 };
 
-export const deleteUser = async (): Promise<any> => {
-  const response = await apiRequest.delete(`${RESOURCE}/leave`);
+export const deleteUser = async () => {
+  const response = await apiRequest.delete(`${RESOURCE}`);
 
-  return response.data;
+  return response;
 };
