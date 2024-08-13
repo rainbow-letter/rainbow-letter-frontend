@@ -2,13 +2,13 @@ import React, { useState, useCallback } from 'react';
 
 import BottomSheetContents from 'components/LetterBox/SelectPets';
 import BottomSheet from 'components/Common/BottomSheet';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import Arrow from '../../assets/ic_toggle_arrow.svg';
 
 type Props = {
   selectedPet: string | undefined;
-  petsList: Pets[];
-  onChange: (pet: Pets) => void;
+  petsList: PetResponse[];
+  onChange: (pet: PetResponse) => void;
 };
 
 export default function PetsToggle({ selectedPet, petsList, onChange }: Props) {

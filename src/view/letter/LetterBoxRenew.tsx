@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 
 import NoPets from 'components/MyPetsTemplate/NoPets';
 import Spinner from 'components/Spinner';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import { Letters } from 'types/letters';
 import { getPets } from 'api/pets';
 import { getLetters } from 'api/letter';
@@ -18,16 +18,16 @@ const LetterList = React.lazy(() => import('components/LetterBox/LetterList'));
 
 export default function LetterBoxRenew() {
   const [letterList, setLetterList] = useState<Letters[]>([]);
-  const [petsList, setPetsList] = useState<Pets[]>([]);
-  const [selectedPet, setSelectedPet] = useState<Pets | null>(null);
+  const [petsList, setPetsList] = useState<PetResponse[]>([]);
+  const [selectedPet, setSelectedPet] = useState<PetResponse | null>(null);
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
     (async () => {
       const { letters } = await getLetters();
-      const { pets } = await getPets();
+      const { data } = await getPets();
 
-      setPetsList(pets || []);
+      setPetsList(data.pets || []);
       setLetterList(letters || []);
     })();
   }, []);

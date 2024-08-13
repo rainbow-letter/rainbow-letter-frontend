@@ -23,7 +23,7 @@ import {
   updateSessionID,
   deleteSavedLetter,
 } from 'api/temporaries';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import { generateFormData } from 'utils/formData';
 import { getExpireModal } from 'utils/localStorage';
 import {
@@ -38,8 +38,8 @@ import defaultImage from 'assets/Logo_256px.png';
 export default function WriteLetter() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [petsList, setPetsList] = useState<Pets[]>([]);
-  const [selectedPet, setSelectedPet] = useState<Pets | null>(null);
+  const [petsList, setPetsList] = useState<PetResponse[]>([]);
+  const [selectedPet, setSelectedPet] = useState<PetResponse | null>(null);
   const [imageFile, setImageFile] = useState<File | string>('');
   const [letter, setLetter] = useState({
     summary: '',
@@ -65,7 +65,7 @@ export default function WriteLetter() {
     return savedLetter.petId;
   }, []);
 
-  const setAutoSaveLetter = useCallback(async (data: Pets[]) => {
+  const setAutoSaveLetter = useCallback(async (data: PetResponse[]) => {
     const sessionId = await generateSavedLetter({
       petId: data[0].id,
       content: letter?.content,
@@ -75,15 +75,15 @@ export default function WriteLetter() {
     setSessionAutoSaveID(sessionId);
   }, []);
 
-  const loadLetter = useCallback(async (pets: Pets[]) => {
+  const loadLetter = useCallback(async (pets: PetResponse[]) => {
     const petId = await fetchAutoSaveLetter();
 
-    const finedPet = pets.find((pet: Pets) => pet.id === petId);
+    const finedPet = pets.find((pet: PetResponse) => pet.id === petId);
     return setSelectedPet(finedPet || pets[0]);
   }, []);
 
   const choosePet = useCallback(
-    async (pets: Pets[]) => {
+    async (pets: PetResponse[]) => {
       const isExist = await isExistCheckSavedLetter();
       if (location.state) {
         if (isExist) {
@@ -91,7 +91,9 @@ export default function WriteLetter() {
           return loadLetter(pets);
         }
 
-        const finedPet = pets.find((pet: Pets) => pet.name === location.state);
+        const finedPet = pets.find(
+          (pet: PetResponse) => pet.name === location.state
+        );
         setSelectedPet(finedPet || pets[0]);
         return setAutoSaveLetter(pets);
       }
@@ -109,13 +111,13 @@ export default function WriteLetter() {
   // 편지쓰기 페이지 입장
   useEffect(() => {
     (async () => {
-      const { pets } = await getPets();
+      const { data } = await getPets();
       const { letters } = await getLetters();
-      setPetsList(pets || []);
+      setPetsList(data.pets || []);
       if (letters.length < 1) {
         dispatch(modalActions.openModal('TOPIC'));
       }
-      choosePet(pets);
+      choosePet(data.pets);
 
       return () => {
         dispatch(modalActions.closeModal());
@@ -126,8 +128,8 @@ export default function WriteLetter() {
   // 아이 이미지 불러오기
   useEffect(() => {
     const getPetImage = async () => {
-      if (selectedPet?.image.objectKey) {
-        const data = await getImage(selectedPet.image.objectKey);
+      if (selectedPet?.image) {
+        const data = await getImage(selectedPet.image);
         return setPetImage(data);
       }
 

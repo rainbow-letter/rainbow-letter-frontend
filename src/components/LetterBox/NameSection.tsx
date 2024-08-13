@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Chip from 'components/Chips/Chip';
 import NoPets from 'components/MyPetsTemplate/NoPets';
 import { getPets } from 'api/pets';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 
 const DEFAULT = '전체';
 
@@ -19,14 +19,16 @@ export default function NameSection({ onChange, selectedPet }: Props) {
 
   useEffect(() => {
     (async () => {
-      const { pets } = await getPets();
-      const petsNames = pets.map((pet: Pets) => pet.name);
+      const { data } = await getPets();
+      const petsNames = data.pets.map((pet: PetResponse) => pet.name);
 
-      setPetsList((pets.length > 0 && [DEFAULT, ...petsNames]) || []);
+      setPetsList((data.pets.length > 0 && [DEFAULT, ...petsNames]) || []);
 
       if (state) {
-        const findedPet = pets.find((pet: Pets) => pet.id === state);
-        onChange(findedPet.name || DEFAULT);
+        const findedPet = data.pets.find(
+          (pet: PetResponse) => pet.id === state
+        );
+        onChange(findedPet?.name || DEFAULT);
       }
     })();
   }, []);

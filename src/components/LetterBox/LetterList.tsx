@@ -7,13 +7,13 @@ import { RootState } from 'store';
 import LetterItem from 'components/LetterBox/LetterItem';
 import Button from 'components/Button';
 import { Letters } from 'types/letters';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import { formatDay } from 'utils/date';
 import Plus from '../../assets/ic_letterBox_plus.svg';
 
 type Props = {
   date: Date;
-  selectedPet: Pets | null;
+  selectedPet: PetResponse | null;
   letterList: Letters[];
 };
 

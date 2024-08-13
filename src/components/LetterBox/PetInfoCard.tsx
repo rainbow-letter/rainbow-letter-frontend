@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { getPets } from 'api/pets';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import { getImage } from 'api/images';
 import CoverImage from 'components/Common/CoverImage';
 import InfoBox from 'components/LetterBox/InfoBox';
@@ -10,9 +10,9 @@ import Divider from 'components/Home/Divider';
 import defaultImage from 'assets/Logo_256px.png';
 
 type Props = {
-  onChange: (pet: Pets) => void;
-  petsList: Pets[];
-  selectedPet: null | Pets;
+  onChange: (pet: PetResponse) => void;
+  petsList: PetResponse[];
+  selectedPet: null | PetResponse;
 };
 
 export default function PetInfoCard({
@@ -24,16 +24,16 @@ export default function PetInfoCard({
 
   useEffect(() => {
     (async () => {
-      const { pets } = await getPets();
+      const { data } = await getPets();
 
-      onChange(pets[0]);
+      onChange(data.pets[0]);
     })();
   }, []);
 
   useEffect(() => {
     const getPetImage = async () => {
-      if (selectedPet?.image.objectKey) {
-        const image = await getImage(selectedPet?.image.objectKey);
+      if (selectedPet?.image) {
+        const image = await getImage(selectedPet?.image);
         return setPetImage(image);
       }
 

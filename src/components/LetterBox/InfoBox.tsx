@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import { calculateDDay } from 'utils/date';
 import TagItem from 'components/LetterBox/TagItem';
 
 type Props = {
-  pet: Pets | null;
+  pet: PetResponse | null;
 };
 
 export default function InfoBox({ pet }: Props) {
@@ -38,13 +38,14 @@ export default function InfoBox({ pet }: Props) {
           </button>
         </article>
         <ul className="mt-2.5 flex flex-row gap-1.5">
-          {pet?.personalities.map((personality, index) => (
-            <TagItem
-              key={`pets-personality-${personality}`}
-              value={personality}
-              bgColor={index % 2 === 0 ? 'bg-orange-100' : 'bg-orange-50'}
-            />
-          ))}
+          {pet?.personalities &&
+            pet?.personalities.map((personality, index) => (
+              <TagItem
+                key={`pets-personality-${personality}`}
+                value={personality}
+                bgColor={index % 2 === 0 ? 'bg-orange-100' : 'bg-orange-50'}
+              />
+            ))}
         </ul>
         <p className="mt-4 text-heading-3 font-[400]">
           아이에게 나는 사랑하는 {pet?.owner}

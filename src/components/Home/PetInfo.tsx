@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { PetDashBoard } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import { calculateDDay } from 'utils/date';
 import { getImage } from 'api/images';
 
@@ -11,7 +11,7 @@ import arrow from 'assets/ion_chevron-back-home.svg';
 import defaultImage from 'assets/Logo_256px.png';
 
 type Props = {
-  pet: PetDashBoard | undefined;
+  pet: PetResponse | undefined;
   letterCount: number | undefined;
 };
 
@@ -27,8 +27,10 @@ export default function PetInfo({ pet, letterCount }: Props) {
 
   useEffect(() => {
     const getPetImage = async () => {
-      if (pet?.image.objectKey) {
-        const image = await getImage(pet?.image.objectKey);
+      console.log(pet?.image);
+      if (pet?.image) {
+        const image = await getImage(pet?.image);
+        console.log('image', image);
         return setPetImage(image);
       }
 
@@ -62,7 +64,7 @@ export default function PetInfo({ pet, letterCount }: Props) {
           </div>
           <div className="flex gap-2.5">
             <img src={heart} alt="heart" />
-            <p>보낸 하트 {pet && pet.favoriteCount}회</p>
+            <p>보낸 하트 {pet && pet.favorite.total}회</p>
           </div>
         </div>
         <img

@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import Plus from '../../assets/ic_letterBox_plus.svg';
 
 type Props = {
-  list: Pets[];
-  onChange: (pet: Pets) => void;
+  list: PetResponse[];
+  onChange: (pet: PetResponse) => void;
   handlePetsListShow: (state: boolean) => void;
 };
 
@@ -21,7 +21,7 @@ export default function BottomSheetContents({
     navigate('/my-pets/register');
   }, []);
 
-  const handleChangePet = useCallback((pet: Pets) => {
+  const handleChangePet = useCallback((pet: PetResponse) => {
     handlePetsListShow(false);
     onChange(pet);
   }, []);

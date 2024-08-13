@@ -1,11 +1,13 @@
 import apiRequest from 'api';
+import { ApiResponse } from 'types/Api';
+import { PetResponse } from 'types/pets';
 
 const RESOURCE = '/api/pets';
 
-export const getPets = async (): Promise<any> => {
+export const getPets = async (): ApiResponse<{ pets: PetResponse[] }> => {
   const response = await apiRequest.get(`${RESOURCE}`);
 
-  return response.data;
+  return response;
 };
 
 export const getPet = async (id: number): Promise<any> => {

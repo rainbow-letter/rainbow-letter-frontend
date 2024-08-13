@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { USER_ACTIONS } from 'components/Write/constants';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import useDetectClose from 'hooks/useDetectClose';
 
 import dropDownImg from '../../assets/ion_chevron-back.svg';
@@ -11,8 +11,8 @@ import plusImg from '../../assets/ic_round-plus-black.svg';
 
 type Props = {
   petName: string | null;
-  petsList: Pets[];
-  onclick: (pet: Pets) => void;
+  petsList: PetResponse[];
+  onclick: (pet: PetResponse) => void;
 };
 
 export default function PetsListDropDown({

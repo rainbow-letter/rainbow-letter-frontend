@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
 
-import { PetDashBoard } from 'types/pets';
-import { getDashboard } from 'api/pets';
+import { PetResponse } from 'types/pets';
+import { getPets } from 'api/pets';
 import NoPets from 'components/Home/NoPets';
 import NameSection from 'components/Home/NameSection';
 import PetInfo from 'components/Home/PetInfo';
 
 export default function PetsBox() {
-  const [petsList, setPetsList] = useState<PetDashBoard[]>([]);
+  const [petsList, setPetsList] = useState<PetResponse[]>([]);
   const [selectedPet, setSelectedPet] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
-      const { pets } = await getDashboard();
+      const { data } = await getPets();
 
-      setPetsList(pets || []);
-      if (pets.length > 0) {
-        setSelectedPet(pets[0].name || null);
+      setPetsList(data.pets || []);
+      if (data.pets.length > 0) {
+        setSelectedPet(data.pets[0].name || null);
       }
     })();
   }, []);
@@ -25,6 +25,7 @@ export default function PetsBox() {
   const filteredPet = petsList.find((pet) => pet.name === selectedPet);
 
   if (petsList.length < 1) return <NoPets />;
+
   return (
     <section className="flex flex-col gap-y-4">
       <NameSection
@@ -32,7 +33,8 @@ export default function PetsBox() {
         onClick={setSelectedPet}
         selectedPet={selectedPet}
       />
-      <PetInfo pet={filteredPet} letterCount={filteredPet?.letterCount} />
+      {/* TODO: letterCount 속성으로 수정하기(현재는 좋아요 숫자로 넣었음..) */}
+      <PetInfo pet={filteredPet} letterCount={filteredPet?.favorite.total} />
     </section>
   );
 }
