@@ -1,4 +1,6 @@
 import apiRequest from 'api';
+import { ApiResponse } from 'types/Api';
+import { ImageResponse } from 'types/image';
 
 const RESOURCE = '/api/images';
 
@@ -8,8 +10,8 @@ export const getImage = async (key: string): Promise<string> => {
   return response.request.responseURL;
 };
 
-export const updateImageAndGetId = async (data: any): Promise<any> => {
-  const response = await apiRequest.post(`${RESOURCE}/upload?type=PET`, data);
+export const resisterImage = async (file: any): ApiResponse<ImageResponse> => {
+  const response = await apiRequest.post(`${RESOURCE}`, file);
 
-  return response.data;
+  return response;
 };

@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 import { registerPet, updatePet } from 'api/pets';
-import { updateImageAndGetId } from 'api/images';
+import { resisterImage } from 'api/images';
 import { generateFormData } from 'utils/formData';
 import { isFutureDate } from 'utils/date';
 import { Dates } from 'types/date';
@@ -72,8 +72,9 @@ const usePetForm = (
 
   const uploadImage = async (image: string) => {
     const imageFormData = generateFormData(image);
-    const response = await updateImageAndGetId(imageFormData);
-    return response.id;
+    const { data } = await resisterImage(imageFormData);
+
+    return data.objectKey;
   };
 
   const handleSubmit = async (

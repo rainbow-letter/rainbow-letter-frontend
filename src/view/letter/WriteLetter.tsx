@@ -14,7 +14,7 @@ import Button from 'components/Button';
 import { sendLetter, getLetters } from 'api/letter';
 import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
-import { getImage, updateImageAndGetId } from 'api/images';
+import { getImage, resisterImage } from 'api/images';
 import {
   isExistCheckSavedLetter,
   getSavedLetter,
@@ -44,7 +44,7 @@ export default function WriteLetter() {
   const [letter, setLetter] = useState({
     summary: '',
     content: '',
-    image: null,
+    image: '',
   });
   const [isLoading, setIsLoading] = useState(false);
   const [petImage, setPetImage] = useState('');
@@ -200,9 +200,9 @@ export default function WriteLetter() {
 
   const uploadImage = async (image: string | File) => {
     const formData = generateFormData(image);
-    const response = await updateImageAndGetId(formData);
+    const { data } = await resisterImage(formData);
 
-    return response.id;
+    return data.objectKey;
   };
 
   const isCheckPhoneNumberModalOpen = async () => {
@@ -219,8 +219,8 @@ export default function WriteLetter() {
       setIsLoading(true);
       const newLetter = { ...letter };
       if (imageFile) {
-        const imageId = await uploadImage(imageFile);
-        newLetter.image = imageId;
+        const objectKey = await uploadImage(imageFile);
+        newLetter.image = objectKey;
       }
       await sendLetter(selectedPet?.id, newLetter);
       await deleteSavedLetter(id);
