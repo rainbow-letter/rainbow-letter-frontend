@@ -1,16 +1,16 @@
 import React from 'react';
 
 import LetterStatus from 'components/LetterBox/LetterStatus';
-import { Letters } from 'types/letters';
+import { LetterResponse } from 'types/letters';
 import { isCheckUnread } from 'utils/replyStatus';
 import Stamp from '../../assets/im_letterBox_stamp.png';
 
 type Props = {
-  letter: Letters;
+  letter: LetterResponse;
 };
 
 export default function LetterItem({
-  letter: { readStatus, summary, status, index },
+  letter: { readStatus, summary, status, number },
 }: Props) {
   return (
     <li
@@ -20,7 +20,7 @@ export default function LetterItem({
     >
       <LetterStatus status={status} readStatus={readStatus} />
       <p className="mt-3 text-caption">{summary}</p>
-      <p className="mt-5 text-caption text-gray-3">{index}번째 편지</p>
+      <p className="mt-5 text-caption text-gray-3">{number}번째 편지</p>
       <img
         src={Stamp}
         alt="우표 이미지"

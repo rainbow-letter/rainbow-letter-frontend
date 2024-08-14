@@ -1,12 +1,16 @@
 import apiRequest from 'api';
 import { formatDateToYMD } from '../utils/date';
+import { LetterRequest, LetterResponse } from 'types/letters';
+import { ApiResponse } from 'types/Api';
 
 const RESOURCE = '/api/letters';
 
-export const getLetters = async (): Promise<any> => {
-  const response = await apiRequest.get(`${RESOURCE}/list`);
+export const getLetterList = async (): ApiResponse<{
+  letters: LetterResponse[];
+}> => {
+  const response = await apiRequest.get(`${RESOURCE}/box`);
 
-  return response.data;
+  return response;
 };
 
 export const getLetter = async (id: any): Promise<any> => {
@@ -15,10 +19,13 @@ export const getLetter = async (id: any): Promise<any> => {
   return response.data;
 };
 
-export const sendLetter = async (id: any, letter: any): Promise<any> => {
+export const sendLetter = async (
+  id: number | undefined,
+  letter: LetterRequest
+) => {
   const response = await apiRequest.post(`${RESOURCE}?pet=${id}`, letter);
 
-  return response.data;
+  return response;
 };
 
 export const getShareLetter = async (uuid: any): Promise<any> => {

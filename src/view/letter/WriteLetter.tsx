@@ -11,7 +11,7 @@ import ImageUploadSection from 'components/Write/ImageUploadSection';
 import WritableLetterPaper from 'components/Write/WritableLetterPaper';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import Button from 'components/Button';
-import { sendLetter, getLetters } from 'api/letter';
+import { sendLetter, getLetterList } from 'api/letter';
 import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
 import { resisterImage } from 'api/images';
@@ -34,6 +34,7 @@ import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import CoverImage from 'components/Common/CoverImage';
 import useGetImage from 'hooks/useGetImage';
+import { LetterRequest } from 'types/letters';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -41,52 +42,59 @@ export default function WriteLetter() {
   const [petsList, setPetsList] = useState<PetResponse[]>([]);
   const [selectedPet, setSelectedPet] = useState<PetResponse | null>(null);
   const [imageFile, setImageFile] = useState<File | string>('');
-  const [letter, setLetter] = useState({
+  const [letter, setLetter] = useState<LetterRequest>({
     summary: '',
     content: '',
     image: '',
   });
   const [isLoading, setIsLoading] = useState(false);
   const [temp, setTemp] = useState<string | undefined>('');
-  const [id, setId] = useState<string>('');
+  const [id, setId] = useState<number | null>(null);
   const { petImage } = useGetImage(selectedPet);
 
   const fetchAutoSaveLetter = useCallback(async () => {
-    const { data: savedLetter } = await getSavedLetter();
+    const { data: savedLetter } = await getSavedLetter(selectedPet?.id);
     setLetter({
       ...letter,
       content: savedLetter.content,
       summary: savedLetter.content.slice(0, 20),
     });
-    setId(String(savedLetter.id));
-    const sessionId = await updateSessionID(String(savedLetter.id));
+    setId(savedLetter.id);
+    const {
+      data: { sessionId },
+    } = await updateSessionID(savedLetter.id);
     setSessionAutoSaveID(sessionId);
 
     return savedLetter.petId;
-  }, []);
+  }, [selectedPet?.id]);
 
-  const setAutoSaveLetter = useCallback(async (data: PetResponse[]) => {
+  const setAutoSaveLetter = useCallback(async (pet: PetResponse[]) => {
     const sessionId = await generateSavedLetter({
-      petId: data[0].id,
+      petId: pet[0].id,
       content: letter?.content,
     });
-    const { data: savedLetter } = await getSavedLetter();
-    setId(String(savedLetter.id));
-    setSessionAutoSaveID(sessionId);
+    const { data: savedLetter } = await getSavedLetter(selectedPet?.id);
+    setId(savedLetter.id);
+    setSessionAutoSaveID(sessionId.sessionId);
   }, []);
 
-  const loadLetter = useCallback(async (pets: PetResponse[]) => {
-    const petId = await fetchAutoSaveLetter();
+  const loadLetter = useCallback(
+    async (pets: PetResponse[]) => {
+      const petId = await fetchAutoSaveLetter();
 
-    const finedPet = pets.find((pet: PetResponse) => pet.id === petId);
-    return setSelectedPet(finedPet || pets[0]);
-  }, []);
+      const finedPet = pets.find((pet: PetResponse) => pet.id === petId);
+      return setSelectedPet(finedPet || pets[0]);
+    },
+    [selectedPet?.id]
+  );
 
   const choosePet = useCallback(
     async (pets: PetResponse[]) => {
-      const isExist = await isExistCheckSavedLetter();
+      const {
+        data: { exists },
+      } = await isExistCheckSavedLetter(selectedPet?.id);
       if (location.state) {
-        if (isExist) {
+        if (exists && selectedPet?.id) {
           dispatch(modalActions.openModal('EXIST'));
           return loadLetter(pets);
         }
@@ -95,29 +103,30 @@ export default function WriteLetter() {
           (pet: PetResponse) => pet.name === location.state
         );
         setSelectedPet(finedPet || pets[0]);
-        return setAutoSaveLetter(pets);
+        return await setAutoSaveLetter(pets);
       }
 
-      if (isExist) {
+      if (exists && selectedPet?.id) {
         return loadLetter(pets);
       }
 
       await setAutoSaveLetter(pets);
-      return setSelectedPet(pets[0] || null);
     },
-    [location]
+    [location, selectedPet?.id]
   );
 
   // 편지쓰기 페이지 입장
   useEffect(() => {
     (async () => {
       const { data } = await getPets();
-      const { letters } = await getLetters();
+      const {
+        data: { letters },
+      } = await getLetterList();
       setPetsList(data.pets || []);
       if (letters.length < 1) {
         dispatch(modalActions.openModal('TOPIC'));
       }
-      choosePet(data.pets);
+      setSelectedPet(data.pets[0] || null);
 
       return () => {
         dispatch(modalActions.closeModal());
@@ -129,10 +138,11 @@ export default function WriteLetter() {
   useEffect(() => {
     const saveLetterValue = async () => {
       try {
-        const isExist = await isExistCheckSavedLetter();
-        if (isExist && temp !== '') {
-          await updateSavedLetter({
-            id,
+        const {
+          data: { exists },
+        } = await isExistCheckSavedLetter(selectedPet?.id);
+        if (exists && temp !== '') {
+          await updateSavedLetter(id, {
             petId: selectedPet?.id,
             content: letter?.content,
           });
@@ -156,29 +166,31 @@ export default function WriteLetter() {
   }, [temp, selectedPet?.id]);
 
   // 다른 탭에서 접속했는지 확인.
-  useEffect(() => {
-    const compareSessionId = async () => {
-      try {
-        const isExist = await isExistCheckSavedLetter();
-        if (!isExist) return;
-        const { data } = await getSavedLetter();
-        const isTabLive = getSessionAutoSaveID();
-        if (isExist && data.sessionId !== isTabLive) {
-          return dispatch(modalActions.openModal('SAVING'));
-        }
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.log(error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const compareSessionId = async () => {
+  //     try {
+  //       const {
+  //         data: { exists },
+  //       } = await isExistCheckSavedLetter(selectedPet?.id);
+  //       if (!exists) return;
+  //       const { data } = await getSavedLetter(selectedPet?.id);
+  //       const isTabLive = getSessionAutoSaveID();
+  //       if (exists && data.sessionId !== isTabLive) {
+  //         return dispatch(modalActions.openModal('SAVING'));
+  //       }
+  //     } catch (error) {
+  //       if (axios.isAxiosError(error)) {
+  //         console.log(error);
+  //       }
+  //     }
+  //   };
 
-    const isCheckTabLive = setInterval(() => {
-      compareSessionId();
-    }, 5000);
+  //   const isCheckTabLive = setInterval(() => {
+  //     compareSessionId();
+  //   }, 5000);
 
-    return () => clearInterval(isCheckTabLive);
-  }, []);
+  //   return () => clearInterval(isCheckTabLive);
+  // }, []);
 
   // 편지 내용 임시 저장
   useEffect(() => {
@@ -211,7 +223,7 @@ export default function WriteLetter() {
         newLetter.image = objectKey;
       }
       await sendLetter(selectedPet?.id, newLetter);
-      await deleteSavedLetter(id);
+      // await deleteSavedLetter(id, selectedPet?.id);
 
       isCheckPhoneNumberModalOpen();
       return dispatch(modalActions.openModal('COMPLETE'));

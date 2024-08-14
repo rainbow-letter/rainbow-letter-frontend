@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import LetterItem from 'components/LetterBox/LetterItem';
 import Button from 'components/Button';
-import { Letters } from 'types/letters';
+import { LetterResponse } from 'types/letters';
 import { PetResponse } from 'types/pets';
 import { formatDay } from 'utils/date';
 import Plus from '../../assets/ic_letterBox_plus.svg';
@@ -14,26 +14,28 @@ import Plus from '../../assets/ic_letterBox_plus.svg';
 type Props = {
   date: Date;
   selectedPet: PetResponse | null;
-  letterList: Letters[];
+  letterList: LetterResponse[];
 };
 
 export default function LetterList({ date, selectedPet, letterList }: Props) {
   const navigate = useNavigate();
   const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
   const [filteredLetterListByPet, setFilteredLetterLisByPet] = useState<
-    Letters[]
+    LetterResponse[]
   >([]);
 
   useEffect(() => {
     const filteredListByPet = letterList.filter(
       (letter) => letter.petName === selectedPet?.name
     );
-    filteredListByPet.reverse().forEach((letter: Letters, index: number) => {
-      const temp = letter;
-      temp.index = index + 1;
+    filteredListByPet
+      .reverse()
+      .forEach((letter: LetterResponse, index: number) => {
+        const temp = letter;
+        temp.number = index + 1;
 
-      return temp;
-    });
+        return temp;
+      });
 
     setFilteredLetterLisByPet(filteredListByPet.reverse() || []);
   }, [selectedPet, letterList, isCalendarOpen]);
@@ -70,7 +72,7 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
           <Link
             to={`/letter-box/${letter.id}`}
             key={`letter-item-${letter.id}`}
-            state={{ index: letter.index }}
+            state={{ index: letter.number }}
           >
             <LetterItem letter={letter} />
           </Link>

@@ -1,13 +1,20 @@
-export interface Letters {
+type LetterStatus = 'REQUEST' | 'RESPONSE';
+type ReadStatus = 'UNREAD' | 'READ';
+
+export interface LetterResponse {
   id: number;
   summary: string;
-  status: 'REQUEST' | 'RESPONSE';
+  status: LetterStatus;
   petName: string;
-  readStatus: string;
+  readStatus: ReadStatus;
   createdAt: string;
-  index?: number;
-  // TODO: 추후 삭제
   number?: number;
+}
+
+export interface LetterRequest {
+  summary: string;
+  content: string;
+  image: string;
 }
 
 export interface Letter {
