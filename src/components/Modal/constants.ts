@@ -24,28 +24,6 @@ export interface Modal_AD {
 
 export const MODAL_AD_CONTENTS_ITEMS: Modal_AD[] = [
   {
-    id: 3,
-    title: '펫로스 숲치유 무료 이벤트',
-    description: '국립 양평 치유의숲과 함께해요',
-    image: forest,
-    url: 'https://pf.kakao.com/_MNevG/105908916',
-    className: 'bg-[#E7EBD8]',
-  },
-  // {
-  //   id: 4,
-  //   title: '무지개편지를 도와주세요!',
-  //   description: '지금 후원하러 가기',
-  //   image: woman,
-  //   url: '/donate',
-  // },
-  {
-    id: 2,
-    title: 'AI로 만드는 우리 아이 굿즈 ',
-    description: 'FITAPAT 케이스 구매하기',
-    image: FitaPat,
-    url: 'https://www.fitapat.com/product/case/91',
-  },
-  {
     id: 1,
     title: '무지개편지 카톡채널 OPEN',
     description: '답장 링크 카톡으로 받기',

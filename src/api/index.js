@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { getToken, removeToken } from 'utils/localStorage';
 
-const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = process.env.REACT_APP_API_URL_LEGACY;
 
 const baseInstance = axios.create({
   baseURL,
