@@ -50,7 +50,7 @@ export default function WriteLetter() {
   const [isLoading, setIsLoading] = useState(false);
   const [temp, setTemp] = useState<string | undefined>('');
   const [id, setId] = useState<number | null>(null);
-  const { petImage } = useGetImage(selectedPet);
+  const { image } = useGetImage(selectedPet);
 
   const fetchAutoSaveLetter = useCallback(async () => {
     const { data: savedLetter } = await getSavedLetter(selectedPet?.id);
@@ -246,7 +246,7 @@ export default function WriteLetter() {
         <ResisterButtonSection />
       )}
       <LetterPaperWithImage>
-        <CoverImage image={petImage} />
+        <CoverImage image={image} />
         <WritableLetterPaper
           petName={selectedPet?.name}
           onchange={setLetter}

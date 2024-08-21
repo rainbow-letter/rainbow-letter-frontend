@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from 'store';
 
+import { AppDispatch, RootState } from 'store';
 import Divider from 'components/Divider';
 import MenuItemLink from 'components/MyPageTemplate/MenuItemLink';
 import PhoneNumberSection from 'components/MyPageTemplate/PhoneNumberSection';
@@ -17,6 +17,7 @@ import { saveToSessionStorage } from 'utils/sessionStorage';
 function MyPageTemplate() {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.user);
+  console.log(user);
   saveToSessionStorage('role', user.role);
 
   useEffect(() => {

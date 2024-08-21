@@ -1,6 +1,7 @@
 type LetterStatus = 'REQUEST' | 'RESPONSE';
 type ReadStatus = 'UNREAD' | 'READ';
 type ReplyStatus = 'CHAT_GPT' | 'REPLY';
+type promptType = 'A' | 'B';
 
 type PetType = {
   id: number;
@@ -34,7 +35,7 @@ type ReplyType = {
   letterId: number;
   summary: string;
   content: string;
-  promptType: string;
+  promptType: promptType;
   inspection: boolean;
   inspectionTime: string;
   status: ReplyStatus;

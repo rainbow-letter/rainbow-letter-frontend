@@ -19,7 +19,7 @@ const targetUrl = window.location.href;
 
 export default function ShareLetter() {
   const [letterData, setLetterData] = useState<any>();
-  const { petImage } = useGetImage(letterData?.pet);
+  const { image } = useGetImage(letterData?.pet);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -45,7 +45,7 @@ export default function ShareLetter() {
         <main className="relative pb-10">
           <AppBar />
           <LetterPaperWithImage>
-            <CoverImage image={petImage} />
+            <CoverImage image={image} />
             <WrittenLetterPaper
               petName={`${letterData.pet.name}로부터`}
               content={letterData.reply.content}

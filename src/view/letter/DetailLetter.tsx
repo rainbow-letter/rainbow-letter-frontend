@@ -23,15 +23,23 @@ import captureLogo from '../../assets/detailLetter_logo.svg';
 import useGetImage from 'hooks/useGetImage';
 
 export default function DetailLetter() {
+  // redux
   const dispatch = useAppDispatch();
-  const params = useParams();
-  const navigate = useNavigate();
-  const [letterData, setLetterData] = useState<any>();
-
-  const sectionRef = useRef<HTMLDivElement>(null);
   const isSave = useSelector((state: RootState) => state.letter.isSaveToImage);
   const letterType = useSelector((state: RootState) => state.letter.letterType);
-  const { petImage } = useGetImage(letterData?.pet);
+
+  // ref
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // state
+  const [letterData, setLetterData] = useState<any>();
+
+  // hooks
+  const { image } = useGetImage(letterData?.pet);
+
+  // etc.
+  const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -45,6 +53,7 @@ export default function DetailLetter() {
   }, []);
 
   const onClickReplyButton = () => {
+    // TODO: id로 변경?
     navigate('/write-letter', { state: letterData?.pet.name });
   };
 
@@ -163,14 +172,14 @@ export default function DetailLetter() {
         <main className="letterBox relative" ref={sectionRef}>
           {isExistReply && <DownLoadButton onClick={onClickSaveIcon} />}
           <LetterPaperWithImage>
-            <CoverImage image={petImage} />
+            <CoverImage image={image} />
             {isExistReply && (
               <WrittenLetterPaper
                 petName={`${letterData.pet.name}로부터`}
                 content={letterData.reply.content}
                 className="pt-[15.187rem]"
                 letterPaperColor="bg-orange-50"
-                date={formatDateIncludingHangul(letterData.reply.timestamp)}
+                date={formatDateIncludingHangul(letterData.reply.updatedAt)}
                 saveType={{
                   target: 'reply_down',
                   unTargetValue: 'reply_value',
@@ -180,14 +189,10 @@ export default function DetailLetter() {
             )}
             <WrittenLetterPaper
               petName={`${letterData.pet.name}에게`}
-              content={letterData.content}
+              content={letterData.letter.content}
               className={isExistReply ? 'mt-4' : 'pt-[15.187rem]'}
               letterPaperColor="bg-gray-2"
-              date={
-                isExistReply
-                  ? formatDateIncludingHangul(letterData.reply.timestamp)
-                  : ''
-              }
+              date={formatDateIncludingHangul(letterData.letter.updatedAt)}
               saveType={{
                 target: 'letter_down',
                 unTargetValue: 'letter_value',
