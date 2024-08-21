@@ -1,12 +1,12 @@
 import React from 'react';
 
 import LetterStatus from 'components/LetterBox/LetterStatus';
-import { LetterResponse } from 'types/letters';
+import { LetterListResponse } from 'types/letters';
 import { isCheckUnread } from 'utils/replyStatus';
 import Stamp from '../../assets/im_letterBox_stamp.png';
 
 type Props = {
-  letter: LetterResponse;
+  letter: LetterListResponse;
 };
 
 export default function LetterItem({

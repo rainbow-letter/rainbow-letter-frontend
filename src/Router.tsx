@@ -12,7 +12,7 @@ import PWALanding from 'view/home/PWALanding';
 import Home from 'view/home/Home';
 import Donate from 'view/home/Donate';
 import Auth from 'view/account/Auth';
-import LetterBox from 'view/letter/LetterBox';
+// import LetterBox from 'view/letter/LetterBox';
 import LetterBoxRenew from 'view/letter/LetterBoxRenew';
 import DetailLetter from 'view/letter/DetailLetter';
 import ShareLetter from 'view/letter/ShareLetter';
@@ -62,8 +62,8 @@ function Router() {
               <Route path="/my-pets/register" element={<PetRegistration />} />
               <Route path="/my-pets/edit" element={<PetEdit />} />
               <Route path="/write-letter" element={<WriteLetter />} />
-              <Route path="/letter-box" element={<LetterBox />} />
-              <Route path="/letter-box-renew" element={<LetterBoxRenew />} />
+              {/* <Route path="/letter-box" element={<LetterBox />} /> */}
+              <Route path="/letter-box" element={<LetterBoxRenew />} />
               <Route path="/letter-box/:letterId" element={<DetailLetter />} />
               <Route path="/saved-image" element={<SavedImage />} />
             </Route>

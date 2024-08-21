@@ -1,7 +1,50 @@
 type LetterStatus = 'REQUEST' | 'RESPONSE';
 type ReadStatus = 'UNREAD' | 'READ';
+type ReplyStatus = 'CHAT_GPT' | 'REPLY';
 
-export interface LetterResponse {
+type PetType = {
+  id: number;
+  userId: number;
+  name: string;
+  species: string;
+  owner: string;
+  personalities: string[];
+  deathAnniversary: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type LetterType = {
+  id: number;
+  userId: number;
+  petId: number;
+  summary: string;
+  content: string;
+  shareLink: string;
+  image: string;
+  status: LetterStatus;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type ReplyType = {
+  id: number;
+  petId: number;
+  letterId: number;
+  summary: string;
+  content: string;
+  promptType: string;
+  inspection: boolean;
+  inspectionTime: string;
+  status: ReplyStatus;
+  submitTime: string;
+  readStatus: ReadStatus;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export interface LetterListResponse {
   id: number;
   summary: string;
   status: LetterStatus;
@@ -15,6 +58,12 @@ export interface LetterRequest {
   summary: string;
   content: string;
   image: string;
+}
+
+export interface LetterItemResponse {
+  pet: PetType;
+  letter: LetterType;
+  reply: ReplyType;
 }
 
 export interface Letter {

@@ -36,11 +36,11 @@ export default function DetailLetter() {
   useEffect(() => {
     (async () => {
       metaData(Object.keys(params)[0]);
-      const data = await getLetter(params.letterId);
+      const { data } = await getLetter(params.letterId);
       setLetterData(data);
-      if (data.reply.type === 'REPLY') {
-        await readReply(data.reply.id);
-      }
+      // if (data.reply.status === 'REPLY') {
+      //   await readReply(data.reply.id);
+      // }
     })();
   }, []);
 
@@ -155,7 +155,7 @@ export default function DetailLetter() {
     dispatch(modalActions.openModal('IMAGE'));
   }, [dispatch]);
 
-  const isExistReply = !!letterData?.reply.content;
+  const isExistReply = !!letterData?.reply?.content;
 
   return (
     <>
@@ -195,13 +195,13 @@ export default function DetailLetter() {
               }}
             />
           </LetterPaperWithImage>
-          {letterData.image.id && <SentPhoto letterData={letterData} />}
+          {letterData.letter.image && <SentPhoto letterData={letterData} />}
           <div className="w-full">
             <img src={captureLogo} alt="로고" className="logo hidden" />
           </div>
           <Button
             id="reply_write"
-            disabled={!letterData.reply.content}
+            disabled={!letterData?.reply?.content}
             onClick={onClickReplyButton}
             className="not-btn mt-12"
           >

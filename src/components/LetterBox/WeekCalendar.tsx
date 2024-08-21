@@ -11,30 +11,60 @@ import Left from '../../assets/ic_letterBox_left.svg';
 import Right from '../../assets/ic_letterBox_right.svg';
 import DropDown from '../../assets/ic_letterBox_dropdown.svg';
 import Stamp from '../../assets/ic_letterBox_stamp.svg';
+import { PetResponse } from 'types/pets';
+import { getLetterList } from 'api/letter';
+import { LetterListResponse } from 'types/letters';
 
 const DAY_OF_THE_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
 
 type Props = {
   setDate: (date: Date) => void;
-  selectedDate: Date;
   letterList: string[];
+  setLetterList: (date: LetterListResponse[]) => void;
+  selectedPet: null | PetResponse;
 };
 
 export default function WeekCalendar({
   setDate,
-  selectedDate,
   letterList,
+  setLetterList,
+  selectedPet,
 }: Props) {
+  // redux
   const dispatch = useDispatch();
+  const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
+
+  // hooks
   const {
     currentDate,
     setCurrentDate,
     weekCalendarListForWeeks,
     weekCalendarList,
   } = useCalendar();
-  const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
-  const yearAndMonth = `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
+
+  // state
   const [weekCalendar, setWeekCalendar] = useState<number[]>([]);
+
+  // etc.
+  const yearAndMonth = `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
+
+  useEffect(() => {
+    (async () => {
+      if (selectedPet?.id === undefined || weekCalendar.length <= 0) return;
+
+      const firstDayOfTheWeek = weekCalendar[0];
+      const lastDayOfTheWeek = weekCalendar[6];
+      const {
+        data: { letters },
+      } = await getLetterList(
+        selectedPet?.id,
+        firstDayOfTheWeek,
+        lastDayOfTheWeek
+      );
+
+      setLetterList(letters || []);
+    })();
+  }, [selectedPet, weekCalendar]);
 
   useEffect(() => {
     const findIndex = weekCalendarList.findIndex((weeks: string[]) =>
@@ -153,12 +183,10 @@ export default function WeekCalendar({
       </section>
       {isCalendarOpen && (
         <MonthCalendar
-          weekCalendarList={weekCalendarList}
-          letterList={letterList}
           setDate={setDate}
-          selectedDate={selectedDate}
-          currentDate={currentDate}
-          setCurrentDate={setCurrentDate}
+          currentWeekDate={currentDate}
+          setCurrentWeekDate={setCurrentDate}
+          selectedPet={selectedPet}
         />
       )}
       <Divider />

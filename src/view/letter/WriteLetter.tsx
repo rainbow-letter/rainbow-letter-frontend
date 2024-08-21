@@ -119,13 +119,13 @@ export default function WriteLetter() {
   useEffect(() => {
     (async () => {
       const { data } = await getPets();
-      const {
-        data: { letters },
-      } = await getLetterList();
+      // const {
+      //   data: { letters },
+      // } = await getLetterList();
       setPetsList(data.pets || []);
-      if (letters.length < 1) {
-        dispatch(modalActions.openModal('TOPIC'));
-      }
+      // if (letters.length < 1) {
+      //   dispatch(modalActions.openModal('TOPIC'));
+      // }
       setSelectedPet(data.pets[0] || null);
 
       return () => {
