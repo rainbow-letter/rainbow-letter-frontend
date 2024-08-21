@@ -1,24 +1,35 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 import { BANNER_ITEMS } from 'components/MainBanner/constants';
 import Carousel from 'components/Carousel';
 import Banner from 'components/MainBanner';
 
 const carouselItems = BANNER_ITEMS.map((item) => (
-  <Banner
-    key={item.id}
-    category={item.category}
-    title={item.title}
-    description={item.description}
-    link={item.link}
-    image={item.image}
-    bgColor={item.bgColor}
-    buttonContent={item.buttonContent}
-    cover={item.cover}
-  />
+  <Banner key={item.id} link={item.link} image={item.image} />
 ));
 
 function MainBanners() {
+  if (BANNER_ITEMS.length === 1) {
+    return (
+      <>
+        <Link
+          to={BANNER_ITEMS[0].link}
+          target="_blank"
+          className="absolute flex justify-between"
+        >
+          <div className="flex items-center justify-center">
+            <img
+              className="object-fill"
+              src={BANNER_ITEMS[0].image}
+              alt="card"
+            />
+          </div>
+        </Link>
+        <div className="h-[40px]" />
+      </>
+    );
+  }
   const settings = {
     dots: true,
     swipeToSlide: true,
