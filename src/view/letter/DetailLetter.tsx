@@ -46,15 +46,14 @@ export default function DetailLetter() {
       metaData(Object.keys(params)[0]);
       const { data } = await getLetter(params.letterId);
       setLetterData(data);
-      // if (data.reply.status === 'REPLY') {
-      //   await readReply(data.reply.id);
-      // }
+      if (data.reply.status === 'REPLY') {
+        await readReply(data.reply.id);
+      }
     })();
   }, []);
 
   const onClickReplyButton = () => {
-    // TODO: id로 변경?
-    navigate('/write-letter', { state: letterData?.pet.name });
+    navigate('/write-letter', { state: letterData?.pet.id });
   };
 
   const handleSaveToImage = useCallback(

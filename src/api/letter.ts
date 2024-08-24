@@ -40,10 +40,12 @@ export const sendLetter = async (
   return response;
 };
 
-export const getShareLetter = async (uuid: any): Promise<any> => {
+export const getShareLetter = async (
+  uuid: string | undefined
+): ApiResponse<LetterItemResponse> => {
   const response = await apiRequest.get(`${RESOURCE}/share/${uuid}`);
 
-  return response.data;
+  return response;
 };
 
 // For admin

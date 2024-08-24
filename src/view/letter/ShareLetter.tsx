@@ -13,9 +13,8 @@ import { getShareLetter } from 'api/letter';
 import metaData from 'utils/metaData';
 import { formatDateIncludingHangul } from 'utils/date';
 import { isKakaoTalk } from 'utils/device';
-import { Letter } from 'types/letters';
 
-const targetUrl = window.location.href;
+const TARGET_URL = window.location.href;
 
 export default function ShareLetter() {
   const [letterData, setLetterData] = useState<any>();
@@ -26,17 +25,17 @@ export default function ShareLetter() {
   useEffect(() => {
     (async () => {
       if (isKakaoTalk()) {
-        return (window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(targetUrl)}`);
+        return (window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(TARGET_URL)}`);
       }
 
       metaData(Object.keys(params)[0]);
-      const data = await getShareLetter(params.shareLink);
+      const { data } = await getShareLetter(params.shareLink);
       setLetterData(data);
     })();
   }, []);
 
   const onClickReplyButton = () => {
-    navigate('/write-letter', { state: letterData?.pet.name });
+    navigate('/write-letter', { state: letterData?.pet.id });
   };
 
   return (
@@ -51,17 +50,17 @@ export default function ShareLetter() {
               content={letterData.reply.content}
               className="pt-[15.187rem]"
               letterPaperColor="bg-orange-50"
-              date={formatDateIncludingHangul(letterData.reply.timestamp)}
+              date={formatDateIncludingHangul(letterData.reply.updatedAt)}
             />
             <WrittenLetterPaper
               petName={`${letterData.pet.name}에게`}
               content={letterData.content}
               className="mt-4"
               letterPaperColor="bg-gray-2"
-              date={formatDateIncludingHangul(letterData.reply.timestamp)}
+              date={formatDateIncludingHangul(letterData.letter.updatedAt)}
             />
           </LetterPaperWithImage>
-          {letterData.image.id && <SentPhoto letterData={letterData} />}
+          {letterData.letter.image && <SentPhoto letterData={letterData} />}
           <Button
             disabled={!letterData.reply.content}
             onClick={onClickReplyButton}

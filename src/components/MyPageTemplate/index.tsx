@@ -17,7 +17,6 @@ import { saveToSessionStorage } from 'utils/sessionStorage';
 function MyPageTemplate() {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.user);
-  console.log(user);
   saveToSessionStorage('role', user.role);
 
   useEffect(() => {
