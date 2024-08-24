@@ -11,8 +11,8 @@ const RESOURCE = '/api/letters';
 
 export const getLetterList = async (
   petId: number | undefined,
-  startDate: number | string,
-  endDate: number | string
+  startDate?: number | string,
+  endDate?: number | string
 ): ApiResponse<{
   letters: LetterListResponse[];
 }> => {
