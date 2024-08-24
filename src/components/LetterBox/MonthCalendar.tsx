@@ -11,7 +11,7 @@ import DropDown from '../../assets/ic_letterBox_dropdown.svg';
 import Stamp from '../../assets/ic_letterBox_stamp.svg';
 import Cancel from '../../assets/ic_calendar_x.svg';
 import { PetResponse } from 'types/pets';
-import { getLetterList } from 'api/letter';
+import { getLetterListByDate } from 'api/letter';
 import useCalendar from 'hooks/useCalendar';
 
 type Props = {
@@ -64,7 +64,7 @@ export default function MonthCalendar({
 
       const {
         data: { letters },
-      } = await getLetterList(
+      } = await getLetterListByDate(
         selectedPet?.id,
         firstDayOfTheMonth,
         lastDayOfTheMonth

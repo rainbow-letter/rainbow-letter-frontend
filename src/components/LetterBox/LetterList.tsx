@@ -20,7 +20,7 @@ type Props = {
 export default function LetterList({ date, selectedPet, letterList }: Props) {
   const navigate = useNavigate();
   const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
-  const [filteredLetterListByPet, setFilteredLetterLisByPet] = useState<
+  const [filteredLetterList, setFilteredLetterList] = useState<
     LetterListResponse[]
   >([]);
 
@@ -28,25 +28,17 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
     const filteredListByPet = letterList.filter(
       (letter) => letter.petName === selectedPet?.name
     );
-    filteredListByPet
-      .reverse()
-      .forEach((letter: LetterListResponse, index: number) => {
-        const temp = letter;
-        temp.number = index + 1;
 
-        return temp;
-      });
-
-    setFilteredLetterLisByPet(filteredListByPet.reverse() || []);
+    setFilteredLetterList(filteredListByPet || []);
   }, [selectedPet, letterList, isCalendarOpen]);
 
   useEffect(() => {
     if (isCalendarOpen) {
-      setFilteredLetterLisByPet([]);
+      setFilteredLetterList([]);
     }
   }, [isCalendarOpen]);
 
-  const filteredListByDate = filteredLetterListByPet.filter(
+  const filteredListByDate = filteredLetterList.filter(
     (letter) =>
       format(letter.createdAt, 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd')
   );

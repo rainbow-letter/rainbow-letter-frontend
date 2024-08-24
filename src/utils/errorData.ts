@@ -16,8 +16,7 @@ export function emailError(error: ErrorData): boolean {
   if (
     error.message === '이미 존재하는 이메일입니다.' ||
     error.message === '이메일 및 비밀번호를 확인 해주세요.' ||
-    // TODO: 추후 삭제
-    error.message === '아이디와 비밀번호를 확인 해주세요.'
+    error.message === '탈퇴된 계정입니다.'
   ) {
     return true;
   }
@@ -55,8 +54,7 @@ export function passwordError(error: ErrorData): boolean {
   // for 로그인
   if (
     error.message === '이메일 및 비밀번호를 확인 해주세요.' ||
-    // TODO: 추후 삭제
-    error.message === '아이디와 비밀번호를 확인 해주세요.'
+    error.message === '탈퇴된 계정입니다.'
   ) {
     return true;
   }

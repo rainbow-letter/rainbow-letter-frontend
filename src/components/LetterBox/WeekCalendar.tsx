@@ -52,15 +52,9 @@ export default function WeekCalendar({
     (async () => {
       if (selectedPet?.id === undefined || weekCalendar.length <= 0) return;
 
-      const firstDayOfTheWeek = weekCalendar[0];
-      const lastDayOfTheWeek = weekCalendar[6];
       const {
         data: { letters },
-      } = await getLetterList(
-        selectedPet?.id,
-        firstDayOfTheWeek,
-        lastDayOfTheWeek
-      );
+      } = await getLetterList(selectedPet?.id);
 
       setLetterList(letters || []);
     })();

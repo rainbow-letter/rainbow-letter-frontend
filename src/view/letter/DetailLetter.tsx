@@ -46,7 +46,7 @@ export default function DetailLetter() {
       metaData(Object.keys(params)[0]);
       const { data } = await getLetter(params.letterId);
       setLetterData(data);
-      if (data.reply.status === 'REPLY') {
+      if (data.reply?.status === 'REPLY') {
         await readReply(data.reply.id);
       }
     })();
