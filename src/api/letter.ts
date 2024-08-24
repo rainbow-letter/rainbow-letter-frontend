@@ -10,6 +10,16 @@ import { ApiResponse } from 'types/Api';
 const RESOURCE = '/api/letters';
 
 export const getLetterList = async (
+  petId: number | undefined
+): ApiResponse<{
+  letters: LetterListResponse[];
+}> => {
+  const response = await apiRequest.get(`${RESOURCE}/box?pet=${petId}`);
+
+  return response;
+};
+
+export const getLetterListByDate = async (
   petId: number | undefined,
   startDate?: number | string,
   endDate?: number | string

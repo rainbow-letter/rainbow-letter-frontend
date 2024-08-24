@@ -52,15 +52,9 @@ export default function WeekCalendar({
     (async () => {
       if (selectedPet?.id === undefined || weekCalendar.length <= 0) return;
 
-      const firstDayOfTheWeek = weekCalendar[0];
-      const lastDayOfTheWeek = weekCalendar[6];
       const {
         data: { letters },
-      } = await getLetterList(
-        selectedPet?.id,
-        firstDayOfTheWeek,
-        lastDayOfTheWeek
-      );
+      } = await getLetterList(selectedPet?.id);
 
       setLetterList(letters || []);
     })();
@@ -168,7 +162,7 @@ export default function WeekCalendar({
                     className={`${isExistWrittenLetter(day) ? 'bg-orange-50' : isToday(day)} mb-1.5 h-[3.125rem] w-11 rounded-lg`}
                   >
                     {isExistWrittenLetter(day) && (
-                      <img src={Stamp} alt="썸네일" />
+                      <img src={Stamp} alt="썸네일" className="mx-auto" />
                     )}
                   </button>
                   <p

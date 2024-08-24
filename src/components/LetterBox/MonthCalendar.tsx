@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { format, subMonths } from 'date-fns';
+import { format, addDays, subMonths, subDays, lastDayOfMonth } from 'date-fns';
 import { useDispatch } from 'react-redux';
 
 import BottomSheet from 'components/Common/BottomSheet';
@@ -11,7 +11,7 @@ import DropDown from '../../assets/ic_letterBox_dropdown.svg';
 import Stamp from '../../assets/ic_letterBox_stamp.svg';
 import Cancel from '../../assets/ic_calendar_x.svg';
 import { PetResponse } from 'types/pets';
-import { getLetterList } from 'api/letter';
+import { getLetterListByDate } from 'api/letter';
 import useCalendar from 'hooks/useCalendar';
 
 type Props = {
@@ -37,6 +37,7 @@ export default function MonthCalendar({
   // state
   const [isShow, setIsShow] = useState(false);
   const [monthLetterList, setMonthLetterList] = useState<any>([]);
+  const SAVE_DATE = currentWeekDate;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,7 +65,7 @@ export default function MonthCalendar({
 
       const {
         data: { letters },
-      } = await getLetterList(
+      } = await getLetterListByDate(
         selectedPet?.id,
         firstDayOfTheMonth,
         lastDayOfTheMonth
@@ -84,25 +85,28 @@ export default function MonthCalendar({
   const yearAndMonth = `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
 
   const onClickNextMonth = useCallback(() => {
-    setCurrentDate(subMonths(currentDate, -1));
-    setDate(subMonths(currentDate, -1));
+    const lastDay = lastDayOfMonth(currentDate);
+    setCurrentDate(addDays(lastDay, 1));
   }, [currentDate]);
 
   const onClickPrevMonth = useCallback(() => {
-    setCurrentDate(subMonths(currentDate, 1));
-    setDate(subMonths(currentDate, 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    );
   }, [currentDate]);
 
   const onClickDateButton = useCallback((date: string) => {
     setDate(new Date(date));
-    setCurrentDate(new Date(date));
+    setCurrentWeekDate(new Date(date));
+    const action = letterSlice.actions.setCalendarClose();
+    dispatch(action);
   }, []);
 
   const onClickCalendarClose = useCallback(() => {
     const action = letterSlice.actions.setCalendarClose();
     dispatch(action);
-    setCurrentWeekDate(currentDate);
-  }, [dispatch, currentDate]);
+    setCurrentWeekDate(SAVE_DATE);
+  }, [dispatch]);
 
   const isActiveDate = useCallback(
     (date: string) => {
@@ -183,7 +187,7 @@ export default function MonthCalendar({
                         className={`${isExistWrittenLetter(day) ? 'bg-orange-50' : isToday(day)} mb-1 size-[42px] rounded-lg`}
                       >
                         {isExistWrittenLetter(day) && (
-                          <img src={Stamp} alt="썸네일" />
+                          <img src={Stamp} alt="썸네일" className="mx-auto" />
                         )}
                       </button>
                       <p
@@ -206,7 +210,6 @@ export default function MonthCalendar({
             currentDate={currentDate}
             setCurrentDate={setCurrentDate}
             handlePetsListShow={handlePetsListShow}
-            setDate={setDate}
           />
         }
       />
