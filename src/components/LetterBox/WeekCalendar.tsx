@@ -162,7 +162,7 @@ export default function WeekCalendar({
                     className={`${isExistWrittenLetter(day) ? 'bg-orange-50' : isToday(day)} mb-1.5 h-[3.125rem] w-11 rounded-lg`}
                   >
                     {isExistWrittenLetter(day) && (
-                      <img src={Stamp} alt="썸네일" />
+                      <img src={Stamp} alt="썸네일" className="mx-auto" />
                     )}
                   </button>
                   <p
