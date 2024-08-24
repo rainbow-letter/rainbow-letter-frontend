@@ -61,8 +61,8 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
   }, [date]);
 
   const onClickWriteLetterButton = useCallback(() => {
-    navigate('/write-letter', { state: selectedPet });
-  }, []);
+    navigate('/write-letter', { state: selectedPet?.id });
+  }, [selectedPet?.id]);
 
   return (
     <section className="px-[1.125rem] pt-5">
