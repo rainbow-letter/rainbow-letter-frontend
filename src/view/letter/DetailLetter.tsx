@@ -23,29 +23,37 @@ import captureLogo from '../../assets/detailLetter_logo.svg';
 import useGetImage from 'hooks/useGetImage';
 
 export default function DetailLetter() {
+  // redux
   const dispatch = useAppDispatch();
-  const params = useParams();
-  const navigate = useNavigate();
-  const [letterData, setLetterData] = useState<any>();
-
-  const sectionRef = useRef<HTMLDivElement>(null);
   const isSave = useSelector((state: RootState) => state.letter.isSaveToImage);
   const letterType = useSelector((state: RootState) => state.letter.letterType);
-  const { petImage } = useGetImage(letterData?.pet);
+
+  // ref
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // state
+  const [letterData, setLetterData] = useState<any>();
+
+  // hooks
+  const { image } = useGetImage(letterData?.pet);
+
+  // etc.
+  const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       metaData(Object.keys(params)[0]);
-      const data = await getLetter(params.letterId);
+      const { data } = await getLetter(params.letterId);
       setLetterData(data);
-      if (data.reply.type === 'REPLY') {
+      if (data.reply.status === 'REPLY') {
         await readReply(data.reply.id);
       }
     })();
   }, []);
 
   const onClickReplyButton = () => {
-    navigate('/write-letter', { state: letterData?.pet.name });
+    navigate('/write-letter', { state: letterData?.pet.id });
   };
 
   const handleSaveToImage = useCallback(
@@ -155,7 +163,7 @@ export default function DetailLetter() {
     dispatch(modalActions.openModal('IMAGE'));
   }, [dispatch]);
 
-  const isExistReply = !!letterData?.reply.content;
+  const isExistReply = !!letterData?.reply?.content;
 
   return (
     <>
@@ -163,14 +171,14 @@ export default function DetailLetter() {
         <main className="letterBox relative" ref={sectionRef}>
           {isExistReply && <DownLoadButton onClick={onClickSaveIcon} />}
           <LetterPaperWithImage>
-            <CoverImage image={petImage} />
+            <CoverImage image={image} />
             {isExistReply && (
               <WrittenLetterPaper
                 petName={`${letterData.pet.name}로부터`}
                 content={letterData.reply.content}
                 className="pt-[15.187rem]"
                 letterPaperColor="bg-orange-50"
-                date={formatDateIncludingHangul(letterData.reply.timestamp)}
+                date={formatDateIncludingHangul(letterData.reply.updatedAt)}
                 saveType={{
                   target: 'reply_down',
                   unTargetValue: 'reply_value',
@@ -180,14 +188,10 @@ export default function DetailLetter() {
             )}
             <WrittenLetterPaper
               petName={`${letterData.pet.name}에게`}
-              content={letterData.content}
+              content={letterData.letter.content}
               className={isExistReply ? 'mt-4' : 'pt-[15.187rem]'}
               letterPaperColor="bg-gray-2"
-              date={
-                isExistReply
-                  ? formatDateIncludingHangul(letterData.reply.timestamp)
-                  : ''
-              }
+              date={formatDateIncludingHangul(letterData.letter.updatedAt)}
               saveType={{
                 target: 'letter_down',
                 unTargetValue: 'letter_value',
@@ -195,13 +199,13 @@ export default function DetailLetter() {
               }}
             />
           </LetterPaperWithImage>
-          {letterData.image.id && <SentPhoto letterData={letterData} />}
+          {letterData.letter.image && <SentPhoto letterData={letterData} />}
           <div className="w-full">
             <img src={captureLogo} alt="로고" className="logo hidden" />
           </div>
           <Button
             id="reply_write"
-            disabled={!letterData.reply.content}
+            disabled={!letterData?.reply?.content}
             onClick={onClickReplyButton}
             className="not-btn mt-12"
           >

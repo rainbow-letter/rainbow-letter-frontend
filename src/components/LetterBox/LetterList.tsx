@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import LetterItem from 'components/LetterBox/LetterItem';
 import Button from 'components/Button';
-import { LetterResponse } from 'types/letters';
+import { LetterListResponse } from 'types/letters';
 import { PetResponse } from 'types/pets';
 import { formatDay } from 'utils/date';
 import Plus from '../../assets/ic_letterBox_plus.svg';
@@ -14,14 +14,14 @@ import Plus from '../../assets/ic_letterBox_plus.svg';
 type Props = {
   date: Date;
   selectedPet: PetResponse | null;
-  letterList: LetterResponse[];
+  letterList: LetterListResponse[];
 };
 
 export default function LetterList({ date, selectedPet, letterList }: Props) {
   const navigate = useNavigate();
   const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
   const [filteredLetterListByPet, setFilteredLetterLisByPet] = useState<
-    LetterResponse[]
+    LetterListResponse[]
   >([]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
     );
     filteredListByPet
       .reverse()
-      .forEach((letter: LetterResponse, index: number) => {
+      .forEach((letter: LetterListResponse, index: number) => {
         const temp = letter;
         temp.number = index + 1;
 

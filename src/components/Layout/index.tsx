@@ -9,7 +9,7 @@ function Layout() {
     pathname === '/' ||
     pathname === '/donate' ||
     // TODO: '/letter-box로 변경'
-    pathname === '/letter-box-renew' ||
+    pathname === '/letter-box' ||
     false;
 
   useEffect(() => {

@@ -19,7 +19,7 @@ export default function PetInfoCard({
   petsList,
   selectedPet,
 }: Props) {
-  const { petImage } = useGetImage(selectedPet);
+  const { image } = useGetImage(selectedPet);
 
   useEffect(() => {
     (async () => {
@@ -36,7 +36,7 @@ export default function PetInfoCard({
         petsList={petsList}
         onChange={onChange}
       />
-      <CoverImage image={petImage} />
+      <CoverImage image={image} />
       <InfoBox pet={selectedPet} />
       <Divider />
     </section>

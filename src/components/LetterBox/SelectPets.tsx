@@ -29,7 +29,7 @@ export default function BottomSheetContents({
   return (
     <article className="flex w-full flex-col items-center">
       <p className="mt-5 text-heading-3">아이 선택하기</p>
-      <ul className="mt-[14.5px] w-full overflow-y-scroll text-heading-3 font-[400]">
+      <ul className="mt-[14.5px] w-full overflow-y-auto text-heading-3 font-[400]">
         {list.map((pet) => (
           <li
             className="border-b py-3 pl-[1.125rem]"

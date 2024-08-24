@@ -1,22 +1,34 @@
 import apiRequest from 'api';
 import { formatDateToYMD } from '../utils/date';
-import { LetterRequest, LetterResponse } from 'types/letters';
+import {
+  LetterRequest,
+  LetterListResponse,
+  LetterItemResponse,
+} from 'types/letters';
 import { ApiResponse } from 'types/Api';
 
 const RESOURCE = '/api/letters';
 
-export const getLetterList = async (): ApiResponse<{
-  letters: LetterResponse[];
+export const getLetterList = async (
+  petId: number | undefined,
+  startDate: number | string,
+  endDate: number | string
+): ApiResponse<{
+  letters: LetterListResponse[];
 }> => {
-  const response = await apiRequest.get(`${RESOURCE}/box`);
+  const response = await apiRequest.get(
+    `${RESOURCE}/box?pet=${petId}&start=${startDate}&end=${endDate}`
+  );
 
   return response;
 };
 
-export const getLetter = async (id: any): Promise<any> => {
+export const getLetter = async (
+  id: string | undefined
+): ApiResponse<LetterItemResponse> => {
   const response = await apiRequest.get(`${RESOURCE}/${id}`);
 
-  return response.data;
+  return response;
 };
 
 export const sendLetter = async (
@@ -28,10 +40,12 @@ export const sendLetter = async (
   return response;
 };
 
-export const getShareLetter = async (uuid: any): Promise<any> => {
+export const getShareLetter = async (
+  uuid: string | undefined
+): ApiResponse<LetterItemResponse> => {
   const response = await apiRequest.get(`${RESOURCE}/share/${uuid}`);
 
-  return response.data;
+  return response;
 };
 
 // For admin

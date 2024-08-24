@@ -2,7 +2,7 @@ import apiRequest from 'api';
 
 const RESOURCE = '/api/replies/read';
 
-export const readReply = async (id) => {
+export const readReply = async (id: number) => {
   const response = await apiRequest.post(`${RESOURCE}/${id}`);
 
   return response.data;
@@ -12,7 +12,7 @@ export const readReply = async (id) => {
 const RESOURSE_ADMIN = '/api/replies/admin';
 
 // 답장 재생성
-export const generateReply = async (letterId) => {
+export const generateReply = async (letterId: any) => {
   const response = await apiRequest.post(
     `${RESOURSE_ADMIN}/generate/${letterId}`
   );
@@ -31,7 +31,7 @@ export const generateReply = async (letterId) => {
  * @throws {Error} API 요청에 실패하면 에러가 발생합니다.
  */
 
-export const editReply = async (replyId, editedReply) => {
+export const editReply = async (replyId: any, editedReply: any) => {
   const response = await apiRequest.put(
     `${RESOURSE_ADMIN}/${replyId}`,
     editedReply
@@ -41,7 +41,7 @@ export const editReply = async (replyId, editedReply) => {
 };
 
 // 답장 검수
-export const inspectReply = async (replyId) => {
+export const inspectReply = async (replyId: any) => {
   const response = await apiRequest.post(
     `${RESOURSE_ADMIN}/inspect/${replyId}`
   );
@@ -59,7 +59,7 @@ export const inspectReply = async (replyId) => {
  * @throws {Error} API 요청에 실패하면 에러가 발생합니다.
  */
 
-export const sendReply = async (replyId, letterId) => {
+export const sendReply = async (replyId: any, letterId: any) => {
   const response = await apiRequest.post(
     `${RESOURSE_ADMIN}/submit/${replyId}`,
     letterId

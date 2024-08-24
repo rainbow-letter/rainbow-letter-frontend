@@ -1,23 +1,28 @@
 import { useState, useEffect } from 'react';
 
-import { PetResponse } from 'types/pets';
 import { getImage } from 'api/images';
 import defaultImage from 'assets/Logo_256px.png';
 
-export default function useGetImage(pet: PetResponse | undefined | null) {
-  const [petImage, setPetImage] = useState<string>('');
+export default function useGetImage(pet: any) {
+  const [image, setImage] = useState<string>('');
 
   useEffect(() => {
     const getPetImage = async () => {
       if (pet?.image) {
         const image = await getImage(pet?.image);
-        return setPetImage(image);
+        return setImage(image);
       }
 
-      return setPetImage(defaultImage);
+      if (pet) {
+        const image = await getImage(pet);
+        return setImage(image);
+      }
+
+      return setImage(defaultImage);
     };
 
     getPetImage();
   }, [pet]);
-  return { petImage };
+
+  return { image };
 }

@@ -1,12 +1,12 @@
 import { INFO_MESSAGES } from 'components/LetterBox/constants';
 import { formatDateWithSlash } from 'utils/date';
 import { letterReplyStatus, isCheckUnread } from 'utils/replyStatus';
-import { LetterResponse } from 'types/letters';
+import { LetterListResponse } from 'types/letters';
 import arrowIcon from '../../assets/ion_chevron-back_1.svg';
 import ellipseIcon from '../../assets/Ellipse 439.svg';
 
 type Props = {
-  letter: LetterResponse;
+  letter: LetterListResponse;
   index: number | undefined;
 };
 

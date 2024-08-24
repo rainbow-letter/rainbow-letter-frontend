@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from 'store';
 
+import { AppDispatch, RootState } from 'store';
 import Divider from 'components/Divider';
 import MenuItemLink from 'components/MyPageTemplate/MenuItemLink';
 import PhoneNumberSection from 'components/MyPageTemplate/PhoneNumberSection';
