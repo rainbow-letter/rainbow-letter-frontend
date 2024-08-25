@@ -20,7 +20,7 @@ export const fetchLetters = createAsyncThunk(
       queryParams.append('inspect', filterOption.inspect);
     }
 
-    const response = await api.get(`/api/letters/admin/list?${queryParams}`);
+    const response = await api.get(`/api/admins/letters/list?${queryParams}`);
     return response.data;
   }
 );

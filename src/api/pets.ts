@@ -28,6 +28,12 @@ export const updatePet = async (pet: any, id: string): Promise<any> => {
   return response.data;
 };
 
+export const deletePet = async (id: string): Promise<any> => {
+  const response = await apiRequest.delete(`${RESOURCE}/${id}`);
+
+  return response.data;
+};
+
 export const getDashboard = async (): Promise<any> => {
   const response = await apiRequest.get(`${RESOURCE}/dashboard`);
 

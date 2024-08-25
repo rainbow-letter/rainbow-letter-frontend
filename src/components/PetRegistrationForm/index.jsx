@@ -18,9 +18,11 @@ import {
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
   const [isEmptyImage, setIsEmptyImage] = useState(true);
+
   const { pathname } = useLocation();
-  const { setMandatoryData, setOptionalData } = usePetRegistration();
   const isEdit = pathname.includes('edit');
+
+  const { setMandatoryData, setOptionalData } = usePetRegistration();
   const { isSubmitting, handleButtonClick } = usePreventDoubleClick();
 
   const setPetData = () => {

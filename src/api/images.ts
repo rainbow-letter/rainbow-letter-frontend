@@ -15,3 +15,9 @@ export const resisterImage = async (file: any): ApiResponse<ImageResponse> => {
 
   return response;
 };
+
+export const deleteImage = async (key: string): ApiResponse<ImageResponse> => {
+  const response = await apiRequest.delete(`${RESOURCE}/${key}`);
+
+  return response;
+};
