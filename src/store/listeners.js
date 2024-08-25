@@ -5,6 +5,8 @@ import {
   editReply,
 } from './admin/letter-actions.js';
 
+import { fetchPets, updatePetLike } from './pet/pet-action';
+
 const isFulfilledAction = (action, types) => types.includes(action.type);
 
 async function handleEditReply(action, listenerApi) {
@@ -33,5 +35,12 @@ export const setupListeners = ({ startListening }) => {
   startListening({
     matcher: (action) => action.type === editReply.fulfilled.type,
     effect: (action, listenerApi) => handleEditReply(action, listenerApi),
+  });
+
+  startListening({
+    matcher: (action) => action.type === updatePetLike.fulfilled.type,
+    effect: async (action, listenerApi) => {
+      await listenerApi.dispatch(fetchPets());
+    },
   });
 };
