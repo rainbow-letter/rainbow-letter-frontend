@@ -24,5 +24,5 @@ export default function useGetImage(pet: any) {
     getPetImage();
   }, [pet]);
 
-  return { image };
+  return { image, setImage };
 }
