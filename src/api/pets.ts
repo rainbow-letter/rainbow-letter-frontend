@@ -1,8 +1,16 @@
 import apiRequest from 'api';
 import { ApiResponse } from 'types/Api';
-import { PetResponse } from 'types/pets';
+import { PetResponse, PetsDashBoard } from 'types/pets';
 
 const RESOURCE = '/api/pets';
+
+export const getPetsDashBoard = async (): ApiResponse<{
+  pets: PetsDashBoard[];
+}> => {
+  const response = await apiRequest.get(`${RESOURCE}/dashboard`);
+
+  return response;
+};
 
 export const getPets = async (): ApiResponse<{ pets: PetResponse[] }> => {
   const response = await apiRequest.get(`${RESOURCE}`);
