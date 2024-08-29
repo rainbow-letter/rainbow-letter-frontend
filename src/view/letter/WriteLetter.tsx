@@ -93,12 +93,12 @@ export default function WriteLetter() {
   const whenNonExistedSavedLetter = useCallback(async () => {
     const newSaveLetterData = {
       petId: selectedPet?.id,
-      content: `${selectedPet?.name}`,
+      content: letter?.content,
     };
 
     const { sessionId } = await generateSavedLetter(newSaveLetterData);
     setSessionAutoSaveID(sessionId);
-  }, [selectedPet?.id]);
+  }, [selectedPet?.id, letter.content]);
 
   // 자동저장 편지가 있을 때(편지 생성 및 세션 아이디 초기화)
   const whenExistedSavedLetter = useCallback(async () => {
