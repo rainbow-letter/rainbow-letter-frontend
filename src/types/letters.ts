@@ -27,6 +27,7 @@ type LetterType = {
   status: LetterStatus;
   createdAt: string;
   updatedAt: string;
+  number: number;
 };
 
 type ReplyType = {
@@ -52,7 +53,7 @@ export interface LetterListResponse {
   petName: string;
   readStatus: ReadStatus;
   createdAt: string;
-  number?: number;
+  number: number;
 }
 
 export interface LetterRequest {
