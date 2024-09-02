@@ -42,10 +42,10 @@ export const updatePet = createAsyncThunk(
   }
 );
 
-export const deletePetImage = createAsyncThunk(
-  'pet/deleteImage',
+export const updatePetLike = createAsyncThunk(
+  'pet/updateLike',
   async (id: Pet['id']) => {
-    const response = await api.delete(`/api/pets/${id}/image`);
+    const response = await api.post(`api/pets/favorite/${id}`);
     return response;
   }
 );

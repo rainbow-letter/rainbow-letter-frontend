@@ -10,7 +10,7 @@ import useGetImage from 'hooks/useGetImage';
 
 function PetCard({ pet }, ref) {
   const navigate = useNavigate();
-  const { petImage } = useGetImage(pet);
+  const { image: petImage } = useGetImage(pet);
 
   const deathAnniversaryDDay =
     pet.deathAnniversary && calculateDDay(pet.deathAnniversary);
@@ -56,7 +56,7 @@ function PetCard({ pet }, ref) {
           >
             {USER_ACTIONS.GO_TO_LETTERS}
           </button>
-          <LikeButton favoriteData={pet.favorite} />
+          <LikeButton petId={pet.id} favoriteData={pet.favorite} />
         </footer>
       </article>
     </li>

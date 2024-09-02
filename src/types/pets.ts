@@ -40,3 +40,12 @@ export interface PetResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface PetsDashBoard {
+  id: number;
+  name: string;
+  letterCount: number;
+  favoriteCount: number;
+  image: string;
+  deathAnniversary: string;
+}

@@ -18,9 +18,12 @@ import {
 import useGetImage from 'hooks/useGetImage';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
+
+  const [isEmptyImage, setIsEmptyImage] = useState(isEdit ? false : true);
+
   const { pathname } = useLocation();
   const isEdit = pathname.includes('edit');
-  const [isEmptyImage, setIsEmptyImage] = useState(isEdit ? false : true);
+
   const { setMandatoryData, setOptionalData } = usePetRegistration();
   const { isSubmitting, handleButtonClick } = usePreventDoubleClick();
   const { image, setImage } = useGetImage(petData?.image);

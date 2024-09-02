@@ -13,79 +13,92 @@ import defaultImage from 'assets/Logo_256px.png';
 import {
   editReply,
   regenerateReply,
-} from '../../../../store/admin/letter-actions';
+} from '../../../../store/admin/letters-actions';
 import { getReplyStatus, replyStatusInfo } from '../LetterTable/TableRow';
-import { fetchUserLetters } from '../../../../store/admin/userLetter-actions';
+import { fetchLetter } from '../../../../store/admin/letters-actions';
+
+import { getAdminLetterDetail } from '../../../../api/letter';
 
 const MAX_CONTENT_LENGTH = 1000;
 
-function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
+function LetterDetailForm({
+  letterData,
+  userId,
+  petId,
+  letterId,
+  isModal = false,
+  onLetterClick,
+}) {
   const [newContent, setNewContentValue] = useState('');
   const [petImage, setPetImage] = useState('');
   const [letterImage, setLetterImage] = useState('');
 
   const navigate = useNavigate();
-
-  const isPageLoading = useSelector(
-    (state) => state.adminLetters.status === 'loading'
-  );
-
-  const userLetters = useSelector((state) => state.adminUserLetters.letters);
-
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isModal) return;
-    dispatch(fetchUserLetters());
-  }, [dispatch]);
+  // const { letterData, status } = useSelector((state) => state.adminLetter);
+  const { user, pet, letter, reply, recent } = letterData;
+  // const isPageLoading = status === 'loading';
 
-  const letterData = userLetters.find(
-    (letter) => letter.id === Number(letterId)
-  );
+  // useEffect(() => {
+  //   dispatch(fetchLetter(userId, petId, letterId));
+  // }, [dispatch, userId, petId, letterId]);
+
+  // const userLetters = useSelector((state) => state.adminUserLetters.letters);
+
+  console.log('letterData', letterData);
+
+  // useEffect(async () => {
+  //   if (isModal) return;
+  //   // dispatch(fetchLetter(userId, petId, letterId));
+  //   const res = await getAdminLetterDetail(userId, petId, letterId);
+  //   setLetterData(res);
+  // }, [dispatch]);
+
+  // const letterData = userLetters.find(
+  //   (letter) => letter.id === Number(letterId)
+  // );
 
   useEffect(() => {
-    if (letterData) {
-      setNewContentValue(letterData.reply.content);
+    if (reply && reply?.content) {
+      setNewContentValue(reply?.content);
     }
-  }, [letterData?.reply?.content]);
+  }, [reply?.content]);
 
   useEffect(() => {
-    if (letterData?.pet?.image?.objectKey) {
+    if (pet?.image) {
       const getPetImage = async () => {
-        const image = await getImage(letterData.pet.image.objectKey);
+        const image = await getImage(pet.image);
         setPetImage(image);
       };
       getPetImage();
     } else {
       setPetImage(defaultImage);
     }
-  }, [letterData]);
+  }, [pet?.image]);
 
   useEffect(() => {
-    if (letterData?.image?.objectKey) {
+    if (letter?.image) {
       const getLetterImage = async () => {
-        const image = await getImage(letterData.image.objectKey);
+        const image = await getImage(letter.image);
         setLetterImage(image);
       };
       getLetterImage();
     }
-  }, [letterData]);
+  }, [letter?.image]);
 
   const handleRegenerateClick = () => {
-    if (letterData.reply.timestamp)
-      return alert('이미 답장을 보낸 편지입니다.');
-    dispatch(regenerateReply(letterData.id));
+    if (reply?.submitTime) return alert('이미 답장을 보낸 편지입니다.');
+    dispatch(regenerateReply(letter.id));
   };
 
-  const isChanged = newContent !== letterData?.reply.content;
   const handleSaveClick = () => {
-    if (letterData.reply.timestamp)
-      return alert('이미 답장을 보낸 편지입니다.');
+    if (reply?.submitTime) return alert('이미 답장을 보낸 편지입니다.');
 
     const newSummary = extractFirstTenChars(newContent);
     dispatch(
       editReply({
-        replyId: letterData.reply.id,
+        replyId: reply?.id,
         editedReply: {
           summary: newSummary,
           content: newContent,
@@ -102,9 +115,9 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
   if (!letterData) {
     return <div>Loading...</div>;
   }
-
-  const { pet, reply } = letterData;
-  const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
+  console.log('letterData', letterData);
+  const isChanged = newContent !== reply?.content;
+  const replyStatus = getReplyStatus(reply?.submitTime, reply?.inspectionTime);
 
   return (
     <div
@@ -126,16 +139,16 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
                 <span className="whitespace-nowrap">마지막 로그인</span>
               </div>
               <div className="flex flex-col gap-y-1">
-                <span className="whitespace-nowrap">{letterData.email}</span>
+                <span className="whitespace-nowrap">{user.email}</span>
                 <span className="whitespace-nowrap">
-                  {letterData.phoneNumber || '-'}
+                  {user.phoneNumber || '-'}
                 </span>
                 <span className="whitespace-nowrap">
-                  {formatDateToYYMMDD(letterData.memberCreatedAt)}
+                  {formatDateToYYMMDD(user.createdAt)}
                 </span>
-                <span className="whitespace-nowrap">{letterData.count}</span>
+                <span className="whitespace-nowrap">{letter.id}</span>
                 <span className="whitespace-nowrap">
-                  {formatDateToYYMMDD(letterData.createdAt)}
+                  {formatDateToYYMMDD(letter.createdAt)}
                 </span>
               </div>
             </div>
@@ -157,10 +170,10 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
                 </tr>
               </thead>
               <tbody>
-                {userLetters.map((row) => {
+                {recent.map((row) => {
                   const replyStatus = getReplyStatus(
-                    row.reply.timestamp,
-                    row.reply.inspectionTime
+                    row.status,
+                    row.inspection
                   );
                   const isSelected = row.id === Number(letterId);
                   return (
@@ -169,9 +182,9 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
                       className={`cursor-pointer hover:bg-gray-100 ${isSelected && 'font-semibold text-blue-600'}`}
                       onClick={() => handleUserLetterClick(row.id)}
                     >
-                      <td className="text-center">{row.count}</td>
+                      <td className="text-center">{row.number}</td>
                       <td className="whitespace-nowrap text-center">
-                        {row.pet.name}
+                        {row.petName}
                       </td>
                       <td className="truncate whitespace-nowrap text-center">
                         {row.summary}
@@ -232,7 +245,7 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
           <div className="flex justify-between">
             <div className="flex items-center gap-x-2">
               <span className="text-[20px] font-bold">
-                {letterData.count}회차 편지
+                {letter.number}회차 편지
               </span>
               {letterImage && (
                 <Link
@@ -244,10 +257,10 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
                 </Link>
               )}
             </div>
-            <span>등록일 {formatDateToYYMMDDHHSS(letterData.createdAt)}</span>
+            <span>등록일 {formatDateToYYMMDDHHSS(letter.createdAt)}</span>
           </div>
           <div className="flex grow rounded bg-gray-100 p-3">
-            {letterData.content}
+            {letter.content}
           </div>
         </main>
       </section>
@@ -264,11 +277,13 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
             </div>
           </div>
           <div className="flex flex-col">
-            {!!reply.inspectionTime && (
-              <span>검수일 {formatDateToYYMMDDHHSS(reply.inspectionTime)}</span>
+            {!!reply?.inspectionTime && (
+              <span>
+                검수일 {formatDateToYYMMDDHHSS(reply?.inspectionTime)}
+              </span>
             )}
-            {!!reply.timestamp && (
-              <span>발송일 {formatDateToYYMMDDHHSS(reply.timestamp)}</span>
+            {!!reply?.submitTime && (
+              <span>발송일 {formatDateToYYMMDDHHSS(reply?.submitTime)}</span>
             )}
           </div>
         </header>
@@ -296,12 +311,13 @@ function LetterDetailForm({ letterId, isModal = false, onLetterClick }) {
             <div className="flex gap-x-2">
               <button
                 className={`rounded px-3 py-2 font-semibold ${
-                  isPageLoading
-                    ? 'cursor-not-allowed'
-                    : 'bg-pink-300 hover:bg-pink-400'
+                  // isPageLoading
+                  //   ? 'cursor-not-allowed'
+                  //   : 'bg-pink-300 hover:bg-pink-400'
+                  'bg-pink-300 hover:bg-pink-400'
                 }`}
                 type="button"
-                disabled={isPageLoading}
+                // disabled={isPageLoading}
                 onClick={handleRegenerateClick}
               >
                 GPT 재생성
