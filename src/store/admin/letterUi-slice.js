@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { formatDateToYMD, getPastDate } from 'utils/date';
-import { fetchLetters } from './letter-actions.js';
+import { fetchLetters } from './letters-actions';
 
 // type FilterOption = {
 //   type: 'ALL' | 'WAIT' | 'COMPLETE';
@@ -25,13 +25,13 @@ const DEFAULT_LETTERS_PER_PAGE = 25;
 
 const initialState = {
   filterOption: {
-    type: 'ALL',
     startDate: getPastDate(DAYS_AGO),
     endDate: TODAY,
     page: 0,
     size: DEFAULT_LETTERS_PER_PAGE,
     email: '',
     inspect: 'null',
+    status: 'null',
   },
   totalPages: 1,
   status: 'idle',
@@ -60,7 +60,7 @@ const adminLetterUiSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchLetters.fulfilled, (state, action) => {
       state.status = 'success';
-      state.totalPages = action.payload.totalPages;
+      state.totalPages = action.payload.page.totalPages;
     });
   },
 });

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchLetters,
   sendReply,
-} from '../../../../store/admin/letter-actions';
+} from '../../../../store/admin/letters-actions';
 import { letterUiActions } from '../../../../store/admin/letterUi-slice';
 import TableRow from './TableRow';
 
@@ -13,6 +13,7 @@ function LetterTable() {
 
   const dispatch = useDispatch();
   const { letters } = useSelector((state) => state.adminLetters);
+  const { userId, petId } = letters;
   const { filterOption } = useSelector((state) => state.adminLetterUi);
 
   const handleSearchClick = () => {
@@ -23,8 +24,8 @@ function LetterTable() {
   };
 
   const handleStatusFilterClick = (event) => {
-    const { type, inspect } = event.currentTarget.dataset;
-    dispatch(letterUiActions.setFilterOption({ type, inspect }));
+    const { inspect, status } = event.currentTarget.dataset;
+    dispatch(letterUiActions.setFilterOption({ inspect, status }));
     dispatch(fetchLetters());
   };
 
@@ -32,7 +33,7 @@ function LetterTable() {
     const requests = letters
       .filter(
         (letter) =>
-          letter.isChecked && letter.reply.inspection && !letter.reply.timestamp
+          letter.isChecked && letter.inspection && !letter.inspectionTime
       )
       .map((letter) => ({
         replyId: letter.reply.id,
@@ -50,8 +51,7 @@ function LetterTable() {
     if (checkedLetters.length === 0) return false;
 
     return checkedLetters.every(
-      (letter) =>
-        letter.reply?.inspection === true && letter.reply?.timestamp === null
+      (letter) => letter.inspection === true && letter.submitTime === null
     );
   };
 
@@ -102,37 +102,37 @@ function LetterTable() {
             <span className="font-bold">상태</span>
             <div className="flex gap-x-1 rounded-md bg-gray-300 text-white">
               <button
-                className={`${filterOption.type === 'ALL' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
+                className={`${filterOption.status === 'null' && filterOption.inspect === 'null' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
-                data-type="ALL"
                 data-inspect="null"
+                data-status="null"
                 onClick={handleStatusFilterClick}
               >
                 전체
               </button>
               <button
-                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'false' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
+                className={`${filterOption.status === 'CHAT_GPT' && filterOption.inspect === 'false' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
-                data-type="WAIT"
                 data-inspect="false"
+                data-status="CHAT_GPT"
                 onClick={handleStatusFilterClick}
               >
                 검수대기
               </button>
               <button
-                className={`${filterOption.type === 'WAIT' && filterOption.inspect === 'true' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
+                className={`${filterOption.status === 'CHAT_GPT' && filterOption.inspect === 'true' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
-                data-type="WAIT"
                 data-inspect="true"
+                data-status="CHAT_GPT"
                 onClick={handleStatusFilterClick}
               >
                 검수완료
               </button>
               <button
-                className={`${filterOption.type === 'COMPLETE' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
+                className={`${filterOption.status === 'REPLY' ? 'bg-blue-500' : 'bg-gray-300'} rounded-md px-4 py-2 font-bold`}
                 type="button"
-                data-type="COMPLETE"
-                data-inspect="null"
+                data-inspect="true"
+                data-status="REPLY"
                 onClick={handleStatusFilterClick}
               >
                 발송완료
@@ -183,7 +183,13 @@ function LetterTable() {
             <tbody>
               {letters.map((letter, index) => {
                 return (
-                  <TableRow key={letter.id} no={index + 1} letter={letter} />
+                  <TableRow
+                    key={letter.id}
+                    no={index + 1}
+                    letter={letter}
+                    userId={userId}
+                    pertId={petId}
+                  />
                 );
               })}
             </tbody>

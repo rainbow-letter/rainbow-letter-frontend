@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { fetchLetters } from '../../../store/admin/letter-actions';
+import { fetchLetters } from '../../../store/admin/letters-actions';
 import LetterTable from './LetterTable';
 import Pagination from './Pagination';
 

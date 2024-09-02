@@ -1,11 +1,10 @@
+import { fetchPets, updatePetLike } from './pet/pet-action';
 import {
   fetchLetters,
   inspectReply,
   sendReply,
   editReply,
-} from './admin/letter-actions.js';
-
-import { fetchPets, updatePetLike } from './pet/pet-action';
+} from './admin/letters-actions';
 
 const isFulfilledAction = (action, types) => types.includes(action.type);
 

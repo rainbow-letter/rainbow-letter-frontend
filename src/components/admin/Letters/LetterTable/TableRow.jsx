@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { formatDateToYYDDMMHHMM } from 'utils/date';
 import { adminUserLetterActions } from 'store/admin/useLetter-slice';
-import { adminLetterActions } from '../../../../store/admin/letter-slice';
+import { adminLetterActions } from '../../../../store/admin/letters-slice';
+import { fetchLetter } from '../../../../store/admin/letters-actions';
+import apiRequest from '../../../../api';
 
 export const replyStatusInfo = {
   검수대기: 'bg-yellow-400',
@@ -13,7 +15,19 @@ export const replyStatusInfo = {
 };
 
 function TableRow({ no, letter, isChecked }) {
-  const { id, email, count, createdAt, summary, reply } = letter;
+  const {
+    id,
+    email,
+    count,
+    createdAt,
+    summary,
+    submitTime,
+    inspectionTime,
+    status,
+    userId,
+    petId,
+  } = letter;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,12 +35,21 @@ function TableRow({ no, letter, isChecked }) {
     dispatch(adminLetterActions.toggleLetterCheck(id));
   };
 
-  const handleReplyClick = () => {
+  const handleReplyClick = async () => {
+    const data = { userId, petId };
     dispatch(adminUserLetterActions.setFilterOption({ email }));
-    navigate(`/admin/letters/${id}`);
+    console.log('handleReply', userId, petId, id);
+    // dispatch(fetchLetter(userId, petId, id));
+    const res = await apiRequest.get(
+      `/api/admins/letters/${id}?user=${userId}&pet=${petId}`
+    );
+    console.log('res', res);
+    if (res.status === 200) {
+      navigate(`/admin/letters/${id}`, { state: res.data });
+    }
   };
 
-  const replyStatus = getReplyStatus(reply.timestamp, reply.inspectionTime);
+  const replyStatus = getReplyStatus(status, inspectionTime);
 
   return (
     <tr className="border-b">
@@ -61,10 +84,10 @@ function TableRow({ no, letter, isChecked }) {
         </button>
       </td>
       <td className="border p-2 text-center">
-        {formatDateToYYDDMMHHMM(reply.inspectionTime)}
+        {formatDateToYYDDMMHHMM(inspectionTime)}
       </td>
       <td className="border p-2 text-center">
-        {reply.timestamp && formatDateToYYDDMMHHMM(reply.timestamp)}
+        {submitTime && formatDateToYYDDMMHHMM(submitTime)}
       </td>
       <td className="border p-2 text-center">{email}</td>
       <td className="border p-2 text-center">{count}</td>
@@ -74,29 +97,16 @@ function TableRow({ no, letter, isChecked }) {
 
 export default TableRow;
 
-export function getReplyStatus(replyTime, inspectionTime) {
-  const replyDate = replyTime ? new Date(replyTime) : null;
-  const inspectionDate = inspectionTime ? new Date(inspectionTime) : null;
-
-  if (!inspectionDate) {
-    return '검수대기';
-  }
-
-  if (replyDate) {
+export function getReplyStatus(replyStatus, inspection) {
+  if (replyStatus === 'REPLY') {
     return '발송완료';
   }
 
-  if (inspectionDate && !replyDate) {
-    const nextDay = new Date(inspectionDate);
-    nextDay.setDate(inspectionDate.getDate() + 1);
-    nextDay.setHours(10, 0, 0, 0);
-
-    if (new Date() > nextDay) {
-      return '발송실패';
-    }
-
+  if (inspection) {
     return '검수완료';
   }
 
-  return '검수대기';
+  if (!inspection) {
+    return '검수대기';
+  }
 }

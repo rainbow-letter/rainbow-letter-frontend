@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { letterUiActions } from '../../../store/admin/letterUi-slice';
-import { fetchLetters } from '../../../store/admin/letter-actions';
+import { fetchLetters } from '../../../store/admin/letters-actions';
 import doubleArrowLeft from '../../../assets/admin/doubleArrowLeft.svg';
 import doubleArrowRight from '../../../assets/admin/doubleArrowRight.svg';
 

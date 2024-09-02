@@ -59,17 +59,15 @@ export const getShareLetter = async (
 };
 
 // For admin
-const TODAY = formatDateToYMD();
-const DEFAULT_LETTERS_PER_PAGE = 25;
-export const getLettersForAdmin = async (
-  startDate = TODAY,
-  endDate = TODAY,
-  page = 0,
-  size = DEFAULT_LETTERS_PER_PAGE
+export const getAdminLetterDetail = async (
+  userId: number | string,
+  petId: number | string,
+  letterId: number | string
 ) => {
-  const response = await apiRequest.get(
-    `${RESOURCE}/admin/list?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}`
-  );
+  console.log(userId, petId, letterId);
 
-  return response.data;
+  const response = await apiRequest.get(
+    `/api/admins/letters/${letterId}?user=${userId}&pet=${petId}`
+  );
+  return response;
 };
