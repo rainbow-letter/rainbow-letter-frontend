@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { PetResponse } from 'types/pets';
+import { PetsDashBoard } from 'types/pets';
 import { calculateDDay } from 'utils/date';
 import useGetImage from 'hooks/useGetImage';
 import letter from 'assets/letter.svg';
@@ -8,7 +8,7 @@ import heart from 'assets/fa-regular-heart.svg';
 import arrow from 'assets/ion_chevron-back-home.svg';
 
 type Props = {
-  pet: PetResponse | undefined;
+  pet: PetsDashBoard | undefined;
   letterCount: number | undefined;
 };
 
@@ -42,7 +42,7 @@ export default function PetInfo({ pet, letterCount }: Props) {
           </div>
           <div className="flex gap-2.5">
             <img src={heart} alt="heart" />
-            <p>보낸 하트 {pet && pet.favorite.total}회</p>
+            <p>보낸 하트 {pet && pet.favoriteCount}회</p>
           </div>
         </div>
         <img
