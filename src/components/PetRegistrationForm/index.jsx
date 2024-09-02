@@ -15,15 +15,18 @@ import {
   usePetRegistration,
   setInitialPetData,
 } from '../../contexts/PetRegistrationContext';
+import useGetImage from 'hooks/useGetImage';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
-  const [isEmptyImage, setIsEmptyImage] = useState(true);
+
+  const [isEmptyImage, setIsEmptyImage] = useState(isEdit ? false : true);
 
   const { pathname } = useLocation();
   const isEdit = pathname.includes('edit');
 
   const { setMandatoryData, setOptionalData } = usePetRegistration();
   const { isSubmitting, handleButtonClick } = usePreventDoubleClick();
+  const { image, setImage } = useGetImage(petData?.image);
 
   const setPetData = () => {
     if (petData) {
@@ -58,7 +61,11 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
       <PetTypeSection />
       <RoleForPetSection />
       <PetPersonalitiesSection />
-      <PetImageSection petData={petData} setIsEmptyImage={setIsEmptyImage} />
+      <PetImageSection
+        image={image}
+        setImage={setImage}
+        setIsEmptyImage={setIsEmptyImage}
+      />
       <section className="pt-6">
         {!isSubmitting ? (
           <Button
