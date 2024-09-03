@@ -12,36 +12,24 @@ import UserInput from 'components/Login/UserInput';
 import SubmitButton from 'components/Login/SubmitButton';
 import Agree from 'components/Login/SignUp/Agree';
 import { ERROR_MESSAGE, Message } from 'components/Login/constants';
-import { ErrorData } from 'components/Login/LoginForm';
 import { trySignUp, tryLogin } from 'api/user';
-import { emailError, emailErrorMessage, passwordError } from 'utils/errorData';
-import { saveToken, setExpireToken } from 'utils/localStorage';
+import { passwordError, emailError, emailErrorMessage } from 'utils/errorData';
+import { saveToken } from 'utils/localStorage';
 import { validateEmail, validatePassword } from 'utils/validators';
+import { LoginRequest, ErrorData } from 'types/user';
 
 type Props = {
   message: Message;
 };
 
-type Profile = {
-  email: string;
-  password: string;
-};
-
-export interface ValidError {
-  code: string;
-  message: string;
-}
-
 export default function SignUpForm({ message: { describe, button } }: Props) {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState<Profile>({
+  const [profile, setProfile] = useState<LoginRequest>({
     email: '',
     password: '',
   });
-  const [errorData, setErrorData] = useState<ErrorData | ValidError | null>(
-    null
-  );
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [errorData, setErrorData] = useState<ErrorData | null>(null);
 
   useEffect(() => {
     setErrorData(null);
@@ -71,12 +59,6 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
     }
   };
 
-  const setLocalTokenDate = (token: string) => {
-    saveToken(token);
-    const date = Date.now() + 7 * 24 * 60 * 60 * 1000;
-    setExpireToken(String(date));
-  };
-
   const onClickSignUpButton = useCallback(
     async (e: MouseEvent<HTMLButtonElement>) => {
       try {
@@ -86,8 +68,8 @@ export default function SignUpForm({ message: { describe, button } }: Props) {
           return alert('서비스 이용약관 및 개인정보 처리방침을 체크해주세요!');
         }
         await trySignUp(profile);
-        const { token } = await tryLogin(profile);
-        setLocalTokenDate(token);
+        const { data } = await tryLogin(profile);
+        saveToken(data.token);
 
         setErrorData(null);
         navigate('/');

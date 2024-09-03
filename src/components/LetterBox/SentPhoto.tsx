@@ -1,34 +1,18 @@
-import { useState, useEffect } from 'react';
-
-import { getImage } from 'api/images';
-import defaultImage from 'assets/Logo_256px.png';
 import CoverImage from 'components/Common/CoverImage';
-import { Letter } from 'types/letters';
+import useGetImage from 'hooks/useGetImage';
+import { LetterItemResponse } from 'types/letters';
 
 type Props = {
-  letterData: Letter;
+  letterData: LetterItemResponse;
 };
 
 export default function SentPhoto({ letterData }: Props) {
-  const [petImage, setPetImage] = useState<string>('');
-
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (letterData.image?.objectKey) {
-        const data = await getImage(letterData.image.objectKey);
-        return setPetImage(data);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, []);
+  const { image } = useGetImage(letterData.letter.image);
 
   return (
     <section className="not-img mt-16">
       <h3 className="text-solo-large">아이에게 보낸 사진</h3>
-      <CoverImage image={petImage} className="relative mt-8" />
+      <CoverImage image={image} className="relative mt-8" />
     </section>
   );
 }

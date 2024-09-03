@@ -1,23 +1,20 @@
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { PetDashBoard } from 'types/pets';
+import { PetsDashBoard } from 'types/pets';
 import { calculateDDay } from 'utils/date';
-import { getImage } from 'api/images';
-
+import useGetImage from 'hooks/useGetImage';
 import letter from 'assets/letter.svg';
 import heart from 'assets/fa-regular-heart.svg';
 import arrow from 'assets/ion_chevron-back-home.svg';
-import defaultImage from 'assets/Logo_256px.png';
 
 type Props = {
-  pet: PetDashBoard | undefined;
+  pet: PetsDashBoard | undefined;
   letterCount: number | undefined;
 };
 
 export default function PetInfo({ pet, letterCount }: Props) {
   const navigate = useNavigate();
-  const [petImage, setPetImage] = useState<string>('');
+  const { image } = useGetImage(pet);
   const deathAnniversaryDDay =
     pet?.deathAnniversary && calculateDDay(pet?.deathAnniversary);
 
@@ -25,29 +22,12 @@ export default function PetInfo({ pet, letterCount }: Props) {
     navigate('/my-pets', { state: pet?.id });
   };
 
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (pet?.image.objectKey) {
-        const image = await getImage(pet?.image.objectKey);
-        return setPetImage(image);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [pet]);
-
   return (
     <article
       onClick={handleScroll}
       className="relative flex cursor-pointer flex-row items-center rounded-2xl border px-5 py-6"
     >
-      <img
-        src={petImage || defaultImage}
-        alt="pet"
-        className="mr-7 size-[5.5rem] rounded-full"
-      />
+      <img src={image} alt="pet" className="mr-7 size-[5.5rem] rounded-full" />
       <div className="flex flex-col justify-center gap-x-2">
         <div className="mb-2 flex items-center gap-2">
           <h5 className="font-bold text-orange-400">{pet && pet.name}</h5>

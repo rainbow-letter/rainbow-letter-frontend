@@ -11,10 +11,10 @@ import ImageUploadSection from 'components/Write/ImageUploadSection';
 import WritableLetterPaper from 'components/Write/WritableLetterPaper';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import Button from 'components/Button';
-import { sendLetter, getLetters } from 'api/letter';
+import { sendLetter } from 'api/letter';
 import { getUserInfo } from 'api/user';
 import { getPets } from 'api/pets';
-import { getImage, updateImageAndGetId } from 'api/images';
+import { resisterImage } from 'api/images';
 import {
   isExistCheckSavedLetter,
   getSavedLetter,
@@ -23,7 +23,7 @@ import {
   updateSessionID,
   deleteSavedLetter,
 } from 'api/temporaries';
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import { generateFormData } from 'utils/formData';
 import { getExpireModal } from 'utils/localStorage';
 import {
@@ -33,89 +33,37 @@ import {
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import CoverImage from 'components/Common/CoverImage';
-import defaultImage from 'assets/Logo_256px.png';
+import useGetImage from 'hooks/useGetImage';
+import { LetterRequest } from 'types/letters';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [petsList, setPetsList] = useState<Pets[]>([]);
-  const [selectedPet, setSelectedPet] = useState<Pets | null>(null);
+  const [petsList, setPetsList] = useState<PetResponse[]>([]);
+  const [selectedPet, setSelectedPet] = useState<PetResponse | null>(null);
   const [imageFile, setImageFile] = useState<File | string>('');
-  const [letter, setLetter] = useState({
+  const [letter, setLetter] = useState<LetterRequest>({
     summary: '',
     content: '',
-    image: null,
+    image: '',
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [petImage, setPetImage] = useState('');
   const [temp, setTemp] = useState<string | undefined>('');
-  const [id, setId] = useState<string>('');
-
-  const fetchAutoSaveLetter = useCallback(async () => {
-    const { data: savedLetter } = await getSavedLetter();
-    setLetter({
-      ...letter,
-      content: savedLetter.content,
-      summary: savedLetter.content.slice(0, 20),
-    });
-    setId(String(savedLetter.id));
-    const sessionId = await updateSessionID(String(savedLetter.id));
-    setSessionAutoSaveID(sessionId);
-
-    return savedLetter.petId;
-  }, []);
-
-  const setAutoSaveLetter = useCallback(async (data: Pets[]) => {
-    const sessionId = await generateSavedLetter({
-      petId: data[0].id,
-      content: letter?.content,
-    });
-    const { data: savedLetter } = await getSavedLetter();
-    setId(String(savedLetter.id));
-    setSessionAutoSaveID(sessionId);
-  }, []);
-
-  const loadLetter = useCallback(async (pets: Pets[]) => {
-    const petId = await fetchAutoSaveLetter();
-
-    const finedPet = pets.find((pet: Pets) => pet.id === petId);
-    return setSelectedPet(finedPet || pets[0]);
-  }, []);
-
-  const choosePet = useCallback(
-    async (pets: Pets[]) => {
-      const isExist = await isExistCheckSavedLetter();
-      if (location.state) {
-        if (isExist) {
-          dispatch(modalActions.openModal('EXIST'));
-          return loadLetter(pets);
-        }
-
-        const finedPet = pets.find((pet: Pets) => pet.name === location.state);
-        setSelectedPet(finedPet || pets[0]);
-        return setAutoSaveLetter(pets);
-      }
-
-      if (isExist) {
-        return loadLetter(pets);
-      }
-
-      await setAutoSaveLetter(pets);
-      return setSelectedPet(pets[0] || null);
-    },
-    [location]
-  );
+  const [savedLetterId, setSavedLetterId] = useState<number | null>(null);
+  const { image } = useGetImage(selectedPet);
 
   // 편지쓰기 페이지 입장
   useEffect(() => {
     (async () => {
-      const { pets } = await getPets();
-      const { letters } = await getLetters();
-      setPetsList(pets || []);
-      if (letters.length < 1) {
-        dispatch(modalActions.openModal('TOPIC'));
+      const { data } = await getPets();
+      setPetsList(data.pets || []);
+      if (location.state) {
+        const finedPet = data.pets.find(
+          (pet: PetResponse) => pet.id === location.state
+        );
+        return setSelectedPet(finedPet || data.pets[0]);
       }
-      choosePet(pets);
+      setSelectedPet(data.pets[0] || null);
 
       return () => {
         dispatch(modalActions.closeModal());
@@ -123,31 +71,71 @@ export default function WriteLetter() {
     })();
   }, []);
 
-  // 아이 이미지 불러오기
   useEffect(() => {
-    const getPetImage = async () => {
-      if (selectedPet?.image.objectKey) {
-        const data = await getImage(selectedPet.image.objectKey);
-        return setPetImage(data);
+    const isCheckExistedLetter = async (id: number | undefined) => {
+      const {
+        data: { exists },
+      } = await isExistCheckSavedLetter(id);
+
+      if (exists) {
+        return whenExistedSavedLetter();
       }
 
-      return setPetImage(defaultImage);
+      return whenNonExistedSavedLetter();
     };
 
-    getPetImage();
-  }, [selectedPet]);
+    if (selectedPet?.id) {
+      isCheckExistedLetter(selectedPet?.id);
+    }
+  }, [selectedPet?.id]);
+
+  // 자동저장 편지가 없을 때
+  const whenNonExistedSavedLetter = useCallback(async () => {
+    const newSaveLetterData = {
+      petId: selectedPet?.id,
+      content: letter?.content,
+    };
+
+    const { sessionId } = await generateSavedLetter(newSaveLetterData);
+    setSessionAutoSaveID(sessionId);
+  }, [selectedPet?.id, letter.content]);
+
+  // 자동저장 편지가 있을 때(편지 생성 및 세션 아이디 초기화)
+  const whenExistedSavedLetter = useCallback(async () => {
+    const { data } = await getSavedLetter(selectedPet?.id);
+    setLetter({
+      ...letter,
+      content: data.content,
+      summary: data.content.slice(0, 20),
+    });
+    setSavedLetterId(data.id);
+
+    const {
+      data: { sessionId },
+    } = await updateSessionID(data.id);
+
+    setSessionAutoSaveID(sessionId);
+  }, [selectedPet?.id]);
+
+  // 편지 내용 상태 관리
+  useEffect(() => {
+    setTemp(letter?.content);
+    dispatch(letterActions.setIsSaving(true));
+  }, [letter?.content]);
 
   // 편지 서버에 저장
   useEffect(() => {
     const saveLetterValue = async () => {
       try {
-        const isExist = await isExistCheckSavedLetter();
-        if (isExist && temp !== '') {
-          await updateSavedLetter({
-            id,
+        const {
+          data: { exists },
+        } = await isExistCheckSavedLetter(selectedPet?.id);
+        if (exists && temp !== '' && savedLetterId) {
+          const newData = {
             petId: selectedPet?.id,
             content: letter?.content,
-          });
+          };
+          await updateSavedLetter(savedLetterId, newData);
           dispatch(letterActions.setIsSuccess());
         }
       } catch (error) {
@@ -165,17 +153,21 @@ export default function WriteLetter() {
     }, 3000);
 
     return () => clearTimeout(autoSaveLetter);
-  }, [temp, selectedPet?.id]);
+  }, [temp, selectedPet?.id, savedLetterId]);
 
   // 다른 탭에서 접속했는지 확인.
   useEffect(() => {
     const compareSessionId = async () => {
       try {
-        const isExist = await isExistCheckSavedLetter();
-        if (!isExist) return;
-        const { data } = await getSavedLetter();
+        const {
+          data: { exists },
+        } = await isExistCheckSavedLetter(selectedPet?.id);
+
+        if (!exists) return;
+
+        const { data } = await getSavedLetter(selectedPet?.id);
         const isTabLive = getSessionAutoSaveID();
-        if (isExist && data.sessionId !== isTabLive) {
+        if (data.sessionId !== isTabLive) {
           return dispatch(modalActions.openModal('SAVING'));
         }
       } catch (error) {
@@ -186,30 +178,26 @@ export default function WriteLetter() {
     };
 
     const isCheckTabLive = setInterval(() => {
-      compareSessionId();
+      if (selectedPet?.id) {
+        compareSessionId();
+      }
     }, 5000);
 
     return () => clearInterval(isCheckTabLive);
-  }, []);
-
-  // 편지 내용 임시 저장
-  useEffect(() => {
-    setTemp(letter?.content);
-    dispatch(letterActions.setIsSaving(true));
-  }, [letter?.content]);
+  }, [selectedPet?.id]);
 
   const uploadImage = async (image: string | File) => {
     const formData = generateFormData(image);
-    const response = await updateImageAndGetId(formData);
+    const { data } = await resisterImage(formData);
 
-    return response.id;
+    return data.objectKey;
   };
 
   const isCheckPhoneNumberModalOpen = async () => {
-    const { phoneNumber } = await getUserInfo();
+    const { data } = await getUserInfo();
     const expire = getExpireModal();
 
-    if (!phoneNumber && Number(expire) < Date.now()) {
+    if (!data.phoneNumber && Number(expire) < Date.now()) {
       dispatch(modalActions.openModal('PHONE'));
     }
   };
@@ -219,11 +207,11 @@ export default function WriteLetter() {
       setIsLoading(true);
       const newLetter = { ...letter };
       if (imageFile) {
-        const imageId = await uploadImage(imageFile);
-        newLetter.image = imageId;
+        const objectKey = await uploadImage(imageFile);
+        newLetter.image = objectKey;
       }
       await sendLetter(selectedPet?.id, newLetter);
-      await deleteSavedLetter(id);
+      await deleteSavedLetter(savedLetterId, selectedPet?.id);
 
       isCheckPhoneNumberModalOpen();
       return dispatch(modalActions.openModal('COMPLETE'));
@@ -246,7 +234,7 @@ export default function WriteLetter() {
         <ResisterButtonSection />
       )}
       <LetterPaperWithImage>
-        <CoverImage image={petImage} />
+        <CoverImage image={image} />
         <WritableLetterPaper
           petName={selectedPet?.name}
           onchange={setLetter}

@@ -5,7 +5,8 @@ import modalSlice from 'store/modal/modal-slice';
 import userSlice from 'store/user/user-slice';
 import petSlice from 'store/pet/pet-slice';
 import letterSlice from 'store/letter/letter-slice';
-import adminLettersSlice from './admin/letter-slice';
+import adminLettersSlice from './admin/letters-slice';
+import adminLetterSlice from './admin/letter-slice';
 import adminLetterUiSlice from './admin/letterUi-slice';
 import { setupListeners } from './listeners';
 import adminUserLettersSlice from './admin/useLetter-slice';
@@ -20,6 +21,7 @@ const store = configureStore({
     pet: petSlice.reducer,
     letter: letterSlice.reducer,
     adminLetters: adminLettersSlice.reducer,
+    adminLetter: adminLetterSlice.reducer,
     adminLetterUi: adminLetterUiSlice.reducer,
     adminUserLetters: adminUserLettersSlice.reducer,
     // 여기에 다른 리듀서들을 추가

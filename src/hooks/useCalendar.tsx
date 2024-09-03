@@ -6,8 +6,10 @@ const WEEK_CALENDAR_LENGTH = 42;
 const DEFAULT_TRASH_VALUE = '0';
 const DAY_OF_WEEK = 7;
 
-const useCalendar = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+const useCalendar = (monthCurrentDate?: Date) => {
+  const [currentDate, setCurrentDate] = useState(
+    monthCurrentDate || new Date()
+  );
   const totalMonthDays = getDaysInMonth(currentDate);
 
   const firstDayOfMonth = new Date(

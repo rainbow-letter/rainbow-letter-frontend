@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { format, subMonths } from 'date-fns';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { format, addDays, subMonths, subDays, lastDayOfMonth } from 'date-fns';
 import { useDispatch } from 'react-redux';
 
 import BottomSheet from 'components/Common/BottomSheet';
@@ -10,30 +10,73 @@ import Right from '../../assets/ic_letterBox_right.svg';
 import DropDown from '../../assets/ic_letterBox_dropdown.svg';
 import Stamp from '../../assets/ic_letterBox_stamp.svg';
 import Cancel from '../../assets/ic_calendar_x.svg';
+import { PetResponse } from 'types/pets';
+import { getLetterListByDate } from 'api/letter';
+import useCalendar from 'hooks/useCalendar';
 
 type Props = {
-  weekCalendarList: any;
-  letterList: string[];
   setDate: (date: Date) => void;
-  selectedDate: string | Date;
-  setCurrentDate: (date: Date) => void;
-  currentDate: Date;
+  currentWeekDate: Date;
+  setCurrentWeekDate: (date: Date) => void;
+  selectedPet: null | PetResponse;
 };
 
 export default function MonthCalendar({
-  weekCalendarList,
-  letterList,
   setDate,
-  selectedDate,
-  setCurrentDate,
-  currentDate,
+  setCurrentWeekDate,
+  currentWeekDate,
+  selectedPet,
 }: Props) {
+  // redux
   const dispatch = useDispatch();
+
+  // hooks
+  const { currentDate, setCurrentDate, weekCalendarList } =
+    useCalendar(currentWeekDate);
+
+  // state
   const [isShow, setIsShow] = useState(false);
+  const [monthLetterList, setMonthLetterList] = useState<any>([]);
+  const SAVE_DATE = currentWeekDate;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const firstDayOfTheMonth = useMemo(() => {
+    const firstDayOfTheMonth = weekCalendarList[0].find(
+      (date: string) => Number(date) !== 0
+    );
+
+    return firstDayOfTheMonth;
+  }, [weekCalendarList]);
+
+  const lastDayOfTheMonth = useMemo(() => {
+    const lastDayOfTheMonth = weekCalendarList[
+      weekCalendarList.length - 1
+    ].findLast((date: string) => Number(date) !== 0);
+
+    return lastDayOfTheMonth;
+  }, [weekCalendarList]);
+
+  useEffect(() => {
+    (async () => {
+      if (selectedPet?.id === undefined) return;
+
+      const {
+        data: { letters },
+      } = await getLetterListByDate(
+        selectedPet?.id,
+        firstDayOfTheMonth,
+        lastDayOfTheMonth
+      );
+      setMonthLetterList(letters || []);
+    })();
+  }, [firstDayOfTheMonth]);
+
+  const mappedLetterListByDate = monthLetterList.map((letter: any) =>
+    format(letter.createdAt, 'yyyy-MM-dd')
+  );
 
   const handlePetsListShow = useCallback(() => {
     setIsShow((prev) => !prev);
@@ -42,23 +85,27 @@ export default function MonthCalendar({
   const yearAndMonth = `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
 
   const onClickNextMonth = useCallback(() => {
-    setCurrentDate(subMonths(currentDate, -1));
-    setDate(subMonths(currentDate, -1));
+    const lastDay = lastDayOfMonth(currentDate);
+    setCurrentDate(addDays(lastDay, 1));
   }, [currentDate]);
 
   const onClickPrevMonth = useCallback(() => {
-    setCurrentDate(subMonths(currentDate, 1));
-    setDate(subMonths(currentDate, 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    );
   }, [currentDate]);
 
   const onClickDateButton = useCallback((date: string) => {
     setDate(new Date(date));
-    setCurrentDate(new Date(date));
+    setCurrentWeekDate(new Date(date));
+    const action = letterSlice.actions.setCalendarClose();
+    dispatch(action);
   }, []);
 
   const onClickCalendarClose = useCallback(() => {
     const action = letterSlice.actions.setCalendarClose();
     dispatch(action);
+    setCurrentWeekDate(SAVE_DATE);
   }, [dispatch]);
 
   const isActiveDate = useCallback(
@@ -74,9 +121,9 @@ export default function MonthCalendar({
 
   const isExistWrittenLetter = useCallback(
     (date: string) => {
-      return letterList.includes(date);
+      return mappedLetterListByDate.includes(date);
     },
-    [letterList]
+    [mappedLetterListByDate]
   );
 
   const isToday = useCallback((date: string) => {
@@ -87,7 +134,7 @@ export default function MonthCalendar({
 
   return (
     <>
-      <section className="absolute inset-0 -top-[60px] z-10 flex h-auto flex-col items-center border-t bg-white px-[1.125rem] pt-[4.125rem]">
+      <section className="absolute inset-0 -top-[60px] z-50 flex h-auto flex-col items-center border-t bg-white px-[1.125rem] pt-[4.125rem]">
         <button
           type="button"
           onClick={onClickCalendarClose}
@@ -140,7 +187,7 @@ export default function MonthCalendar({
                         className={`${isExistWrittenLetter(day) ? 'bg-orange-50' : isToday(day)} mb-1 size-[42px] rounded-lg`}
                       >
                         {isExistWrittenLetter(day) && (
-                          <img src={Stamp} alt="썸네일" />
+                          <img src={Stamp} alt="썸네일" className="mx-auto" />
                         )}
                       </button>
                       <p
@@ -163,7 +210,6 @@ export default function MonthCalendar({
             currentDate={currentDate}
             setCurrentDate={setCurrentDate}
             handlePetsListShow={handlePetsListShow}
-            setDate={setDate}
           />
         }
       />

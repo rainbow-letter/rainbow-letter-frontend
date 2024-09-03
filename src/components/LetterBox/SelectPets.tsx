@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Pets } from 'types/pets';
+import { PetResponse } from 'types/pets';
 import Plus from '../../assets/ic_letterBox_plus.svg';
 
 type Props = {
-  list: Pets[];
-  onChange: (pet: Pets) => void;
+  list: PetResponse[];
+  onChange: (pet: PetResponse) => void;
   handlePetsListShow: (state: boolean) => void;
 };
 
@@ -21,7 +21,7 @@ export default function BottomSheetContents({
     navigate('/my-pets/register');
   }, []);
 
-  const handleChangePet = useCallback((pet: Pets) => {
+  const handleChangePet = useCallback((pet: PetResponse) => {
     handlePetsListShow(false);
     onChange(pet);
   }, []);
@@ -29,7 +29,7 @@ export default function BottomSheetContents({
   return (
     <article className="flex w-full flex-col items-center">
       <p className="mt-5 text-heading-3">아이 선택하기</p>
-      <ul className="mt-[14.5px] w-full overflow-y-scroll text-heading-3 font-[400]">
+      <ul className="mt-[14.5px] w-full overflow-y-auto text-heading-3 font-[400]">
         {list.map((pet) => (
           <li
             className="border-b py-3 pl-[1.125rem]"

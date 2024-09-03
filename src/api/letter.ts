@@ -1,44 +1,73 @@
 import apiRequest from 'api';
 import { formatDateToYMD } from '../utils/date';
+import {
+  LetterRequest,
+  LetterListResponse,
+  LetterItemResponse,
+} from 'types/letters';
+import { ApiResponse } from 'types/Api';
 
 const RESOURCE = '/api/letters';
 
-export const getLetters = async (): Promise<any> => {
-  const response = await apiRequest.get(`${RESOURCE}/list`);
+export const getLetterList = async (
+  petId: number | undefined
+): ApiResponse<{
+  letters: LetterListResponse[];
+}> => {
+  const response = await apiRequest.get(`${RESOURCE}/box?pet=${petId}`);
 
-  return response.data;
+  return response;
 };
 
-export const getLetter = async (id: any): Promise<any> => {
+export const getLetterListByDate = async (
+  petId: number | undefined,
+  startDate?: number | string,
+  endDate?: number | string
+): ApiResponse<{
+  letters: LetterListResponse[];
+}> => {
+  const response = await apiRequest.get(
+    `${RESOURCE}/box?pet=${petId}&start=${startDate}&end=${endDate}`
+  );
+
+  return response;
+};
+
+export const getLetter = async (
+  id: string | undefined
+): ApiResponse<LetterItemResponse> => {
   const response = await apiRequest.get(`${RESOURCE}/${id}`);
 
-  return response.data;
+  return response;
 };
 
-export const sendLetter = async (id: any, letter: any): Promise<any> => {
+export const sendLetter = async (
+  id: number | undefined,
+  letter: LetterRequest
+) => {
   const response = await apiRequest.post(`${RESOURCE}?pet=${id}`, letter);
 
-  return response.data;
+  return response;
 };
 
-export const getShareLetter = async (uuid: any): Promise<any> => {
+export const getShareLetter = async (
+  uuid: string | undefined
+): ApiResponse<LetterItemResponse> => {
   const response = await apiRequest.get(`${RESOURCE}/share/${uuid}`);
 
-  return response.data;
+  return response;
 };
 
 // For admin
-const TODAY = formatDateToYMD();
-const DEFAULT_LETTERS_PER_PAGE = 25;
-export const getLettersForAdmin = async (
-  startDate = TODAY,
-  endDate = TODAY,
-  page = 0,
-  size = DEFAULT_LETTERS_PER_PAGE
+export const getAdminLetterDetail = async (
+  userId: number | string,
+  petId: number | string,
+  letterId: number | string
 ) => {
-  const response = await apiRequest.get(
-    `${RESOURCE}/admin/list?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}`
-  );
+  console.log(userId, petId, letterId);
 
-  return response.data;
+  const response = await apiRequest.get(
+    `/api/admins/letters/${letterId}?user=${userId}&pet=${petId}`
+  );
+  return response;
 };

@@ -17,7 +17,3 @@ export const setExpireModal = (date: string) => {
 export const getExpireModal = () => {
   return localStorage.getItem('expire');
 };
-
-export const setExpireToken = (date: string) => {
-  return localStorage.setItem('expireToken', date);
-};

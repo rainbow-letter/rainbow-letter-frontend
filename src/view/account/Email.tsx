@@ -4,10 +4,8 @@ import axios from 'axios';
 
 import UserInput from 'components/Login/UserInput';
 import { authEmail } from 'api/user';
-
 import { FIND_EMAIL_MESSAGE } from 'components/Login/constants';
-
-import { ErrorData } from 'components/Login/LoginForm';
+import { ErrorData } from 'types/user';
 
 export default function Email() {
   const [auth, setAuth] = useState({ email: '' });

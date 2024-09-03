@@ -8,49 +8,34 @@ import { USER_ACTIONS } from 'components/LetterBox/constants';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
 import CoverImage from 'components/Common/CoverImage';
+import useGetImage from 'hooks/useGetImage';
 import { getShareLetter } from 'api/letter';
-import { getImage } from 'api/images';
 import metaData from 'utils/metaData';
 import { formatDateIncludingHangul } from 'utils/date';
 import { isKakaoTalk } from 'utils/device';
-import { Letter } from 'types/letters';
-import defaultImage from 'assets/Logo_256px.png';
 
-const targetUrl = window.location.href;
+const TARGET_URL = window.location.href;
 
 export default function ShareLetter() {
-  const [letterData, setLetterData] = useState<Letter>();
-  const [petImage, setPetImage] = useState<string>('');
+  const [letterData, setLetterData] = useState<any>();
+  const { image } = useGetImage(letterData?.pet);
   const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
     (async () => {
       if (isKakaoTalk()) {
-        return (window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(targetUrl)}`);
+        return (window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(TARGET_URL)}`);
       }
 
       metaData(Object.keys(params)[0]);
-      const data = await getShareLetter(params.shareLink);
+      const { data } = await getShareLetter(params.shareLink);
       setLetterData(data);
     })();
   }, []);
 
-  useEffect(() => {
-    const getPetImage = async () => {
-      if (letterData?.pet.image.objectKey) {
-        const data = await getImage(letterData?.pet.image.objectKey);
-        return setPetImage(data);
-      }
-
-      return setPetImage(defaultImage);
-    };
-
-    getPetImage();
-  }, [letterData]);
-
   const onClickReplyButton = () => {
-    navigate('/write-letter', { state: letterData?.pet.name });
+    navigate('/write-letter', { state: letterData?.pet.id });
   };
 
   return (
@@ -59,23 +44,23 @@ export default function ShareLetter() {
         <main className="relative pb-10">
           <AppBar />
           <LetterPaperWithImage>
-            <CoverImage image={petImage} />
+            <CoverImage image={image} />
             <WrittenLetterPaper
               petName={`${letterData.pet.name}로부터`}
               content={letterData.reply.content}
               className="pt-[15.187rem]"
               letterPaperColor="bg-orange-50"
-              date={formatDateIncludingHangul(letterData.reply.timestamp)}
+              date={formatDateIncludingHangul(letterData.reply.updatedAt)}
             />
             <WrittenLetterPaper
               petName={`${letterData.pet.name}에게`}
               content={letterData.content}
               className="mt-4"
               letterPaperColor="bg-gray-2"
-              date={formatDateIncludingHangul(letterData.reply.timestamp)}
+              date={formatDateIncludingHangul(letterData.letter.updatedAt)}
             />
           </LetterPaperWithImage>
-          {letterData.image.id && <SentPhoto letterData={letterData} />}
+          {letterData.letter.image && <SentPhoto letterData={letterData} />}
           <Button
             disabled={!letterData.reply.content}
             onClick={onClickReplyButton}

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import NoLetters from 'components/LetterBox/NoLetters';
 import LetterItems from 'components/LetterBox/LetterItems';
-import { getLetters } from 'api/letter';
-import { Letters } from 'types/letters';
+import { getLetterList } from 'api/letter';
+import { LetterListResponse } from 'types/letters';
 
 const DEFAULT = '전체';
 
@@ -13,22 +13,23 @@ type Props = {
 };
 
 export default function LetterListSection({ pet }: Props) {
-  const [letterList, setLetterList] = useState<Letters[]>([]);
+  const [letterList, setLetterList] = useState<LetterListResponse[]>([]);
 
   useEffect(() => {
     (async () => {
-      const { letters } = await getLetters();
-      letters.reverse().forEach((letter: Letters, index: number) => {
-        const temp = letter;
-        temp.number = index + 1;
-
-        return temp;
-      });
-      setLetterList(letters.reverse() || []);
+      // const {
+      //   data: { letters },
+      // } = await getLetterList();
+      // letters.reverse().forEach((letter: LetterListResponse, index: number) => {
+      //   const temp = letter;
+      //   temp.number = index + 1;
+      //   return temp;
+      // });
+      // setLetterList(letters.reverse() || []);
     })();
   }, []);
 
-  const filteredLetter: Letters[] =
+  const filteredLetter: LetterListResponse[] =
     pet === DEFAULT
       ? letterList
       : letterList?.filter((item) => item.petName === pet);

@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 
 import ImageDeleteButton from 'components/Input/ImageInput/ImageDeleteButton';
 import thinPlus from '../../../assets/thinPlus.svg';
+import useGetImage from 'hooks/useGetImage';
 
 type Props = {
   className: string;
