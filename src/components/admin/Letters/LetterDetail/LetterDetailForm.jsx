@@ -225,7 +225,11 @@ function LetterDetailForm({
                 <span>{pet.name}</span>
                 <span>{pet.owner}</span>
                 <span>{pet.species}</span>
-                <span>{pet.personalities || '-'}</span>
+                <span>
+                  {pet.personalities
+                    ? pet.personalities.map((personality) => `${personality} `)
+                    : '-'}
+                </span>
                 <div className="flex gap-x-1">
                   {pet.deathAnniversary && (
                     <>
@@ -290,8 +294,9 @@ function LetterDetailForm({
         <main className="flex h-[80vh] grow">
           <textarea
             className="w-full resize-none rounded-lg bg-gray-100 p-5"
-            maxLength={MAX_CONTENT_LENGTH}
             value={newContent}
+            maxLength={MAX_CONTENT_LENGTH}
+            disabled={reply?.submitTime}
             onChange={({ target }) => setNewContentValue(target.value)}
           />
         </main>
@@ -317,7 +322,7 @@ function LetterDetailForm({
                   'bg-pink-300 hover:bg-pink-400'
                 }`}
                 type="button"
-                // disabled={isPageLoading}
+                disabled={reply?.submitTime}
                 onClick={handleRegenerateClick}
               >
                 GPT 재생성

@@ -54,8 +54,8 @@ export const editReply = createAsyncThunk(
     );
 
     const inspection = getState().adminLetters?.letters?.find(
-      (letter) => letter.reply.id === replyId
-    )?.reply.inspection;
+      (letter) => letter.reply && letter.reply.id === replyId
+    )?.reply?.inspection;
 
     return { response, inspection };
   }
@@ -84,7 +84,7 @@ export const sendReply = createAsyncThunk(
 
     const results = await Promise.allSettled(
       requestsArray.map((request) =>
-        api.post(`/api/admins/replies/submit/${request.replyId}`)
+        api.post(`/api/admins/replies/submit/${request.id}`)
       )
     );
 
