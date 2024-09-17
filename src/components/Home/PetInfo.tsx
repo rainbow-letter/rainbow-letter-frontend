@@ -27,7 +27,11 @@ export default function PetInfo({ pet, letterCount }: Props) {
       onClick={handleScroll}
       className="relative flex cursor-pointer flex-row items-center rounded-2xl border px-5 py-6"
     >
-      <img src={image} alt="pet" className="mr-7 size-[5.5rem] rounded-full" />
+      <img
+        src={`https://dev.rainbowletter.co.kr/api/images/resources/${pet?.image}`}
+        alt="pet"
+        className="mr-7 size-[5.5rem] rounded-full"
+      />
       <div className="flex flex-col justify-center gap-x-2">
         <div className="mb-2 flex items-center gap-2">
           <h5 className="font-bold text-orange-400">{pet && pet.name}</h5>

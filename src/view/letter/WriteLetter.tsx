@@ -234,7 +234,9 @@ export default function WriteLetter() {
         <ResisterButtonSection />
       )}
       <LetterPaperWithImage>
-        <CoverImage image={image} />
+        <CoverImage
+          image={`https://dev.rainbowletter.co.kr/api/images/resources/${selectedPet?.image}`}
+        />
         <WritableLetterPaper
           petName={selectedPet?.name}
           onchange={setLetter}

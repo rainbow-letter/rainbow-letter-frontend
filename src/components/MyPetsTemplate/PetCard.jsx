@@ -25,7 +25,10 @@ function PetCard({ pet }, ref) {
 
   return (
     <li className="relative mb-4 pt-[15.187rem]" ref={ref}>
-      <PetCardImage name={pet.name} image={petImage} />
+      <PetCardImage
+        name={pet.name}
+        image={`https://dev.rainbowletter.co.kr/api/images/resources/${pet.image}`}
+      />
       <article className="relative rounded-2xl bg-white p-4 shadow-default">
         <header className="mb-5 ml-3 mt-2.5 flex items-center justify-between">
           <div className="flex grow items-center gap-5">

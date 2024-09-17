@@ -171,7 +171,9 @@ export default function DetailLetter() {
         <main className="letterBox relative" ref={sectionRef}>
           {isExistReply && <DownLoadButton onClick={onClickSaveIcon} />}
           <LetterPaperWithImage>
-            <CoverImage image={image} />
+            <CoverImage
+              image={`https://dev.rainbowletter.co.kr/api/images/resources/${letterData?.pet.image}`}
+            />
             {isExistReply && (
               <WrittenLetterPaper
                 petName={`${letterData.pet.name}로부터`}
