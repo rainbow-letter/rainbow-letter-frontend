@@ -19,7 +19,7 @@ export default function PetInfoCard({
   petsList,
   selectedPet,
 }: Props) {
-  const { image } = useGetImage(selectedPet);
+  // const { image } = useGetImage(selectedPet);
 
   useEffect(() => {
     (async () => {
@@ -36,7 +36,9 @@ export default function PetInfoCard({
         petsList={petsList}
         onChange={onChange}
       />
-      <CoverImage image={image} />
+      <CoverImage
+        image={`https://dev.rainbowletter.co.kr/api/images/resources/${selectedPet?.image}`}
+      />
       <InfoBox pet={selectedPet} />
       <Divider />
     </section>

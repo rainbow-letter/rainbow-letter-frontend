@@ -44,7 +44,9 @@ export default function ShareLetter() {
         <main className="relative pb-10">
           <AppBar />
           <LetterPaperWithImage>
-            <CoverImage image={image} />
+            <CoverImage
+              image={`https://dev.rainbowletter.co.kr/api/images/resources/${letterData?.pet.image}`}
+            />
             <WrittenLetterPaper
               petName={`${letterData.pet.name}로부터`}
               content={letterData.reply.content}
