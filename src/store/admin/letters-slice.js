@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchLetters } from './letters-actions';
+import { fetchLetters, sendReply } from './letters-actions';
 
 // type Letter = {
 //   id: Number,
@@ -56,6 +56,11 @@ const adminLettersSlice = createSlice({
       .addCase(fetchLetters.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(sendReply.fulfilled, (state) => {
+        state.letters.forEach((letter) => {
+          letter.isChecked = false;
+        });
       });
   },
 });

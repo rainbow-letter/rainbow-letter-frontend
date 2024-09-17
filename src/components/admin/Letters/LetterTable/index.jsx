@@ -33,11 +33,10 @@ function LetterTable() {
     const requests = letters
       .filter(
         (letter) =>
-          letter.isChecked && letter.inspection && !letter.inspectionTime
+          letter.isChecked && letter.inspection && letter.submitTime === null
       )
       .map((letter) => ({
-        replyId: letter.reply.id,
-        letterId: letter.id,
+        id: letter.id,
       }));
 
     dispatch(sendReply(requests));
@@ -51,7 +50,7 @@ function LetterTable() {
     if (checkedLetters.length === 0) return false;
 
     return checkedLetters.every(
-      (letter) => letter.inspection === true && letter.submitTime === null
+      (letter) => letter.inspection && letter.submitTime === null
     );
   };
 

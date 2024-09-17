@@ -1,6 +1,7 @@
-import LetterItem from 'components/LetterShowcase/LetterItem';
 import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
+
+import LetterItem from 'components/LetterShowcase/LetterItem';
 import { ShowcaseLetter } from './type';
 
 const SHOWCASE_CAROUSEL_OPTIONS = {

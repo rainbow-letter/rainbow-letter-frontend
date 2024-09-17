@@ -15,6 +15,7 @@ function Carousel({ className, settings, items }: CarouselProps) {
   const style = className || '';
 
   if (!itemsLength) return null;
+
   return (
     <Slider {...settings} className={`h-10 ${style}`}>
       {items.map((item) => item)}

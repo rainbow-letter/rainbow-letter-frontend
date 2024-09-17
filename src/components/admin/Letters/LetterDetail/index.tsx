@@ -1,12 +1,11 @@
 /* eslint-disable */
 
-import { useCallback, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import apiRequest from 'api';
 import LetterDetailForm from './LetterDetailForm';
 import LetterDetailModal from './LetterDetailModal';
-import { getAdminLetterDetail } from '../../../../api/letter';
 
 function LetterDetail() {
   const location = useLocation();
