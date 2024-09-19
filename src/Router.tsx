@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { State } from 'types/store';
-
 import Login from 'view/account/Login';
 import Join from 'view/account/Join';
 import Email from 'view/account/Email';

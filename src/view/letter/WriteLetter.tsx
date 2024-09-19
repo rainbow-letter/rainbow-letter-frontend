@@ -33,8 +33,8 @@ import {
 import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import CoverImage from 'components/Common/CoverImage';
-import useGetImage from 'hooks/useGetImage';
 import { LetterRequest } from 'types/letters';
+import { formatImageType } from 'utils/image';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -50,7 +50,6 @@ export default function WriteLetter() {
   const [isLoading, setIsLoading] = useState(false);
   const [temp, setTemp] = useState<string | undefined>('');
   const [savedLetterId, setSavedLetterId] = useState<number | null>(null);
-  const { image } = useGetImage(selectedPet);
 
   // 편지쓰기 페이지 입장
   useEffect(() => {
@@ -234,9 +233,7 @@ export default function WriteLetter() {
         <ResisterButtonSection />
       )}
       <LetterPaperWithImage>
-        <CoverImage
-          image={`https://dev.rainbowletter.co.kr/api/images/resources/${selectedPet?.image}`}
-        />
+        <CoverImage image={formatImageType(selectedPet?.image)} />
         <WritableLetterPaper
           petName={selectedPet?.name}
           onchange={setLetter}

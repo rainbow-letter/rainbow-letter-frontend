@@ -59,11 +59,10 @@ function AppBar() {
           <article className="absolute right-2.5 z-10">
             {isSaving ? (
               <img src={autoSaving} alt="자동 저장 중" />
+            ) : isSuccess ? (
+              <img src={autoSavingSuccess} alt="자동 저장 결과" />
             ) : (
-              <img
-                src={isSuccess ? autoSavingSuccess : autoSavingFail}
-                alt="자동 저장 결과"
-              />
+              <img src={autoSavingFail} alt="자동 저장 결과" />
             )}
           </article>
         )}

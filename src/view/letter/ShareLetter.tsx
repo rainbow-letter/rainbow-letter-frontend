@@ -8,17 +8,16 @@ import { USER_ACTIONS } from 'components/LetterBox/constants';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
 import CoverImage from 'components/Common/CoverImage';
-import useGetImage from 'hooks/useGetImage';
 import { getShareLetter } from 'api/letter';
 import metaData from 'utils/metaData';
 import { formatDateIncludingHangul } from 'utils/date';
 import { isKakaoTalk } from 'utils/device';
+import { formatImageType } from 'utils/image';
 
 const TARGET_URL = window.location.href;
 
 export default function ShareLetter() {
   const [letterData, setLetterData] = useState<any>();
-  const { image } = useGetImage(letterData?.pet);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -44,9 +43,7 @@ export default function ShareLetter() {
         <main className="relative pb-10">
           <AppBar />
           <LetterPaperWithImage>
-            <CoverImage
-              image={`https://dev.rainbowletter.co.kr/api/images/resources/${letterData?.pet.image}`}
-            />
+            <CoverImage image={formatImageType(letterData?.pet.image)} />
             <WrittenLetterPaper
               petName={`${letterData.pet.name}로부터`}
               content={letterData.reply.content}
@@ -56,7 +53,7 @@ export default function ShareLetter() {
             />
             <WrittenLetterPaper
               petName={`${letterData.pet.name}에게`}
-              content={letterData.content}
+              content={letterData.letter.content}
               className="mt-4"
               letterPaperColor="bg-gray-2"
               date={formatDateIncludingHangul(letterData.letter.updatedAt)}

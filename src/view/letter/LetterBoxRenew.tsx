@@ -26,6 +26,7 @@ export default function LetterBoxRenew() {
       const { data } = await getPets();
 
       setPetsList(data.pets || []);
+      setSelectedPet(data.pets[0]);
     })();
   }, []);
 

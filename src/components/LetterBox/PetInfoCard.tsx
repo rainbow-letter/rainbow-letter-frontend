@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { getPets } from 'api/pets';
 import { PetResponse } from 'types/pets';
@@ -6,7 +6,7 @@ import CoverImage from 'components/Common/CoverImage';
 import InfoBox from 'components/LetterBox/InfoBox';
 import PetsToggle from 'components/LetterBox/PetsToggle';
 import Divider from 'components/Home/Divider';
-import useGetImage from 'hooks/useGetImage';
+import { formatImageType } from 'utils/image';
 
 type Props = {
   onChange: (pet: PetResponse) => void;
@@ -19,15 +19,7 @@ export default function PetInfoCard({
   petsList,
   selectedPet,
 }: Props) {
-  // const { image } = useGetImage(selectedPet);
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await getPets();
-
-      onChange(data.pets[0]);
-    })();
-  }, []);
+  console.log(selectedPet);
 
   return (
     <section>
@@ -36,9 +28,7 @@ export default function PetInfoCard({
         petsList={petsList}
         onChange={onChange}
       />
-      <CoverImage
-        image={`https://dev.rainbowletter.co.kr/api/images/resources/${selectedPet?.image}`}
-      />
+      <CoverImage image={formatImageType(selectedPet?.image)} />
       <InfoBox pet={selectedPet} />
       <Divider />
     </section>
