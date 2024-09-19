@@ -6,6 +6,7 @@ import Spinner from 'components/Spinner';
 import { PetResponse } from 'types/pets';
 import { LetterListResponse } from 'types/letters';
 import { getPets } from 'api/pets';
+import { useLocation } from 'react-router-dom';
 
 const PetInfoCard = React.lazy(
   () => import('components/LetterBox/PetInfoCard')
@@ -16,6 +17,7 @@ const WeekCalendar = React.lazy(
 const LetterList = React.lazy(() => import('components/LetterBox/LetterList'));
 
 export default function LetterBoxRenew() {
+  const { state } = useLocation();
   const [letterList, setLetterList] = useState<LetterListResponse[]>([]);
   const [petsList, setPetsList] = useState<PetResponse[]>([]);
   const [selectedPet, setSelectedPet] = useState<PetResponse | null>(null);
@@ -26,7 +28,15 @@ export default function LetterBoxRenew() {
       const { data } = await getPets();
 
       setPetsList(data.pets || []);
-      setSelectedPet(data.pets[0]);
+
+      if (state) {
+        const findedPet = data.pets.find(
+          (pet: PetResponse) => pet.id === state
+        );
+        return setSelectedPet(findedPet || data.pets[0]);
+      }
+
+      return setSelectedPet(data.pets[0]);
     })();
   }, []);
 

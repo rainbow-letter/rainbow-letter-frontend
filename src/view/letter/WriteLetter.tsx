@@ -213,6 +213,7 @@ export default function WriteLetter() {
       await deleteSavedLetter(savedLetterId, selectedPet?.id);
 
       isCheckPhoneNumberModalOpen();
+      dispatch(letterActions.setSentLetterTarget(selectedPet?.id));
       return dispatch(modalActions.openModal('COMPLETE'));
     } catch (error) {
       console.log(error);
