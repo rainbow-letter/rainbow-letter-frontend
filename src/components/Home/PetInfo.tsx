@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { PetsDashBoard } from 'types/pets';
 import { calculateDDay } from 'utils/date';
-import useGetImage from 'hooks/useGetImage';
 import letter from 'assets/letter.svg';
 import heart from 'assets/fa-regular-heart.svg';
 import arrow from 'assets/ion_chevron-back-home.svg';
+import { formatImageType } from 'utils/image';
 
 type Props = {
   pet: PetsDashBoard | undefined;
@@ -14,7 +14,6 @@ type Props = {
 
 export default function PetInfo({ pet, letterCount }: Props) {
   const navigate = useNavigate();
-  const { image } = useGetImage(pet);
   const deathAnniversaryDDay =
     pet?.deathAnniversary && calculateDDay(pet?.deathAnniversary);
 
@@ -28,7 +27,7 @@ export default function PetInfo({ pet, letterCount }: Props) {
       className="relative flex cursor-pointer flex-row items-center rounded-2xl border px-5 py-6"
     >
       <img
-        src={`https://dev.rainbowletter.co.kr/api/images/resources/${pet?.image}`}
+        src={formatImageType(pet?.image)}
         alt="pet"
         className="mr-7 size-[5.5rem] rounded-full"
       />

@@ -8,7 +8,7 @@ import WrittenLetterPaper from 'components/Write/WrittenLetterPaper';
 import LetterPaperWithImage from 'components/Write/LetterPaperWithImage';
 import SentPhoto from 'components/LetterBox/SentPhoto';
 import { USER_ACTIONS } from 'components/LetterBox/constants';
-import CoverImage from 'components/Common/CoverImage';
+import CoverImageWithTimeStamp from 'components/Common/CoverImageWithTimeStamp';
 import DownLoadButton from 'components/Write/DownLoadButton';
 
 import { RootState, useAppDispatch } from 'store';
@@ -20,7 +20,7 @@ import { modalActions } from 'store/modal/modal-slice';
 import { letterActions } from 'store/letter/letter-slice';
 import { readReply } from '../../api/reply';
 import captureLogo from '../../assets/detailLetter_logo.svg';
-import useGetImage from 'hooks/useGetImage';
+import { formatImageType } from 'utils/image';
 
 export default function DetailLetter() {
   // redux
@@ -33,9 +33,6 @@ export default function DetailLetter() {
 
   // state
   const [letterData, setLetterData] = useState<any>();
-
-  // hooks
-  const { image } = useGetImage(letterData?.pet);
 
   // etc.
   const params = useParams();
@@ -164,6 +161,7 @@ export default function DetailLetter() {
   }, [dispatch]);
 
   const isExistReply = !!letterData?.reply?.content;
+  console.log(letterData);
 
   return (
     <>
@@ -171,8 +169,8 @@ export default function DetailLetter() {
         <main className="letterBox relative" ref={sectionRef}>
           {isExistReply && <DownLoadButton onClick={onClickSaveIcon} />}
           <LetterPaperWithImage>
-            <CoverImage
-              image={`https://dev.rainbowletter.co.kr/api/images/resources/${letterData?.pet.image}`}
+            <CoverImageWithTimeStamp
+              image={formatImageType(letterData?.pet.image)}
             />
             {isExistReply && (
               <WrittenLetterPaper
