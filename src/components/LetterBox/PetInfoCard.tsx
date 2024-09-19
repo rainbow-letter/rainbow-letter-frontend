@@ -19,8 +19,6 @@ export default function PetInfoCard({
   petsList,
   selectedPet,
 }: Props) {
-  console.log(selectedPet);
-
   return (
     <section>
       <PetsToggle

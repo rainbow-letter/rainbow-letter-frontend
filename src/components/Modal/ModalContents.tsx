@@ -26,11 +26,13 @@ import WritingPad from '../../assets/writing_pad.svg';
 import ErrorIcon from '../../assets/Error_icon.svg';
 import SaveComplete from '../../assets/save_complete.svg';
 import AlarmIcon from '../../assets/ic_Error_icon.svg';
+import { RootState } from 'store';
 
 export default function ModalContents() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { type } = useSelector((state: State) => state.modal);
+  const { sentLetterTarget } = useSelector((state: RootState) => state.letter);
 
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -181,7 +183,7 @@ export default function ModalContents() {
                   type="button"
                   onClick={() => {
                     dispatch(modalActions.closeModal());
-                    navigate('/letter-box');
+                    navigate('/letter-box', { state: sentLetterTarget });
                   }}
                   className="absolute right-4 top-4"
                 >
