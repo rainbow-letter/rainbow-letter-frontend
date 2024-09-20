@@ -24,7 +24,7 @@ export default function InfoBox({ pet }: Props) {
       <div className="rounded-2xl bg-white px-[1.125rem] pb-[1.875rem] pt-6">
         <article className="flex items-center justify-between">
           <div className="flex grow items-center gap-4">
-            <span className="text-heading-2">{pet?.name}</span>
+            <span className="text-heading-2 font-bold">{pet?.name}</span>
             <span className="text-solo-large text-orange-400">
               {deathAnniversaryDDay}
             </span>
@@ -47,7 +47,7 @@ export default function InfoBox({ pet }: Props) {
               />
             ))}
         </ul>
-        <p className="mt-4 text-heading-3 font-[400]">
+        <p className="mt-4 text-[18px] font-[400]">
           아이에게 나는 사랑하는 {pet?.owner}
         </p>
       </div>
