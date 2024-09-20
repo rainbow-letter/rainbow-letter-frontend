@@ -22,6 +22,7 @@ type Props = {
   letterList: string[];
   setLetterList: (date: LetterListResponse[]) => void;
   selectedPet: null | PetResponse;
+  setIsEditing: (bool: boolean) => void;
 };
 
 export default function WeekCalendar({
@@ -29,6 +30,7 @@ export default function WeekCalendar({
   letterList,
   setLetterList,
   selectedPet,
+  setIsEditing,
 }: Props) {
   // redux
   const dispatch = useDispatch();
@@ -71,21 +73,25 @@ export default function WeekCalendar({
   const onClickNextWeek = useCallback(() => {
     setCurrentDate(addDays(currentDate, 7));
     setDate(addDays(currentDate, 7));
+    setIsEditing(false);
   }, [currentDate]);
 
   const onClickPrevWeek = useCallback(() => {
     setCurrentDate(subDays(currentDate, 7));
     setDate(subDays(currentDate, 7));
+    setIsEditing(false);
   }, [currentDate]);
 
   const onClickDateButton = useCallback((date: number) => {
     setCurrentDate(new Date(date));
     setDate(new Date(date));
+    setIsEditing(false);
   }, []);
 
   const onClickMonthCalendar = useCallback(() => {
     const action = letterSlice.actions.setCalendarOpen();
     dispatch(action);
+    setIsEditing(false);
   }, [dispatch]);
 
   const isActiveDate = useCallback(

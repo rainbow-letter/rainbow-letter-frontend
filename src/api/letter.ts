@@ -58,6 +58,12 @@ export const getShareLetter = async (
   return response;
 };
 
+export const deleteLetter = async (id: number) => {
+  const response = await apiRequest.delete(`/api/letters/${id}`);
+
+  return response;
+};
+
 // For admin
 export const getAdminLetterDetail = async (
   userId: number | string,

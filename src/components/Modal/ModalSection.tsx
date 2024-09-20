@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { State } from 'types/store';
 
 type Props = {
+  isLocalOpen?: boolean;
   children: ReactNode;
 };
 
-export default function ModalSection({ children }: Props) {
+export default function ModalSection({ isLocalOpen, children }: Props) {
   const { isOpen } = useSelector((state: State) => state.modal);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function ModalSection({ children }: Props) {
   return (
     <section
       className={`${
-        isOpen ? 'block' : 'hidden'
+        isOpen || isLocalOpen ? 'block' : 'hidden'
       } fixed inset-y-0 z-50 w-[24.375rem] bg-[#000000]/50 px-6`}
     >
       {children}

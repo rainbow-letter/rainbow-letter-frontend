@@ -40,7 +40,7 @@ export default function WritableLetterPaper({
       onchange({
         ...letter,
         content: e.target.value,
-        summary: letter?.content.slice(0, 20),
+        summary: e.target.value.slice(0, 20),
       });
     }
   };

@@ -332,6 +332,40 @@ export default function ModalContents() {
                 </div>
               </div>
             );
+          case 'DELETE':
+            return (
+              <div className="w-full px-[1.562rem] py-10">
+                <header className="flex flex-col items-center justify-center text-center">
+                  <img src={ErrorIcon} alt="편지지" />
+                  <h3 className="mt-5 whitespace-pre-wrap text-heading-3 font-bold">
+                    {title}
+                  </h3>
+                  <span className="mt-3 text-[#FF0000]">
+                    {body[0].contents}
+                  </span>
+                </header>
+                <div className="mt-[30px] flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(modalActions.closeModal());
+                    }}
+                    className="rounded-[8px] border-none bg-gray-4 px-6 py-2.5 text-[16px] text-gray-5"
+                  >
+                    돌아가기
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(modalActions.closeModal());
+                    }}
+                    className="rounded-[8px] border-none bg-orange-400 px-6 py-2.5 text-[16px] text-white"
+                  >
+                    편지 삭제하기
+                  </button>
+                </div>
+              </div>
+            );
           default:
             return null;
         }
