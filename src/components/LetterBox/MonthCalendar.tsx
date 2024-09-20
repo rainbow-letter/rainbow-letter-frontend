@@ -134,7 +134,7 @@ export default function MonthCalendar({
 
   return (
     <>
-      <section className="absolute inset-0 -top-[60px] z-50 flex h-auto flex-col items-center border-t bg-white px-[1.125rem] pt-[4.125rem]">
+      <section className="absolute inset-0 -top-[66px] z-50 flex h-auto flex-col items-center bg-white px-[1.125rem] pt-[4.125rem]">
         <button
           type="button"
           onClick={onClickCalendarClose}
@@ -149,7 +149,7 @@ export default function MonthCalendar({
             className="flex items-center gap-1.5"
           >
             <img src={Left} alt="왼쪽 화살표 아이콘" />
-            <span className="mt-px text-[10px]">이전 달</span>
+            <span className="mt-px text-[12px]">이전 달</span>
           </button>
           <button
             type="button"
@@ -164,7 +164,7 @@ export default function MonthCalendar({
             onClick={onClickNextMonth}
             className="flex items-center gap-1.5"
           >
-            <span className="mt-px text-[10px]">다음 달</span>
+            <span className="mt-px text-[12px]">다음 달</span>
             <img src={Right} alt="오른쪽 화살표 아이콘" />
           </button>
         </header>
@@ -174,13 +174,13 @@ export default function MonthCalendar({
               <li className="flex flex-row justify-start gap-2.5">
                 {dayArr.map((day) =>
                   day === '0' ? (
-                    <div className="mb-[14px]">
+                    <div className="mb-3">
                       <button type="button" className="mb-1 size-[42px]">
                         {day === '0'}
                       </button>
                     </div>
                   ) : (
-                    <div className="mb-[14px]">
+                    <div className="mb-3">
                       <button
                         type="button"
                         onClick={() => onClickDateButton(day)}
@@ -191,7 +191,8 @@ export default function MonthCalendar({
                         )}
                       </button>
                       <p
-                        className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} mx-auto h-3.5 w-[1.875rem] rounded-[10px] text-center text-xs`}
+                        // flex w-[30px] items-center justify-center rounded-[10px] pt-[2px] text-xs
+                        className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} mx-auto w-[30px] rounded-[10px] pt-[2px] text-center text-xs`}
                       >
                         {day !== '0' && format(day, 'dd')}
                       </p>

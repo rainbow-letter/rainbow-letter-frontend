@@ -114,7 +114,7 @@ export default function WeekCalendar({
 
   return (
     <>
-      <section className="px-[1.125rem] py-8">
+      <section className="px-[1.125rem] py-[30px]">
         <header className="flex justify-between">
           <button
             type="button"
@@ -122,7 +122,7 @@ export default function WeekCalendar({
             className="flex items-center gap-1.5"
           >
             <img src={Left} alt="왼쪽 화살표 아이콘" />
-            <span className="mt-px text-[10px]">이전 주</span>
+            <span className="mt-px text-[12px]">이전 주</span>
           </button>
           <button
             type="button"
@@ -137,11 +137,11 @@ export default function WeekCalendar({
             onClick={onClickNextWeek}
             className="flex items-center gap-1.5"
           >
-            <span className="mt-px text-[10px]">다음 주</span>
+            <span className="mt-px text-[12px]">다음 주</span>
             <img src={Right} alt="오른쪽 화살표 아이콘" />
           </button>
         </header>
-        <article className="mt-5">
+        <article className="mt-2">
           <ul className="flex justify-around">
             {DAY_OF_THE_WEEK.map((day: string) => (
               <li key={`letterBox-day-${day}`} className="text-xs text-gray-5">
@@ -154,7 +154,7 @@ export default function WeekCalendar({
               weekCalendar.map((day: number) => (
                 <li
                   key={`letterBox-calendar-${day}`}
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center justify-center"
                 >
                   <button
                     type="button"
@@ -166,7 +166,7 @@ export default function WeekCalendar({
                     )}
                   </button>
                   <p
-                    className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} h-3.5 w-[1.875rem] rounded-[10px] text-center text-xs`}
+                    className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} flex w-[30px] items-center justify-center rounded-[10px] pt-[2px] text-xs`}
                   >
                     {format(day, 'dd')}
                   </p>
