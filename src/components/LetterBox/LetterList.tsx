@@ -1,29 +1,45 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, ChangeEvent } from 'react';
 import { format, getDay } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from 'store';
+import Modal from 'components/Modal';
 import LetterItem from 'components/LetterBox/LetterItem';
 import Button from 'components/Button';
 import { LetterListResponse } from 'types/letters';
 import { PetResponse } from 'types/pets';
 import { formatDay } from 'utils/date';
+import { getLetterList, deleteLetter } from 'api/letter';
 import Plus from '../../assets/ic_letterBox_plus.svg';
 import Info from '../../assets/ic_letterBox_info.svg';
+import DeleteModal from './DeletModal';
 
 type Props = {
   date: Date;
   selectedPet: PetResponse | null;
   letterList: LetterListResponse[];
+  isEditing: boolean;
+  setIsEditing: any;
+  setLetterList: (date: LetterListResponse[]) => void;
 };
 
-export default function LetterList({ date, selectedPet, letterList }: Props) {
+export default function LetterList({
+  date,
+  selectedPet,
+  letterList,
+  setIsEditing,
+  isEditing,
+  setLetterList,
+}: Props) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
+  const [selectedLetterList, setSelectedLetterList] = useState<number[]>([]);
   const [filteredLetterList, setFilteredLetterList] = useState<
     LetterListResponse[]
   >([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const filteredListByPet = letterList.filter(
@@ -38,6 +54,12 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
       setFilteredLetterList([]);
     }
   }, [isCalendarOpen]);
+
+  useEffect(() => {
+    if (!isEditing) {
+      setSelectedLetterList([]);
+    }
+  }, [isEditing]);
 
   const filteredListByDate = filteredLetterList.filter(
     (letter) =>
@@ -57,20 +79,91 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
     navigate('/write-letter', { state: selectedPet?.id });
   }, [selectedPet?.id]);
 
+  const onClickEditButton = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleLetterCheck = (id: number) => {
+    if (selectedLetterList.includes(id)) {
+      return setSelectedLetterList(
+        selectedLetterList.filter((item) => item !== id)
+      );
+    }
+
+    return setSelectedLetterList((prev) => [...prev, id]);
+  };
+
+  const isSelectLetterItem = selectedLetterList.length > 0;
+
+  const onClickDeleteButton = async () => {
+    try {
+      for (const letter of selectedLetterList) {
+        await deleteLetter(letter);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      const {
+        data: { letters },
+      } = await getLetterList(selectedPet?.id);
+      setLetterList(letters || []);
+      setSelectedLetterList([]);
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleLocalModal = useCallback(() => {
+    setIsModalOpen(true);
+  }, []);
+
   return (
-    <section className="px-3 py-7">
-      <h3 className="text-solo-large font-bold">{dateAndDay}</h3>
-      <ul className="mt-5">
-        {filteredListByDate.map((letter) => (
-          <Link
-            to={`/letter-box/${letter.id}`}
-            key={`letter-item-${letter.id}`}
-            state={{ index: letter.number }}
-          >
-            <LetterItem letter={letter} />
-          </Link>
-        ))}
-      </ul>
+    <section className="relative px-3 pb-7 pt-6">
+      <div
+        className={`${isEditing && !isSelectLetterItem ? 'opacity-100' : 'opacity-0'} absolute right-[73px] top-[36px] z-10 mb-2 rounded-[12px] border border-orange-400 bg-white px-3 py-2 text-center transition-opacity duration-300`}
+      >
+        <p className="text-[12px]">
+          아래 편지를 눌러 <br />
+          삭제할 편지를 선택할 수 있어요!
+        </p>
+        <div className="absolute left-1/2 top-[49px] size-2 -translate-x-1/2 rotate-[315deg] border-b border-l border-orange-400 bg-white"></div>
+      </div>
+      <div className="flex items-center justify-between">
+        <h3 className="text-solo-large font-bold">{dateAndDay}</h3>
+        <button
+          onClick={!isSelectLetterItem ? onClickEditButton : handleLocalModal}
+          className={`${isSelectLetterItem ? 'border-[#FF0000] bg-[#ff0000]/[.25] text-[#FF0000]' : 'border-gray-1 text-gray-1'} rounded-[50px] border px-4 pb-[4.5px] pt-[6px] text-caption-pc leading-[12px]`}
+        >
+          {!isEditing ? '편집' : isSelectLetterItem ? '삭제' : '취소'}
+        </button>
+      </div>
+      {isEditing ? (
+        <ul className="mt-5">
+          {filteredListByDate.map((letter) => (
+            <div
+              id={String(letter.id)}
+              onClick={() => handleLetterCheck(letter.id)}
+              key={`letter-item-edit-${letter.id}`}
+            >
+              <LetterItem
+                letter={letter}
+                isSelect={selectedLetterList.includes(letter.id)}
+              />
+            </div>
+          ))}
+        </ul>
+      ) : (
+        <ul className="mt-5">
+          {filteredListByDate.map((letter) => (
+            <Link
+              to={`/letter-box/${letter.id}`}
+              key={`letter-item-${letter.id}`}
+              state={{ index: letter.number }}
+            >
+              <LetterItem letter={letter} />
+            </Link>
+          ))}
+        </ul>
+      )}
       {isToday && (
         <Button
           onClick={onClickWriteLetterButton}
@@ -95,6 +188,17 @@ export default function LetterList({ date, selectedPet, letterList }: Props) {
           제공받습니다.
         </p>
       </div>
+      {isModalOpen && (
+        <Modal
+          isLocalOpen={isModalOpen}
+          localModalContents={
+            <DeleteModal
+              setIsModalOpen={setIsModalOpen}
+              onClickDeleteButton={onClickDeleteButton}
+            />
+          }
+        />
+      )}
     </section>
   );
 }

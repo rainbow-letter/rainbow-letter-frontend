@@ -22,6 +22,7 @@ export default function LetterBoxRenew() {
   const [petsList, setPetsList] = useState<PetResponse[]>([]);
   const [selectedPet, setSelectedPet] = useState<PetResponse | null>(null);
   const [date, setDate] = useState(new Date());
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -53,17 +54,22 @@ export default function LetterBoxRenew() {
           petsList={petsList}
           selectedPet={selectedPet}
           onChange={setSelectedPet}
+          setIsEditing={setIsEditing}
         />
         <WeekCalendar
           setDate={setDate}
           letterList={mappedLetterListByDate}
           setLetterList={setLetterList}
           selectedPet={selectedPet}
+          setIsEditing={setIsEditing}
         />
         <LetterList
           date={date}
           selectedPet={selectedPet}
           letterList={letterList}
+          setIsEditing={setIsEditing}
+          isEditing={isEditing}
+          setLetterList={setLetterList}
         />
       </main>
     </Suspense>

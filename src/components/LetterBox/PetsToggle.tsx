@@ -9,13 +9,20 @@ type Props = {
   selectedPet: string | undefined;
   petsList: PetResponse[];
   onChange: (pet: PetResponse) => void;
+  setIsEditing: (bool: boolean) => void;
 };
 
-export default function PetsToggle({ selectedPet, petsList, onChange }: Props) {
+export default function PetsToggle({
+  selectedPet,
+  petsList,
+  onChange,
+  setIsEditing,
+}: Props) {
   const [isShow, setIsShow] = useState(false);
 
   const handlePetsListShow = useCallback(() => {
     setIsShow((prev) => !prev);
+    setIsEditing(false);
   }, []);
 
   return (

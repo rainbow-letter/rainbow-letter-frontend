@@ -12,12 +12,14 @@ type Props = {
   onChange: (pet: PetResponse) => void;
   petsList: PetResponse[];
   selectedPet: null | PetResponse;
+  setIsEditing: (bool: boolean) => void;
 };
 
 export default function PetInfoCard({
   onChange,
   petsList,
   selectedPet,
+  setIsEditing,
 }: Props) {
   return (
     <section>
@@ -25,6 +27,7 @@ export default function PetInfoCard({
         selectedPet={selectedPet?.name}
         petsList={petsList}
         onChange={onChange}
+        setIsEditing={setIsEditing}
       />
       <CoverImage image={formatImageType(selectedPet?.image)} />
       <InfoBox pet={selectedPet} />
