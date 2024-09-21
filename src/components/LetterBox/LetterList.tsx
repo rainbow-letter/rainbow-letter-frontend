@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback, ChangeEvent } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { format, getDay } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -92,8 +92,6 @@ export default function LetterList({
     return setSelectedLetterList((prev) => [...prev, id]);
   };
 
-  const isSelectLetterItem = selectedLetterList.length > 0;
-
   const onClickDeleteButton = async () => {
     try {
       for (const letter of selectedLetterList) {
@@ -116,6 +114,9 @@ export default function LetterList({
     setIsModalOpen(true);
   }, []);
 
+  const isSelectLetterItem = selectedLetterList.length > 0;
+  const isExistTodayLetter = filteredListByDate.length > 0;
+
   return (
     <section className="relative px-3 pb-7 pt-6">
       <div
@@ -130,6 +131,7 @@ export default function LetterList({
       <div className="flex items-center justify-between">
         <h3 className="text-solo-large font-bold">{dateAndDay}</h3>
         <button
+          disabled={!isExistTodayLetter}
           onClick={!isSelectLetterItem ? onClickEditButton : handleLocalModal}
           className={`${isSelectLetterItem ? 'border-[#FF0000] bg-[#ff0000]/[.25] text-[#FF0000]' : 'border-gray-1 text-gray-1'} rounded-[50px] border px-4 py-[4.5px] text-caption-pc leading-[12px]`}
         >
