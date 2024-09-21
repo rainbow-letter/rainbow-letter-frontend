@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo, useCallback, ChangeEvent } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { format, getDay } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { RootState } from 'store';
 import Modal from 'components/Modal';
@@ -32,7 +32,6 @@ export default function LetterList({
   isEditing,
   setLetterList,
 }: Props) {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
   const [selectedLetterList, setSelectedLetterList] = useState<number[]>([]);
@@ -93,8 +92,6 @@ export default function LetterList({
     return setSelectedLetterList((prev) => [...prev, id]);
   };
 
-  const isSelectLetterItem = selectedLetterList.length > 0;
-
   const onClickDeleteButton = async () => {
     try {
       for (const letter of selectedLetterList) {
@@ -109,12 +106,16 @@ export default function LetterList({
       setLetterList(letters || []);
       setSelectedLetterList([]);
       setIsModalOpen(false);
+      setIsEditing(false);
     }
   };
 
   const handleLocalModal = useCallback(() => {
     setIsModalOpen(true);
   }, []);
+
+  const isSelectLetterItem = selectedLetterList.length > 0;
+  const isExistTodayLetter = filteredListByDate.length > 0;
 
   return (
     <section className="relative px-3 pb-7 pt-6">
@@ -130,8 +131,9 @@ export default function LetterList({
       <div className="flex items-center justify-between">
         <h3 className="text-solo-large font-bold">{dateAndDay}</h3>
         <button
+          disabled={!isExistTodayLetter}
           onClick={!isSelectLetterItem ? onClickEditButton : handleLocalModal}
-          className={`${isSelectLetterItem ? 'border-[#FF0000] bg-[#ff0000]/[.25] text-[#FF0000]' : 'border-gray-1 text-gray-1'} rounded-[50px] border px-4 pb-[4.5px] pt-[6px] text-caption-pc leading-[12px]`}
+          className={`${isSelectLetterItem ? 'border-[#FF0000] bg-[#ff0000]/[.25] text-[#FF0000]' : 'border-gray-1 text-gray-1'} rounded-[50px] border px-4 py-[4.5px] text-caption-pc leading-[12px]`}
         >
           {!isEditing ? '편집' : isSelectLetterItem ? '삭제' : '취소'}
         </button>
