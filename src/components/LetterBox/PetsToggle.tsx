@@ -31,7 +31,7 @@ export default function PetsToggle({
         <button
           type="button"
           onClick={handlePetsListShow}
-          className="absolute left-5 top-6 z-10 flex flex-row items-center gap-2.5 rounded-[8px] bg-white p-3 text-[18px] leading-[18px]"
+          className="absolute left-5 top-6 z-10 flex flex-row items-center gap-2.5 rounded-[8px] bg-white px-[10px] py-2 text-[16px] leading-[17px]"
         >
           {selectedPet}
           <img src={Arrow} alt="화살표 이미지" />

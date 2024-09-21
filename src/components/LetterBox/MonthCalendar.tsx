@@ -191,8 +191,7 @@ export default function MonthCalendar({
                         )}
                       </button>
                       <p
-                        // flex w-[30px] items-center justify-center rounded-[10px] pt-[2px] text-xs
-                        className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} mx-auto w-[30px] rounded-[10px] pt-[2px] text-center text-xs`}
+                        className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} mx-auto w-[30px] rounded-[10px] text-center text-xs`}
                       >
                         {day !== '0' && format(day, 'dd')}
                       </p>

@@ -172,7 +172,7 @@ export default function WeekCalendar({
                     )}
                   </button>
                   <p
-                    className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} flex w-[30px] items-center justify-center rounded-[10px] pt-[2px] text-xs`}
+                    className={`${isActiveDate(day) ? 'bg-orange-400 text-white' : 'text-gray-5'} flex w-[30px] items-center justify-center rounded-[10px] text-xs`}
                   >
                     {format(day, 'dd')}
                   </p>

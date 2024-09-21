@@ -131,7 +131,7 @@ export default function LetterList({
         <h3 className="text-solo-large font-bold">{dateAndDay}</h3>
         <button
           onClick={!isSelectLetterItem ? onClickEditButton : handleLocalModal}
-          className={`${isSelectLetterItem ? 'border-[#FF0000] bg-[#ff0000]/[.25] text-[#FF0000]' : 'border-gray-1 text-gray-1'} rounded-[50px] border px-4 pb-[4.5px] pt-[6px] text-caption-pc leading-[12px]`}
+          className={`${isSelectLetterItem ? 'border-[#FF0000] bg-[#ff0000]/[.25] text-[#FF0000]' : 'border-gray-1 text-gray-1'} rounded-[50px] border px-4 py-[4.5px] text-caption-pc leading-[12px]`}
         >
           {!isEditing ? '편집' : isSelectLetterItem ? '삭제' : '취소'}
         </button>
