@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback, ChangeEvent } from 'react';
 import { format, getDay } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { RootState } from 'store';
 import Modal from 'components/Modal';
@@ -32,7 +32,6 @@ export default function LetterList({
   isEditing,
   setLetterList,
 }: Props) {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isCalendarOpen } = useSelector((state: RootState) => state.letter);
   const [selectedLetterList, setSelectedLetterList] = useState<number[]>([]);
@@ -109,6 +108,7 @@ export default function LetterList({
       setLetterList(letters || []);
       setSelectedLetterList([]);
       setIsModalOpen(false);
+      setIsEditing(false);
     }
   };
 
