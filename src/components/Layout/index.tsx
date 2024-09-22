@@ -10,6 +10,7 @@ function Layout() {
     pathname === '/donate' ||
     // TODO: '/letter-box로 변경'
     pathname === '/letter-box' ||
+    pathname === '/contents' ||
     false;
 
   useEffect(() => {

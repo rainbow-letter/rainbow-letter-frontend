@@ -15,8 +15,8 @@ function NavBar() {
         <NavItem to="/letter-box" label="편지함" Icon={letterBox} />
         <FloatingNavItem to="/write-letter" label="편지쓰기" icon={writing} />
         <NavItem
-          to="/my-pets"
-          label="아이정보"
+          to="/contents"
+          label="컨텐츠"
           Icon={petInfo}
           useStroke={false}
         />
