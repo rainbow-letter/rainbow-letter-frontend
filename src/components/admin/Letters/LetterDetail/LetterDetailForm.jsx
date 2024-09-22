@@ -115,9 +115,9 @@ function LetterDetailForm({
   if (!letterData) {
     return <div>Loading...</div>;
   }
-  console.log('letterData', letterData);
+
   const isChanged = newContent !== reply?.content;
-  const replyStatus = getReplyStatus(reply?.submitTime, reply?.inspectionTime);
+  const replyStatus = getReplyStatus(reply?.status, reply?.inspectionTime);
 
   return (
     <div
