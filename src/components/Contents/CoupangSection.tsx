@@ -3,7 +3,7 @@ import Info from '../../assets/ic_letterBox_info.svg';
 export default function CoupangSection() {
   return (
     <section className="px-[18px] py-[30px]">
-      <h2 className="text-[18px] font-bold">쿠팡 광고</h2>
+      <h2 className="text-[18px] font-bold leading-[18px]">쿠팡 광고</h2>
       <p className="mt-3 text-[14px] font-[400] leading-[21px] text-gray-1">
         이 링크를 통해 구매하면 무지개편지 운영에 도움이 돼요
       </p>
