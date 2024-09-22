@@ -1,6 +1,6 @@
 import Survey from '../../assets/contents_2.jpg';
-import Dogs from '../../assets/im_contents_dog.png';
-import Cat from '../../assets/im_contents_cat.png';
+import Dogs from '../../assets/im_contents_dogs.svg';
+import Cat from '../../assets/im_contents_cat.svg';
 
 interface Content_Message {
   id: number;

@@ -17,7 +17,7 @@ export default function PetContentsItem({
     <Link
       to={url}
       target="_blank"
-      className="mt-3 flex items-center justify-between gap-4 rounded-[16px] bg-orange-50 px-[18px] py-4"
+      className="mt-3 flex items-center justify-between gap-3 rounded-[16px] bg-orange-50 px-[18px] py-4"
     >
       <div className="flex w-full flex-col items-center gap-2">
         <div className="text-[14px] font-[600] leading-[17.5px]">
