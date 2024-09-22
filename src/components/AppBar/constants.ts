@@ -42,6 +42,9 @@ const appBarConfig: AppBar = {
   '/my-page/register': {
     title: '등록하기',
   },
+  '/contents': {
+    title: '컨텐츠',
+  },
   letterId: {
     title: '편지함',
   },

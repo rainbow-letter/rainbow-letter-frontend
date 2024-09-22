@@ -30,8 +30,8 @@ import ScrollToTop from 'hooks/useScrollTop';
 import LetterDetail from 'components/admin/Letters/LetterDetail';
 import PetRegistration from './components/MyPetsTemplate/PetRegistration';
 import PetEdit from './components/MyPetsTemplate/PetEdit';
-
 import Letters from './components/admin/Letters';
+import Contents from 'view/contents/Contents';
 
 function Router() {
   const { isOpen } = useSelector((state: State) => state.modal);
@@ -51,6 +51,7 @@ function Router() {
             <Route path="/members/password/reset" element={<Password />} />
             <Route path="/oauth/success" element={<Auth />} />
             <Route path="/share/:shareLink" element={<ShareLetter />} />
+            <Route path="/contents" element={<Contents />} />
             <Route element={<ProtectedLayout />}>
               {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
               <Route path="/my-page" element={<MyPage />} />
