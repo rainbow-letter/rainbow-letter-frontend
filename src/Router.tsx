@@ -17,7 +17,6 @@ import DetailLetter from 'view/letter/DetailLetter';
 import ShareLetter from 'view/letter/ShareLetter';
 import WriteLetter from 'view/letter/WriteLetter';
 import MyPage from 'view/account/MyPage';
-import MyPets from 'view/pet/MyPets';
 import SavedImage from 'view/letter/SavedImage';
 import Layout from 'components/Layout';
 import ProtectedLayout from 'components/Layout/ProtectedLayout';
@@ -58,7 +57,6 @@ function Router() {
               <Route path="/my-page/faqs" element={<FAQs />} />
               <Route path="/my-page/password" element={<PasswordReset />} />
               <Route path="/my-page/leave" element={<AccountDeletion />} />
-              <Route path="/my-pets" element={<MyPets />} />
               <Route path="/my-pets/register" element={<PetRegistration />} />
               <Route path="/my-pets/edit" element={<PetEdit />} />
               <Route path="/write-letter" element={<WriteLetter />} />
