@@ -36,14 +36,12 @@ function TableRow({ no, letter, isChecked }) {
   };
 
   const handleReplyClick = async () => {
-    const data = { userId, petId };
     dispatch(adminUserLetterActions.setFilterOption({ email }));
-    console.log('handleReply', userId, petId, id);
     // dispatch(fetchLetter(userId, petId, id));
     const res = await apiRequest.get(
       `/api/admins/letters/${id}?user=${userId}&pet=${petId}`
     );
-    console.log('res', res);
+
     if (res.status === 200) {
       navigate(`/admin/letters/${id}`, { state: res.data });
     }

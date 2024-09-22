@@ -40,16 +40,14 @@ function LetterDetail() {
   return (
     <>
       <LetterDetailForm
-        letterData={location.state}
         letterId={letter.id}
+        letterData={location.state}
         onLetterClick={handleUserLetterClick}
-        userId={user.id}
-        petId={pet.id}
       />
       {!!selectedLetterData && !!selectedLetterId && (
         <LetterDetailModal
-          letterData={selectedLetterData}
           letterId={selectedLetterId}
+          letterData={selectedLetterData}
           onLetterClick={handleUserLetterClick}
         />
       )}

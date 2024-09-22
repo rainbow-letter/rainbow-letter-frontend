@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
 import {
@@ -8,84 +8,34 @@ import {
   formatDateToYYMMDD,
 } from 'utils/date';
 import { extractFirstTenChars } from 'utils/string';
-import { getImage } from 'api/images';
 import defaultImage from 'assets/Logo_256px.png';
 import {
   editReply,
   regenerateReply,
 } from '../../../../store/admin/letters-actions';
 import { getReplyStatus, replyStatusInfo } from '../LetterTable/TableRow';
-import { fetchLetter } from '../../../../store/admin/letters-actions';
-
-import { getAdminLetterDetail } from '../../../../api/letter';
+import { formatImageType } from 'utils/image';
 
 const MAX_CONTENT_LENGTH = 1000;
 
 function LetterDetailForm({
-  letterData,
-  userId,
-  petId,
   letterId,
+  letterData,
   isModal = false,
   onLetterClick,
 }) {
   const [newContent, setNewContentValue] = useState('');
-  const [petImage, setPetImage] = useState('');
-  const [letterImage, setLetterImage] = useState('');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const { letterData, status } = useSelector((state) => state.adminLetter);
   const { user, pet, letter, reply, recent } = letterData;
-  // const isPageLoading = status === 'loading';
-
-  // useEffect(() => {
-  //   dispatch(fetchLetter(userId, petId, letterId));
-  // }, [dispatch, userId, petId, letterId]);
-
-  // const userLetters = useSelector((state) => state.adminUserLetters.letters);
-
-  console.log('letterData', letterData);
-
-  // useEffect(async () => {
-  //   if (isModal) return;
-  //   // dispatch(fetchLetter(userId, petId, letterId));
-  //   const res = await getAdminLetterDetail(userId, petId, letterId);
-  //   setLetterData(res);
-  // }, [dispatch]);
-
-  // const letterData = userLetters.find(
-  //   (letter) => letter.id === Number(letterId)
-  // );
 
   useEffect(() => {
     if (reply && reply?.content) {
       setNewContentValue(reply?.content);
     }
   }, [reply?.content]);
-
-  useEffect(() => {
-    if (pet?.image) {
-      const getPetImage = async () => {
-        const image = await getImage(pet.image);
-        setPetImage(image);
-      };
-      getPetImage();
-    } else {
-      setPetImage(defaultImage);
-    }
-  }, [pet?.image]);
-
-  useEffect(() => {
-    if (letter?.image) {
-      const getLetterImage = async () => {
-        const image = await getImage(letter.image);
-        setLetterImage(image);
-      };
-      getLetterImage();
-    }
-  }, [letter?.image]);
 
   const handleRegenerateClick = () => {
     if (reply?.submitTime) return alert('이미 답장을 보낸 편지입니다.');
@@ -237,7 +187,11 @@ function LetterDetailForm({
               </div>
             </div>
             <div className="">
-              <img className="size-[132px]" src={petImage} alt={pet.name} />
+              <img
+                className="size-[132px]"
+                src={pet.image ? formatImageType(pet.image) : defaultImage}
+                alt={pet.name}
+              />
             </div>
           </div>
         </header>
@@ -247,10 +201,10 @@ function LetterDetailForm({
               <span className="text-[20px] font-bold">
                 {letter.number}회차 편지
               </span>
-              {letterImage && (
+              {letter.image && (
                 <Link
                   className="text-primary underline"
-                  to={letterImage}
+                  to={formatImageType(letter.image)}
                   target="_blank"
                 >
                   (사진보기)
@@ -291,6 +245,7 @@ function LetterDetailForm({
           <textarea
             className="w-full resize-none rounded-lg bg-gray-100 p-5"
             maxLength={MAX_CONTENT_LENGTH}
+            disabled={reply?.submitTime}
             value={newContent}
             onChange={({ target }) => setNewContentValue(target.value)}
           />
@@ -311,13 +266,12 @@ function LetterDetailForm({
             <div className="flex gap-x-2">
               <button
                 className={`rounded px-3 py-2 font-semibold ${
-                  // isPageLoading
-                  //   ? 'cursor-not-allowed'
-                  //   : 'bg-pink-300 hover:bg-pink-400'
-                  'bg-pink-300 hover:bg-pink-400'
+                  reply?.submitTime
+                    ? 'cursor-not-allowed'
+                    : 'bg-pink-300 hover:bg-pink-400'
                 }`}
                 type="button"
-                // disabled={isPageLoading}
+                disabled={reply?.submitTime}
                 onClick={handleRegenerateClick}
               >
                 GPT 재생성
