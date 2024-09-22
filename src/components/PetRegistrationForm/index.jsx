@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -15,16 +15,14 @@ import {
   usePetRegistration,
   setInitialPetData,
 } from '../../contexts/PetRegistrationContext';
-import useGetImage from 'hooks/useGetImage';
+import { formatImageType } from '../../utils/image';
 
 function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
   const { pathname } = useLocation();
   const isEdit = pathname.includes('edit');
-  const [isEmptyImage, setIsEmptyImage] = useState(isEdit ? false : true);
 
   const { setMandatoryData, setOptionalData } = usePetRegistration();
   const { isSubmitting, handleButtonClick } = usePreventDoubleClick();
-  const { image, setImage } = useGetImage(petData?.image);
 
   const setPetData = () => {
     if (petData) {
@@ -37,7 +35,10 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
         owner,
         deathAnniversary:
           deathAnniversary && convertDateStringToObject(deathAnniversary),
-        image,
+        image: {
+          id: image,
+          url: formatImageType(image),
+        },
       });
       setOptionalData({
         personalities,
@@ -59,15 +60,11 @@ function PetRegistrationForm({ petData, isDisabled, handleSubmit }) {
       <PetTypeSection />
       <RoleForPetSection />
       <PetPersonalitiesSection />
-      <PetImageSection
-        image={image}
-        setImage={setImage}
-        setIsEmptyImage={setIsEmptyImage}
-      />
+      <PetImageSection />
       <section className="pt-6">
         {!isSubmitting ? (
           <Button
-            disabled={!isDisabled || isSubmitting || isEmptyImage}
+            disabled={!isDisabled || isSubmitting}
             onClick={handleButtonClick(handleSubmit)}
           >
             <span>등록하기</span>

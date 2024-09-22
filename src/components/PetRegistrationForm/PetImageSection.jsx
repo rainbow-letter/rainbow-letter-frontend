@@ -1,19 +1,21 @@
+import { useState } from 'react';
 import ImageInput from 'components/Input/ImageInput';
 import { TITLES } from './constants';
 import PetRegistrationSection from './PetRegistrationSection';
 import roundX from '../../assets/roundX.svg';
 import { usePetRegistration } from '../../contexts/PetRegistrationContext';
 
-function PetImageSection({ image, setImage, setIsEmptyImage }) {
+function PetImageSection() {
   const { mandatoryData, setMandatoryData } = usePetRegistration();
+  const [previewUrl, setPreviewUrl] = useState('');
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
     if (file && file.type.match('image.*')) {
       const imageUrl = URL.createObjectURL(file);
-      setIsEmptyImage(false);
-      setImage(imageUrl);
+
+      setPreviewUrl(imageUrl);
       setMandatoryData({
         ...mandatoryData,
         image: {
@@ -28,14 +30,13 @@ function PetImageSection({ image, setImage, setIsEmptyImage }) {
 
   const handleImageDelete = () => {
     setMandatoryData({ ...mandatoryData, image: '' });
-    setIsEmptyImage(true);
-    setImage('');
+    setPreviewUrl('');
   };
 
   return (
     <PetRegistrationSection title={TITLES.PROFILE_IMAGE}>
       <ImageInput
-        imageSrc={image}
+        imageSrc={previewUrl || mandatoryData.image.url}
         deleteIcon={roundX}
         onChange={handleImageChange}
         onDelete={handleImageDelete}
