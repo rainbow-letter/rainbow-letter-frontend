@@ -54,8 +54,8 @@ export const editReply = createAsyncThunk(
     );
 
     const inspection = getState().adminLetters?.letters?.find(
-      (letter) => letter.reply.id === replyId
-    )?.reply.inspection;
+      (letter) => letter.replyId === replyId
+    )?.inspection;
 
     return { response, inspection };
   }

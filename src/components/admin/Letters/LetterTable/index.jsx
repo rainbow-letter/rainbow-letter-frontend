@@ -32,11 +32,10 @@ function LetterTable() {
   const handleSendRepliesClick = () => {
     const requests = letters
       .filter(
-        (letter) =>
-          letter.isChecked && letter.inspection && !letter.inspectionTime
+        (letter) => letter.isChecked && letter.inspection && !letter.submitTime
       )
       .map((letter) => ({
-        replyId: letter.reply.id,
+        replyId: letter.replyId,
         letterId: letter.id,
       }));
 
@@ -187,8 +186,7 @@ function LetterTable() {
                     key={letter.id}
                     no={index + 1}
                     letter={letter}
-                    userId={userId}
-                    pertId={petId}
+                    isChecked={letter.isChecked}
                   />
                 );
               })}
