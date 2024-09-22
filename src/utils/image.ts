@@ -1,3 +1,6 @@
-export const formatImageType = (data: any) => {
-  return `https://dev.rainbowletter.co.kr/api/images/resources/${data}`;
+export const formatImageType = (data?: string) => {
+  if (!data) return '';
+
+  const baseURL = process.env.REACT_APP_API_URL;
+  return `${baseURL}/api/images/resources/${data}`;
 };
