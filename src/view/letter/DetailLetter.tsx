@@ -177,7 +177,7 @@ export default function DetailLetter() {
             <div
               className={`${isExistReply ? 'opacity-100' : 'opacity-0'} absolute -right-[10px] -top-[16px] z-50 rounded-[12px] border border-orange-400 bg-white px-3 py-2 text-center transition-opacity duration-300`}
             >
-              <p className="text-[12px]">
+              <p className="pt-1 text-[12px]">
                 아이와의 편지를 이미지로 <br />
                 저장할 수 있어요
               </p>
