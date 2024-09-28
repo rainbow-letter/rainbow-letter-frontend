@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 import { State } from 'types/store';
 import Login from 'view/account/Login';
@@ -31,9 +32,13 @@ import PetRegistration from './components/MyPetsTemplate/PetRegistration';
 import PetEdit from './components/MyPetsTemplate/PetEdit';
 import Letters from './components/admin/Letters';
 import Contents from 'view/contents/Contents';
+import ToolTip from 'components/ToolTip';
 
 function Router() {
   const { isOpen } = useSelector((state: State) => state.modal);
+  const { isOpen: toolTipOpen } = useSelector(
+    (state: RootState) => state.toolTip
+  );
 
   return (
     <BrowserRouter>
@@ -73,6 +78,7 @@ function Router() {
           </Route>
         </Routes>
         {isOpen && <Modal />}
+        {toolTipOpen && <ToolTip />}
       </ScrollToTop>
     </BrowserRouter>
   );

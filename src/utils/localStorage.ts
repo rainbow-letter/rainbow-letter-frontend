@@ -17,3 +17,11 @@ export const setExpireModal = (date: string) => {
 export const getExpireModal = () => {
   return localStorage.getItem('expire');
 };
+
+export const getFirstReplyUser = () => {
+  return localStorage.getItem('firstReply');
+};
+
+export const setFirstReplyUser = () => {
+  return localStorage.setItem('firstReply', 'true');
+};
