@@ -10,6 +10,7 @@ import adminLetterSlice from './admin/letter-slice';
 import adminLetterUiSlice from './admin/letterUi-slice';
 import { setupListeners } from './listeners';
 import adminUserLettersSlice from './admin/useLetter-slice';
+import toolTipSlice from './toolTip/toolTip-slice';
 
 export const listenerMiddleware = createListenerMiddleware();
 export const { startListening, stopListening } = listenerMiddleware;
@@ -20,6 +21,7 @@ const store = configureStore({
     user: userSlice.reducer,
     pet: petSlice.reducer,
     letter: letterSlice.reducer,
+    toolTip: toolTipSlice.reducer,
     adminLetters: adminLettersSlice.reducer,
     adminLetter: adminLetterSlice.reducer,
     adminLetterUi: adminLetterUiSlice.reducer,

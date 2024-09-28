@@ -21,12 +21,15 @@ import { letterActions } from 'store/letter/letter-slice';
 import { readReply } from '../../api/reply';
 import captureLogo from '../../assets/detailLetter_logo.svg';
 import { formatImageType } from 'utils/image';
+import { toolTipActions } from 'store/toolTip/toolTip-slice';
+import { getFirstReplyUser } from 'utils/localStorage';
 
 export default function DetailLetter() {
   // redux
   const dispatch = useAppDispatch();
   const isSave = useSelector((state: RootState) => state.letter.isSaveToImage);
   const letterType = useSelector((state: RootState) => state.letter.letterType);
+  const { isOpen } = useSelector((state: RootState) => state.toolTip);
 
   // ref
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -45,6 +48,10 @@ export default function DetailLetter() {
       setLetterData(data);
       if (data.reply?.status === 'REPLY') {
         await readReply(data.reply.id);
+      }
+      const isFirst = getFirstReplyUser();
+      if (!isFirst) {
+        dispatch(toolTipActions.openToolTip());
       }
     })();
   }, []);
@@ -161,12 +168,23 @@ export default function DetailLetter() {
   }, [dispatch]);
 
   const isExistReply = !!letterData?.reply?.content;
-  console.log(letterData);
 
   return (
     <>
       {letterData && (
         <main className="letterBox relative" ref={sectionRef}>
+          {isOpen && (
+            <div
+              className={`${isExistReply ? 'opacity-100' : 'opacity-0'} absolute -right-[10px] -top-[16px] z-50 rounded-[12px] border border-orange-400 bg-white px-3 py-2 text-center transition-opacity duration-300`}
+            >
+              <p className="text-[12px]">
+                아이와의 편지를 이미지로 <br />
+                저장할 수 있어요
+              </p>
+              <div className="absolute -top-[5px] right-[18px] z-50 size-2 rotate-[315deg] border-r border-t border-orange-400 bg-white"></div>
+            </div>
+          )}
+
           {isExistReply && <DownLoadButton onClick={onClickSaveIcon} />}
           <LetterPaperWithImage>
             <CoverImageWithTimeStamp
