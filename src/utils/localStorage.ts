@@ -23,5 +23,5 @@ export const getFirstReplyUser = () => {
 };
 
 export const setFirstReplyUser = () => {
-  return localStorage.setItem('firstReply', 'true');
+  return localStorage.setItem('firstReply', 'false');
 };

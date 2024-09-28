@@ -48,10 +48,10 @@ export default function DetailLetter() {
       setLetterData(data);
       if (data.reply?.status === 'REPLY') {
         await readReply(data.reply.id);
-      }
-      const isFirst = getFirstReplyUser();
-      if (!isFirst) {
-        dispatch(toolTipActions.openToolTip());
+        const isNotFirst = getFirstReplyUser();
+        if (!isNotFirst) {
+          dispatch(toolTipActions.openToolTip());
+        }
       }
     })();
   }, []);
