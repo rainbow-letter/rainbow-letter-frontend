@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Introduce from '../../assets/im_contents_introduce.png';
+import Event from '../../assets/im_contents_event.png';
 
 export default function EventSection() {
   return (
@@ -10,9 +10,9 @@ export default function EventSection() {
       <p className="mt-3 text-[14px] font-[400] leading-[21px] text-gray-1">
         이벤트에 참여하면 무지개편지가 선물을 드려요!
       </p>
-      <Link to="https://pf.kakao.com/_MNevG/106391151">
+      <Link to="https://pf.kakao.com/_MNevG/106934362" target="_blank">
         <img
-          src={Introduce}
+          src={Event}
           alt="아이 소개 이미지"
           className="mt-3 rounded-[16px]"
         />
