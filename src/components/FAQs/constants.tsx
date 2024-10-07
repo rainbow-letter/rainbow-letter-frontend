@@ -36,18 +36,12 @@ export const FAQS: Faqs[] = [
   },
   {
     id: 4,
-    question: '하트는 하루에 몇 번까지 보낼 수 있나요?',
-    answer:
-      '하루 최대 3번 가능해요. \n아침, 점심, 저녁 생각날 때 하트를 보내주세요.',
-  },
-  {
-    id: 5,
     question: '서비스 공지사항은 어디에서 확인하나요?',
     answer: '네이버 ‘무지개편지’ 블로그를 확인해주세요. \n',
     link: 'https://blog.naver.com/rainbowletter',
   },
   {
-    id: 6,
+    id: 5,
     question: '문의/제휴하고 싶다면 어디로 연락하나요?',
     answer: '메일 주시면 영업일 기준 1~2일 이내 회신 드릴게요. \n',
     email: 'rainbowletter41@gmail.com',
