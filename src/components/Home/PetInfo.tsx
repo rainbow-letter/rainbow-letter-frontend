@@ -18,7 +18,7 @@ export default function PetInfo({ pet, letterCount }: Props) {
     pet?.deathAnniversary && calculateDDay(pet?.deathAnniversary);
 
   const handleScroll = () => {
-    navigate('/my-pets', { state: pet?.id });
+    navigate('/letter-box', { state: pet?.id });
   };
 
   return (
@@ -43,10 +43,10 @@ export default function PetInfo({ pet, letterCount }: Props) {
             <img src={letter} alt="letter" />
             <p>보낸 편지 {letterCount}회</p>
           </div>
-          <div className="flex gap-2.5">
+          {/* <div className="flex gap-2.5">
             <img src={heart} alt="heart" />
             <p>보낸 하트 {pet && pet.favoriteCount}회</p>
-          </div>
+          </div> */}
         </div>
         <img
           src={arrow}
