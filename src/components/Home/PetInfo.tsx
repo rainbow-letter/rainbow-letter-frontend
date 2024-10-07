@@ -18,7 +18,7 @@ export default function PetInfo({ pet, letterCount }: Props) {
     pet?.deathAnniversary && calculateDDay(pet?.deathAnniversary);
 
   const handleScroll = () => {
-    navigate('/my-pets', { state: pet?.id });
+    navigate('/letter-box', { state: pet?.id });
   };
 
   return (
