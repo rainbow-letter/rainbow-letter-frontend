@@ -52,7 +52,7 @@ function Router() {
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Join />} />
             <Route path="/auth/email" element={<Email />} />
-            <Route path="/members/password/reset" element={<Password />} />
+            <Route path="/users/password/reset" element={<Password />} />
             <Route path="/oauth/success" element={<Auth />} />
             <Route path="/share/:shareLink" element={<ShareLetter />} />
             <Route path="/contents" element={<Contents />} />
