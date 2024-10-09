@@ -32,7 +32,11 @@ export default function PetContentsItem({
           {description}
         </span>
       </div>
-      <img src={image} alt="강아지 사진" className="rounded-[16px]" />
+      <img
+        src={image}
+        alt="강아지 사진"
+        className="h-[109px] min-w-[150px] rounded-[16px]"
+      />
     </Link>
   );
 }
