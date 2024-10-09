@@ -98,6 +98,7 @@ export default function WriteLetter() {
     const { sessionId, id } = await generateSavedLetter(newSaveLetterData);
     setSessionAutoSaveID(sessionId);
     setSavedLetterId(id);
+    dispatch(letterActions.setIsSuccess());
   }, [selectedPet?.id, letter.content]);
 
   // 자동저장 편지가 있을 때(편지 생성 및 세션 아이디 초기화)
@@ -115,6 +116,7 @@ export default function WriteLetter() {
     } = await updateSessionID(data.id);
 
     setSessionAutoSaveID(sessionId);
+    dispatch(letterActions.setIsSuccess());
   }, [selectedPet?.id]);
 
   // 편지 내용 상태 관리
