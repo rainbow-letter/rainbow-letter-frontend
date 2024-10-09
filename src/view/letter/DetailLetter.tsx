@@ -196,7 +196,7 @@ export default function DetailLetter() {
                 content={letterData.reply.content}
                 className="pt-[15.187rem]"
                 letterPaperColor="bg-orange-50"
-                date={formatDateIncludingHangul(letterData.reply.updatedAt)}
+                date={formatDateIncludingHangul(letterData.reply.createdAt)}
                 saveType={{
                   target: 'reply_down',
                   unTargetValue: 'reply_value',
@@ -209,7 +209,7 @@ export default function DetailLetter() {
               content={letterData.letter.content}
               className={isExistReply ? 'mt-4' : 'pt-[15.187rem]'}
               letterPaperColor="bg-gray-2"
-              date={formatDateIncludingHangul(letterData.letter.updatedAt)}
+              date={formatDateIncludingHangul(letterData.letter.createdAt)}
               saveType={{
                 target: 'letter_down',
                 unTargetValue: 'letter_value',
