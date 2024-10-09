@@ -1,3 +1,4 @@
+import CoverImage from 'components/Common/CoverImage';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -32,11 +33,14 @@ export default function PetContentsItem({
           {description}
         </span>
       </div>
-      <img
-        src={image}
-        alt="강아지 사진"
-        className="h-[109px] min-w-[150px] rounded-[16px]"
-      />
+
+      <div className="h-[109px] min-w-[150px]">
+        <img
+          src={image}
+          alt="cover"
+          className="h-[109px] min-w-[150px] rounded-[16px] object-cover"
+        />
+      </div>
     </Link>
   );
 }
