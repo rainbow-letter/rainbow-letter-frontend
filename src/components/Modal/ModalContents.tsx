@@ -124,7 +124,7 @@ export default function ModalContents() {
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setValue(e.target.value)
                   }
-                  className="mt-4 w-full py-5"
+                  className="mt-4 h-[60px] w-full px-[22px] py-5"
                 />
                 <p className="mb-4 mt-1 px-2.5 text-left text-caption text-alarm-red">
                   {errorMessage}
