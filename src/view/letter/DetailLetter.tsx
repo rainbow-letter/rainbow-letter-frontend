@@ -196,7 +196,7 @@ export default function DetailLetter() {
                 content={letterData.reply.content}
                 className="pt-[15.187rem]"
                 letterPaperColor="bg-orange-50"
-                date={formatDateIncludingHangul(letterData.reply.createdAt)}
+                date={formatDateIncludingHangul(letterData.reply.submitTime)}
                 saveType={{
                   target: 'reply_down',
                   unTargetValue: 'reply_value',
