@@ -33,7 +33,6 @@ export default function PetContentsItem({
           {description}
         </span>
       </div>
-
       <div className="h-[109px] min-w-[150px]">
         <img
           src={image}
