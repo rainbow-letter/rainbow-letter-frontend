@@ -9,9 +9,9 @@ export default function CoupangSection() {
       </p>
       <iframe
         src="https://ads-partners.coupang.com/widgets.html?id=809413&template=carousel&trackingCode=AF8807113&subId=&width=354&height=145&tsource="
-        width="354"
+        // width="354"
         height="145"
-        className="mt-3"
+        className="mt-3 w-full"
       ></iframe>
       <div className="mt-[10px] flex items-start gap-[6.5px]">
         <img src={Info} alt="인포 아이콘" />

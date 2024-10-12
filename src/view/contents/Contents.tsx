@@ -4,8 +4,11 @@ import EventSection from 'components/Contents/EventSection';
 import CoupangSection from 'components/Contents/CoupangSection';
 import OtherContentsSection from 'components/Contents/OtherContentsSection';
 import NavBar from 'components/NavBar';
+import useIsWebview from 'hooks/useIsWebview';
 
 export default function Contents() {
+  const isWebview = useIsWebview();
+
   return (
     <main className="pb-28">
       <div className="bg-gray-6">
@@ -16,14 +19,14 @@ export default function Contents() {
           className="mx-auto"
         ></iframe>
       </div>
-      <AppBar />
+      {!isWebview && <AppBar />}
       <Divider />
       <EventSection />
       <Divider />
       <CoupangSection />
       <Divider />
       <OtherContentsSection />
-      <NavBar />
+      {!isWebview && <NavBar />}
     </main>
   );
 }
