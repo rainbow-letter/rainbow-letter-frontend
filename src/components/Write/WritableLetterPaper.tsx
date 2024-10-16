@@ -52,7 +52,7 @@ export default function WritableLetterPaper({
   return (
     <section className="relative mt-4 pt-[15.187rem]">
       <section className="rounded-2xl bg-orange-50 px-6 py-8 font-Gyobomungo2019 text-body-letter text-gray-1">
-        <h3>{petName}에게</h3>
+        <h3>{petName ? `${petName}에게` : ''}</h3>
         <textarea
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
             handleTextarea(e);

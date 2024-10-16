@@ -35,6 +35,7 @@ import { letterActions } from 'store/letter/letter-slice';
 import CoverImage from 'components/Common/CoverImage';
 import { LetterRequest } from 'types/letters';
 import { formatImageType } from 'utils/image';
+import Spinner from 'components/Spinner';
 
 export default function WriteLetter() {
   const dispatch = useDispatch();
@@ -50,18 +51,25 @@ export default function WriteLetter() {
   const [isLoading, setIsLoading] = useState(false);
   const [temp, setTemp] = useState<string | undefined>('');
   const [savedLetterId, setSavedLetterId] = useState<number | null>(null);
+  const [isFetchLoading, setIsFetchLoading] = useState(true);
 
   // 편지쓰기 페이지 입장
   useEffect(() => {
     (async () => {
+      setIsFetchLoading(true);
       const { data } = await getPets();
       setPetsList(data.pets || []);
+      dispatch(
+        letterActions.setIsExistPet(data.pets.length > 0 ? true : false)
+      );
       if (location.state) {
         const finedPet = data.pets.find(
           (pet: PetResponse) => pet.id === location.state
         );
+        setIsFetchLoading(false);
         return setSelectedPet(finedPet || data.pets[0]);
       }
+      setIsFetchLoading(false);
       setSelectedPet(data.pets[0] || null);
 
       return () => {
@@ -224,6 +232,10 @@ export default function WriteLetter() {
       setIsLoading(false);
     }
   }, [letter, imageFile, selectedPet]);
+
+  if (isFetchLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main className="relative">
