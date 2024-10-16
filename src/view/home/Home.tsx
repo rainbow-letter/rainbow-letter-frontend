@@ -25,7 +25,6 @@ export default function LandingPage() {
       <LetterShowcase />
       <LetterPostButton />
       <HomeDivider />
-      {/* <ContentsSection /> */}
       <OpenTalk />
       <PhoneButton />
       <Divider />

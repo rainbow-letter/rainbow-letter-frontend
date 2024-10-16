@@ -9,7 +9,7 @@ function PWAGuide() {
     <section>
       <button
         type="button"
-        className="flex w-full items-center justify-center gap-x-1 bg-gray-2 py-1.5"
+        className="flex h-[51px] w-full items-center justify-center gap-x-1 bg-gray-2 py-1.5"
         onClick={() => navigate('/pwa_landing')}
       >
         <div>

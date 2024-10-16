@@ -18,6 +18,7 @@ function AppBar() {
 
   const isSaving = useSelector((state: RootState) => state.letter.isSaving);
   const isSuccess = useSelector((state: RootState) => state.letter.isSuccess);
+  const isExistPet = useSelector((state: RootState) => state.letter.isExistPet);
 
   if (!config) {
     return null;
@@ -30,7 +31,7 @@ function AppBar() {
     navigate(-1);
   };
 
-  const isShowSavingIcon = normalizedPath === '/write-letter';
+  const isShowSavingIcon = normalizedPath === '/write-letter' && isExistPet;
   const isShowDonateAppBar =
     normalizedPath === '/write-letter' || normalizedPath === '/letter-box';
 

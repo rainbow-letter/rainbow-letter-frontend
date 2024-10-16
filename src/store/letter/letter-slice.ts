@@ -8,6 +8,7 @@ const initialState = {
   saveImageUrl: '',
   isCalendarOpen: false,
   sentLetterTarget: null,
+  isExistPet: false,
 };
 
 const letterSlice = createSlice({
@@ -42,6 +43,9 @@ const letterSlice = createSlice({
     },
     setSentLetterTarget(state, action) {
       state.sentLetterTarget = action.payload;
+    },
+    setIsExistPet(state, action) {
+      state.isExistPet = action.payload;
     },
   },
 });

@@ -14,7 +14,7 @@ export default function EventSection() {
         <img
           src={Event}
           alt="아이 소개 이미지"
-          className="mt-3 rounded-[16px]"
+          className="mt-3 h-[265px] w-[354px] rounded-[16px]"
         />
       </Link>
     </section>

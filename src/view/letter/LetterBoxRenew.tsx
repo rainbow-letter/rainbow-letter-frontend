@@ -23,9 +23,11 @@ export default function LetterBoxRenew() {
   const [selectedPet, setSelectedPet] = useState<PetResponse | null>(null);
   const [date, setDate] = useState(new Date());
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       const { data } = await getPets();
 
       setPetsList(data.pets || []);
@@ -34,9 +36,10 @@ export default function LetterBoxRenew() {
         const findedPet = data.pets.find(
           (pet: PetResponse) => pet.id === state
         );
+        setIsLoading(false);
         return setSelectedPet(findedPet || data.pets[0]);
       }
-
+      setIsLoading(false);
       return setSelectedPet(data.pets[0]);
     })();
   }, []);
@@ -45,33 +48,39 @@ export default function LetterBoxRenew() {
     format(letter.createdAt, 'yyyy-MM-dd')
   );
 
-  if (petsList !== null && petsList.length < 1) return <NoPets />;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Suspense fallback={<Spinner />}>
-      <main className="relative">
-        <PetInfoCard
-          petsList={petsList}
-          selectedPet={selectedPet}
-          onChange={setSelectedPet}
-          setIsEditing={setIsEditing}
-        />
-        <WeekCalendar
-          setDate={setDate}
-          letterList={mappedLetterListByDate}
-          setLetterList={setLetterList}
-          selectedPet={selectedPet}
-          setIsEditing={setIsEditing}
-        />
-        <LetterList
-          date={date}
-          selectedPet={selectedPet}
-          letterList={letterList}
-          setIsEditing={setIsEditing}
-          isEditing={isEditing}
-          setLetterList={setLetterList}
-        />
-      </main>
+      {petsList !== null && petsList.length < 1 ? (
+        <NoPets />
+      ) : (
+        <main className="relative">
+          <PetInfoCard
+            petsList={petsList}
+            selectedPet={selectedPet}
+            onChange={setSelectedPet}
+            setIsEditing={setIsEditing}
+          />
+          <WeekCalendar
+            setDate={setDate}
+            letterList={mappedLetterListByDate}
+            setLetterList={setLetterList}
+            selectedPet={selectedPet}
+            setIsEditing={setIsEditing}
+          />
+          <LetterList
+            date={date}
+            selectedPet={selectedPet}
+            letterList={letterList}
+            setIsEditing={setIsEditing}
+            isEditing={isEditing}
+            setLetterList={setLetterList}
+          />
+        </main>
+      )}
     </Suspense>
   );
 }
