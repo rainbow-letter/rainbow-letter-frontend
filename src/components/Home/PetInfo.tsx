@@ -29,7 +29,7 @@ export default function PetInfo({ pet, letterCount }: Props) {
       <img
         src={formatImageType(pet?.image)}
         alt="pet"
-        className="mr-7 size-[5.5rem] rounded-full"
+        className="mr-7 size-[5.5rem] rounded-full object-cover"
       />
       <div className="flex flex-col justify-center gap-x-2">
         <div className="mb-2 flex items-center gap-2">
@@ -43,10 +43,6 @@ export default function PetInfo({ pet, letterCount }: Props) {
             <img src={letter} alt="letter" />
             <p>보낸 편지 {letterCount}회</p>
           </div>
-          {/* <div className="flex gap-2.5">
-            <img src={heart} alt="heart" />
-            <p>보낸 하트 {pet && pet.favoriteCount}회</p>
-          </div> */}
         </div>
         <img
           src={arrow}
