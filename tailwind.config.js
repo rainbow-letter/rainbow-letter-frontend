@@ -89,6 +89,7 @@ module.exports = {
         home: '0px 0px 5px 0px rgba(0, 0, 0, 0.15)',
         letter: '2px 2px 5px 0px rgba(0, 0, 0, 0.05)',
         modal: '0px 0px 6px 0px rgba(20, 20, 43, 0.10);',
+        nav: '0 -5px 6px -5px rgba(0, 0, 0, 0.10)',
       },
     },
   },
