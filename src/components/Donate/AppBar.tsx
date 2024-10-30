@@ -5,7 +5,16 @@ import Arrow from 'assets/ic_donate_arrow.svg';
 
 export default function AppBar() {
   return (
-    <Link to="/donate" target="_blank" className="bg-[#F3F3F3]">
+    <Link
+      onClick={() =>
+        window.ReactNativeWebView.postMessage(
+          JSON.stringify({ url: 'https://rainbowletter.co.kr/donate' })
+        )
+      }
+      to="/donate"
+      target="_blank"
+      className="bg-[#F3F3F3]"
+    >
       <div className="flex items-center justify-between rounded-[15px] px-5">
         <section className="py-4 text-gray-1">
           <p className="font-bold">무지개마을을 지켜주세요!</p>
