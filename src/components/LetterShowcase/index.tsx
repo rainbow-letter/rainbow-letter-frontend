@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 
 import LetterItem from 'components/LetterShowcase/LetterItem';
 import { ShowcaseLetter } from './type';
+import useIsWebview from 'hooks/useIsWebview';
 
 const SHOWCASE_CAROUSEL_OPTIONS = {
   swipeToSlide: true,
@@ -19,6 +20,7 @@ const SHOWCASE_CAROUSEL_OPTIONS = {
 } as const;
 
 function LetterShowcase() {
+  const isWebview = useIsWebview();
   const [letters, setLetters] = useState<ShowcaseLetter[]>();
 
   useEffect(() => {
@@ -32,14 +34,14 @@ function LetterShowcase() {
   }, []);
 
   return (
-    <section className="pl-5 pt-8">
+    <section className={`${!isWebview && 'pl-5'} pt-8`}>
       <span className="pb-8 pt-5 text-solo-large font-bold">
         무지개에 걸린 편지
       </span>
       <div className="h-6" />
       <Slider {...SHOWCASE_CAROUSEL_OPTIONS} className="h-52">
         {letters?.map((letter) => (
-          <div className="w-[138px] py-5" key={letter.id}>
+          <div className="w-[138px] px-1 py-5" key={letter.id}>
             <LetterItem letter={letter} />
           </div>
         ))}

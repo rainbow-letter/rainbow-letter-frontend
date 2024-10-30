@@ -16,7 +16,14 @@ export default function ContentsItem({
   className,
 }: Props) {
   return (
-    <Link to={url} key={id} target="_blank">
+    <Link
+      onClick={() =>
+        window.ReactNativeWebView.postMessage(JSON.stringify({ url }))
+      }
+      to={url}
+      key={id}
+      target="_blank"
+    >
       <article
         id="content_read"
         className={`${className} flex cursor-pointer items-center justify-between bg-gray-6 px-6 py-3`}

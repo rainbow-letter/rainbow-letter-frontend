@@ -33,6 +33,8 @@ import PetEdit from './components/MyPetsTemplate/PetEdit';
 import Letters from './components/admin/Letters';
 import Contents from 'view/contents/Contents';
 import ToolTip from 'components/ToolTip';
+import LetterShowcase from 'components/LetterShowcase';
+import AdModal from 'components/WebView/AdModal';
 
 function Router() {
   const { isOpen } = useSelector((state: State) => state.modal);
@@ -56,6 +58,11 @@ function Router() {
             <Route path="/oauth/success" element={<Auth />} />
             <Route path="/share/:shareLink" element={<ShareLetter />} />
             <Route path="/contents" element={<Contents />} />
+            <Route
+              path="/web-view/letter-showcase"
+              element={<LetterShowcase />}
+            />
+            <Route path="/web-view/ad-modal" element={<AdModal />} />
             <Route element={<ProtectedLayout />}>
               {/* NOTE: 사용자 권한(로그인)이 필요한 페이지 */}
               <Route path="/my-page" element={<MyPage />} />
