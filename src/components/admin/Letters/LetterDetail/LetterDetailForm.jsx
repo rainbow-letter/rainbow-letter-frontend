@@ -17,6 +17,7 @@ import { getReplyStatus, replyStatusInfo } from '../LetterTable/TableRow';
 import { formatImageType } from 'utils/image';
 
 const MAX_CONTENT_LENGTH = 1000;
+const AIOption = ['GPT', 'GEMINI'];
 
 function LetterDetailForm({
   letterId,
@@ -24,18 +25,21 @@ function LetterDetailForm({
   isModal = false,
   onLetterClick,
 }) {
-  const [newContent, setNewContentValue] = useState('');
+  const [newContent, setNewContentValue] = useState({
+    GPT: '',
+    GEMINI: '',
+  });
+  const [selectedAI, setSelectedAI] = useState(AIOption[0]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user, pet, letter, reply, recent } = letterData;
+  const isGPT = selectedAI === AIOption[0];
 
-  useEffect(() => {
-    if (reply && reply?.content) {
-      setNewContentValue(reply?.content);
-    }
-  }, [reply?.content]);
+  const handleAiOptionToggle = (option) => {
+    setSelectedAI(option);
+  };
 
   const handleRegenerateClick = () => {
     if (reply?.submitTime) return alert('이미 답장을 보낸 편지입니다.');
@@ -45,13 +49,16 @@ function LetterDetailForm({
   const handleSaveClick = () => {
     if (reply?.submitTime) return alert('이미 답장을 보낸 편지입니다.');
 
-    const newSummary = extractFirstTenChars(newContent);
+    const newSummary = extractFirstTenChars(
+      isGPT ? newContent.GPT : newContent.GEMINI
+    );
     dispatch(
       editReply({
         replyId: reply?.id,
         editedReply: {
+          promptType: isGPT ? 'A' : 'B',
           summary: newSummary,
-          content: newContent,
+          content: isGPT ? newContent.GPT : newContent.GEMINI,
         },
       })
     );
@@ -62,16 +69,21 @@ function LetterDetailForm({
     onLetterClick(id);
   };
 
+  useEffect(() => {
+    if (reply && (reply?.promptA || reply?.promptB)) {
+      setNewContentValue({ GPT: reply?.promptA, GEMINI: reply?.promptB });
+    }
+  }, [reply?.promptA, reply?.promptB]);
+
   if (!letterData) {
     return <div>Loading...</div>;
   }
 
-  const isChanged = newContent !== reply?.content;
   const replyStatus = getReplyStatus(reply?.status, reply?.inspectionTime);
 
   return (
     <div
-      className={`flex h-screen min-h-[250%] flex-col gap-6 overflow-auto bg-white px-2 pb-10 sm:min-h-0 sm:flex-row sm:gap-x-4 ${isModal && 'pt-10'}`}
+      className={`flex h-[calc(100vh-66px)] min-h-[250%] flex-col gap-6 overflow-auto bg-white px-2 pb-10 sm:min-h-0 sm:flex-row sm:gap-x-4 ${isModal && 'pt-10'}`}
     >
       {/* 왼쪽 */}
       <section className="flex flex-1 flex-col gap-y-6 bg-white">
@@ -175,7 +187,11 @@ function LetterDetailForm({
                 <span>{pet.name}</span>
                 <span>{pet.owner}</span>
                 <span>{pet.species}</span>
-                <span>{pet.personalities || '-'}</span>
+                <span>
+                  {pet.personalities.length > 0
+                    ? pet.personalities.join(', ')
+                    : '-'}
+                </span>
                 <div className="flex gap-x-1">
                   {pet.deathAnniversary && (
                     <>
@@ -241,18 +257,47 @@ function LetterDetailForm({
             )}
           </div>
         </header>
+        <div className="relative flex w-full items-center justify-between overflow-hidden rounded border border-yellow-50 bg-white">
+          <div
+            className={`absolute top-0 h-full w-1/2 bg-yellow-50 transition-transform duration-300 ease-in-out ${
+              selectedAI === 'GPT' ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          />
+          <button
+            className={`z-10 w-1/2 py-1 text-center ${
+              isGPT ? 'font-semibold text-black' : 'text-gray-500'
+            }`}
+            onClick={() => handleAiOptionToggle(AIOption[0])}
+          >
+            GPT
+          </button>
+          <button
+            className={`z-10 w-1/2 py-1 text-center ${
+              isGPT ? 'text-gray-500' : 'font-semibold text-black'
+            }`}
+            onClick={() => handleAiOptionToggle(AIOption[1])}
+          >
+            GEMINI
+          </button>
+        </div>
         <main className="flex h-[80vh] grow">
           <textarea
             className="w-full resize-none rounded-lg bg-gray-100 p-5"
             maxLength={MAX_CONTENT_LENGTH}
             disabled={reply?.submitTime}
-            value={newContent}
-            onChange={({ target }) => setNewContentValue(target.value)}
+            value={isGPT ? newContent.GPT : newContent.GEMINI}
+            onChange={({ target }) =>
+              setNewContentValue(
+                isGPT
+                  ? { ...newContent, GPT: target.value }
+                  : { ...newContent, GEMINI: target.value }
+              )
+            }
           />
         </main>
         <footer className="flex justify-between">
           <div className="mr-3 text-solo-label text-gray-1">
-            {`${newContent.length} / ${MAX_CONTENT_LENGTH}`}
+            {`${isGPT ? newContent.GPT.length : newContent.GEMINI.length} / ${MAX_CONTENT_LENGTH}`}
           </div>
           {isModal ? (
             <button
@@ -277,10 +322,7 @@ function LetterDetailForm({
                 GPT 재생성
               </button>
               <button
-                className={`rounded px-3 py-2 font-semibold text-white ${
-                  isChanged ? 'bg-green-500 hover:bg-green-400' : 'bg-gray-300'
-                }`}
-                disabled={!isChanged}
+                className={`rounded bg-green-500 px-3 py-2 font-semibold text-white hover:bg-green-400`}
                 type="button"
                 onClick={handleSaveClick}
               >
