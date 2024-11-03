@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install mustache
+        run: sudo apt-get install ruby && sudo gem install mustache
+      - name: Create output
+        run: sh ./build.sh
+      - name: Push to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'output'
+          destination-github-username: your-github-username
+          destination-repository-name: your-forked-repo-name
+          user-email: ${{ secrets.USER_EMAIL }}
+          commit-message: ${{ github.event.head_commit.message }}
+          target-branch: main
