@@ -20,8 +20,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: 'output'
-          destination-github-username: your-github-username
-          destination-repository-name: your-forked-repo-name
+          destination-github-username: ahnlook
+          destination-repository-name: rainbow-letter-frontend
           user-email: ${{ secrets.USER_EMAIL }}
           commit-message: ${{ github.event.head_commit.message }}
           target-branch: main
