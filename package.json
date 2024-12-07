@@ -74,6 +74,7 @@
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "react-scripts": "^5.0.1",
-    "tailwindcss": "^3.3.6"
+    "tailwindcss": "^3.3.6",
+    "type-coverage": "^2.27.1"
   }
 }
