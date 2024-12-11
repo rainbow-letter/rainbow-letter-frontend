@@ -2,6 +2,28 @@
   "appBar": {
     "letterBox": "MailBox"
   },
+  "login": {
+    "welcome": "Welcome back!",
+    "snsLogin": "Sign up with",
+    "emailLogin": "Sign up with Email",
+    "forgot": "Forgot password?",
+    "login": "Log in",
+    "signUp": "Sign up",
+    "emailPlaceholder": "Email address",
+    "passwordPlaceholder": "Password"
+  },
+  "signUp": {
+    "welcome": "Write a letter for free!",
+    "snsLogin": "Sign up with",
+    "emailLogin": "Sign up with Email",
+    "login": "Log in",
+    "signUp": "Sign up",
+    "emailPlaceholder": "Email address",
+    "passwordPlaceholder": "Password",
+    "agree": "Agree to all",
+    "terms": "Terms & conditions",
+    "policy": "Privacy policy"
+  },
   "letterBox": {
     "updateProfile": "Edit Profile",
     "description": "To my baby, I am a loving ",

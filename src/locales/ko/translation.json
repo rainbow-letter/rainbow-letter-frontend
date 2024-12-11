@@ -2,6 +2,17 @@
   "appBar": {
     "letterBox": "편지함"
   },
+  "login": {
+    "welcome": "다시 와주셨네요!",
+    "snsLogin": "SNS로 간편 로그인하기",
+    "emailLogin": "또는 이메일로 로그인하기",
+    "forgot": "비밀번호 찾기",
+    "login": "로그인하기",
+    "signUp": "회원가입",
+    "emailPlaceholder": "이메일을 입력해주세요",
+    "passwordPlaceholder": "비밀번호를 입력해주세요"
+  },
+  
   "letterBox": {
     "updateProfile": "프로필 수정",
     "description": "아이에게 나는 사랑하는 ",
