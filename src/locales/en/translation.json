@@ -29,8 +29,8 @@
     "description": "To my baby, I am a loving ",
     "prevWeek": "Last Week",
     "nextWeek": "Next Week",
-    "prevMonth": "Last Month",
-    "nextMonth": "Next Month",
+    "prevMonth": "",
+    "nextMonth": "",
     "weekdayAbbrSunday": "SUN",
     "weekdayAbbrMonday": "MON",
     "weekdayAbbrTuesday": "TUE",
@@ -52,6 +52,18 @@
     "tooltipUpLine": "Tap a letter below",
     "tooltipDownLine": "if you’d like to delete it.",
     "replying": "REPLYING",
-    "received": "REPLY RECEIVED"
+    "received": "REPLY RECEIVED",
+    "year": "",
+    "month": "",
+    "confirm": "Confirm"
+  },
+  "modal": {
+    "delete": {
+      "titleUpLine": "Do you want to delete the",
+      "titleDownLine": "selected letter?",
+      "alert": "Deleted letters cannot be restored.",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
   }
 }
