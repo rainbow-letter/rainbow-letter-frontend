@@ -7,6 +7,7 @@ module.exports = {
       OwnglyphMinhyeChae: ['OwnglyphMinhyeChae'],
       Gyobomungo2019: ['Gyobomungo2019'],
       Pretendard: ['Pretendard'],
+      HelveticaNowDisplay: ['HelveticaNowDisplay'],
     },
     extend: {
       width: {
