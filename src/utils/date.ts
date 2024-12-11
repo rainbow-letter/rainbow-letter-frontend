@@ -132,18 +132,47 @@ export const formatDateWithSlash = (date: string) => {
 export const formatDay = (value: number) => {
   switch (value) {
     case 0:
-      return '일';
+      return 'letterBox.weekdayFullSunday';
     case 1:
-      return '월';
+      return 'letterBox.weekdayFullMonday';
     case 2:
-      return '화';
+      return 'letterBox.weekdayFullTuesday';
     case 3:
-      return '수';
+      return 'letterBox.weekdayFullWednesday';
     case 4:
-      return '목';
+      return 'letterBox.weekdayFullThursday';
     case 5:
-      return '금';
+      return 'letterBox.weekdayFullFriday';
     default:
-      return '토';
+      return 'letterBox.weekdayFullSaturday';
+  }
+};
+
+export const formatMonthName = (month: number) => {
+  switch (month) {
+    case 1:
+      return 'January';
+    case 2:
+      return 'February';
+    case 3:
+      return 'March';
+    case 4:
+      return 'April';
+    case 5:
+      return 'May';
+    case 6:
+      return 'June';
+    case 7:
+      return 'July';
+    case 8:
+      return 'August';
+    case 9:
+      return 'September';
+    case 10:
+      return 'October';
+    case 11:
+      return 'November';
+    case 12:
+      return 'December';
   }
 };
