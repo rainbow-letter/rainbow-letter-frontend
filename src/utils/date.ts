@@ -129,6 +129,25 @@ export const formatDateWithSlash = (date: string) => {
   return `${year}/${month}/${day}(${dayOfWeek})`;
 };
 
+export const formatKoDay = (value: number) => {
+  switch (value) {
+    case 0:
+      return '일';
+    case 1:
+      return '월';
+    case 2:
+      return '화';
+    case 3:
+      return '수';
+    case 4:
+      return '목';
+    case 5:
+      return '금';
+    default:
+      return '토';
+  }
+};
+
 export const formatDay = (value: number) => {
   switch (value) {
     case 0:
@@ -175,4 +194,24 @@ export const formatMonthName = (month: number) => {
     case 12:
       return 'December';
   }
+};
+
+export const getTimeUntilKST10AM = () => {
+  const nowUTC = new Date();
+
+  const KST_OFFSET_HOURS = 9;
+  const KSTTarget = new Date(nowUTC);
+
+  KSTTarget.setUTCHours(10 - KST_OFFSET_HOURS, 0, 0, 0);
+
+  if (nowUTC.getTime() >= KSTTarget.getTime()) {
+    KSTTarget.setUTCDate(KSTTarget.getUTCDate() + 1);
+  }
+
+  const timeDifferenceMs = KSTTarget.getTime() - nowUTC.getTime();
+  const hours = Math.floor(timeDifferenceMs / (1000 * 60 * 60));
+  const minutes =
+    Math.floor((timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60)) + 1;
+
+  return { hours, minutes };
 };

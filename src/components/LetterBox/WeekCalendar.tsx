@@ -17,6 +17,7 @@ import { getLetterList } from 'api/letter';
 import { LetterListResponse } from 'types/letters';
 import { T } from '../../types/translate';
 import { formatMonthName } from 'utils/date';
+import UntilTimeBox from './UntilTimeBox';
 
 type Props = {
   setDate: (date: Date) => void;
@@ -61,6 +62,11 @@ export default function WeekCalendar({
     }
     return `${formatMonthName(currentDate.getMonth() + 1)} ${currentDate.getFullYear()}`;
   }, [lng, currentDate]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(letterSlice.actions.setCalendarClose());
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -144,8 +150,9 @@ export default function WeekCalendar({
 
   return (
     <>
-      <section className="px-[1.125rem] py-[30px]">
-        <header className="flex justify-between">
+      <section className="px-[1.125rem] py-6">
+        {lng === 'en' && <UntilTimeBox />}
+        <header className="mt-4 flex justify-between">
           <button
             type="button"
             onClick={onClickPrevWeek}
@@ -214,6 +221,7 @@ export default function WeekCalendar({
           currentWeekDate={currentDate}
           setCurrentWeekDate={setCurrentDate}
           selectedPet={selectedPet}
+          yearAndMonth={yearAndMonth}
         />
       )}
       <Divider />

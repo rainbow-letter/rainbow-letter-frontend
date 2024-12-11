@@ -32,7 +32,7 @@ export default function LetterStatus({ status, readStatus }: Props) {
         alt="답장 상태 아이콘"
       />
       <span
-        className={`${isCompleteResponse ? TextColor : 'text-alarm-50'} mt-1 text-caption-pc font-bold`}
+        className={`${isCompleteResponse ? TextColor : 'text-alarm-50'} text-caption-pc font-bold`}
       >
         {t(`letterBox.${letterStatus}`)}
       </span>

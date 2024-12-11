@@ -10,7 +10,7 @@ import LetterItem from 'components/LetterBox/LetterItem';
 import Button from 'components/Button';
 import { LetterListResponse } from 'types/letters';
 import { PetResponse } from 'types/pets';
-import { formatDay, formatMonthName } from 'utils/date';
+import { formatDay, formatMonthName, formatKoDay } from 'utils/date';
 import { getLetterList, deleteLetter } from 'api/letter';
 import Plus from '../../assets/ic_letterBox_plus.svg';
 import Info from '../../assets/ic_letterBox_info.svg';
@@ -72,13 +72,12 @@ export default function LetterList({
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
   }, [date]);
 
-  const formattedDay = formatDay(getDay(localDate));
   const dateAndDay = useMemo(() => {
     if (lng === 'ko') {
-      return `${format(localDate, 'M월 dd일')} ${formattedDay}요일`;
+      return `${format(localDate, 'M월 dd일')} ${formatKoDay(getDay(localDate))}요일`;
     }
 
-    return `${t(formattedDay)}, ${formatMonthName(date.getMonth() + 1)} ${date.getDate()}`;
+    return `${t(formatDay(getDay(localDate)))}, ${formatMonthName(date.getMonth() + 1)} ${date.getDate()}`;
   }, [lng, date]);
 
   const isToday = useMemo(() => {
